@@ -550,7 +550,8 @@ def main():
         QtGui.QMessageBox.information(None,'FOCUS!','Marave only opens one document at a time.\nThe whole idea is focusing!\nSo, this is the first one you asked for.')
 
     window=MainWidget()
-    window.editor.open(sys.argv[1])
+    if len(sys.argv) > 2:
+        window.editor.open(sys.argv[1])
     QtCore.QTimer.singleShot(0,window._show)
     
     

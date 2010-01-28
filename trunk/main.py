@@ -16,6 +16,9 @@ except ImportError:
     EditorClass=QtGui.QPlainTextEdit
     print 'Spellchecking disabled'
 
+from Ui_searchwidget import Ui_Form as UI_SearchWidget
+
+
 class animatedOpacity:
     def moveOpacity(self):
         if abs(abs(self.proxy.opacity())-abs(self.targetOpacity))<.1:
@@ -39,6 +42,20 @@ class animatedOpacity:
             c.targetOpacity=0.
             c.moveOpacity()
 
+class SearchWidget(QtGui.QWidget, animatedOpacity):
+    def __init__(self, scene, opacity=.0):
+        QtGui.QWidget.__init__(self)
+        # Set up the UI from designer
+        self.ui=UI_SearchWidget()
+        self.baseOpacity=opacity
+        self.proxy=scene.addWidget(self)
+        self.proxy.setOpacity(opacity)
+        self.movingOp=False
+        self.setFocusPolicy(QtCore.Qt.ClickFocus)
+        self.children=[]
+        self.ui.setupUi(self)
+
+
 class FunkyLabel(QtGui.QLabel, animatedOpacity):
     def __init__(self, text, scene,opacity=.3):
         QtGui.QLabel.__init__(self,text)
@@ -46,11 +63,10 @@ class FunkyLabel(QtGui.QLabel, animatedOpacity):
         self.proxy=scene.addWidget(self)
         self.proxy.setOpacity(opacity)
         self.movingOp=False
-        self.setFocusPolicy(QtCore.Qt.NoFocus)
+        self.setFocusPolicy(QtCore.Qt.ClickFocus)
         self.children=[]
-        self.setStyleSheet("""background-color: transparent;
-                              padding: 6px;
-                              border: 2px solid #eeeeee;
+        self.setStyleSheet("""
+                              padding: 5px 4px 3px 4px;
                               text-align: right;
                            """)
 
@@ -69,6 +85,22 @@ class FunkyButton(QtGui.QPushButton, animatedOpacity):
             min-width: 60px;
         """)
         self.children=[]
+        
+class FunkyLineEdit(QtGui.QLineEdit, animatedOpacity):
+    def __init__(self, scene,opacity=.3):
+        QtGui.QLineEdit.__init__(self)
+        self.baseOpacity=opacity
+        self.proxy=scene.addWidget(self)
+        self.proxy.setOpacity(opacity)
+        self.movingOp=False
+        self.setStyleSheet("""
+            border: 1px solid gray;
+            border-radius: 3px;
+            padding: 5px 4px 3px 4px;
+            min-width: 60px;
+        """)
+        self.setFocusPolicy(QtCore.Qt.NoFocus)
+        self.children=[]
 
 class FunkyFontList(QtGui.QFontComboBox, animatedOpacity):
     def __init__(self, scene,opacity=.3):
@@ -83,7 +115,6 @@ class FunkyFontList(QtGui.QFontComboBox, animatedOpacity):
             padding: 5px 2px 4px 3px;
         """)
          
-
 class FunkyEditor(EditorClass):
     def __init__(self, *args, **kwargs):
         EditorClass.__init__(self, *args, **kwargs)
@@ -173,6 +204,9 @@ class MainWidget (QtGui.QGraphicsView):
                                      color: black;
                                   """)
 
+        self.sc1 = QtGui.QShortcut(QtGui.QKeySequence("Ctrl+F"), self);
+        self.sc1.activated.connect(self.showsearch)
+
         self.editorBG=QtGui.QGraphicsRectItem(self.editorX-5,self.editorY-5,self.editorW+10,self.editorH+10)
         self.editorBG.setOpacity(.03)
         self.editorBG.setBrush(QtGui.QColor(1,1,1))
@@ -197,7 +231,7 @@ class MainWidget (QtGui.QGraphicsView):
                       ]
 
         mainMenuLayout=QtGui.QGraphicsGridLayout()
-        mainMenuLayout.setContentsMargins(20,0,0,0)
+        mainMenuLayout.setContentsMargins(0,0,0,0)
         for pos, button in enumerate(self.buttons):
             mainMenuLayout.addItem(button.proxy,pos,0)
 
@@ -269,9 +303,43 @@ class MainWidget (QtGui.QGraphicsView):
         self.mainMenu.setLayout(mainMenuLayout)
         self.mainMenu.setPos(self.editorX+self.editorW+20,self.editorY)
         self._scene.addItem(self.mainMenu)
+        
+        ## Editor search bar
+        #self.closeSearch=FunkyButton("X", self._scene,1)
+        #self.closeSearch.clicked.connect(self.hidesearch)
+        #self.searchLabel=FunkyLabel("Find:", self._scene,1)
+        #self.searchText=FunkyLineEdit(self._scene,1)
+        
+        self.searchWidget=SearchWidget(self._scene)
+        
+        searchLayout=QtGui.QGraphicsLinearLayout()
+        searchLayout.setContentsMargins(0,0,0,0)
+        searchLayout.addItem(self.searchWidget.proxy)
+        #searchLayout.addItem(self.closeSearch.proxy)
+        #searchLayout.addItem(self.searchLabel.proxy)
+        #searchLayout.addItem(self.searchText.proxy)
+        
+        self.searchBar=QtGui.QGraphicsWidget()
+        self.searchBar.setLayout(searchLayout)
+        self.searchBar.setPos(self.editorX+self.editorW+20,self.editorY+self.editorH-30)
+        self._scene.addItem(self.searchBar)
+        
+        # Event filters for showing/hiding buttons/cursor
         self.editor.installEventFilter(self)
         for b in self.buttons:
             b.installEventFilter(self)
+
+    def showsearch(self):
+        self.searchWidget.show()
+        self.searchWidget.targetOpacity=.7
+        self.searchWidget.moveOpacity()
+        self.searchWidget.ui.text.setFocus()
+
+    def hidesearch(self):
+        self.searchBar.targetOpacity=.0
+        self.searchBar.moveOpacity()
+        self.searchWidget.hide()
+        self.editor.setFocus()
 
     def prevclick(self):
         clist=os.listdir('clicks')
@@ -439,6 +507,7 @@ class MainWidget (QtGui.QGraphicsView):
             print (self.editorX,self.editorY,self.editorW,self.editorH),self.editor.geometry()
             self.editorBG.setRect(self.editorX-5,self.editorY-5,self.editorW+10,self.editorH+10)
             self.mainMenu.setPos(self.editorX+self.editorW+20,self.editorY)
+            self.searchBar.setPos(self.editorX+self.editorW+20,self.editorY+self.editorH-30)
 
     def showButtons(self):
         for w in self.buttons:

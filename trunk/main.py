@@ -140,10 +140,7 @@ class MainWidget (QtGui.QGraphicsView):
         self.nextbg()
         self.nextclick()
 
-        self.stations=[
-            "http://207.200.96.225:8020",
-            "http://scfire-mtc-aa06.stream.aol.com:80/stream/1018",
-            ]
+        self.stations=[x.strip() for x in open('radios.txt').readlines()]
         self.currentStation=None
 
         self.setHorizontalScrollBarPolicy(QtCore.Qt.ScrollBarAlwaysOff)
@@ -400,7 +397,9 @@ class MainWidget (QtGui.QGraphicsView):
         QtGui.QGraphicsView.mouseMoveEvent(self, ev)
 
     def changeFont(self, font):
-        self.editor.setFont(font)
+        f=self.editor.font()
+        f.setFamily(font.family())
+        self.editor.setFont(f)
 
     def drawBackground(self, painter, rect):
         if self.bg:

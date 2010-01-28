@@ -138,8 +138,9 @@ class FunkyEditor(EditorClass):
             self.docName=fname
             self.save()
 
-    def open(self):
-        fname=unicode(QtGui.QFileDialog.getOpenFileName())
+    def open(self, fname=None):
+        if not fname:
+            fname=unicode(QtGui.QFileDialog.getOpenFileName())
         if fname:
             self.docName=fname
             self.setPlainText(codecs.open(fname,'r','utf-8').read())
@@ -498,8 +499,11 @@ class MainWidget (QtGui.QGraphicsView):
     def resizeEvent(self, ev):
         self._scene.setSceneRect(QtCore.QRectF(self.geometry()))
         if self.bg:
-            self.realBg=self.bg.scaled( self.size(), QtCore.Qt.KeepAspectRatioByExpanding)
+            self.realBg=self.bg.scaled( self.size(), QtCore.Qt.KeepAspectRatioByExpanding) 
+        self.adjustPositions()
         
+    def adjustPositions(self):
+        m=self.m
         # Try to guess a decent size for the editor window
         # Width: 80 characters
         # Height: 90% of the screen
@@ -507,10 +511,6 @@ class MainWidget (QtGui.QGraphicsView):
         self.editorW=self.fontMetrics().averageCharWidth()*80
         self.editorY=self.height()*.05
         self.editorX=self.width()*.1
-        self.adjustPositions()
-        
-    def adjustPositions(self):
-        m=self.m
         if self.editor:
             self.editor.setGeometry(self.editorX,self.editorY,self.editorW,self.editorH)
             self.editorBG.setRect(self.editorX-m,self.editorY-m,self.editorW+2*m,self.editorH+2*m)
@@ -545,8 +545,14 @@ def main():
     # Again, this is boilerplate, it's going to be the same on
     # almost every app you write
     app = QtGui.QApplication(sys.argv)
+    
+    if len(sys.argv) > 2:
+        QtGui.QMessageBox.information(None,'FOCUS!','Marave only opens one document at a time.\n The whole idea is focusing!\n So, this is the first one you asked for.')
+
     window=MainWidget()
+    window.editor.open(sys.argv[1])
     QtCore.QTimer.singleShot(0,window._show)
+    
     
     # It's exec_ because exec is a reserved word in Python
     sys.exit(app.exec_())

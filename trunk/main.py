@@ -140,6 +140,12 @@ class MainWidget (QtGui.QGraphicsView):
         self.nextbg()
         self.nextclick()
 
+        self.stations=[
+            "http://207.200.96.225:8020",
+            "http://scfire-mtc-aa06.stream.aol.com:80/stream/1018",
+            ]
+        self.currentStation=None
+
         self.setHorizontalScrollBarPolicy(QtCore.Qt.ScrollBarAlwaysOff)
         self.setVerticalScrollBarPolicy(QtCore.Qt.ScrollBarAlwaysOff)
         #self.setViewport(QtOpenGL.QGLWidget())
@@ -241,6 +247,16 @@ class MainWidget (QtGui.QGraphicsView):
         self.click3.clicked.connect(self.noclick)
         self.clickButton.children+=[self.click1, self.click2, self.click3]
         
+        self.music1=FunkyButton("<", self._scene,0)
+        self.music2=FunkyButton(">", self._scene,0)
+        self.music3=FunkyButton("X", self._scene,0)
+        mainMenuLayout.addItem(self.music1.proxy,5,1)
+        mainMenuLayout.addItem(self.music2.proxy,5,2)
+        mainMenuLayout.addItem(self.music3.proxy,5,3)
+        self.music1.clicked.connect(self.prevstation)
+        self.music2.clicked.connect(self.nextstation)
+        self.music3.clicked.connect(self.nomusic)
+        self.musicButton.children+=[self.music1, self.music2, self.music3]
 
         self.mainMenu=QtGui.QGraphicsWidget()
         self.mainMenu.setLayout(mainMenuLayout)
@@ -281,6 +297,31 @@ class MainWidget (QtGui.QGraphicsView):
     def noclick(self):
         self.beep=None
 
+    def prevstation(self):
+        try:
+            idx=(self.stations.index(self.currentStation)-1)%len(self.stations)
+        except ValueError:
+            idx=-1
+        self.currentStation=self.stations[idx]
+        print '<< switching music to:', self.currentStation
+        self.music = Phonon.createPlayer(Phonon.MusicCategory,
+                                  Phonon.MediaSource(self.currentStation))
+        self.music.play()
+        
+    def nextstation(self):
+        try:
+            idx=(self.stations.index(self.currentStation)+1)%len(self.stations)
+        except ValueError:
+            idx=-1
+        self.currentStation=self.stations[idx]
+        print '>> switching music to:', self.currentStation
+        self.music = Phonon.createPlayer(Phonon.MusicCategory,
+                                  Phonon.MediaSource(self.currentStation))
+        self.music.play()
+
+    def nomusic(self):
+        self.music.stop()
+        
     def prevbg(self):
         bglist=os.listdir('backgrounds')
         bglist=[x for x in bglist if not x.startswith('.')]
@@ -419,10 +460,6 @@ def main():
     window=MainWidget()
     QtCore.QTimer.singleShot(0,window._show)
     
-    # Make soothing sounds
-    music = Phonon.createPlayer(Phonon.MusicCategory,
-                              Phonon.MediaSource("http://207.200.96.225:8020"))
-    #music.play()
     # It's exec_ because exec is a reserved word in Python
     sys.exit(app.exec_())
 

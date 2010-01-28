@@ -170,6 +170,7 @@ class MainWidget (QtGui.QGraphicsView):
         self.fileButton=FunkyButton("FILE", self._scene, 0)
         self.bgButton=FunkyButton("BG", self._scene, 0)
         self.clickButton=FunkyButton("CLICK", self._scene, 0)
+        self.musicButton=FunkyButton("MUSIC", self._scene, 0)
         self.quitButton=FunkyButton("QUIT", self._scene, 0)
         self.quitButton.clicked.connect(self.close)
 
@@ -178,17 +179,14 @@ class MainWidget (QtGui.QGraphicsView):
                       self.fileButton, 
                       self.bgButton, 
                       self.clickButton,
+                      self.musicButton,
                       self.quitButton,
                       ]
 
         mainMenuLayout=QtGui.QGraphicsGridLayout()
         mainMenuLayout.setContentsMargins(20,0,0,0)
-        mainMenuLayout.addItem(self.fontButton.proxy,0,0)
-        mainMenuLayout.addItem(self.sizeButton.proxy,1,0)
-        mainMenuLayout.addItem(self.fileButton.proxy,2,0)
-        mainMenuLayout.addItem(self.bgButton.proxy,3,0)
-        mainMenuLayout.addItem(self.clickButton.proxy,4,0)
-        mainMenuLayout.addItem(self.quitButton.proxy,5,0)
+        for pos, button in enumerate(self.buttons):
+            mainMenuLayout.addItem(button.proxy,pos,0)
 
         self.fontList=FunkyFontList(self._scene,0)
         self.fontList.currentFontChanged.connect(self.changeFont)
@@ -254,6 +252,8 @@ class MainWidget (QtGui.QGraphicsView):
 
     def prevclick(self):
         clist=os.listdir('clicks')
+        clist=[x for x in clist if not x.startswith('.')]
+        clist.sort()
         try:
             idx=(clist.index(self.currentClick)-1)%len(clist)
         except ValueError:
@@ -266,6 +266,8 @@ class MainWidget (QtGui.QGraphicsView):
 
     def nextclick(self):
         clist=os.listdir('clicks')
+        clist=[x for x in clist if not x.startswith('.')]
+        clist.sort()
         try:
             idx=(clist.index(self.currentClick)+1)%len(clist)
         except ValueError:
@@ -281,6 +283,8 @@ class MainWidget (QtGui.QGraphicsView):
 
     def prevbg(self):
         bglist=os.listdir('backgrounds')
+        bglist=[x for x in bglist if not x.startswith('.')]
+        bglist.sort()
         try:
             idx=(bglist.index(self.currentBG)-1)%len(bglist)
         except ValueError:
@@ -295,6 +299,8 @@ class MainWidget (QtGui.QGraphicsView):
         
     def nextbg(self):
         bglist=os.listdir('backgrounds')
+        bglist=[x for x in bglist if not x.startswith('.')]
+        bglist.sort()
         try:
             idx=(bglist.index(self.currentBG)+1)%len(bglist)
         except ValueError:

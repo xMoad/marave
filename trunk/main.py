@@ -62,6 +62,11 @@ class FunkyButton(QtGui.QPushButton, animatedOpacity):
         self.proxy.setOpacity(opacity)
         self.movingOp=False
         self.setFocusPolicy(QtCore.Qt.NoFocus)
+        self.setStyleSheet("""
+     border: 1px solid gray;
+     border-radius: 3px;
+     padding: 5px 4px 3px 4px;
+        """)
         self.children=[]
 
 class FunkyFontList(QtGui.QFontComboBox, animatedOpacity):
@@ -73,6 +78,11 @@ class FunkyFontList(QtGui.QFontComboBox, animatedOpacity):
         self.movingOp=False
         self.setFocusPolicy(QtCore.Qt.NoFocus)
         self.children=[]
+        self.setStyleSheet("""
+     border: 1px solid gray;
+     border-radius: 3px;
+     padding: 4px 18px 3px 3px;
+        """)
 
 class FunkyEditor(EditorClass):
     def __init__(self, *args, **kwargs):

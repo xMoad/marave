@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'searchwidget.ui'
 #
-# Created: Thu Jan 28 15:35:29 2010
+# Created: Thu Jan 28 16:45:33 2010
 #      by: PyQt4 UI code generator 4.6.2
 #
 # WARNING! All changes made in this file will be lost!
@@ -53,7 +53,6 @@ class Ui_Form(object):
 
         self.retranslateUi(Form)
         QtCore.QObject.connect(self.text, QtCore.SIGNAL("returnPressed()"), self.next.animateClick)
-        QtCore.QObject.connect(self.close, QtCore.SIGNAL("clicked()"), Form.hide)
         QtCore.QMetaObject.connectSlotsByName(Form)
 
     def retranslateUi(self, Form):

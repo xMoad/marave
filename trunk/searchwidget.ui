@@ -117,21 +117,5 @@
     </hint>
    </hints>
   </connection>
-  <connection>
-   <sender>close</sender>
-   <signal>clicked()</signal>
-   <receiver>Form</receiver>
-   <slot>hide()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>16</x>
-     <y>19</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>19</x>
-     <y>36</y>
-    </hint>
-   </hints>
-  </connection>
  </connections>
 </ui>

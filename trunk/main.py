@@ -170,6 +170,9 @@ class MainWidget (QtGui.QGraphicsView):
         
         self._scene=QtGui.QGraphicsScene()
         self.setScene(self._scene)
+        
+        # Used for margins and border sizes
+        self.m=5
 
         self.editor=None
         self.setFocusPolicy(QtCore.Qt.NoFocus)
@@ -311,6 +314,7 @@ class MainWidget (QtGui.QGraphicsView):
         #self.searchText=FunkyLineEdit(self._scene,1)
         
         self.searchWidget=SearchWidget(self._scene)
+        self.searchWidget.ui.close.clicked.connect(self.hidesearch)
         
         searchLayout=QtGui.QGraphicsLinearLayout()
         searchLayout.setContentsMargins(0,0,0,0)
@@ -330,16 +334,18 @@ class MainWidget (QtGui.QGraphicsView):
             b.installEventFilter(self)
 
     def showsearch(self):
+        self.editor.resize(self.editor.width(),self.height()*.9-self.searchWidget.height()-self.m)
         self.searchWidget.show()
         self.searchWidget.targetOpacity=.7
         self.searchWidget.moveOpacity()
         self.searchWidget.ui.text.setFocus()
 
     def hidesearch(self):
-        self.searchBar.targetOpacity=.0
-        self.searchBar.moveOpacity()
+        self.searchWidget.targetOpacity=.0
+        self.searchWidget.moveOpacity()
         self.searchWidget.hide()
         self.editor.setFocus()
+        self.editor.resize(self.editor.width(),self.height()*.9)
 
     def prevclick(self):
         clist=os.listdir('clicks')
@@ -504,12 +510,13 @@ class MainWidget (QtGui.QGraphicsView):
         self.adjustPositions()
         
     def adjustPositions(self):
+        m=self.m
         if self.editor:
             self.editor.setGeometry(self.editorX,self.editorY,self.editorW,self.editorH)
-            print (self.editorX,self.editorY,self.editorW,self.editorH),self.editor.geometry()
-            self.editorBG.setRect(self.editorX-5,self.editorY-5,self.editorW+10,self.editorH+10)
-            self.mainMenu.setPos(self.editorX+self.editorW+20,self.editorY)
-            self.searchBar.setPos(self.editorX+self.editorW+20,self.editorY+self.editorH-30)
+            self.editorBG.setRect(self.editorX-m,self.editorY-m,self.editorW+2*m,self.editorH+2*m)
+            self.mainMenu.setPos(self.editorX+self.editorW+3*m,self.editorY)
+            self.searchBar.setPos(self.editorX,self.editorY+self.editorH-self.searchWidget.height())
+            self.searchWidget.setFixedWidth(self.editor.width())
 
     def showButtons(self):
         for w in self.buttons:

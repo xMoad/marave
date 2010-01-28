@@ -547,7 +547,7 @@ def main():
     app = QtGui.QApplication(sys.argv)
     
     if len(sys.argv) > 2:
-        QtGui.QMessageBox.information(None,'FOCUS!','Marave only opens one document at a time.\n The whole idea is focusing!\n So, this is the first one you asked for.')
+        QtGui.QMessageBox.information(None,'FOCUS!','Marave only opens one document at a time.\nThe whole idea is focusing!\nSo, this is the first one you asked for.')
 
     window=MainWidget()
     window.editor.open(sys.argv[1])

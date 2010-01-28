@@ -116,8 +116,8 @@ class FunkyFontList(QtGui.QFontComboBox, animatedOpacity):
         """)
          
 class FunkyEditor(EditorClass):
-    def __init__(self, *args, **kwargs):
-        EditorClass.__init__(self, *args, **kwargs)
+    def __init__(self, parent):
+        EditorClass.__init__(self, parent)
         self.setMouseTracking(True)
         self.viewport().setMouseTracking(True)
         self.defSize=self.font().pointSize()

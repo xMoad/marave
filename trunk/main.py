@@ -66,6 +66,7 @@ class FunkyButton(QtGui.QPushButton, animatedOpacity):
             border: 1px solid gray;
             border-radius: 3px;
             padding: 5px 4px 3px 4px;
+            min-width: 60px;
         """)
         self.children=[]
 
@@ -430,7 +431,7 @@ class MainWidget (QtGui.QGraphicsView):
         # Height: 90% of the screen
         self.editorH=.9*self.height()
         self.editorW=self.fontMetrics().averageCharWidth()*80
-        self.editorY=self.width()*.05
+        self.editorY=self.height()*.05
         self.editorX=self.width()*.1
         
         if self.editor:

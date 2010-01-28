@@ -501,7 +501,9 @@ class MainWidget (QtGui.QGraphicsView):
         self.editorW=self.fontMetrics().averageCharWidth()*80
         self.editorY=self.height()*.05
         self.editorX=self.width()*.1
+        self.adjustPositions()
         
+    def adjustPositions(self):
         if self.editor:
             self.editor.setGeometry(self.editorX,self.editorY,self.editorW,self.editorH)
             print (self.editorX,self.editorY,self.editorW,self.editorH),self.editor.geometry()
@@ -530,6 +532,7 @@ class MainWidget (QtGui.QGraphicsView):
         self.show()
         self.showButtons()
         self.showFullScreen()
+        self.adjustPositions()
 
 def main():
     # Again, this is boilerplate, it's going to be the same on

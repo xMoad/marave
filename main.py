@@ -5,7 +5,8 @@
 import os,sys,codecs
 
 # Import Qt modules
-from PyQt4 import QtCore,QtGui,QtOpenGL
+from PyQt4 import QtCore,QtGui
+#from PyQt4 import QtOpenGL
 from PyQt4.phonon import Phonon
 
 try:

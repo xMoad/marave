@@ -439,7 +439,7 @@ class MainWidget (QtGui.QGraphicsView):
         
     def setbgcolor(self):
         bgcolor=QtGui.QColorDialog.getColor()
-        if bgcolor:
+        if bgcolor.isValid():
             self.bg=None
             self.realBG=None
             self.bgcolor=bgcolor

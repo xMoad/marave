@@ -52,9 +52,9 @@ class SearchWidget(QtGui.QWidget, animatedOpacity):
         self.proxy=scene.addWidget(self)
         self.proxy.setOpacity(opacity)
         self.movingOp=False
-        self.setFocusPolicy(QtCore.Qt.ClickFocus)
         self.children=[]
         self.ui.setupUi(self)
+        self.ui.text.setFocusPolicy(QtCore.Qt.ClickFocus)
 
 
 class FunkyLabel(QtGui.QLabel, animatedOpacity):
@@ -211,7 +211,6 @@ class MainWidget (QtGui.QGraphicsView):
         self.editor.setMouseTracking(True)
         self.editor.setFrameStyle(QtGui.QFrame.NoFrame)
         self.editor.setStyleSheet("""background-color: transparent;
-                                     color: black;
                                   """)
 
         # Keyboard shortcuts
@@ -462,23 +461,25 @@ class MainWidget (QtGui.QGraphicsView):
         self.showFullScreen()
         
     def setbgcolor(self, bgcolor=None):
-        if bgcolor is None:
-            bgcolor=QtGui.QColorDialog.getColor()
-        if bgcolor.isValid():
-            self.bg=None
-            self.realBG=None
-            self.bgcolor=bgcolor
-            # FIXME: I can't find a way to force it to redraw the background nicely.
-            self.hide()
-            self.showFullScreen()
+        if isinstance(bgcolor, QtGui.QColor):
+            if bgcolor.isValid():
+                self.bg=None
+                self.realBG=None
+                self.bgcolor=bgcolor
+                # FIXME: I can't find a way to force it to redraw the background nicely.
+                self.hide()
+                self.showFullScreen()
+        else:
+            self.setbgcolor(QtGui.QColorDialog.getColor())
 
     def setfontcolor(self, color=None):
-        if color is None:
-            color=QtGui.QColorDialog.getColor()
-        if color.isValid():
-            self.editor.setStyleSheet("""background-color: transparent;
-                                         color: %s;
-                                      """%(unicode(color.name())))
+        if isinstance(color, QtGui.QColor):
+            if color.isValid():
+                self.editor.setStyleSheet("""background-color: transparent;
+                                            color: %s;
+                                          """%(unicode(color.name())))
+        else:
+            self.setfontcolor(QtGui.QColorDialog.getColor())
 
     def tajmode(self):
         self.noclick()

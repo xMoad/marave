@@ -363,6 +363,7 @@ class MainWidget (QtGui.QGraphicsView):
     def showsearch(self):
         self.editor.resize(self.editor.width(),self.height()*.9-self.searchWidget.height()-self.m)
         self.searchWidget.show()
+        self.setFocus()
         self.searchWidget.ui.text.setFocus()
         self.searchWidget.targetOpacity=.7
         self.searchWidget.moveOpacity()

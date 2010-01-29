@@ -171,7 +171,9 @@ class FunkyEditor(EditorClass):
 class MainWidget (QtGui.QGraphicsView):
     def __init__(self):
         QtGui.QGraphicsView.__init__(self)
-        
+        self.setStyleSheet("""
+            border: 0px solid gray;
+        """)
         self._scene=QtGui.QGraphicsScene()
         self.setScene(self._scene)
         

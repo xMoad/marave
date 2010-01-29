@@ -356,7 +356,7 @@ class MainWidget (QtGui.QGraphicsView):
                 QtGui.QGraphicsView.close(self)
         else:
             QtGui.QGraphicsView.close(self)
-        QtCore.QCoreApplication.instance().quit()
+            QtCore.QCoreApplication.instance().quit()
 
     def showsearch(self):
         self.editor.resize(self.editor.width(),self.height()*.9-self.searchWidget.height()-self.m)

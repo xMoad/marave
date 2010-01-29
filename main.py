@@ -223,6 +223,10 @@ class MainWidget (QtGui.QGraphicsView):
         self.sc2 = QtGui.QShortcut(QtGui.QKeySequence("Ctrl+T"), self);
         self.sc2.activated.connect(self.tajmode)
 
+        # Spell checker toggle
+        self.sc3 = QtGui.QShortcut(QtGui.QKeySequence("Shift+Ctrl+Y"), self);
+        self.sc3.activated.connect(self.togglespell)
+
         self.editorBG=QtGui.QGraphicsRectItem(self.editorX-5,self.editorY-5,self.editorW+10,self.editorH+10)
         self.editorBG.setOpacity(.03)
         self.editorBG.setBrush(QtGui.QColor(1,1,1))
@@ -347,6 +351,15 @@ class MainWidget (QtGui.QGraphicsView):
         for b in self.buttons:
             b.installEventFilter(self)
 
+    def togglespell(self):
+        print "Toggling spellchecking..." ,
+        if "dict" in self.editor.__dict__:
+            if self.editor.dict:
+                print "off"
+                self.editor.killDict()
+            else:
+                print "on"
+                self.editor.initDict()
 
     def close(self):
         if self.editor.document().isModified():

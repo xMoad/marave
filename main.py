@@ -74,11 +74,13 @@ class FunkyLabel(QtGui.QLabel, animatedOpacity):
 class FunkyButton(QtGui.QPushButton, animatedOpacity):
     def __init__(self, icon, scene,opacity=.3):
         QtGui.QPushButton.__init__(self,QtGui.QIcon(os.path.join('icons',icon)),"")
+        self.setAttribute(QtCore.Qt.WA_Hover, True)
         self.baseOpacity=opacity
         self.proxy=scene.addWidget(self)
         self.proxy.setOpacity(opacity)
         self.movingOp=False
         self.setFocusPolicy(QtCore.Qt.NoFocus)
+        self.setMouseTracking(True)
         self.setStyleSheet("""
             border: 1px solid gray;
             border-radius: 3px;
@@ -582,7 +584,7 @@ def main():
     # Again, this is boilerplate, it's going to be the same on
     # almost every app you write
     app = QtGui.QApplication(sys.argv)
-    
+
     if len(sys.argv) > 2:
         QtGui.QMessageBox.information(None,'FOCUS!','Marave only opens one document at a time.\nThe whole idea is focusing!\nSo, this is the first one you asked for.')
 

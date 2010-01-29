@@ -132,6 +132,7 @@ class FunkyEditor(EditorClass):
             f.truncate()
             f.write(unicode(self.toPlainText()))
             f.close()
+            self.document().setModified(False)
 
     def saveas(self):
         fname=unicode(QtGui.QFileDialog.getSaveFileName())
@@ -334,6 +335,18 @@ class MainWidget (QtGui.QGraphicsView):
         self.editor.installEventFilter(self)
         for b in self.buttons:
             b.installEventFilter(self)
+
+    def close(self):
+        if self.editor.document().isModified():
+            r=QtGui.QMessageBox.question(self, "Close Document - Marave", "The document \"%s\" has been modified."\
+                "\nDo you want to save your changes or discard them?"%self.editor.docName or "UNNAMED",
+                QtGui.QMessageBox.Save|QtGui.QMessageBox.Discard|QtGui.QMessageBox.Cancel,QtGui.QMessageBox.Cancel)
+            if r==QtGui.QMessageBox.Save:
+                self.editor.save()
+            elif r==QtGui.QMessageBox.Discard:
+                QtGui.QGraphicsView.close(self)
+        else:
+            QtGui.QGraphicsView.close(self)
 
     def showsearch(self):
         self.editor.resize(self.editor.width(),self.height()*.9-self.searchWidget.height()-self.m)

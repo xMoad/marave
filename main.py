@@ -354,6 +354,7 @@ class MainWidget (QtGui.QGraphicsView):
                 self.editor.save()
             elif r==QtGui.QMessageBox.Discard:
                 QtGui.QGraphicsView.close(self)
+                QtCore.QCoreApplication.instance().quit()
         else:
             QtGui.QGraphicsView.close(self)
             QtCore.QCoreApplication.instance().quit()

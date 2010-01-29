@@ -403,9 +403,17 @@ class MainWidget (QtGui.QGraphicsView):
             if r==QtGui.QMessageBox.Save:
                 self.editor.save()
             elif r==QtGui.QMessageBox.Discard:
+                if self.beep:
+                    self.beep.stop()
+                if self.music:
+                    self.music.stop()
                 QtGui.QGraphicsView.close(self)
                 QtCore.QCoreApplication.instance().quit()
         else:
+            if self.beep:
+                self.beep.stop()
+            if self.music:
+                self.music.stop()
             QtGui.QGraphicsView.close(self)
             QtCore.QCoreApplication.instance().quit()
 

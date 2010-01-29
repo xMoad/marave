@@ -1,5 +1,5 @@
 # -*- mode: python -*-
-a = Analysis([os.path.join(HOMEPATH,'support/_mountzlib.py'), os.path.join(HOMEPATH,'support/useUnicode.py'), '/home/ralsina/Desktop/proyectos/marave/main.py'],
+a = Analysis([os.path.join(HOMEPATH,'support/_mountzlib.py'), os.path.join(HOMEPATH,'support/useUnicode.py'), './main.py'],
              pathex=['/home/ralsina/trunk/trunk'])
 
 pyz = PYZ(a.pure)

@@ -11,7 +11,9 @@ REQUIREMENTS
 
 As far as I know, all that's needed is:
 
-* PyQt 4.5 or later
+* PyQt 4.5 or later.
+  On Ubuntu and other linuxes, this may mean python-qt4-phonon or some other
+  packages in addition to PyQt.
 * PyEnchant if you want spellchecking
 
 CONFIGURATION

@@ -43,8 +43,9 @@ class animatedOpacity:
             c.targetOpacity=0.
             c.moveOpacity()
 
+
 class SearchWidget(QtGui.QWidget, animatedOpacity):
-    def __init__(self, scene, opacity=.0):
+    def __init__(self, scene, opacity=0):
         QtGui.QWidget.__init__(self)
         # Set up the UI from designer
         self.ui=UI_SearchWidget()
@@ -54,7 +55,6 @@ class SearchWidget(QtGui.QWidget, animatedOpacity):
         self.movingOp=False
         self.children=[]
         self.ui.setupUi(self)
-        self.ui.text.setFocusPolicy(QtCore.Qt.ClickFocus)
 
 
 class FunkyLabel(QtGui.QLabel, animatedOpacity):
@@ -248,6 +248,7 @@ class MainWidget (QtGui.QGraphicsView):
         mainMenuLayout.setContentsMargins(0,0,0,0)
         for pos, button in enumerate(self.buttons):
             mainMenuLayout.addItem(button.proxy,pos,0)
+        mainMenuLayout.setRowSpacing(len(self.buttons)-2,self.m*2)
 
         self.fontList=FunkyFontList(self._scene,0)
         self.fontList.currentFontChanged.connect(self.changefont)
@@ -362,9 +363,9 @@ class MainWidget (QtGui.QGraphicsView):
     def showsearch(self):
         self.editor.resize(self.editor.width(),self.height()*.9-self.searchWidget.height()-self.m)
         self.searchWidget.show()
+        self.searchWidget.ui.text.setFocus()
         self.searchWidget.targetOpacity=.7
         self.searchWidget.moveOpacity()
-        self.searchWidget.ui.text.setFocus()
 
     def hidesearch(self):
         self.searchWidget.targetOpacity=.0

@@ -27,12 +27,18 @@ class SpellTextEdit(QPlainTextEdit):
  
     def __init__(self, *args):
         QPlainTextEdit.__init__(self, *args)
- 
+        self.initDict()
+
+    def initDict(self):
         # Default dictionary based on the current locale.
         self.dict = enchant.Dict()
         self.highlighter = Highlighter(self.document())
         self.highlighter.setDict(self.dict)
- 
+
+    def killDict(self):
+        self.dict=None
+        self.highlighter.setDocument(None)
+
     def mousePressEvent(self, event):
         if event.button() == Qt.RightButton:
             # Rewrite the mouse event to a left button event so the cursor is

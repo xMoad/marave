@@ -365,6 +365,8 @@ class MainWidget (QtGui.QGraphicsView):
         
         self.searchWidget=SearchWidget(self._scene)
         self.searchWidget.ui.close.clicked.connect(self.hidesearch)
+        self.searchWidget.ui.next.clicked.connect(self.doFind)
+        self.searchWidget.ui.previous.clicked.connect(self.doFindBackwards)
         
         searchLayout=QtGui.QGraphicsLinearLayout()
         searchLayout.setContentsMargins(0,0,0,0)
@@ -421,6 +423,23 @@ class MainWidget (QtGui.QGraphicsView):
         self.searchWidget.hide()
         self.editor.setFocus()
         self.editor.resize(self.editor.width(),self.height()*.9)
+
+    def doFindBackwards (self):
+        return self.doFind(backwards=True)
+
+    def doFind(self, backwards=False):
+
+        flags=QtGui.QTextDocument.FindFlags()
+        if backwards:
+            flags=QtGui.QTextDocument.FindBackward
+        if self.searchWidget.ui.matchCase.isChecked():
+            flags=flags|QtGui.QTextDocument.FindCaseSensitively
+
+        text=unicode(self.searchWidget.ui.text.text())
+
+        print 'Serching for:',text
+
+        r=self.editor.find(text,flags)
 
     def prevclick(self):
         clist=os.listdir('clicks')

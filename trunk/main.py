@@ -143,7 +143,29 @@ class FunkyEditor(EditorClass):
             self.docName=fname
             self.save()
 
+    def new(self):
+        QtCore.QCoreApplication.instance().setOverrideCursor(QtCore.Qt.ArrowCursor)
+        try:
+            if self.document().isModified():
+                r=QtGui.QMessageBox.question(None, "New Document - Marave", "The document \"%s\" has been modified."\
+                    "\nDo you want to save your changes or discard them?"%self.docName or "UNNAMED",
+                    QtGui.QMessageBox.Save|QtGui.QMessageBox.Discard|QtGui.QMessageBox.Cancel,QtGui.QMessageBox.Cancel)
+                if r==QtGui.QMessageBox.Save:
+                    self.save()
+                elif r==QtGui.QMessageBox.Discard:
+                    self.docName=''
+                    self.setPlainText('')
+            else:
+                    self.docName=''
+                    self.setPlainText('')
+        except:
+            pass
+        QtCore.QCoreApplication.instance().restoreOverrideCursor()
+
     def open(self, fname=None):
+        self.new()
+        if self.docName:
+            return
         if not fname:
             fname=unicode(QtGui.QFileDialog.getOpenFileName())
         if fname:
@@ -226,6 +248,16 @@ class MainWidget (QtGui.QGraphicsView):
         # Spell checker toggle
         self.sc3 = QtGui.QShortcut(QtGui.QKeySequence("Shift+Ctrl+Y"), self);
         self.sc3.activated.connect(self.togglespell)
+
+        # Action shortcuts
+        self.sc4 = QtGui.QShortcut(QtGui.QKeySequence("Ctrl+O"), self);
+        self.sc4.activated.connect(self.editor.open)
+        self.sc5 = QtGui.QShortcut(QtGui.QKeySequence("Ctrl+S"), self);
+        self.sc5.activated.connect(self.editor.save)
+        self.sc6 = QtGui.QShortcut(QtGui.QKeySequence("Shift+Ctrl+S"), self);
+        self.sc6.activated.connect(self.editor.saveas)
+        self.sc7 = QtGui.QShortcut(QtGui.QKeySequence("Ctrl+N"), self);
+        self.sc7.activated.connect(self.editor.new)
 
         self.editorBG=QtGui.QGraphicsRectItem(self.editorX-5,self.editorY-5,self.editorW+10,self.editorH+10)
         self.editorBG.setOpacity(.03)

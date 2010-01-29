@@ -25,3 +25,17 @@ Not there yet, but...
 * You can add new backgrounds by dropping image files in the backgrounds folder
 * You can add new radio stations by adding them in the radios.txt file (one
   per line)
+
+CHEATCODES
+==========
+
+Since the UI is minimal, there are some key combinatios that do things you will not
+find any buttons for.
+
+* Undo: Ctrl+Z 
+* Redo: Strift+Ctrl+Z 
+* New Document: Ctrl+N
+* Open: Ctrl+O
+* Save: Ctrl+S
+* Save As: Shift+Ctrl+S
+* Toggle Spell Checker: Shift+Ctrl+Y

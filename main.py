@@ -187,6 +187,7 @@ class MainWidget (QtGui.QGraphicsView):
         self.bgcolor=None
         self.currentClick=None
         self.beep=None
+        self.music=None
         self.nextbg()
         self.nextclick()
 
@@ -213,8 +214,13 @@ class MainWidget (QtGui.QGraphicsView):
                                      color: black;
                                   """)
 
+        # Keyboard shortcuts
         self.sc1 = QtGui.QShortcut(QtGui.QKeySequence("Ctrl+F"), self);
         self.sc1.activated.connect(self.showsearch)
+
+        # Taj mode!
+        self.sc2 = QtGui.QShortcut(QtGui.QKeySequence("Ctrl+T"), self);
+        self.sc2.activated.connect(self.tajmode)
 
         self.editorBG=QtGui.QGraphicsRectItem(self.editorX-5,self.editorY-5,self.editorW+10,self.editorH+10)
         self.editorBG.setOpacity(.03)
@@ -245,7 +251,7 @@ class MainWidget (QtGui.QGraphicsView):
             mainMenuLayout.addItem(button.proxy,pos,0)
 
         self.fontList=FunkyFontList(self._scene,0)
-        self.fontList.currentFontChanged.connect(self.changeFont)
+        self.fontList.currentFontChanged.connect(self.changefont)
         self.fontColor=FunkyButton("color.svg", self._scene,0)
         self.fontColor.clicked.connect(self.setfontcolor)
         mainMenuLayout.addItem(self.fontList.proxy,0,2,1,2)
@@ -339,6 +345,7 @@ class MainWidget (QtGui.QGraphicsView):
         for b in self.buttons:
             b.installEventFilter(self)
 
+
     def close(self):
         if self.editor.document().isModified():
             r=QtGui.QMessageBox.question(None, "Close Document - Marave", "The document \"%s\" has been modified."\
@@ -419,7 +426,8 @@ class MainWidget (QtGui.QGraphicsView):
         self.music.play()
 
     def nomusic(self):
-        self.music.stop()
+        if self.music:
+            self.music.stop()
         
     def prevbg(self):
         bglist=os.listdir('backgrounds')
@@ -453,8 +461,9 @@ class MainWidget (QtGui.QGraphicsView):
         self.hide()
         self.showFullScreen()
         
-    def setbgcolor(self):
-        bgcolor=QtGui.QColorDialog.getColor()
+    def setbgcolor(self, bgcolor=None):
+        if bgcolor is None:
+            bgcolor=QtGui.QColorDialog.getColor()
         if bgcolor.isValid():
             self.bg=None
             self.realBG=None
@@ -463,13 +472,19 @@ class MainWidget (QtGui.QGraphicsView):
             self.hide()
             self.showFullScreen()
 
-    def setfontcolor(self):
-        color=QtGui.QColorDialog.getColor()
-        if color:
+    def setfontcolor(self, color=None):
+        if color is None:
+            color=QtGui.QColorDialog.getColor()
+        if color.isValid():
             self.editor.setStyleSheet("""background-color: transparent;
                                          color: %s;
                                       """%(unicode(color.name())))
 
+    def tajmode(self):
+        self.noclick()
+        self.nomusic()
+        self.setbgcolor(QtGui.QColor(0,0,0))
+        self.setfontcolor(QtGui.QColor(0,255,0))
         
     def eventFilter(self, obj, event):
         if obj==self.editor:
@@ -498,7 +513,7 @@ class MainWidget (QtGui.QGraphicsView):
         self.showButtons()
         QtGui.QGraphicsView.mouseMoveEvent(self, ev)
 
-    def changeFont(self, font):
+    def changefont(self, font):
         f=self.editor.font()
         f.setFamily(font.family())
         self.editor.setFont(f)

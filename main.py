@@ -176,16 +176,19 @@ class FunkyEditor(EditorClass):
         f=self.font()
         f.setPointSize(f.pointSize()-1)
         self.setFont(f)
+        self.parent().saveprefs()
         
     def larger(self):
         f=self.font()
         f.setPointSize(f.pointSize()+1)
         self.setFont(f)
+        self.parent().saveprefs()
 
     def default(self):
         f=self.font()
         f.setPointSize(self.defSize)
         self.setFont(f)
+        self.parent().saveprefs()
 
     def mouseMoveEvent(self, ev):
         self.parent().showButtons()
@@ -384,6 +387,29 @@ class MainWidget (QtGui.QGraphicsView):
         self.editor.installEventFilter(self)
         for b in self.buttons:
             b.installEventFilter(self)
+
+        self.loadprefs()
+
+    def saveprefs(self):
+        # Save all settings at once
+        settings=QtCore.QSettings('NetManagers','Marave')
+        settings.setValue('font',self.editor.font())
+        settings.setValue('fontsize',self.editor.font().pointSize())
+
+        settings.sync()
+        print 'Settings stored'
+
+    def loadprefs(self):
+        # Load all settings
+        settings=QtCore.QSettings('NetManagers','Marave')
+        f=QtGui.QFont()
+        f.fromString(settings.value('font').toString())
+        fs,ok=settings.value('fontsize').toInt()
+        print fs, ok
+        if ok:
+            f.setPointSize(fs)
+        self.editor.setFont(f)
+        
 
     def togglespell(self):
         print "Toggling spellchecking..." ,
@@ -588,6 +614,7 @@ class MainWidget (QtGui.QGraphicsView):
         f=self.editor.font()
         f.setFamily(font.family())
         self.editor.setFont(f)
+        self.saveprefs()
 
     def drawBackground(self, painter, rect):
         if self.bg:

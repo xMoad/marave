@@ -264,6 +264,8 @@ class MainWidget (QtGui.QGraphicsView):
         self.sc6.activated.connect(self.editor.saveas)
         self.sc7 = QtGui.QShortcut(QtGui.QKeySequence("Ctrl+N"), self);
         self.sc7.activated.connect(self.editor.new)
+        self.sc8 = QtGui.QShortcut(QtGui.QKeySequence("Ctrl+Q"), self);
+        self.sc8.activated.connect(self.close)
 
         self.editorBG=QtGui.QGraphicsRectItem(self.editorX-5,self.editorY-5,self.editorW+10,self.editorH+10)
         self.editorBG.setOpacity(.03)

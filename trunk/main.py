@@ -683,6 +683,7 @@ class MainWidget (QtGui.QGraphicsView):
         self.showButtons()
         self.showFullScreen()
         self.adjustPositions()
+        self.editor.setFocus()
 
 def main():
     # Again, this is boilerplate, it's going to be the same on

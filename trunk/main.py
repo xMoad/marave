@@ -176,19 +176,22 @@ class FunkyEditor(EditorClass):
         f=self.font()
         f.setPointSize(f.pointSize()-1)
         self.setFont(f)
-        self.parent().saveprefs()
+        self.parent().settings.setValue('fontsize',self.editor.font().pointSize())
+        self.parent().settings.sync()
         
     def larger(self):
         f=self.font()
         f.setPointSize(f.pointSize()+1)
         self.setFont(f)
-        self.parent().saveprefs()
+        self.parent().settings.setValue('fontsize',self.editor.font().pointSize())
+        self.parent().settings.sync()
 
     def default(self):
         f=self.font()
         f.setPointSize(self.defSize)
         self.setFont(f)
-        self.parent().saveprefs()
+        self.parent().settings.setValue('fontsize',self.editor.font().pointSize())
+        self.parent().settings.sync()
 
     def mouseMoveEvent(self, ev):
         self.parent().showButtons()
@@ -213,13 +216,13 @@ class MainWidget (QtGui.QGraphicsView):
         self.setMouseTracking(True)
         self.currentBG=None
         self.currentClick=None
+        self.currentStation=None
         self.bgcolor=None
         self.beep=None
         self.music=None
         self.nextbg()
 
         self.stations=[x.strip() for x in open('radios.txt').readlines()]
-        self.currentStation=None
 
         self.setHorizontalScrollBarPolicy(QtCore.Qt.ScrollBarAlwaysOff)
         self.setVerticalScrollBarPolicy(QtCore.Qt.ScrollBarAlwaysOff)
@@ -395,6 +398,7 @@ class MainWidget (QtGui.QGraphicsView):
         self.settings.setValue('font',self.editor.font())
         self.settings.setValue('fontsize',self.editor.font().pointSize())
         self.settings.setValue('click',self.currentClick)
+        self.settings.setValue('station',self.currentStation)
 
         self.settings.sync()
         print 'Settings stored'
@@ -410,6 +414,10 @@ class MainWidget (QtGui.QGraphicsView):
         c=unicode(self.settings.value('click').toString())
         if c:
             self.setclick(c)
+        s=unicode(self.settings.value('station').toString())
+        print 'SS',s
+        if s:
+            self.setstation(s)
 
     def togglespell(self):
         print "Toggling spellchecking..." ,
@@ -471,7 +479,8 @@ class MainWidget (QtGui.QGraphicsView):
         self.beep = Phonon.createPlayer(Phonon.NotificationCategory,
                                   Phonon.MediaSource(os.path.join('clicks',self.currentClick)))
         self.beep.play()
-        self.saveprefs()
+        self.settings.setValue('click',self.currentClick)
+        self.settings.sync()
 
     def prevclick(self):
         clist=os.listdir('clicks')
@@ -496,27 +505,28 @@ class MainWidget (QtGui.QGraphicsView):
     def noclick(self):
         self.beep=None
 
+    def setstation(self, station):
+        self.currentStation=station
+        print 'switching music to:', self.currentStation
+        self.music = Phonon.createPlayer(Phonon.MusicCategory,
+                                  Phonon.MediaSource(self.currentStation))
+        self.music.play()
+        self.settings.setValue('station',self.currentStation)
+        self.settings.sync()
+
     def prevstation(self):
         try:
             idx=(self.stations.index(self.currentStation)-1)%len(self.stations)
         except ValueError:
             idx=-1
-        self.currentStation=self.stations[idx]
-        print '<< switching music to:', self.currentStation
-        self.music = Phonon.createPlayer(Phonon.MusicCategory,
-                                  Phonon.MediaSource(self.currentStation))
-        self.music.play()
+        self.setstation(self.stations[idx])
         
     def nextstation(self):
         try:
             idx=(self.stations.index(self.currentStation)+1)%len(self.stations)
         except ValueError:
             idx=-1
-        self.currentStation=self.stations[idx]
-        print '>> switching music to:', self.currentStation
-        self.music = Phonon.createPlayer(Phonon.MusicCategory,
-                                  Phonon.MediaSource(self.currentStation))
-        self.music.play()
+        self.setstation(self.stations[idx])
 
     def nomusic(self):
         if self.music:
@@ -612,7 +622,8 @@ class MainWidget (QtGui.QGraphicsView):
         f=self.editor.font()
         f.setFamily(font.family())
         self.editor.setFont(f)
-        self.saveprefs()
+        self.settings.setValue('font',self.editor.font())
+        self.settings.sync()
 
     def drawBackground(self, painter, rect):
         if self.bg:

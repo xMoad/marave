@@ -265,7 +265,6 @@ class MainWidget (QtGui.QGraphicsView):
         self.sc7 = QtGui.QShortcut(QtGui.QKeySequence("Ctrl+N"), self);
         self.sc7.activated.connect(self.editor.new)
         self.sc8 = QtGui.QShortcut(QtGui.QKeySequence("Ctrl+Q"), self);
-        self.sc8.activated.connect(self.close)
 
         self.editorBG=QtGui.QGraphicsRectItem(self.editorX-5,self.editorY-5,self.editorW+10,self.editorH+10)
         self.editorBG.setOpacity(.03)
@@ -280,6 +279,7 @@ class MainWidget (QtGui.QGraphicsView):
         self.musicButton=FunkyButton("music.svg", self._scene, 0)
         self.quitButton=FunkyButton("exit.svg", self._scene, 0)
         self.quitButton.clicked.connect(self.close)
+        self.sc8.activated.connect(self.quitButton.animateClick)
 
         self.buttons=[self.fontButton, 
                       self.sizeButton, 
@@ -433,6 +433,7 @@ class MainWidget (QtGui.QGraphicsView):
         
 
     def close(self):
+        QtCore.QCoreApplication.instance().setOverrideCursor(QtCore.Qt.ArrowCursor)
         if self.editor.document().isModified():
             r=QtGui.QMessageBox.question(None, "Close Document - Marave", "The document \"%s\" has been modified."\
                 "\nDo you want to save your changes or discard them?"%self.editor.docName or "UNNAMED",
@@ -445,6 +446,7 @@ class MainWidget (QtGui.QGraphicsView):
         else:
             QtGui.QGraphicsView.close(self)
             QtCore.QCoreApplication.instance().quit()
+        QtCore.QCoreApplication.instance().restoreOverrideCursor()
 
     def showsearch(self):
         self.editor.resize(self.editor.width(),self.height()*.9-self.searchWidget.height()-self.m)

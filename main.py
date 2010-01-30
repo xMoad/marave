@@ -203,7 +203,8 @@ class MainWidget (QtGui.QGraphicsView):
         """)
         self._scene=QtGui.QGraphicsScene()
         self.setScene(self._scene)
-        
+        self.settings=QtCore.QSettings('NetManagers','Marave')
+
         # Used for margins and border sizes
         self.m=5
 
@@ -211,12 +212,11 @@ class MainWidget (QtGui.QGraphicsView):
         self.setFocusPolicy(QtCore.Qt.NoFocus)
         self.setMouseTracking(True)
         self.currentBG=None
-        self.bgcolor=None
         self.currentClick=None
+        self.bgcolor=None
         self.beep=None
         self.music=None
         self.nextbg()
-        self.nextclick()
 
         self.stations=[x.strip() for x in open('radios.txt').readlines()]
         self.currentStation=None
@@ -392,24 +392,24 @@ class MainWidget (QtGui.QGraphicsView):
 
     def saveprefs(self):
         # Save all settings at once
-        settings=QtCore.QSettings('NetManagers','Marave')
-        settings.setValue('font',self.editor.font())
-        settings.setValue('fontsize',self.editor.font().pointSize())
+        self.settings.setValue('font',self.editor.font())
+        self.settings.setValue('fontsize',self.editor.font().pointSize())
+        self.settings.setValue('click',self.currentClick)
 
-        settings.sync()
+        self.settings.sync()
         print 'Settings stored'
 
     def loadprefs(self):
         # Load all settings
-        settings=QtCore.QSettings('NetManagers','Marave')
         f=QtGui.QFont()
-        f.fromString(settings.value('font').toString())
-        fs,ok=settings.value('fontsize').toInt()
-        print fs, ok
+        f.fromString(self.settings.value('font').toString())
+        fs,ok=self.settings.value('fontsize').toInt()
         if ok:
             f.setPointSize(fs)
         self.editor.setFont(f)
-        
+        c=unicode(self.settings.value('click').toString())
+        if c:
+            self.setclick(c)
 
     def togglespell(self):
         print "Toggling spellchecking..." ,
@@ -420,6 +420,7 @@ class MainWidget (QtGui.QGraphicsView):
             else:
                 print "on"
                 self.editor.initDict()
+        
 
     def close(self):
         if self.editor.document().isModified():
@@ -462,10 +463,15 @@ class MainWidget (QtGui.QGraphicsView):
             flags=flags|QtGui.QTextDocument.FindCaseSensitively
 
         text=unicode(self.searchWidget.ui.text.text())
-
-        print 'Serching for:',text
-
         r=self.editor.find(text,flags)
+
+    def setclick(self, clickname):
+        self.currentClick=clickname
+        print '<< switching click to:', self.currentClick
+        self.beep = Phonon.createPlayer(Phonon.NotificationCategory,
+                                  Phonon.MediaSource(os.path.join('clicks',self.currentClick)))
+        self.beep.play()
+        self.saveprefs()
 
     def prevclick(self):
         clist=os.listdir('clicks')
@@ -475,11 +481,7 @@ class MainWidget (QtGui.QGraphicsView):
             idx=(clist.index(self.currentClick)-1)%len(clist)
         except ValueError:
             idx=-1
-        self.currentClick=clist[idx]
-        print '<< switching click to:', self.currentClick
-        self.beep = Phonon.createPlayer(Phonon.NotificationCategory,
-                                  Phonon.MediaSource(os.path.join('clicks',self.currentClick)))
-        self.beep.play()
+        self.setclick(clist[idx])
 
     def nextclick(self):
         clist=os.listdir('clicks')
@@ -489,11 +491,7 @@ class MainWidget (QtGui.QGraphicsView):
             idx=(clist.index(self.currentClick)+1)%len(clist)
         except ValueError:
             idx=-1
-        self.currentClick=clist[idx]
-        print '>> switching click to:', self.currentClick
-        self.beep = Phonon.createPlayer(Phonon.NotificationCategory,
-                                  Phonon.MediaSource(os.path.join('clicks',self.currentClick)))
-        self.beep.play()
+        self.setclick(clist[idx])
 
     def noclick(self):
         self.beep=None

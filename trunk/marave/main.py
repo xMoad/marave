@@ -370,12 +370,6 @@ class MainWidget (QtGui.QGraphicsView):
         self.mainMenu.setPos(self.editorX+self.editorW+20,self.editorY)
         self._scene.addItem(self.mainMenu)
         
-        ## Editor search bar
-        #self.closeSearch=FunkyButton("X", self._scene,1)
-        #self.closeSearch.clicked.connect(self.hidesearch)
-        #self.searchLabel=FunkyLabel("Find:", self._scene,1)
-        #self.searchText=FunkyLineEdit(self._scene,1)
-        
         self.searchWidget=SearchWidget(self._scene)
         self.searchWidget.ui.close.clicked.connect(self.hidesearch)
         self.searchWidget.ui.next.clicked.connect(self.doFind)
@@ -384,9 +378,6 @@ class MainWidget (QtGui.QGraphicsView):
         searchLayout=QtGui.QGraphicsLinearLayout()
         searchLayout.setContentsMargins(0,0,0,0)
         searchLayout.addItem(self.searchWidget.proxy)
-        #searchLayout.addItem(self.closeSearch.proxy)
-        #searchLayout.addItem(self.searchLabel.proxy)
-        #searchLayout.addItem(self.searchText.proxy)
         
         self.searchBar=QtGui.QGraphicsWidget()
         self.searchBar.setLayout(searchLayout)

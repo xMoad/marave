@@ -26,6 +26,20 @@ Not there yet, but...
 * You can add new radio stations by adding them in the radios.txt file (one
   per line)
 
+INSTALLATION
+============
+
+To install from sources try this:
+
+python setup.py install
+
+To use Marave without installing, run
+
+python marave
+
+in the marave folder.
+
+
 CHEATCODES
 ==========
 

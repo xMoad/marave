@@ -4,6 +4,11 @@
 
 import os,sys,codecs
 
+if hasattr(sys, 'frozen'):
+    PATH = os.path.abspath(os.path.dirname(sys.executable))
+else:
+    PATH = os.path.abspath(os.path.dirname(__file__))
+
 # Import Qt modules
 from PyQt4 import QtCore,QtGui
 #from PyQt4 import QtOpenGL
@@ -73,7 +78,7 @@ class FunkyLabel(QtGui.QLabel, animatedOpacity):
 
 class FunkyButton(QtGui.QPushButton, animatedOpacity):
     def __init__(self, icon, scene,opacity=.3):
-        QtGui.QPushButton.__init__(self,QtGui.QIcon(os.path.join('icons',icon)),"")
+        QtGui.QPushButton.__init__(self,QtGui.QIcon(os.path.join(PATH,'icons',icon)),"")
         self.setAttribute(QtCore.Qt.WA_Hover, True)
         self.baseOpacity=opacity
         self.proxy=scene.addWidget(self)
@@ -481,7 +486,7 @@ class MainWidget (QtGui.QGraphicsView):
         self.currentClick=clickname
         print '<< switching click to:', self.currentClick
         self.beep = Phonon.createPlayer(Phonon.NotificationCategory,
-                                  Phonon.MediaSource(os.path.join('clicks',self.currentClick)))
+                                  Phonon.MediaSource(os.path.join(PATH,'clicks',self.currentClick)))
         self.beep.play()
         self.settings.setValue('click',self.currentClick)
         self.settings.sync()
@@ -546,7 +551,7 @@ class MainWidget (QtGui.QGraphicsView):
             idx=-1
         self.currentBG=bglist[idx]
         print '<< switching bg to:', self.currentBG
-        self.bg=QtGui.QImage(os.path.join('backgrounds',bglist[idx]))
+        self.bg=QtGui.QImage(os.path.join(PATH,'backgrounds',bglist[idx]))
         self.realBg=self.bg.scaled( self.size(), QtCore.Qt.KeepAspectRatioByExpanding)
         # FIXME: I can't find a way to force it to redraw the background nicely.
         self.hide()
@@ -562,7 +567,7 @@ class MainWidget (QtGui.QGraphicsView):
             idx=0
         self.currentBG=bglist[idx]
         print '>> switching bg to:', self.currentBG
-        self.bg=QtGui.QImage(os.path.join('backgrounds',bglist[idx]))
+        self.bg=QtGui.QImage(os.path.join(PATH,'backgrounds',bglist[idx]))
         self.realBg=self.bg.scaled( self.size(), QtCore.Qt.KeepAspectRatioByExpanding)
         # FIXME: I can't find a way to force it to redraw the background nicely.
         self.hide()

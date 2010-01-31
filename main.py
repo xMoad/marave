@@ -227,7 +227,7 @@ class MainWidget (QtGui.QGraphicsView):
         self.music=None
         self.nextbg()
 
-        self.stations=[x.strip() for x in open('radios.txt').readlines()]
+        self.stations=[x.strip() for x in open(os.path.join(PATH,'radios.txt')).readlines()]
 
         self.setHorizontalScrollBarPolicy(QtCore.Qt.ScrollBarAlwaysOff)
         self.setVerticalScrollBarPolicy(QtCore.Qt.ScrollBarAlwaysOff)
@@ -492,7 +492,7 @@ class MainWidget (QtGui.QGraphicsView):
         self.settings.sync()
 
     def prevclick(self):
-        clist=os.listdir('clicks')
+        clist=os.listdir(os.path.join(PATH,'clicks'))
         clist=[x for x in clist if not x.startswith('.')]
         clist.sort()
         try:
@@ -502,7 +502,7 @@ class MainWidget (QtGui.QGraphicsView):
         self.setclick(clist[idx])
 
     def nextclick(self):
-        clist=os.listdir('clicks')
+        clist=os.listdir(os.path.join(PATH,'clicks'))
         clist=[x for x in clist if not x.startswith('.')]
         clist.sort()
         try:
@@ -542,7 +542,7 @@ class MainWidget (QtGui.QGraphicsView):
             self.music.stop()
         
     def prevbg(self):
-        bglist=os.listdir('backgrounds')
+        bglist=os.listdir(os.path.join(PATH,'backgrounds'))
         bglist=[x for x in bglist if not x.startswith('.')]
         bglist.sort()
         try:
@@ -558,7 +558,7 @@ class MainWidget (QtGui.QGraphicsView):
         self.showFullScreen()
         
     def nextbg(self):
-        bglist=os.listdir('backgrounds')
+        bglist=os.listdir(os.path.join(PATH,'backgrounds'))
         bglist=[x for x in bglist if not x.startswith('.')]
         bglist.sort()
         try:

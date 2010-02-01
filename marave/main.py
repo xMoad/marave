@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+ #-*- coding: utf-8 -*-
 
 """The user interface for our app"""
 
@@ -23,6 +23,7 @@ except ImportError:
     print 'Spellchecking disabled'
 
 from Ui_searchwidget import Ui_Form as UI_SearchWidget
+from Ui_searchreplacewidget import Ui_Form as UI_SearchReplaceWidget
 
 
 class animatedOpacity:
@@ -54,6 +55,18 @@ class SearchWidget(QtGui.QWidget, animatedOpacity):
         QtGui.QWidget.__init__(self)
         # Set up the UI from designer
         self.ui=UI_SearchWidget()
+        self.baseOpacity=opacity
+        self.proxy=scene.addWidget(self)
+        self.proxy.setOpacity(opacity)
+        self.movingOp=False
+        self.children=[]
+        self.ui.setupUi(self)
+
+class SearchReplaceWidget(QtGui.QWidget, animatedOpacity):
+    def __init__(self, scene, opacity=0):
+        QtGui.QWidget.__init__(self)
+        # Set up the UI from designer
+        self.ui=UI_SearchReplaceWidget()
         self.baseOpacity=opacity
         self.proxy=scene.addWidget(self)
         self.proxy.setOpacity(opacity)
@@ -251,6 +264,8 @@ class MainWidget (QtGui.QGraphicsView):
         # Keyboard shortcuts
         self.sc1 = QtGui.QShortcut(QtGui.QKeySequence("Ctrl+F"), self);
         self.sc1.activated.connect(self.showsearch)
+        self.sc1b = QtGui.QShortcut(QtGui.QKeySequence("Ctrl+R"), self);
+        self.sc1b.activated.connect(self.showsearchreplace)
 
         # Taj mode!
         self.sc2 = QtGui.QShortcut(QtGui.QKeySequence("Ctrl+T"), self);
@@ -369,7 +384,8 @@ class MainWidget (QtGui.QGraphicsView):
         self.mainMenu.setLayout(mainMenuLayout)
         self.mainMenu.setPos(self.editorX+self.editorW+20,self.editorY)
         self._scene.addItem(self.mainMenu)
-        
+
+        # Search widget
         self.searchWidget=SearchWidget(self._scene)
         self.searchWidget.ui.close.clicked.connect(self.hidesearch)
         self.searchWidget.ui.next.clicked.connect(self.doFind)
@@ -381,8 +397,21 @@ class MainWidget (QtGui.QGraphicsView):
         
         self.searchBar=QtGui.QGraphicsWidget()
         self.searchBar.setLayout(searchLayout)
-        self.searchBar.setPos(self.editorX+self.editorW+20,self.editorY+self.editorH-30)
         self._scene.addItem(self.searchBar)
+
+        # Search and replace widget
+        self.searchReplaceWidget=SearchReplaceWidget(self._scene)
+        self.searchReplaceWidget.ui.close.clicked.connect(self.hidesearch)
+        self.searchReplaceWidget.ui.next.clicked.connect(self.doFind)
+        self.searchReplaceWidget.ui.previous.clicked.connect(self.doFindBackwards)
+        
+        searchReplaceLayout=QtGui.QGraphicsLinearLayout()
+        searchReplaceLayout.setContentsMargins(0,0,0,0)
+        searchReplaceLayout.addItem(self.searchReplaceWidget.proxy)
+        
+        self.searchReplaceBar=QtGui.QGraphicsWidget()
+        self.searchReplaceBar.setLayout(searchReplaceLayout)
+        self._scene.addItem(self.searchReplaceBar)
         
         # Event filters for showing/hiding buttons/cursor
         self.editor.installEventFilter(self)
@@ -444,6 +473,15 @@ class MainWidget (QtGui.QGraphicsView):
             QtCore.QCoreApplication.instance().quit()
         QtCore.QCoreApplication.instance().restoreOverrideCursor()
 
+    def showsearchreplace(self):
+        print "Showing Search&Replace"
+        self.editor.resize(self.editor.width(),self.height()*.9-self.searchReplaceWidget.height()-self.m)
+        self.searchReplaceWidget.show()
+        self.setFocus()
+        self.searchReplaceWidget.ui.text.setFocus()
+        self.searchReplaceWidget.targetOpacity=.7
+        self.searchReplaceWidget.moveOpacity()
+
     def showsearch(self):
         self.editor.resize(self.editor.width(),self.height()*.9-self.searchWidget.height()-self.m)
         self.searchWidget.show()
@@ -456,6 +494,9 @@ class MainWidget (QtGui.QGraphicsView):
         self.searchWidget.targetOpacity=.0
         self.searchWidget.moveOpacity()
         self.searchWidget.hide()
+        self.searchReplaceWidget.targetOpacity=.0
+        self.searchReplaceWidget.moveOpacity()
+        self.searchReplaceWidget.hide()
         self.editor.setFocus()
         self.editor.resize(self.editor.width(),self.height()*.9)
 
@@ -656,6 +697,8 @@ class MainWidget (QtGui.QGraphicsView):
             self.mainMenu.setPos(self.editorX+self.editorW+3*m,self.editorY)
             self.searchBar.setPos(self.editorX,self.editorY+self.editorH-self.searchWidget.height())
             self.searchWidget.setFixedWidth(self.editor.width())
+            self.searchReplaceBar.setPos(self.editorX,self.editorY+self.editorH-self.searchReplaceWidget.height())
+            self.searchReplaceWidget.setFixedWidth(self.editor.width())
 
     def showButtons(self):
         for w in self.buttons:

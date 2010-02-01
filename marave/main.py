@@ -474,7 +474,7 @@ class MainWidget (QtGui.QGraphicsView):
         QtCore.QCoreApplication.instance().restoreOverrideCursor()
 
     def showsearchreplace(self):
-        print "Showing Search&Replace"
+        self.hidesearch()
         self.editor.resize(self.editor.width(),self.height()*.9-self.searchReplaceWidget.height()-self.m)
         self.searchReplaceWidget.show()
         self.setFocus()
@@ -483,6 +483,7 @@ class MainWidget (QtGui.QGraphicsView):
         self.searchReplaceWidget.moveOpacity()
 
     def showsearch(self):
+        self.hidesearch()
         self.editor.resize(self.editor.width(),self.height()*.9-self.searchWidget.height()-self.m)
         self.searchWidget.show()
         self.setFocus()

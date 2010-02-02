@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>487</width>
-    <height>68</height>
+    <width>531</width>
+    <height>72</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -15,7 +15,7 @@
   </property>
   <layout class="QGridLayout" name="gridLayout">
    <property name="margin">
-    <number>2</number>
+    <number>4</number>
    </property>
    <item row="0" column="0">
     <widget class="QToolButton" name="close">
@@ -38,6 +38,9 @@
     <widget class="QLabel" name="label">
      <property name="text">
       <string>&amp;Find:</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
      </property>
      <property name="buddy">
       <cstring>text</cstring>
@@ -106,6 +109,9 @@
     <widget class="QLabel" name="label_2">
      <property name="text">
       <string>Rep&amp;lace:</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
      </property>
      <property name="buddy">
       <cstring>lineEdit</cstring>

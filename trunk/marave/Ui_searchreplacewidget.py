@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'searchreplwidget.ui'
 #
-# Created: Mon Feb  1 18:34:32 2010
+# Created: Mon Feb  1 22:08:56 2010
 #      by: PyQt4 UI code generator 4.6.2
 #
 # WARNING! All changes made in this file will be lost!
@@ -12,9 +12,9 @@ from PyQt4 import QtCore, QtGui
 class Ui_Form(object):
     def setupUi(self, Form):
         Form.setObjectName("Form")
-        Form.resize(487, 68)
+        Form.resize(531, 72)
         self.gridLayout = QtGui.QGridLayout(Form)
-        self.gridLayout.setMargin(2)
+        self.gridLayout.setMargin(4)
         self.gridLayout.setObjectName("gridLayout")
         self.close = QtGui.QToolButton(Form)
         icon = QtGui.QIcon()
@@ -24,6 +24,7 @@ class Ui_Form(object):
         self.close.setObjectName("close")
         self.gridLayout.addWidget(self.close, 0, 0, 1, 1)
         self.label = QtGui.QLabel(Form)
+        self.label.setAlignment(QtCore.Qt.AlignRight|QtCore.Qt.AlignTrailing|QtCore.Qt.AlignVCenter)
         self.label.setObjectName("label")
         self.gridLayout.addWidget(self.label, 0, 1, 1, 1)
         self.text = QtGui.QLineEdit(Form)
@@ -54,6 +55,7 @@ class Ui_Form(object):
         self.matchCase.setObjectName("matchCase")
         self.gridLayout.addWidget(self.matchCase, 0, 4, 1, 1)
         self.label_2 = QtGui.QLabel(Form)
+        self.label_2.setAlignment(QtCore.Qt.AlignRight|QtCore.Qt.AlignTrailing|QtCore.Qt.AlignVCenter)
         self.label_2.setObjectName("label_2")
         self.gridLayout.addWidget(self.label_2, 1, 1, 1, 1)
         self.lineEdit = QtGui.QLineEdit(Form)

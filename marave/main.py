@@ -1,4 +1,4 @@
- #-*- coding: utf-8 -*-
+#-*- coding: utf-8 -*-
 
 """The user interface for our app"""
 
@@ -223,11 +223,17 @@ class MainWidget (QtGui.QGraphicsView):
             border: 0px solid gray;
         """)
         self._scene=QtGui.QGraphicsScene()
+        self._scene.changed.connect(self.scenechanged)
         self.setScene(self._scene)
         self.settings=QtCore.QSettings('NetManagers','Marave')
+        self.changing=False
 
         # Used for margins and border sizes
         self.m=5
+        self.editorH=.9*self.height()
+        self.editorW=self.fontMetrics().averageCharWidth()*80
+        self.editorY=self.height()*.05
+        self.editorX=self.width()*.1
 
         self.editor=None
         self.setFocusPolicy(QtCore.Qt.NoFocus)
@@ -285,10 +291,22 @@ class MainWidget (QtGui.QGraphicsView):
         self.sc7.activated.connect(self.editor.new)
         self.sc8 = QtGui.QShortcut(QtGui.QKeySequence("Ctrl+Q"), self);
 
-        self.editorBG=QtGui.QGraphicsRectItem(self.editorX-5,self.editorY-5,self.editorW+10,self.editorH+10)
+        self.editorBG=QtGui.QGraphicsRectItem()
+        self.editorBG.setFlag(QtGui.QGraphicsItem.ItemIsMovable, True)
         self.editorBG.setOpacity(.03)
+        self.editorBG.setCursor(QtCore.Qt.PointingHandCursor)
         self.editorBG.setBrush(QtGui.QColor(1,1,1))
         self._scene.addItem(self.editorBG)
+
+        self.handles=[]
+        
+        for h in range(0,4):
+            h=QtGui.QGraphicsRectItem(0,0,10,10)
+            h.setFlag(QtGui.QGraphicsItem.ItemIsMovable, True)
+            h.setCursor(QtCore.Qt.SizeAllCursor)
+            h.setOpacity(.5)
+            self._scene.addItem(h)
+            self.handles.append(h)
 
         self.fontButton=FunkyButton("fonts.svg", self._scene, 0)
         self.sizeButton=FunkyButton("size.svg", self._scene, 0)
@@ -715,22 +733,125 @@ class MainWidget (QtGui.QGraphicsView):
         
     def adjustPositions(self):
         m=self.m
-        # Try to guess a decent size for the editor window
-        # Width: 80 characters
-        # Height: 90% of the screen
-        self.editorH=.9*self.height()
-        self.editorW=self.fontMetrics().averageCharWidth()*80
-        self.editorY=self.height()*.05
-        self.editorX=self.width()*.1
         if self.editor:
             self.editor.setGeometry(self.editorX,self.editorY,self.editorW,self.editorH)
-            self.editorBG.setRect(self.editorX-m,self.editorY-m,self.editorW+2*m,self.editorH+2*m)
+            self.editorBG.setPos(self.editorX-m,self.editorY-m)
+            self.editorBG.setRect(0,0,self.editorW+2*m,self.editorH+2*m)
             self.mainMenu.setPos(self.editorX+self.editorW+3*m,self.editorY)
             self.searchBar.setPos(self.editorX,self.editorY+self.editorH-self.searchWidget.height())
             self.searchWidget.setFixedWidth(self.editor.width())
             self.searchReplaceBar.setPos(self.editorX,self.editorY+self.editorH-self.searchReplaceWidget.height())
             self.searchReplaceWidget.setFixedWidth(self.editor.width())
 
+            self.handles[0].setPos(self.editorX-2*m,self.editorY-2*m)
+            self.handles[1].setPos(self.editorX+self.editorW,self.editorY-2*m)
+            self.handles[2].setPos(self.editorX+self.editorW,self.editorY+self.editorH)
+            self.handles[3].setPos(self.editorX-2*m,self.editorY+self.editorH)
+            
+
+    def scenechanged(self,region):
+        print 'SCENE Changed (%s)'%self.changing
+        if not self.changing:
+            print 'Adusting'
+            self.changing=True
+            # See if the user dragged the editor
+            flag=False
+            m=self.m
+
+            # Editor dragged by the edge
+            rect=self.editorBG.rect()
+            pos=self.editorBG.pos()
+            x=rect.x()+pos.x()
+            y=rect.y()+pos.y()
+            w=rect.width()
+            h=rect.height()
+
+            if x != self.editorX-m or   \
+               y != self.editorY-m or   \
+               w != self.editorW+2*m or \
+               h != self.editorH+2*m:
+                print 'Editor moved'
+                self.editorX=x+m
+                self.editorY=y+m
+                self.editorW=w-2*m
+                self.editorH=h-2*m
+                self.adjustPositions()
+                self.changing=False
+                return
+                   
+            # Top-Left corner dragged
+            rect=self.handles[0].rect()
+            pos=self.handles[0].pos()
+            x=rect.x()+pos.x()
+            y=rect.y()+pos.y()
+            if x != self.editorX-2*m or \
+               y != self.editorY-2*m:
+                   print "Dragged TL"
+                   dx=x-self.editorX+2*m
+                   dy=y-self.editorY+2*m
+                   self.editorX=x+2*m
+                   self.editorY=y+2*m
+                   self.editorW-=dx
+                   self.editorH-=dy
+                   self.adjustPositions()
+                   self.changing=False
+                   return
+
+            # Top-Right corner dragged
+            rect=self.handles[1].rect()
+            pos=self.handles[1].pos()
+            x=rect.x()+pos.x()
+            y=rect.y()+pos.y()
+            if x != self.editorX+self.editorW or \
+               y != self.editorY-2*m:
+                   print "Dragged TR"
+                   dx=x-self.editorX-self.editorW
+                   dy=y-self.editorY+2*m
+                   self.editorY=y+2*m
+                   self.editorW+=dx
+                   self.editorH-=dy
+                   self.adjustPositions()
+                   self.changing=False
+                   return
+                   
+            # Bottom-Right corner dragged
+            rect=self.handles[2].rect()
+            pos=self.handles[2].pos()
+            x=rect.x()+pos.x()
+            y=rect.y()+pos.y()
+            if x != self.editorX+self.editorW or \
+               y != self.editorY+self.editorH:
+                   print "Dragged BR"
+                   dx=x-self.editorX-self.editorW
+                   dy=y-self.editorY-self.editorH
+                   self.editorW+=dx
+                   self.editorH+=dy
+                   self.adjustPositions()
+                   self.changing=False
+                   return
+
+            # Bottom-Left corner dragged
+            rect=self.handles[3].rect()
+            pos=self.handles[3].pos()
+            x=rect.x()+pos.x()
+            y=rect.y()+pos.y()
+            if x != self.editorX+2*m or \
+               y != self.editorY+self.editorH:
+                   print "Dragged BL"
+                   dx=x-self.editorX+2*m
+                   dy=y-self.editorY-self.editorH
+                   self.editorX=x+2*m
+                   self.editorW-=dx
+                   self.editorH+=dy
+                   self.adjustPositions()
+                   self.changing=False
+                   return
+
+
+            self.changing=False
+
+
+               
     def showButtons(self):
         for w in self.buttons:
             w.targetOpacity=.8

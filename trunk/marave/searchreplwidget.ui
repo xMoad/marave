@@ -122,14 +122,14 @@
     <widget class="QLineEdit" name="lineEdit"/>
    </item>
    <item row="1" column="3">
-    <widget class="QPushButton" name="pushButton">
+    <widget class="QPushButton" name="replace">
      <property name="text">
       <string>&amp;Replace</string>
      </property>
     </widget>
    </item>
    <item row="1" column="4">
-    <widget class="QPushButton" name="pushButton_2">
+    <widget class="QPushButton" name="replaceall">
      <property name="text">
       <string>Replace &amp;All</string>
      </property>

@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'searchreplwidget.ui'
 #
-# Created: Mon Feb  1 22:08:56 2010
+# Created: Mon Feb  1 22:25:50 2010
 #      by: PyQt4 UI code generator 4.6.2
 #
 # WARNING! All changes made in this file will be lost!
@@ -61,12 +61,12 @@ class Ui_Form(object):
         self.lineEdit = QtGui.QLineEdit(Form)
         self.lineEdit.setObjectName("lineEdit")
         self.gridLayout.addWidget(self.lineEdit, 1, 2, 1, 1)
-        self.pushButton = QtGui.QPushButton(Form)
-        self.pushButton.setObjectName("pushButton")
-        self.gridLayout.addWidget(self.pushButton, 1, 3, 1, 1)
-        self.pushButton_2 = QtGui.QPushButton(Form)
-        self.pushButton_2.setObjectName("pushButton_2")
-        self.gridLayout.addWidget(self.pushButton_2, 1, 4, 1, 1)
+        self.replace = QtGui.QPushButton(Form)
+        self.replace.setObjectName("replace")
+        self.gridLayout.addWidget(self.replace, 1, 3, 1, 1)
+        self.replaceall = QtGui.QPushButton(Form)
+        self.replaceall.setObjectName("replaceall")
+        self.gridLayout.addWidget(self.replaceall, 1, 4, 1, 1)
         self.label.setBuddy(self.text)
         self.label_2.setBuddy(self.lineEdit)
 
@@ -83,8 +83,8 @@ class Ui_Form(object):
         self.next.setText(QtGui.QApplication.translate("Form", "&Next", None, QtGui.QApplication.UnicodeUTF8))
         self.matchCase.setText(QtGui.QApplication.translate("Form", "&Match Case", None, QtGui.QApplication.UnicodeUTF8))
         self.label_2.setText(QtGui.QApplication.translate("Form", "Rep&lace:", None, QtGui.QApplication.UnicodeUTF8))
-        self.pushButton.setText(QtGui.QApplication.translate("Form", "&Replace", None, QtGui.QApplication.UnicodeUTF8))
-        self.pushButton_2.setText(QtGui.QApplication.translate("Form", "Replace &All", None, QtGui.QApplication.UnicodeUTF8))
+        self.replace.setText(QtGui.QApplication.translate("Form", "&Replace", None, QtGui.QApplication.UnicodeUTF8))
+        self.replaceall.setText(QtGui.QApplication.translate("Form", "Replace &All", None, QtGui.QApplication.UnicodeUTF8))
 
 import icons_rc
 

@@ -238,7 +238,6 @@ class MainWidget (QtGui.QGraphicsView):
         self.bgcolor=None
         self.beep=None
         self.music=None
-        self.nextbg()
 
         self.stations=[x.strip() for x in open(os.path.join(PATH,'radios.txt')).readlines()]
 
@@ -402,8 +401,8 @@ class MainWidget (QtGui.QGraphicsView):
         # Search and replace widget
         self.searchReplaceWidget=SearchReplaceWidget(self._scene)
         self.searchReplaceWidget.ui.close.clicked.connect(self.hidesearch)
-        self.searchReplaceWidget.ui.next.clicked.connect(self.doFind)
-        self.searchReplaceWidget.ui.previous.clicked.connect(self.doFindBackwards)
+        self.searchReplaceWidget.ui.next.clicked.connect(self.doReplace)
+        self.searchReplaceWidget.ui.previous.clicked.connect(self.doReplaceBackwards)
         
         searchReplaceLayout=QtGui.QGraphicsLinearLayout()
         searchReplaceLayout.setContentsMargins(0,0,0,0)
@@ -426,6 +425,12 @@ class MainWidget (QtGui.QGraphicsView):
         self.settings.setValue('fontsize',self.editor.font().pointSize())
         self.settings.setValue('click',self.currentClick)
         self.settings.setValue('station',self.currentStation)
+        if self.bgcolor:
+            self.settings.setValue('bgcolor',self.bgcolor.name())
+            self.settings.setValue('background',QtCore.QVariant())
+        else:
+            self.settings.setValue('bgcolor',QtCore.QVariant())
+            self.settings.setValue('background',self.currentBG)
 
         self.settings.sync()
         print 'Settings stored'
@@ -445,6 +450,13 @@ class MainWidget (QtGui.QGraphicsView):
         print 'SS',s
         if s:
             self.setstation(s)
+
+        bgcolor=self.settings.value('bgcolor')
+        bg=self.settings.value('background')
+        if bg.isValid():
+            self.setbg(unicode(bg.toString()))
+        elif bgcolor.isValid():
+            self.setbgcolor(QtGui.QColor(bgcolor.toString()))
 
     def togglespell(self):
         print "Toggling spellchecking..." ,
@@ -466,9 +478,11 @@ class MainWidget (QtGui.QGraphicsView):
             if r==QtGui.QMessageBox.Save:
                 self.editor.save()
             elif r==QtGui.QMessageBox.Discard:
+                self.saveprefs()
                 QtGui.QGraphicsView.close(self)
                 QtCore.QCoreApplication.instance().quit()
         else:
+            self.saveprefs()
             QtGui.QGraphicsView.close(self)
             QtCore.QCoreApplication.instance().quit()
         QtCore.QCoreApplication.instance().restoreOverrideCursor()
@@ -501,11 +515,29 @@ class MainWidget (QtGui.QGraphicsView):
         self.editor.setFocus()
         self.editor.resize(self.editor.width(),self.height()*.9)
 
+    def doReplaceAllBackwards(self):
+        self.doReplaceAll(backwards=True)
+
+    def doReplaceAll(self, backwards=False):
+        pass
+
+    def doReplaceBackwards (self):
+        return self.doReplace(backwards=True)
+        
+    def doReplace(self, backwards=False):
+        flags=QtGui.QTextDocument.FindFlags()
+        if backwards:
+            flags=QtGui.QTextDocument.FindBackward
+        if self.searchWidget.ui.matchCase.isChecked():
+            flags=flags|QtGui.QTextDocument.FindCaseSensitively
+
+        text=unicode(self.searchWidget.ui.text.text())
+        r=self.editor.find(text,flags)
+
     def doFindBackwards (self):
         return self.doFind(backwards=True)
 
     def doFind(self, backwards=False):
-
         flags=QtGui.QTextDocument.FindFlags()
         if backwards:
             flags=QtGui.QTextDocument.FindBackward
@@ -573,6 +605,16 @@ class MainWidget (QtGui.QGraphicsView):
     def nomusic(self):
         if self.music:
             self.music.stop()
+    
+    def setbg(self, bg):
+        self.currentBG=bg
+        self.bgcolor=None
+        print '<< switching bg to:', self.currentBG
+        self.bg=QtGui.QImage(os.path.join(PATH,'backgrounds',bg))
+        self.realBg=self.bg.scaled( self.size(), QtCore.Qt.KeepAspectRatioByExpanding)
+        # FIXME: I can't find a way to force it to redraw the background nicely.
+        self.hide()
+        self.showFullScreen()
         
     def prevbg(self):
         bglist=os.listdir(os.path.join(PATH,'backgrounds'))
@@ -582,13 +624,7 @@ class MainWidget (QtGui.QGraphicsView):
             idx=(bglist.index(self.currentBG)-1)%len(bglist)
         except ValueError:
             idx=-1
-        self.currentBG=bglist[idx]
-        print '<< switching bg to:', self.currentBG
-        self.bg=QtGui.QImage(os.path.join(PATH,'backgrounds',bglist[idx]))
-        self.realBg=self.bg.scaled( self.size(), QtCore.Qt.KeepAspectRatioByExpanding)
-        # FIXME: I can't find a way to force it to redraw the background nicely.
-        self.hide()
-        self.showFullScreen()
+        self.setbg(bglist[idx])
         
     def nextbg(self):
         bglist=os.listdir(os.path.join(PATH,'backgrounds'))
@@ -598,13 +634,7 @@ class MainWidget (QtGui.QGraphicsView):
             idx=(bglist.index(self.currentBG)+1)%len(bglist)
         except ValueError:
             idx=0
-        self.currentBG=bglist[idx]
-        print '>> switching bg to:', self.currentBG
-        self.bg=QtGui.QImage(os.path.join(PATH,'backgrounds',bglist[idx]))
-        self.realBg=self.bg.scaled( self.size(), QtCore.Qt.KeepAspectRatioByExpanding)
-        # FIXME: I can't find a way to force it to redraw the background nicely.
-        self.hide()
-        self.showFullScreen()
+        self.setbg(bglist[idx])
         
     def setbgcolor(self, bgcolor=None):
         if isinstance(bgcolor, QtGui.QColor):

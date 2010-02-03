@@ -305,6 +305,7 @@ class MainWidget (QtGui.QGraphicsView):
             h.setFlag(QtGui.QGraphicsItem.ItemIsMovable, True)
             h.setCursor(QtCore.Qt.SizeAllCursor)
             h.setOpacity(.5)
+            h.setZValue(100)
             self._scene.addItem(h)
             self.handles.append(h)
 
@@ -733,7 +734,7 @@ class MainWidget (QtGui.QGraphicsView):
         
     def adjustPositions(self):
         m=self.m
-        if self.editor:
+        if self.editor:            
             self.editor.setGeometry(self.editorX,self.editorY,self.editorW,self.editorH)
             self.editorBG.setPos(self.editorX-m,self.editorY-m)
             self.editorBG.setRect(0,0,self.editorW+2*m,self.editorH+2*m)
@@ -757,6 +758,8 @@ class MainWidget (QtGui.QGraphicsView):
             # See if the user dragged the editor
             flag=False
             m=self.m
+            
+            old=self.editorX, self.editorY, self.editorW, self.editorH
 
             # Editor dragged by the edge
             rect=self.editorBG.rect()
@@ -771,12 +774,18 @@ class MainWidget (QtGui.QGraphicsView):
                w != self.editorW+2*m or \
                h != self.editorH+2*m:
                 print 'Editor moved'
-                self.editorX=x+m
-                self.editorY=y+m
-                self.editorW=w-2*m
-                self.editorH=h-2*m
+                editorX=x+m
+                editorY=y+m
+                editorW=w-2*m
+                editorH=h-2*m
+                
+                if editorW > 3*m and editorH > 3*m:
+                    self.editorX = editorX
+                    self.editorY = editorY
+                    self.editorW = editorW
+                    self.editorH = editorH                
                 self.adjustPositions()
-                self.changing=False
+                self.changing=False                
                 return
                    
             # Top-Left corner dragged
@@ -786,16 +795,21 @@ class MainWidget (QtGui.QGraphicsView):
             y=rect.y()+pos.y()
             if x != self.editorX-2*m or \
                y != self.editorY-2*m:
-                   print "Dragged TL"
-                   dx=x-self.editorX+2*m
-                   dy=y-self.editorY+2*m
-                   self.editorX=x+2*m
-                   self.editorY=y+2*m
-                   self.editorW-=dx
-                   self.editorH-=dy
-                   self.adjustPositions()
-                   self.changing=False
-                   return
+                    print "Dragged TL"
+                    dx=x-self.editorX+2*m
+                    dy=y-self.editorY+2*m
+                    editorX=x+2*m
+                    editorY=y+2*m
+                    editorW=self.editorW-dx
+                    editorH=self.editorH-dy
+                    if editorW > 3*m and editorH > 3*m:
+                        self.editorX = editorX
+                        self.editorY = editorY
+                        self.editorW = editorW
+                        self.editorH = editorH                
+                    self.adjustPositions()
+                    self.changing=False
+                    return
 
             # Top-Right corner dragged
             rect=self.handles[1].rect()
@@ -804,15 +818,19 @@ class MainWidget (QtGui.QGraphicsView):
             y=rect.y()+pos.y()
             if x != self.editorX+self.editorW or \
                y != self.editorY-2*m:
-                   print "Dragged TR"
-                   dx=x-self.editorX-self.editorW
-                   dy=y-self.editorY+2*m
-                   self.editorY=y+2*m
-                   self.editorW+=dx
-                   self.editorH-=dy
-                   self.adjustPositions()
-                   self.changing=False
-                   return
+                    print "Dragged TR"
+                    dx=x-self.editorX-self.editorW
+                    dy=y-self.editorY+2*m
+                    editorY=y+2*m
+                    editorW=self.editorW+dx
+                    editorH=self.editorH-dy
+                    if editorW > 3*m and editorH > 3*m:
+                        self.editorY = editorY
+                        self.editorW = editorW
+                        self.editorH = editorH                
+                    self.adjustPositions()
+                    self.changing=False
+                    return
                    
             # Bottom-Right corner dragged
             rect=self.handles[2].rect()
@@ -821,14 +839,17 @@ class MainWidget (QtGui.QGraphicsView):
             y=rect.y()+pos.y()
             if x != self.editorX+self.editorW or \
                y != self.editorY+self.editorH:
-                   print "Dragged BR"
-                   dx=x-self.editorX-self.editorW
-                   dy=y-self.editorY-self.editorH
-                   self.editorW+=dx
-                   self.editorH+=dy
-                   self.adjustPositions()
-                   self.changing=False
-                   return
+                    print "Dragged BR"
+                    dx=x-self.editorX-self.editorW
+                    dy=y-self.editorY-self.editorH
+                    editorW=self.editorW+dx
+                    editorH=self.editorH+dy
+                    if editorW > 3*m and editorH > 3*m:
+                        self.editorW = editorW
+                        self.editorH = editorH                
+                    self.adjustPositions()
+                    self.changing=False
+                    return
 
             # Bottom-Left corner dragged
             rect=self.handles[3].rect()
@@ -837,16 +858,19 @@ class MainWidget (QtGui.QGraphicsView):
             y=rect.y()+pos.y()
             if x != self.editorX+2*m or \
                y != self.editorY+self.editorH:
-                   print "Dragged BL"
-                   dx=x-self.editorX+2*m
-                   dy=y-self.editorY-self.editorH
-                   self.editorX=x+2*m
-                   self.editorW-=dx
-                   self.editorH+=dy
-                   self.adjustPositions()
-                   self.changing=False
-                   return
-
+                    print "Dragged BL"
+                    dx=x-self.editorX+2*m
+                    dy=y-self.editorY-self.editorH
+                    editorX=x+2*m
+                    editorW=self.editorW-dx
+                    editorH=self.editorH+dy
+                    if editorW > 3*m and editorH > 3*m:
+                        self.editorX = editorX
+                        self.editorW = editorW
+                        self.editorH = editorH                
+                    self.adjustPositions()
+                    self.changing=False
+                    return
 
             self.changing=False
 

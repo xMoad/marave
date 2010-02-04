@@ -124,8 +124,10 @@ class FunkyLabel(QtGui.QLabel, animatedOpacity):
                               text-align: right;
                            """)
 
+buttons=[]
+
 class FunkyButton(QtGui.QPushButton, animatedOpacity):
-    def __init__(self, icon, scene,opacity=.3):
+    def __init__(self, icon, text, scene,opacity=.3):
         QtGui.QPushButton.__init__(self,QtGui.QIcon(os.path.join(PATH,'icons',icon)),"")
         self.setAttribute(QtCore.Qt.WA_Hover, True)
         self.baseOpacity=opacity
@@ -142,6 +144,9 @@ class FunkyButton(QtGui.QPushButton, animatedOpacity):
             min-height: 24px;
         """)
         self.children=[]
+        self.icon=icon
+        self.text=text
+        buttons.append(self)
         
 class FunkyLineEdit(QtGui.QLineEdit, animatedOpacity):
     def __init__(self, scene,opacity=.3):
@@ -285,8 +290,10 @@ class MainWidget (QtGui.QGraphicsView):
         self.currentClick=None
         self.currentStation=None
         self.bgcolor=None
+        self.bg=None
         self.beep=None
         self.music=None
+        self.buttonStyle=0
 
         self.stations=[x.strip() for x in open(os.path.join(PATH,'radios.txt')).readlines()]
 
@@ -356,13 +363,13 @@ class MainWidget (QtGui.QGraphicsView):
             self._scene.addItem(h)
             self.handles.append(h)
 
-        self.fontButton=FunkyButton("fonts.svg", self._scene, 0)
-        self.sizeButton=FunkyButton("size.svg", self._scene, 0)
-        self.fileButton=FunkyButton("file.svg", self._scene, 0)
-        self.bgButton=FunkyButton("bg.svg", self._scene, 0)
-        self.clickButton=FunkyButton("click.svg", self._scene, 0)
-        self.musicButton=FunkyButton("music.svg", self._scene, 0)
-        self.quitButton=FunkyButton("exit.svg", self._scene, 0)
+        self.fontButton=FunkyButton("fonts.svg", 'Font', self._scene, 0)
+        self.sizeButton=FunkyButton("size.svg", 'Size', self._scene, 0)
+        self.fileButton=FunkyButton("file.svg", 'File', self._scene, 0)
+        self.bgButton=FunkyButton("bg.svg", 'Bg', self._scene, 0)
+        self.clickButton=FunkyButton("click.svg", 'Click', self._scene, 0)
+        self.musicButton=FunkyButton("music.svg", 'Music', self._scene, 0)
+        self.quitButton=FunkyButton("exit.svg", 'Quit', self._scene, 0)
         self.quitButton.clicked.connect(self.close)
         self.sc8.activated.connect(self.quitButton.animateClick)
 
@@ -383,15 +390,15 @@ class MainWidget (QtGui.QGraphicsView):
 
         self.fontList=FunkyFontList(self._scene,0)
         self.fontList.currentFontChanged.connect(self.changefont)
-        self.fontColor=FunkyButton("color.svg", self._scene,0)
+        self.fontColor=FunkyButton("color.svg", 'Color', self._scene,0)
         self.fontColor.clicked.connect(self.setfontcolor)
         mainMenuLayout.addItem(self.fontList.proxy,0,2,1,2)
         mainMenuLayout.addItem(self.fontColor.proxy,0,1)
         self.fontButton.children+=[self.fontList,self.fontColor]
 
-        self.size1=FunkyButton("minus.svg", self._scene,0)
-        self.size2=FunkyButton("equals.svg", self._scene,0)
-        self.size3=FunkyButton("plus.svg", self._scene,0)
+        self.size1=FunkyButton("minus.svg", 'Smaller', self._scene,0)
+        self.size2=FunkyButton("equals.svg", 'Default', self._scene,0)
+        self.size3=FunkyButton("plus.svg", 'Larger', self._scene,0)
         self.size1.clicked.connect(self.editor.smaller)
         self.size3.clicked.connect(self.editor.larger)
         self.size2.clicked.connect(self.editor.default)
@@ -401,9 +408,9 @@ class MainWidget (QtGui.QGraphicsView):
         mainMenuLayout.addItem(self.size2.proxy,1,2)
         mainMenuLayout.addItem(self.size3.proxy,1,3)
 
-        self.file1=FunkyButton("open.svg", self._scene, 0)
-        self.file2=FunkyButton("save.svg", self._scene, 0)
-        self.file3=FunkyButton("saveas.svg", self._scene, 0)
+        self.file1=FunkyButton("open.svg", 'Open', self._scene, 0)
+        self.file2=FunkyButton("save.svg", 'Save', self._scene, 0)
+        self.file3=FunkyButton("saveas.svg", 'Save As', self._scene, 0)
         mainMenuLayout.addItem(self.file1.proxy,2,1)
         mainMenuLayout.addItem(self.file2.proxy,2,2)
         mainMenuLayout.addItem(self.file3.proxy,2,3)
@@ -412,9 +419,9 @@ class MainWidget (QtGui.QGraphicsView):
         self.file3.clicked.connect(self.editor.saveas)
         self.fileButton.children+=[self.file1, self.file2, self.file3]
 
-        self.bg1=FunkyButton("previous.svg", self._scene,0)
-        self.bg2=FunkyButton("next.svg", self._scene,0)
-        self.bg3=FunkyButton("color.svg", self._scene,0)
+        self.bg1=FunkyButton("previous.svg", 'Previous', self._scene,0)
+        self.bg2=FunkyButton("next.svg", 'Next', self._scene,0)
+        self.bg3=FunkyButton("color.svg", 'Color', self._scene,0)
         mainMenuLayout.addItem(self.bg1.proxy,3,1)
         mainMenuLayout.addItem(self.bg2.proxy,3,2)
         mainMenuLayout.addItem(self.bg3.proxy,3,3)
@@ -423,9 +430,9 @@ class MainWidget (QtGui.QGraphicsView):
         self.bg3.clicked.connect(self.setbgcolor)
         self.bgButton.children+=[self.bg1, self.bg2, self.bg3]
 
-        self.click1=FunkyButton("previous.svg", self._scene,0)
-        self.click2=FunkyButton("next.svg", self._scene,0)
-        self.click3=FunkyButton("mute.svg", self._scene,0)
+        self.click1=FunkyButton("previous.svg", 'Previous', self._scene,0)
+        self.click2=FunkyButton("next.svg", 'Next', self._scene,0)
+        self.click3=FunkyButton("mute.svg", 'Mute', self._scene,0)
         mainMenuLayout.addItem(self.click1.proxy,4,1)
         mainMenuLayout.addItem(self.click2.proxy,4,2)
         mainMenuLayout.addItem(self.click3.proxy,4,3)
@@ -434,9 +441,9 @@ class MainWidget (QtGui.QGraphicsView):
         self.click3.clicked.connect(self.noclick)
         self.clickButton.children+=[self.click1, self.click2, self.click3]
         
-        self.music1=FunkyButton("previous.svg", self._scene,0)
-        self.music2=FunkyButton("next.svg", self._scene,0)
-        self.music3=FunkyButton("mute.svg", self._scene,0)
+        self.music1=FunkyButton("previous.svg", 'Previous', self._scene,0)
+        self.music2=FunkyButton("next.svg", 'Next', self._scene,0)
+        self.music3=FunkyButton("mute.svg", 'Mute', self._scene,0)
         mainMenuLayout.addItem(self.music1.proxy,5,1)
         mainMenuLayout.addItem(self.music2.proxy,5,2)
         mainMenuLayout.addItem(self.music3.proxy,5,3)
@@ -455,6 +462,7 @@ class MainWidget (QtGui.QGraphicsView):
         self.prefsWidget.ui.close.clicked.connect(self.hidewidgets)
         self.prefsWidget.ui.saveTheme.clicked.connect(self.savetheme)
         self.prefsWidget.ui.themeList.currentIndexChanged.connect(self.loadtheme)
+        self.prefsWidget.ui.buttonStyle.currentIndexChanged.connect(self.buttonstyle)
         
         prefsLayout=QtGui.QGraphicsLinearLayout()
         prefsLayout.setContentsMargins(0,0,0,0)
@@ -500,6 +508,25 @@ class MainWidget (QtGui.QGraphicsView):
 
         self.loadprefs()
 
+    def buttonstyle(self, idx):
+        print 'STYLE:',idx
+        self.buttonStyle=idx
+        self.saveprefs()
+        for b in buttons:
+            if idx==0:
+                b.setIcon(QtGui.QIcon(os.path.join(PATH,'icons',b.icon)))
+                b.setText("")
+                b.adjustSize()
+            elif idx==1:
+                b.setIcon(QtGui.QIcon())
+                b.setText(b.text)
+                b.adjustSize()
+            elif idx==2:
+                b.setIcon(QtGui.QIcon(os.path.join(PATH,'icons',b.icon)))
+                b.setText(b.text)
+                b.adjustSize()
+        self.mainMenu.adjustSize()
+
     def loadtheme(self, themeidx):
         if not themeidx:
             return
@@ -543,6 +570,8 @@ class MainWidget (QtGui.QGraphicsView):
             self.settings.setValue('w',self.editorW)
             self.settings.setValue('h',self.editorH)
 
+        self.settings.setValue('buttonstyle',self.buttonStyle)
+
         self.settings.sync()
         print 'Settings stored'
 
@@ -554,6 +583,14 @@ class MainWidget (QtGui.QGraphicsView):
         if ok:
             f.setPointSize(fs)
         self.editor.setFont(f)
+        
+        bs,ok=self.settings.value('buttonstyle').toInt()
+        if ok:
+            self.buttonStyle=bs
+        else:
+            self.buttonStyle=0
+        self.buttonstyle(self.buttonStyle)
+        
         c=self.settings.value('click')
         if c.isValid():
             self.setclick(unicode(c.toString()))

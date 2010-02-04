@@ -53,6 +53,8 @@ class animatedOpacity:
 class Handle(QtGui.QGraphicsRectItem, animatedOpacity):
     def __init__(self,x,y,w,h):
         QtGui.QGraphicsRectItem.__init__(self,x,y,w,h)
+        self.setBrush(QtGui.QColor(100,100,100,80))
+        self.setPen(QtGui.QColor(0,0,0,0))
         self.targetOpacity=0
         self.proxy=self
         self.children=[]

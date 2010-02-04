@@ -73,6 +73,17 @@ class PrefsWidget(QtGui.QWidget, animatedOpacity):
         self.movingOp=False
         self.children=[]
         self.ui.setupUi(self)
+        self.loadthemelist()
+        
+    def loadthemelist(self):
+        self.ui.themeList.clear()
+        self.ui.themeList.addItem('')
+        tdir=os.path.join(PATH,'themes')
+        for t in os.listdir(tdir):
+            if t.startswith('.'):
+                continue
+            self.ui.themeList.addItem(t)
+        
 
 class SearchWidget(QtGui.QWidget, animatedOpacity):
     def __init__(self, scene, opacity=0):
@@ -442,6 +453,8 @@ class MainWidget (QtGui.QGraphicsView):
         # Prefs widget
         self.prefsWidget=PrefsWidget(self._scene)
         self.prefsWidget.ui.close.clicked.connect(self.hidewidgets)
+        self.prefsWidget.ui.saveTheme.clicked.connect(self.savetheme)
+        self.prefsWidget.ui.themeList.currentIndexChanged.connect(self.loadtheme)
         
         prefsLayout=QtGui.QGraphicsLinearLayout()
         prefsLayout.setContentsMargins(0,0,0,0)
@@ -486,6 +499,30 @@ class MainWidget (QtGui.QGraphicsView):
             b.installEventFilter(self)
 
         self.loadprefs()
+
+    def loadtheme(self, themeidx):
+        if not themeidx:
+            return
+        themename=unicode(self.prefsWidget.ui.themeList.itemText(themeidx))
+        themefile=os.path.join(PATH,'themes',themename)
+        self.oldSettings=self.settings
+        self.settings=QtCore.QSettings(themefile,QtCore.QSettings.IniFormat)
+        self.loadprefs()
+        self.settings=self.oldSettings
+        self.saveprefs()
+        
+    def savetheme(self, themefile=None):
+        print 'Save theme', themefile
+        if themefile is None or themefile is False:
+            tdir=os.path.join(PATH,'themes')
+            print 'TDIR:', tdir
+            self.savetheme(QtGui.QFileDialog.getSaveFileName(None, "Marave - Save Theme",tdir))
+            return
+        self.oldSettings=self.settings
+        self.settings=QtCore.QSettings(QtCore.QString(themefile),QtCore.QSettings.IniFormat)
+        self.saveprefs()
+        self.settings=self.oldSettings
+        self.prefsWidget.loadthemelist()
 
     def saveprefs(self):
         # Save all settings at once

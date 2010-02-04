@@ -323,8 +323,8 @@ class MainWidget (QtGui.QGraphicsView):
         self.sc8 = QtGui.QShortcut(QtGui.QKeySequence("Ctrl+Q"), self);
 
         # Prefs
-        self.sc9 = QtGui.QShortcut(QtGui.QKeySequence("Ctrl+Shift+S"), self);
-        self.sc7.activated.connect(self.showprefs)
+        self.sc9 = QtGui.QShortcut(QtGui.QKeySequence("Shift+Ctrl+P"), self);
+        self.sc9.activated.connect(self.showprefs)
 
         self.editorBG=QtGui.QGraphicsRectItem()
         self.editorBG.setFlag(QtGui.QGraphicsItem.ItemIsMovable, True)
@@ -587,6 +587,7 @@ class MainWidget (QtGui.QGraphicsView):
         self.searchWidget.moveOpacity()
 
     def showprefs(self):
+        print 'SP'
         self.hidewidgets()
         self.prefsWidget.show()
         self.prefsWidget.targetOpacity=.7

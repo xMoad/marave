@@ -74,6 +74,17 @@ class PrefsWidget(QtGui.QWidget, animatedOpacity):
         self.children=[]
         self.ui.setupUi(self)
         self.loadthemelist()
+        self.loadSpellcheckers()
+
+    def loadSpellcheckers(self):
+        self.ui.langBox.clear()
+        self.ui.langBox.addItem('None')
+        try:
+            import enchant
+            for l, _ in enchant.Broker().list_dicts():
+                self.ui.langBox.addItem(l)
+        except ImportError:
+            self.ui.langBox.setEnabled(False)
         
     def loadthemelist(self):
         self.ui.themeList.clear()

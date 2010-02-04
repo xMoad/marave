@@ -31,6 +31,8 @@ class animatedOpacity:
     def moveOpacity(self):
         if abs(abs(self.proxy.opacity())-abs(self.targetOpacity))<.1:
             self.proxy.setOpacity(self.targetOpacity)
+            if self.targetOpacity==0:
+                self.hide()
             self.movingOp=False
         else:
             self.movingOp=True
@@ -437,7 +439,7 @@ class MainWidget (QtGui.QGraphicsView):
 
         # Prefs widget
         self.prefsWidget=PrefsWidget(self._scene)
-        #self.prefsWidget.ui.close.clicked.connect(self.hidesearch)
+        #self.prefsWidget.ui.close.clicked.connect(self.hidewidgets)
         
         prefsLayout=QtGui.QGraphicsLinearLayout()
         prefsLayout.setContentsMargins(0,0,0,0)
@@ -450,7 +452,7 @@ class MainWidget (QtGui.QGraphicsView):
 
         # Search widget
         self.searchWidget=SearchWidget(self._scene)
-        self.searchWidget.ui.close.clicked.connect(self.hidesearch)
+        self.searchWidget.ui.close.clicked.connect(self.hidewidgets)
         self.searchWidget.ui.next.clicked.connect(self.doFind)
         self.searchWidget.ui.previous.clicked.connect(self.doFindBackwards)
         
@@ -464,7 +466,7 @@ class MainWidget (QtGui.QGraphicsView):
 
         # Search and replace widget
         self.searchReplaceWidget=SearchReplaceWidget(self._scene)
-        self.searchReplaceWidget.ui.close.clicked.connect(self.hidesearch)
+        self.searchReplaceWidget.ui.close.clicked.connect(self.hidewidgets)
         self.searchReplaceWidget.ui.next.clicked.connect(self.doReplace)
         self.searchReplaceWidget.ui.previous.clicked.connect(self.doReplaceBackwards)
         
@@ -568,7 +570,7 @@ class MainWidget (QtGui.QGraphicsView):
         QtCore.QCoreApplication.instance().restoreOverrideCursor()
 
     def showsearchreplace(self):
-        self.hidesearch()
+        self.hidewidgets()
         self.searchReplaceWidget.show()
         self.setFocus()
         self.searchReplaceWidget.ui.text.setFocus()
@@ -576,7 +578,7 @@ class MainWidget (QtGui.QGraphicsView):
         self.searchReplaceWidget.moveOpacity()
 
     def showsearch(self):
-        self.hidesearch()
+        self.hidewidgets()
         self.searchWidget.show()
         self.setFocus()
         self.searchWidget.ui.text.setFocus()
@@ -584,22 +586,17 @@ class MainWidget (QtGui.QGraphicsView):
         self.searchWidget.moveOpacity()
 
     def showprefs(self):
-        self.hidesearch()
+        self.hidewidgets()
         self.prefsWidget.show()
         self.prefsWidget.targetOpacity=.7
         self.prefsWidget.moveOpacity()
 
 
-    def hidesearch(self):
-        self.searchWidget.targetOpacity=.0
-        self.searchWidget.moveOpacity()
-        self.searchWidget.hide()
-        self.searchReplaceWidget.targetOpacity=.0
-        self.searchReplaceWidget.moveOpacity()
-        self.searchReplaceWidget.hide()
-        self.prefsWidget.targetOpacity=.0
-        self.prefsWidget.moveOpacity()
-        self.prefsWidget.hide()
+    def hidewidgets(self):
+        for w in [self.searchWidget, self.searchReplaceWidget, self.prefsWidget]:            
+            w.targetOpacity=.0
+            w.moveOpacity()
+            #w.hide()
         self.editor.setFocus()
         self.editor.resize(self.editor.width(),self.height()*.9)
 

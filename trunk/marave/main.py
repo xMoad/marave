@@ -495,7 +495,6 @@ class MainWidget (QtGui.QGraphicsView):
         if c:
             self.setclick(c)
         s=unicode(self.settings.value('station').toString())
-        print 'SS',s
         if s:
             self.setstation(s)
 
@@ -791,9 +790,7 @@ class MainWidget (QtGui.QGraphicsView):
             
 
     def scenechanged(self,region):
-        print 'SCENE Changed (%s)'%self.changing
         if not self.changing:
-            print 'Adusting'
             self.changing=True
             # See if the user dragged the editor
             flag=False
@@ -813,7 +810,6 @@ class MainWidget (QtGui.QGraphicsView):
                y != self.editorY-m or   \
                w != self.editorW+2*m or \
                h != self.editorH+2*m:
-                print 'Editor moved'
                 editorX=x+m
                 editorY=y+m
                 editorW=w-2*m
@@ -835,7 +831,6 @@ class MainWidget (QtGui.QGraphicsView):
             y=rect.y()+pos.y()
             if x != self.editorX-2*m or \
                y != self.editorY-2*m:
-                    print "Dragged TL"
                     dx=x-self.editorX+2*m
                     dy=y-self.editorY+2*m
                     editorX=x+2*m
@@ -858,7 +853,6 @@ class MainWidget (QtGui.QGraphicsView):
             y=rect.y()+pos.y()
             if x != self.editorX+self.editorW or \
                y != self.editorY-2*m:
-                    print "Dragged TR"
                     dx=x-self.editorX-self.editorW
                     dy=y-self.editorY+2*m
                     editorY=y+2*m
@@ -879,7 +873,6 @@ class MainWidget (QtGui.QGraphicsView):
             y=rect.y()+pos.y()
             if x != self.editorX+self.editorW or \
                y != self.editorY+self.editorH:
-                    print "Dragged BR"
                     dx=x-self.editorX-self.editorW
                     dy=y-self.editorY-self.editorH
                     editorW=self.editorW+dx
@@ -898,7 +891,6 @@ class MainWidget (QtGui.QGraphicsView):
             y=rect.y()+pos.y()
             if x != self.editorX+2*m or \
                y != self.editorY+self.editorH:
-                    print "Dragged BL"
                     dx=x-self.editorX+2*m
                     dy=y-self.editorY-self.editorH
                     editorX=x+2*m

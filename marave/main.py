@@ -35,6 +35,7 @@ class animatedOpacity:
                 self.hide()
             self.movingOp=False
         else:
+            self.show()
             self.movingOp=True
             if self.proxy.opacity()<self.targetOpacity:
                 self.proxy.setOpacity(self.proxy.opacity()+.1)

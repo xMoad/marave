@@ -29,14 +29,18 @@ class SpellTextEdit(QPlainTextEdit):
         QPlainTextEdit.__init__(self, *args)
         self.initDict()
 
-    def initDict(self):
+    def initDict(self, lang=None):
         # Default dictionary based on the current locale.
-        self.dict = enchant.Dict()
+        if lang==None:
+            self.dict = enchant.Dict()
+        else:
+            self.dict = enchant.Dict(lang)
         self.highlighter = Highlighter(self.document())
         self.highlighter.setDict(self.dict)
+        self.highlighter.rehighlight()
 
     def killDict(self):
-        self.dict=None
+        print 'Disabling spellchecker'
         self.highlighter.setDocument(None)
 
     def mousePressEvent(self, event):

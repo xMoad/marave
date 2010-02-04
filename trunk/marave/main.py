@@ -382,18 +382,11 @@ class MainWidget (QtGui.QGraphicsView):
                       self.quitButton,
                       ]
 
-        mainMenuLayout=QtGui.QGraphicsGridLayout()
-        mainMenuLayout.setContentsMargins(0,0,0,0)
-        for pos, button in enumerate(self.buttons):
-            mainMenuLayout.addItem(button.proxy,pos,0)
-        mainMenuLayout.setRowSpacing(len(self.buttons)-2,self.m*2)
 
         self.fontList=FunkyFontList(self._scene,0)
         self.fontList.currentFontChanged.connect(self.changefont)
         self.fontColor=FunkyButton("color.svg", 'Color', self._scene,0)
         self.fontColor.clicked.connect(self.setfontcolor)
-        mainMenuLayout.addItem(self.fontList.proxy,0,2,1,2)
-        mainMenuLayout.addItem(self.fontColor.proxy,0,1)
         self.fontButton.children+=[self.fontList,self.fontColor]
 
         self.size1=FunkyButton("minus.svg", 'Smaller', self._scene,0)
@@ -404,16 +397,10 @@ class MainWidget (QtGui.QGraphicsView):
         self.size2.clicked.connect(self.editor.default)
         self.sizeButton.children+=[self.size1, self.size2, self.size3]
 
-        mainMenuLayout.addItem(self.size1.proxy,1,1)
-        mainMenuLayout.addItem(self.size2.proxy,1,2)
-        mainMenuLayout.addItem(self.size3.proxy,1,3)
 
         self.file1=FunkyButton("open.svg", 'Open', self._scene, 0)
         self.file2=FunkyButton("save.svg", 'Save', self._scene, 0)
         self.file3=FunkyButton("saveas.svg", 'Save As', self._scene, 0)
-        mainMenuLayout.addItem(self.file1.proxy,2,1)
-        mainMenuLayout.addItem(self.file2.proxy,2,2)
-        mainMenuLayout.addItem(self.file3.proxy,2,3)
         self.file1.clicked.connect(self.editor.open)
         self.file2.clicked.connect(self.editor.save)
         self.file3.clicked.connect(self.editor.saveas)
@@ -422,9 +409,6 @@ class MainWidget (QtGui.QGraphicsView):
         self.bg1=FunkyButton("previous.svg", 'Previous', self._scene,0)
         self.bg2=FunkyButton("next.svg", 'Next', self._scene,0)
         self.bg3=FunkyButton("color.svg", 'Color', self._scene,0)
-        mainMenuLayout.addItem(self.bg1.proxy,3,1)
-        mainMenuLayout.addItem(self.bg2.proxy,3,2)
-        mainMenuLayout.addItem(self.bg3.proxy,3,3)
         self.bg1.clicked.connect(self.prevbg)
         self.bg2.clicked.connect(self.nextbg)
         self.bg3.clicked.connect(self.setbgcolor)
@@ -433,9 +417,6 @@ class MainWidget (QtGui.QGraphicsView):
         self.click1=FunkyButton("previous.svg", 'Previous', self._scene,0)
         self.click2=FunkyButton("next.svg", 'Next', self._scene,0)
         self.click3=FunkyButton("mute.svg", 'Mute', self._scene,0)
-        mainMenuLayout.addItem(self.click1.proxy,4,1)
-        mainMenuLayout.addItem(self.click2.proxy,4,2)
-        mainMenuLayout.addItem(self.click3.proxy,4,3)
         self.click1.clicked.connect(self.prevclick)
         self.click2.clicked.connect(self.nextclick)
         self.click3.clicked.connect(self.noclick)
@@ -444,18 +425,11 @@ class MainWidget (QtGui.QGraphicsView):
         self.music1=FunkyButton("previous.svg", 'Previous', self._scene,0)
         self.music2=FunkyButton("next.svg", 'Next', self._scene,0)
         self.music3=FunkyButton("mute.svg", 'Mute', self._scene,0)
-        mainMenuLayout.addItem(self.music1.proxy,5,1)
-        mainMenuLayout.addItem(self.music2.proxy,5,2)
-        mainMenuLayout.addItem(self.music3.proxy,5,3)
         self.music1.clicked.connect(self.prevstation)
         self.music2.clicked.connect(self.nextstation)
         self.music3.clicked.connect(self.nostation)
         self.musicButton.children+=[self.music1, self.music2, self.music3]
 
-        self.mainMenu=QtGui.QGraphicsWidget()
-        self.mainMenu.setLayout(mainMenuLayout)
-        self.mainMenu.setPos(self.editorX+self.editorW+20,self.editorY)
-        self._scene.addItem(self.mainMenu)
 
         # Prefs widget
         self.prefsWidget=PrefsWidget(self._scene)
@@ -506,12 +480,43 @@ class MainWidget (QtGui.QGraphicsView):
         for b in self.buttons:
             b.installEventFilter(self)
 
+        self.layoutButtons()
         self.loadprefs()
+
+    def layoutButtons(self):
+        mainMenuLayout=QtGui.QGraphicsGridLayout()
+        mainMenuLayout.setContentsMargins(0,0,0,0)
+        for pos, button in enumerate(self.buttons):
+            mainMenuLayout.addItem(button.proxy,pos,0)
+        mainMenuLayout.setRowSpacing(len(self.buttons)-2,self.m*2)
+        mainMenuLayout.addItem(self.fontList.proxy,0,2,1,2)
+        mainMenuLayout.addItem(self.fontColor.proxy,0,1)
+        mainMenuLayout.addItem(self.size1.proxy,1,1)
+        mainMenuLayout.addItem(self.size2.proxy,1,2)
+        mainMenuLayout.addItem(self.size3.proxy,1,3)
+        mainMenuLayout.addItem(self.file1.proxy,2,1)
+        mainMenuLayout.addItem(self.file2.proxy,2,2)
+        mainMenuLayout.addItem(self.file3.proxy,2,3)
+        mainMenuLayout.addItem(self.bg1.proxy,3,1)
+        mainMenuLayout.addItem(self.bg2.proxy,3,2)
+        mainMenuLayout.addItem(self.bg3.proxy,3,3)
+        mainMenuLayout.addItem(self.click1.proxy,4,1)
+        mainMenuLayout.addItem(self.click2.proxy,4,2)
+        mainMenuLayout.addItem(self.click3.proxy,4,3)
+        mainMenuLayout.addItem(self.music1.proxy,5,1)
+        mainMenuLayout.addItem(self.music2.proxy,5,2)
+        mainMenuLayout.addItem(self.music3.proxy,5,3)
+        self.mainMenu=QtGui.QGraphicsWidget()
+        self.mainMenu.setLayout(mainMenuLayout)
+        self.mainMenu.setPos(self.editorX+self.editorW+20,self.editorY)
+        self._scene.addItem(self.mainMenu)
+
 
     def buttonstyle(self, idx):
         print 'STYLE:',idx
         self.buttonStyle=idx
-        self.saveprefs()
+        self.settings.setValue('buttonstyle',self.buttonStyle)
+        self.settings.sync()
         for b in buttons:
             if idx==0:
                 b.setIcon(QtGui.QIcon(os.path.join(PATH,'icons',b.icon)))
@@ -525,7 +530,7 @@ class MainWidget (QtGui.QGraphicsView):
                 b.setIcon(QtGui.QIcon(os.path.join(PATH,'icons',b.icon)))
                 b.setText(b.text)
                 b.adjustSize()
-        self.mainMenu.adjustSize()
+        self.layoutButtons()
 
     def loadtheme(self, themeidx):
         if not themeidx:

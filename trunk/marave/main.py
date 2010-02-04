@@ -132,7 +132,7 @@ class FunkyLabel(QtGui.QLabel, animatedOpacity):
         self.children=[]
         self.setStyleSheet("""
                               padding: 5px 4px 3px 4px;
-                              text-align: right;
+                              text-align: left;
                            """)
 
 buttons=[]
@@ -380,6 +380,8 @@ class MainWidget (QtGui.QGraphicsView):
         self.bgButton=FunkyButton("bg.svg", 'Bg', self._scene, 0)
         self.clickButton=FunkyButton("click.svg", 'Click', self._scene, 0)
         self.musicButton=FunkyButton("music.svg", 'Music', self._scene, 0)
+        self.configButton=FunkyButton("configure.svg", 'Options', self._scene, 0)
+        self.configButton.clicked.connect(self.showprefs)
         self.quitButton=FunkyButton("exit.svg", 'Quit', self._scene, 0)
         self.quitButton.clicked.connect(self.close)
         self.sc8.activated.connect(self.quitButton.animateClick)
@@ -390,6 +392,7 @@ class MainWidget (QtGui.QGraphicsView):
                       self.bgButton, 
                       self.clickButton,
                       self.musicButton,
+                      self.configButton,
                       self.quitButton,
                       ]
 

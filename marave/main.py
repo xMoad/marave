@@ -442,7 +442,7 @@ class MainWidget (QtGui.QGraphicsView):
         mainMenuLayout.addItem(self.music3.proxy,5,3)
         self.music1.clicked.connect(self.prevstation)
         self.music2.clicked.connect(self.nextstation)
-        self.music3.clicked.connect(self.nomusic)
+        self.music3.clicked.connect(self.nostation)
         self.musicButton.children+=[self.music1, self.music2, self.music3]
 
         self.mainMenu=QtGui.QGraphicsWidget()
@@ -554,12 +554,17 @@ class MainWidget (QtGui.QGraphicsView):
         if ok:
             f.setPointSize(fs)
         self.editor.setFont(f)
-        c=unicode(self.settings.value('click').toString())
-        if c:
-            self.setclick(c)
-        s=unicode(self.settings.value('station').toString())
-        if s:
-            self.setstation(s)
+        c=self.settings.value('click')
+        if c.isValid():
+            self.setclick(unicode(c.toString()))
+        else:
+            self.noclick()
+        
+        s=self.settings.value('station')
+        if s.isValid():
+            self.setstation(unicode(s.toString()))
+        else:
+            self.nostation()
 
         bgcolor=self.settings.value('bgcolor')
         bg=self.settings.value('background')
@@ -725,7 +730,7 @@ class MainWidget (QtGui.QGraphicsView):
             idx=-1
         self.setstation(self.stations[idx])
 
-    def nomusic(self):
+    def nostation(self):
         if self.music:
             self.music.stop()
     
@@ -782,7 +787,7 @@ class MainWidget (QtGui.QGraphicsView):
 
     def tajmode(self):
         self.noclick()
-        self.nomusic()
+        self.nostation()
         self.setbgcolor(QtGui.QColor(0,0,0))
         self.setfontcolor(QtGui.QColor(0,255,0))
         

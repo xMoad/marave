@@ -242,10 +242,17 @@ class MainWidget (QtGui.QGraphicsView):
 
         # Used for margins and border sizes
         self.m=5
-        self.editorH=.9*self.height()
-        self.editorW=self.fontMetrics().averageCharWidth()*80
-        self.editorY=self.height()*.05
-        self.editorX=self.width()*.1
+        
+        # FIXME: self.minW should be a reasonable value based on text size 
+        # or something.
+        self.minW=100*self.m
+        self.minH=80*self.m
+        self.hasSize=False
+        
+        #self.editorH=.9*self.height()
+        #self.editorW=self.fontMetrics().averageCharWidth()*80
+        #self.editorY=self.height()*.05
+        #self.editorX=self.width()*.1
 
         self.editor=None
         self.setFocusPolicy(QtCore.Qt.NoFocus)
@@ -480,6 +487,12 @@ class MainWidget (QtGui.QGraphicsView):
             self.settings.setValue('bgcolor',QtCore.QVariant())
             self.settings.setValue('background',self.currentBG)
 
+        if self.hasSize:
+            self.settings.setValue('x',self.editorX)
+            self.settings.setValue('y',self.editorY)
+            self.settings.setValue('w',self.editorW)
+            self.settings.setValue('h',self.editorH)
+
         self.settings.sync()
         print 'Settings stored'
 
@@ -504,6 +517,17 @@ class MainWidget (QtGui.QGraphicsView):
             self.setbg(unicode(bg.toString()))
         elif bgcolor.isValid():
             self.setbgcolor(QtGui.QColor(bgcolor.toString()))
+
+        x=self.settings.value('x')
+        y=self.settings.value('y')
+        w=self.settings.value('w')
+        h=self.settings.value('h')
+        if x.isValid() and y.isValid() and w.isValid() and h.isValid():
+            self.hasSize=True
+            self.editorX=x.toInt()[0]
+            self.editorY=y.toInt()[0]
+            self.editorW=w.toInt()[0]
+            self.editorH=h.toInt()[0]     
 
     def togglespell(self):
         print "Toggling spellchecking..." ,
@@ -551,7 +575,6 @@ class MainWidget (QtGui.QGraphicsView):
         self.searchWidget.moveOpacity()
 
     def showprefs(self):
-        print 'SP'
         self.hidesearch()
         self.prefsWidget.show()
         self.prefsWidget.targetOpacity=.7
@@ -767,11 +790,17 @@ class MainWidget (QtGui.QGraphicsView):
         self._scene.setSceneRect(QtCore.QRectF(self.geometry()))
         if self.bg:
             self.realBg=self.bg.scaled( self.size(), QtCore.Qt.KeepAspectRatioByExpanding) 
+        if not self.hasSize:
+            self.editorX=self.width()*.1
+            self.editorH=max(self.height()*.9, self.minH)
+            self.editorY=self.height()*.05
+            self.editorW=max(self.width()*.6, self.minW)
+
         self.adjustPositions()
         
     def adjustPositions(self):
         m=self.m
-        if self.editor:            
+        if self.editor:
             self.editor.setGeometry(self.editorX,self.editorY,self.editorW,self.editorH)
             self.editorBG.setPos(self.editorX-m,self.editorY-m)
             self.editorBG.setRect(0,0,self.editorW+2*m,self.editorH+2*m)
@@ -787,7 +816,13 @@ class MainWidget (QtGui.QGraphicsView):
             self.handles[1].setPos(self.editorX+self.editorW,self.editorY-2*m)
             self.handles[2].setPos(self.editorX+self.editorW,self.editorY+self.editorH)
             self.handles[3].setPos(self.editorX-2*m,self.editorY+self.editorH)
-            
+            if self.hasSize:
+                self.settings.setValue('x',self.editorX)
+                self.settings.setValue('y',self.editorY)
+                self.settings.setValue('w',self.editorW)
+                self.settings.setValue('h',self.editorH)
+                self.settings.sync()
+
 
     def scenechanged(self,region):
         if not self.changing:
@@ -797,7 +832,7 @@ class MainWidget (QtGui.QGraphicsView):
             m=self.m
             
             old=self.editorX, self.editorY, self.editorW, self.editorH
-
+            
             # Editor dragged by the edge
             rect=self.editorBG.rect()
             pos=self.editorBG.pos()
@@ -815,13 +850,14 @@ class MainWidget (QtGui.QGraphicsView):
                 editorW=w-2*m
                 editorH=h-2*m
                 
-                if editorW > 3*m and editorH > 3*m:
+                if editorW > self.minW and editorH > self.minH:
                     self.editorX = editorX
                     self.editorY = editorY
                     self.editorW = editorW
-                    self.editorH = editorH                
+                    self.editorH = editorH
+                self.hasSize=True
                 self.adjustPositions()
-                self.changing=False                
+                self.changing=False
                 return
                    
             # Top-Left corner dragged
@@ -837,11 +873,12 @@ class MainWidget (QtGui.QGraphicsView):
                     editorY=y+2*m
                     editorW=self.editorW-dx
                     editorH=self.editorH-dy
-                    if editorW > 3*m and editorH > 3*m:
+                    if editorW > self.minW and editorH > self.minH:
                         self.editorX = editorX
                         self.editorY = editorY
                         self.editorW = editorW
                         self.editorH = editorH                
+                    self.hasSize=True
                     self.adjustPositions()
                     self.changing=False
                     return
@@ -858,10 +895,11 @@ class MainWidget (QtGui.QGraphicsView):
                     editorY=y+2*m
                     editorW=self.editorW+dx
                     editorH=self.editorH-dy
-                    if editorW > 3*m and editorH > 3*m:
+                    if editorW > self.minW and editorH > self.minH:
                         self.editorY = editorY
                         self.editorW = editorW
                         self.editorH = editorH                
+                    self.hasSize=True
                     self.adjustPositions()
                     self.changing=False
                     return
@@ -877,9 +915,10 @@ class MainWidget (QtGui.QGraphicsView):
                     dy=y-self.editorY-self.editorH
                     editorW=self.editorW+dx
                     editorH=self.editorH+dy
-                    if editorW > 3*m and editorH > 3*m:
+                    if editorW > self.minW and editorH > self.minH:
                         self.editorW = editorW
                         self.editorH = editorH                
+                    self.hasSize=True
                     self.adjustPositions()
                     self.changing=False
                     return
@@ -896,17 +935,16 @@ class MainWidget (QtGui.QGraphicsView):
                     editorX=x+2*m
                     editorW=self.editorW-dx
                     editorH=self.editorH+dy
-                    if editorW > 3*m and editorH > 3*m:
+                    if editorW > self.minW and editorH > self.minH:
                         self.editorX = editorX
                         self.editorW = editorW
                         self.editorH = editorH                
+                    self.hasSize=True
                     self.adjustPositions()
                     self.changing=False
                     return
 
             self.changing=False
-
-
                
     def showButtons(self):
         for w in self.buttons:

@@ -41,7 +41,7 @@ class animatedOpacity:
                 self.proxy.setOpacity(self.proxy.opacity()+.1)
             else:
                 self.proxy.setOpacity(self.proxy.opacity()-.1)
-            QtCore.QTimer.singleShot(30,self.moveOpacity)
+            QtCore.QTimer.singleShot(10,self.moveOpacity)
 
     def showChildren(self):
         for c in self.children:
@@ -305,6 +305,7 @@ class MainWidget (QtGui.QGraphicsView):
         self.beep=None
         self.music=None
         self.buttonStyle=0
+        self.lang=None
 
         self.stations=[x.strip() for x in open(os.path.join(PATH,'radios.txt')).readlines()]
 
@@ -337,9 +338,9 @@ class MainWidget (QtGui.QGraphicsView):
         self.sc2 = QtGui.QShortcut(QtGui.QKeySequence("Ctrl+T"), self);
         self.sc2.activated.connect(self.tajmode)
 
-        # Spell checker toggle
-        self.sc3 = QtGui.QShortcut(QtGui.QKeySequence("Shift+Ctrl+Y"), self);
-        self.sc3.activated.connect(self.togglespell)
+        ## Spell checker toggle
+        #self.sc3 = QtGui.QShortcut(QtGui.QKeySequence("Shift+Ctrl+Y"), self);
+        #self.sc3.activated.connect(self.togglespell)
 
         # Action shortcuts
         self.sc4 = QtGui.QShortcut(QtGui.QKeySequence("Ctrl+O"), self);
@@ -447,6 +448,7 @@ class MainWidget (QtGui.QGraphicsView):
         self.prefsWidget.ui.saveTheme.clicked.connect(self.savetheme)
         self.prefsWidget.ui.themeList.currentIndexChanged.connect(self.loadtheme)
         self.prefsWidget.ui.buttonStyle.currentIndexChanged.connect(self.buttonstyle)
+        self.prefsWidget.ui.langBox.currentIndexChanged.connect(self.setspellchecker)
         self.prefsWidget.ui.opacity.valueChanged.connect(self.editoropacity)
         
         prefsLayout=QtGui.QGraphicsLinearLayout()
@@ -649,15 +651,32 @@ class MainWidget (QtGui.QGraphicsView):
             self.editorW=w.toInt()[0]
             self.editorH=h.toInt()[0]     
 
-    def togglespell(self):
-        print "Toggling spellchecking..." ,
-        if "dict" in self.editor.__dict__:
-            if self.editor.dict:
-                print "off"
-                self.editor.killDict()
-            else:
-                print "on"
-                self.editor.initDict()
+        l=self.settings.value('lang')
+        if l.isValid():
+            self.setspellchecker(unicode(l.toString()))
+        else:
+            self.setspellchecker('None')
+            
+
+    def setspellchecker(self, code):
+        if isinstance (code, int):
+            code=unicode(self.prefsWidget.ui.langBox.itemText(code))
+        
+        print "Setting spellchecker to:", code
+        if "dict" not in self.editor.__dict__:
+            # No pyenchant
+            return
+        if code == 'None':
+            self.lang=None
+            self.editor.killDict()
+            self.prefsWidget.ui.langBox.setCurrentIndex(0)
+        else:
+            self.lang=code
+            self.editor.initDict(self.lang)
+            print 'set dict to',self.lang
+            self.prefsWidget.ui.langBox.setCurrentIndex(self.prefsWidget.ui.langBox.findText(self.lang))
+        self.settings.setValue('lang',self.lang)
+        self.settings.sync()
         
 
     def close(self):

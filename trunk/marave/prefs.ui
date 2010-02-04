@@ -6,71 +6,104 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>243</width>
-    <height>101</height>
+    <width>396</width>
+    <height>106</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <layout class="QFormLayout" name="formLayout">
-   <item row="0" column="0">
-    <widget class="QLabel" name="label_2">
+  <layout class="QHBoxLayout" name="horizontalLayout_2">
+   <item>
+    <widget class="QToolButton" name="close">
      <property name="text">
-      <string>Theme:</string>
+      <string>...</string>
+     </property>
+     <property name="icon">
+      <iconset resource="icons.qrc">
+       <normaloff>:/icons/close.svg</normaloff>:/icons/close.svg</iconset>
      </property>
     </widget>
    </item>
-   <item row="0" column="1">
-    <layout class="QHBoxLayout" name="horizontalLayout">
-     <item>
-      <widget class="QToolButton" name="loadTheme">
+   <item>
+    <spacer name="horizontalSpacer">
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>56</width>
+       <height>20</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+   <item>
+    <layout class="QFormLayout" name="formLayout">
+     <item row="0" column="0">
+      <widget class="QLabel" name="label_2">
        <property name="text">
-        <string>...</string>
+        <string>Theme:</string>
        </property>
       </widget>
      </item>
-     <item>
-      <widget class="QToolButton" name="saveTheme">
+     <item row="0" column="1">
+      <layout class="QHBoxLayout" name="horizontalLayout">
+       <property name="sizeConstraint">
+        <enum>QLayout::SetFixedSize</enum>
+       </property>
+       <item>
+        <widget class="QComboBox" name="themeList"/>
+       </item>
+       <item>
+        <widget class="QToolButton" name="saveTheme">
+         <property name="text">
+          <string>...</string>
+         </property>
+         <property name="icon">
+          <iconset resource="icons.qrc">
+           <normaloff>:/icons/save.svg</normaloff>:/icons/save.svg</iconset>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item row="1" column="1">
+      <widget class="QCheckBox" name="labelbuttons">
        <property name="text">
-        <string>...</string>
+        <string>Label buttons</string>
        </property>
       </widget>
      </item>
-     <item>
-      <spacer name="horizontalSpacer">
-       <property name="orientation">
-        <enum>Qt::Horizontal</enum>
+     <item row="2" column="0">
+      <widget class="QLabel" name="label">
+       <property name="text">
+        <string>Spell Checking:</string>
        </property>
-       <property name="sizeHint" stdset="0">
-        <size>
-         <width>40</width>
-         <height>20</height>
-        </size>
-       </property>
-      </spacer>
+      </widget>
+     </item>
+     <item row="2" column="1">
+      <widget class="QComboBox" name="langBox"/>
      </item>
     </layout>
    </item>
-   <item row="1" column="0">
-    <widget class="QCheckBox" name="labelbuttons">
-     <property name="text">
-      <string>Label buttons</string>
+   <item>
+    <spacer name="horizontalSpacer_2">
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
      </property>
-    </widget>
-   </item>
-   <item row="2" column="0">
-    <widget class="QLabel" name="label">
-     <property name="text">
-      <string>Spell Checking:</string>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>55</width>
+       <height>20</height>
+      </size>
      </property>
-    </widget>
-   </item>
-   <item row="2" column="1">
-    <widget class="QComboBox" name="langBox"/>
+    </spacer>
    </item>
   </layout>
  </widget>
- <resources/>
+ <resources>
+  <include location="icons.qrc"/>
+ </resources>
  <connections/>
 </ui>

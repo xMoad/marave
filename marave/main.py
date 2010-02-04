@@ -50,6 +50,13 @@ class animatedOpacity:
             c.targetOpacity=0.
             c.moveOpacity()
 
+class Handle(QtGui.QGraphicsRectItem, animatedOpacity):
+    def __init__(self,x,y,w,h):
+        QtGui.QGraphicsRectItem.__init__(self,x,y,w,h)
+        self.targetOpacity=0
+        self.proxy=self
+        self.children=[]
+
 class PrefsWidget(QtGui.QWidget, animatedOpacity):
     def __init__(self, scene, opacity=0):
         QtGui.QWidget.__init__(self)
@@ -324,7 +331,7 @@ class MainWidget (QtGui.QGraphicsView):
         self.handles=[]
         
         for h in range(0,4):
-            h=QtGui.QGraphicsRectItem(0,0,10,10)
+            h=Handle(0,0,10,10)
             h.setFlag(QtGui.QGraphicsItem.ItemIsMovable, True)
             h.setCursor(QtCore.Qt.SizeAllCursor)
             h.setOpacity(.5)
@@ -947,12 +954,12 @@ class MainWidget (QtGui.QGraphicsView):
             self.changing=False
                
     def showButtons(self):
-        for w in self.buttons:
+        for w in self.buttons + self.handles:
             w.targetOpacity=.8
             w.moveOpacity()
 
     def hideButtons(self):
-        for w in self.buttons:
+        for w in self.buttons + self.handles:
             w.targetOpacity=0.
             w.moveOpacity()
             w.hideChildren()

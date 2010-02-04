@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'marave/prefs.ui'
 #
-# Created: Thu Feb  4 14:20:02 2010
+# Created: Thu Feb  4 15:17:08 2010
 #      by: PyQt4 UI code generator 4.6.2
 #
 # WARNING! All changes made in this file will be lost!
@@ -12,17 +12,22 @@ from PyQt4 import QtCore, QtGui
 class Ui_Form(object):
     def setupUi(self, Form):
         Form.setObjectName("Form")
-        Form.resize(396, 106)
+        Form.resize(390, 132)
         self.horizontalLayout_2 = QtGui.QHBoxLayout(Form)
         self.horizontalLayout_2.setObjectName("horizontalLayout_2")
+        self.verticalLayout = QtGui.QVBoxLayout()
+        self.verticalLayout.setObjectName("verticalLayout")
         self.close = QtGui.QToolButton(Form)
         icon = QtGui.QIcon()
         icon.addPixmap(QtGui.QPixmap(":/icons/close.svg"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.close.setIcon(icon)
         self.close.setObjectName("close")
-        self.horizontalLayout_2.addWidget(self.close)
-        spacerItem = QtGui.QSpacerItem(56, 20, QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Minimum)
-        self.horizontalLayout_2.addItem(spacerItem)
+        self.verticalLayout.addWidget(self.close)
+        spacerItem = QtGui.QSpacerItem(20, 40, QtGui.QSizePolicy.Minimum, QtGui.QSizePolicy.Expanding)
+        self.verticalLayout.addItem(spacerItem)
+        self.horizontalLayout_2.addLayout(self.verticalLayout)
+        spacerItem1 = QtGui.QSpacerItem(56, 20, QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Minimum)
+        self.horizontalLayout_2.addItem(spacerItem1)
         self.formLayout = QtGui.QFormLayout()
         self.formLayout.setFieldGrowthPolicy(QtGui.QFormLayout.ExpandingFieldsGrow)
         self.formLayout.setObjectName("formLayout")
@@ -57,9 +62,17 @@ class Ui_Form(object):
         self.buttonStyle.addItem("")
         self.buttonStyle.addItem("")
         self.formLayout.setWidget(2, QtGui.QFormLayout.FieldRole, self.buttonStyle)
+        self.label_4 = QtGui.QLabel(Form)
+        self.label_4.setObjectName("label_4")
+        self.formLayout.setWidget(3, QtGui.QFormLayout.LabelRole, self.label_4)
+        self.opacity = QtGui.QSlider(Form)
+        self.opacity.setMaximum(100)
+        self.opacity.setOrientation(QtCore.Qt.Horizontal)
+        self.opacity.setObjectName("opacity")
+        self.formLayout.setWidget(3, QtGui.QFormLayout.FieldRole, self.opacity)
         self.horizontalLayout_2.addLayout(self.formLayout)
-        spacerItem1 = QtGui.QSpacerItem(55, 20, QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Minimum)
-        self.horizontalLayout_2.addItem(spacerItem1)
+        spacerItem2 = QtGui.QSpacerItem(55, 20, QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Minimum)
+        self.horizontalLayout_2.addItem(spacerItem2)
 
         self.retranslateUi(Form)
         QtCore.QMetaObject.connectSlotsByName(Form)
@@ -74,6 +87,7 @@ class Ui_Form(object):
         self.buttonStyle.setItemText(0, QtGui.QApplication.translate("Form", "Icons", None, QtGui.QApplication.UnicodeUTF8))
         self.buttonStyle.setItemText(1, QtGui.QApplication.translate("Form", "Text", None, QtGui.QApplication.UnicodeUTF8))
         self.buttonStyle.setItemText(2, QtGui.QApplication.translate("Form", "Text + Icons", None, QtGui.QApplication.UnicodeUTF8))
+        self.label_4.setText(QtGui.QApplication.translate("Form", "Editor Opacity:", None, QtGui.QApplication.UnicodeUTF8))
 
 import icons_rc
 

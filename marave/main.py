@@ -358,7 +358,6 @@ class MainWidget (QtGui.QGraphicsView):
 
         self.editorBG=QtGui.QGraphicsRectItem()
         self.editorBG.setFlag(QtGui.QGraphicsItem.ItemIsMovable, True)
-        self.editorBG.setOpacity(.03)
         self.editorBG.setCursor(QtCore.Qt.PointingHandCursor)
         self.editorBG.setBrush(QtGui.QColor(1,1,1))
         self._scene.addItem(self.editorBG)
@@ -448,6 +447,7 @@ class MainWidget (QtGui.QGraphicsView):
         self.prefsWidget.ui.saveTheme.clicked.connect(self.savetheme)
         self.prefsWidget.ui.themeList.currentIndexChanged.connect(self.loadtheme)
         self.prefsWidget.ui.buttonStyle.currentIndexChanged.connect(self.buttonstyle)
+        self.prefsWidget.ui.opacity.valueChanged.connect(self.editoropacity)
         
         prefsLayout=QtGui.QGraphicsLinearLayout()
         prefsLayout.setContentsMargins(0,0,0,0)
@@ -522,6 +522,11 @@ class MainWidget (QtGui.QGraphicsView):
         self.mainMenu.setPos(self.editorX+self.editorW+20,self.editorY)
         self._scene.addItem(self.mainMenu)
 
+    def editoropacity(self, v):
+        print "Setting opacity to: ",v
+        self.editorBG.setOpacity(v/100.)
+        self.settings.setValue("editoropacity",v)
+        self.settings.sync()
 
     def buttonstyle(self, idx):
         print 'STYLE:',idx
@@ -587,6 +592,7 @@ class MainWidget (QtGui.QGraphicsView):
             self.settings.setValue('h',self.editorH)
 
         self.settings.setValue('buttonstyle',self.buttonStyle)
+        self.settings.setValue('editoropacity', self.editorBG.opacity()*100)
 
         self.settings.sync()
         print 'Settings stored'
@@ -599,6 +605,12 @@ class MainWidget (QtGui.QGraphicsView):
         if ok:
             f.setPointSize(fs)
         self.editor.setFont(f)
+        
+        o,ok=self.settings.value('editoropacity').toInt()
+        if ok:
+            self.editorBG.setOpacity(o/100.)
+        else:
+            self.editorBG.setOpacity(.03)
         
         bs,ok=self.settings.value('buttonstyle').toInt()
         if ok:
@@ -684,6 +696,7 @@ class MainWidget (QtGui.QGraphicsView):
         self.searchWidget.ui.text.setFocus()
 
     def showprefs(self):
+        self.prefsWidget.ui.opacity.setValue(self.editorBG.opacity()*100)
         self.showbar(self.prefsWidget)
 
 
@@ -908,6 +921,7 @@ class MainWidget (QtGui.QGraphicsView):
             else:
                 self.editor.setGeometry(self.editorX,self.editorY,self.editorW,self.editorH)
             self.editorBG.setPos(self.editorX-m,self.editorY-m)
+            self.editorBG.setBrush(QtGui.QColor(255,255,255,255))
             self.editorBG.setRect(0,0,self.editorW+2*m,self.editorH+2*m)
             self.mainMenu.setPos(self.editorX+self.editorW+3*m,self.editorY)
             self.searchBar.setPos(self.editorX,self.editorY+self.editorH-self.searchWidget.height())

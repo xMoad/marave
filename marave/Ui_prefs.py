@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'prefs.ui'
+# Form implementation generated from reading ui file 'marave/prefs.ui'
 #
-# Created: Wed Feb  3 21:05:04 2010
+# Created: Thu Feb  4 12:55:16 2010
 #      by: PyQt4 UI code generator 4.6.2
 #
 # WARNING! All changes made in this file will be lost!
@@ -12,44 +12,60 @@ from PyQt4 import QtCore, QtGui
 class Ui_Form(object):
     def setupUi(self, Form):
         Form.setObjectName("Form")
-        Form.resize(243, 101)
-        self.formLayout = QtGui.QFormLayout(Form)
+        Form.resize(396, 106)
+        self.horizontalLayout_2 = QtGui.QHBoxLayout(Form)
+        self.horizontalLayout_2.setObjectName("horizontalLayout_2")
+        self.close = QtGui.QToolButton(Form)
+        icon = QtGui.QIcon()
+        icon.addPixmap(QtGui.QPixmap(":/icons/close.svg"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.close.setIcon(icon)
+        self.close.setObjectName("close")
+        self.horizontalLayout_2.addWidget(self.close)
+        spacerItem = QtGui.QSpacerItem(56, 20, QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Minimum)
+        self.horizontalLayout_2.addItem(spacerItem)
+        self.formLayout = QtGui.QFormLayout()
         self.formLayout.setObjectName("formLayout")
         self.label_2 = QtGui.QLabel(Form)
         self.label_2.setObjectName("label_2")
         self.formLayout.setWidget(0, QtGui.QFormLayout.LabelRole, self.label_2)
         self.horizontalLayout = QtGui.QHBoxLayout()
+        self.horizontalLayout.setSizeConstraint(QtGui.QLayout.SetFixedSize)
         self.horizontalLayout.setObjectName("horizontalLayout")
-        self.loadTheme = QtGui.QToolButton(Form)
-        self.loadTheme.setObjectName("loadTheme")
-        self.horizontalLayout.addWidget(self.loadTheme)
+        self.themeList = QtGui.QComboBox(Form)
+        self.themeList.setObjectName("themeList")
+        self.horizontalLayout.addWidget(self.themeList)
         self.saveTheme = QtGui.QToolButton(Form)
+        icon1 = QtGui.QIcon()
+        icon1.addPixmap(QtGui.QPixmap(":/icons/save.svg"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.saveTheme.setIcon(icon1)
         self.saveTheme.setObjectName("saveTheme")
         self.horizontalLayout.addWidget(self.saveTheme)
-        spacerItem = QtGui.QSpacerItem(40, 20, QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Minimum)
-        self.horizontalLayout.addItem(spacerItem)
         self.formLayout.setLayout(0, QtGui.QFormLayout.FieldRole, self.horizontalLayout)
         self.labelbuttons = QtGui.QCheckBox(Form)
         self.labelbuttons.setObjectName("labelbuttons")
-        self.formLayout.setWidget(1, QtGui.QFormLayout.LabelRole, self.labelbuttons)
+        self.formLayout.setWidget(1, QtGui.QFormLayout.FieldRole, self.labelbuttons)
         self.label = QtGui.QLabel(Form)
         self.label.setObjectName("label")
         self.formLayout.setWidget(2, QtGui.QFormLayout.LabelRole, self.label)
         self.langBox = QtGui.QComboBox(Form)
         self.langBox.setObjectName("langBox")
         self.formLayout.setWidget(2, QtGui.QFormLayout.FieldRole, self.langBox)
+        self.horizontalLayout_2.addLayout(self.formLayout)
+        spacerItem1 = QtGui.QSpacerItem(55, 20, QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Minimum)
+        self.horizontalLayout_2.addItem(spacerItem1)
 
         self.retranslateUi(Form)
         QtCore.QMetaObject.connectSlotsByName(Form)
 
     def retranslateUi(self, Form):
         Form.setWindowTitle(QtGui.QApplication.translate("Form", "Form", None, QtGui.QApplication.UnicodeUTF8))
+        self.close.setText(QtGui.QApplication.translate("Form", "...", None, QtGui.QApplication.UnicodeUTF8))
         self.label_2.setText(QtGui.QApplication.translate("Form", "Theme:", None, QtGui.QApplication.UnicodeUTF8))
-        self.loadTheme.setText(QtGui.QApplication.translate("Form", "...", None, QtGui.QApplication.UnicodeUTF8))
         self.saveTheme.setText(QtGui.QApplication.translate("Form", "...", None, QtGui.QApplication.UnicodeUTF8))
         self.labelbuttons.setText(QtGui.QApplication.translate("Form", "Label buttons", None, QtGui.QApplication.UnicodeUTF8))
         self.label.setText(QtGui.QApplication.translate("Form", "Spell Checking:", None, QtGui.QApplication.UnicodeUTF8))
 
+import icons_rc
 
 if __name__ == "__main__":
     import sys

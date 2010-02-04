@@ -251,6 +251,7 @@ class MainWidget (QtGui.QGraphicsView):
         self.setScene(self._scene)
         self.settings=QtCore.QSettings('NetManagers','Marave')
         self.changing=False
+        self.visibleWidget=None
 
         # Used for margins and border sizes
         self.m=5
@@ -440,7 +441,7 @@ class MainWidget (QtGui.QGraphicsView):
 
         # Prefs widget
         self.prefsWidget=PrefsWidget(self._scene)
-        #self.prefsWidget.ui.close.clicked.connect(self.hidewidgets)
+        self.prefsWidget.ui.close.clicked.connect(self.hidewidgets)
         
         prefsLayout=QtGui.QGraphicsLinearLayout()
         prefsLayout.setContentsMargins(0,0,0,0)
@@ -570,28 +571,25 @@ class MainWidget (QtGui.QGraphicsView):
             QtCore.QCoreApplication.instance().quit()
         QtCore.QCoreApplication.instance().restoreOverrideCursor()
 
-    def showsearchreplace(self):
+    def showbar(self, w):
         self.hidewidgets()
-        self.searchReplaceWidget.show()
+        self.visibleWidget=w
+        w.show()
+        self.editor.resize(self.editorW, self.editorH-w.height())
         self.setFocus()
+        w.targetOpacity=.7
+        w.moveOpacity()
+
+    def showsearchreplace(self):
+        self.showbar(self.searchReplaceWidget)
         self.searchReplaceWidget.ui.text.setFocus()
-        self.searchReplaceWidget.targetOpacity=.7
-        self.searchReplaceWidget.moveOpacity()
 
     def showsearch(self):
-        self.hidewidgets()
-        self.searchWidget.show()
-        self.setFocus()
+        self.showbar(self.searchWidget)
         self.searchWidget.ui.text.setFocus()
-        self.searchWidget.targetOpacity=.7
-        self.searchWidget.moveOpacity()
 
     def showprefs(self):
-        print 'SP'
-        self.hidewidgets()
-        self.prefsWidget.show()
-        self.prefsWidget.targetOpacity=.7
-        self.prefsWidget.moveOpacity()
+        self.showbar(self.prefsWidget)
 
 
     def hidewidgets(self):
@@ -600,7 +598,8 @@ class MainWidget (QtGui.QGraphicsView):
             w.moveOpacity()
             #w.hide()
         self.editor.setFocus()
-        self.editor.resize(self.editor.width(),self.height()*.9)
+        self.visibleWidget=None
+        #self.editor.resize(self.editorW,self.editorH)
 
     def doReplaceAllBackwards(self):
         self.doReplaceAll(backwards=True)
@@ -809,7 +808,10 @@ class MainWidget (QtGui.QGraphicsView):
     def adjustPositions(self):
         m=self.m
         if self.editor:
-            self.editor.setGeometry(self.editorX,self.editorY,self.editorW,self.editorH)
+            if self.visibleWidget:
+                self.editor.setGeometry(self.editorX,self.editorY,self.editorW,self.editorH-self.visibleWidget.height()-self.m)
+            else:
+                self.editor.setGeometry(self.editorX,self.editorY,self.editorW,self.editorH)
             self.editorBG.setPos(self.editorX-m,self.editorY-m)
             self.editorBG.setRect(0,0,self.editorW+2*m,self.editorH+2*m)
             self.mainMenu.setPos(self.editorX+self.editorW+3*m,self.editorY)

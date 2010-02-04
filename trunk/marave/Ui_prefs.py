@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'marave/prefs.ui'
 #
-# Created: Thu Feb  4 15:17:08 2010
+# Created: Thu Feb  4 16:17:20 2010
 #      by: PyQt4 UI code generator 4.6.2
 #
 # WARNING! All changes made in this file will be lost!
@@ -14,6 +14,7 @@ class Ui_Form(object):
         Form.setObjectName("Form")
         Form.resize(390, 132)
         self.horizontalLayout_2 = QtGui.QHBoxLayout(Form)
+        self.horizontalLayout_2.setContentsMargins(4, 4, 4, 2)
         self.horizontalLayout_2.setObjectName("horizontalLayout_2")
         self.verticalLayout = QtGui.QVBoxLayout()
         self.verticalLayout.setObjectName("verticalLayout")
@@ -21,6 +22,7 @@ class Ui_Form(object):
         icon = QtGui.QIcon()
         icon.addPixmap(QtGui.QPixmap(":/icons/close.svg"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.close.setIcon(icon)
+        self.close.setAutoRaise(True)
         self.close.setObjectName("close")
         self.verticalLayout.addWidget(self.close)
         spacerItem = QtGui.QSpacerItem(20, 40, QtGui.QSizePolicy.Minimum, QtGui.QSizePolicy.Expanding)
@@ -73,6 +75,10 @@ class Ui_Form(object):
         self.horizontalLayout_2.addLayout(self.formLayout)
         spacerItem2 = QtGui.QSpacerItem(55, 20, QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Minimum)
         self.horizontalLayout_2.addItem(spacerItem2)
+        self.label_2.setBuddy(self.themeList)
+        self.label.setBuddy(self.langBox)
+        self.label_3.setBuddy(self.buttonStyle)
+        self.label_4.setBuddy(self.opacity)
 
         self.retranslateUi(Form)
         QtCore.QMetaObject.connectSlotsByName(Form)
@@ -80,14 +86,15 @@ class Ui_Form(object):
     def retranslateUi(self, Form):
         Form.setWindowTitle(QtGui.QApplication.translate("Form", "Form", None, QtGui.QApplication.UnicodeUTF8))
         self.close.setText(QtGui.QApplication.translate("Form", "...", None, QtGui.QApplication.UnicodeUTF8))
-        self.label_2.setText(QtGui.QApplication.translate("Form", "Theme:", None, QtGui.QApplication.UnicodeUTF8))
+        self.close.setShortcut(QtGui.QApplication.translate("Form", "Esc", None, QtGui.QApplication.UnicodeUTF8))
+        self.label_2.setText(QtGui.QApplication.translate("Form", "&Theme:", None, QtGui.QApplication.UnicodeUTF8))
         self.saveTheme.setText(QtGui.QApplication.translate("Form", "...", None, QtGui.QApplication.UnicodeUTF8))
-        self.label.setText(QtGui.QApplication.translate("Form", "Spell Checking:", None, QtGui.QApplication.UnicodeUTF8))
-        self.label_3.setText(QtGui.QApplication.translate("Form", "Buttons:", None, QtGui.QApplication.UnicodeUTF8))
+        self.label.setText(QtGui.QApplication.translate("Form", "&Spell Checking:", None, QtGui.QApplication.UnicodeUTF8))
+        self.label_3.setText(QtGui.QApplication.translate("Form", "&Buttons:", None, QtGui.QApplication.UnicodeUTF8))
         self.buttonStyle.setItemText(0, QtGui.QApplication.translate("Form", "Icons", None, QtGui.QApplication.UnicodeUTF8))
         self.buttonStyle.setItemText(1, QtGui.QApplication.translate("Form", "Text", None, QtGui.QApplication.UnicodeUTF8))
         self.buttonStyle.setItemText(2, QtGui.QApplication.translate("Form", "Text + Icons", None, QtGui.QApplication.UnicodeUTF8))
-        self.label_4.setText(QtGui.QApplication.translate("Form", "Editor Opacity:", None, QtGui.QApplication.UnicodeUTF8))
+        self.label_4.setText(QtGui.QApplication.translate("Form", "&Editor Opacity:", None, QtGui.QApplication.UnicodeUTF8))
 
 import icons_rc
 

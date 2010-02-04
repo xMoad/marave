@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'prefs.ui'
 #
-# Created: Sat Jan 30 17:24:13 2010
+# Created: Wed Feb  3 21:05:04 2010
 #      by: PyQt4 UI code generator 4.6.2
 #
 # WARNING! All changes made in this file will be lost!

@@ -24,7 +24,8 @@ except ImportError:
 
 from Ui_searchwidget import Ui_Form as UI_SearchWidget
 from Ui_searchreplacewidget import Ui_Form as UI_SearchReplaceWidget
-
+from Ui_searchreplacewidget import Ui_Form as UI_SearchReplaceWidget
+from Ui_prefs import Ui_Form as UI_Prefs
 
 class animatedOpacity:
     def moveOpacity(self):
@@ -49,6 +50,17 @@ class animatedOpacity:
             c.targetOpacity=0.
             c.moveOpacity()
 
+class PrefsWidget(QtGui.QWidget, animatedOpacity):
+    def __init__(self, scene, opacity=0):
+        QtGui.QWidget.__init__(self)
+        # Set up the UI from designer
+        self.ui=UI_Prefs()
+        self.baseOpacity=opacity
+        self.proxy=scene.addWidget(self)
+        self.proxy.setOpacity(opacity)
+        self.movingOp=False
+        self.children=[]
+        self.ui.setupUi(self)
 
 class SearchWidget(QtGui.QWidget, animatedOpacity):
     def __init__(self, scene, opacity=0):
@@ -291,6 +303,10 @@ class MainWidget (QtGui.QGraphicsView):
         self.sc7.activated.connect(self.editor.new)
         self.sc8 = QtGui.QShortcut(QtGui.QKeySequence("Ctrl+Q"), self);
 
+        # Prefs
+        self.sc9 = QtGui.QShortcut(QtGui.QKeySequence("Ctrl+Shift+S"), self);
+        self.sc7.activated.connect(self.showprefs)
+
         self.editorBG=QtGui.QGraphicsRectItem()
         self.editorBG.setFlag(QtGui.QGraphicsItem.ItemIsMovable, True)
         self.editorBG.setOpacity(.03)
@@ -403,6 +419,19 @@ class MainWidget (QtGui.QGraphicsView):
         self.mainMenu.setPos(self.editorX+self.editorW+20,self.editorY)
         self._scene.addItem(self.mainMenu)
 
+        # Prefs widget
+        self.prefsWidget=PrefsWidget(self._scene)
+        #self.prefsWidget.ui.close.clicked.connect(self.hidesearch)
+        
+        prefsLayout=QtGui.QGraphicsLinearLayout()
+        prefsLayout.setContentsMargins(0,0,0,0)
+        prefsLayout.addItem(self.prefsWidget.proxy)
+        
+        self.prefsBar=QtGui.QGraphicsWidget()
+        self.prefsBar.setLayout(prefsLayout)
+        self._scene.addItem(self.prefsBar)
+
+
         # Search widget
         self.searchWidget=SearchWidget(self._scene)
         self.searchWidget.ui.close.clicked.connect(self.hidesearch)
@@ -508,7 +537,6 @@ class MainWidget (QtGui.QGraphicsView):
 
     def showsearchreplace(self):
         self.hidesearch()
-        self.editor.resize(self.editor.width(),self.height()*.9-self.searchReplaceWidget.height()-self.m)
         self.searchReplaceWidget.show()
         self.setFocus()
         self.searchReplaceWidget.ui.text.setFocus()
@@ -517,12 +545,19 @@ class MainWidget (QtGui.QGraphicsView):
 
     def showsearch(self):
         self.hidesearch()
-        self.editor.resize(self.editor.width(),self.height()*.9-self.searchWidget.height()-self.m)
         self.searchWidget.show()
         self.setFocus()
         self.searchWidget.ui.text.setFocus()
         self.searchWidget.targetOpacity=.7
         self.searchWidget.moveOpacity()
+
+    def showprefs(self):
+        print 'SP'
+        self.hidesearch()
+        self.prefsWidget.show()
+        self.prefsWidget.targetOpacity=.7
+        self.prefsWidget.moveOpacity()
+
 
     def hidesearch(self):
         self.searchWidget.targetOpacity=.0
@@ -531,6 +566,9 @@ class MainWidget (QtGui.QGraphicsView):
         self.searchReplaceWidget.targetOpacity=.0
         self.searchReplaceWidget.moveOpacity()
         self.searchReplaceWidget.hide()
+        self.prefsWidget.targetOpacity=.0
+        self.prefsWidget.moveOpacity()
+        self.prefsWidget.hide()
         self.editor.setFocus()
         self.editor.resize(self.editor.width(),self.height()*.9)
 
@@ -743,6 +781,8 @@ class MainWidget (QtGui.QGraphicsView):
             self.searchWidget.setFixedWidth(self.editor.width())
             self.searchReplaceBar.setPos(self.editorX,self.editorY+self.editorH-self.searchReplaceWidget.height())
             self.searchReplaceWidget.setFixedWidth(self.editor.width())
+            self.prefsBar.setPos(self.editorX,self.editorY+self.editorH-self.prefsWidget.height())
+            self.prefsWidget.setFixedWidth(self.editor.width())
 
             self.handles[0].setPos(self.editorX-2*m,self.editorY-2*m)
             self.handles[1].setPos(self.editorX+self.editorW,self.editorY-2*m)

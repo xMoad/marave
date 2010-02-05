@@ -35,7 +35,7 @@ python setup.py install
 
 To use Marave without installing, run
 
-python marave
+python main.py
 
 in the marave folder.
 

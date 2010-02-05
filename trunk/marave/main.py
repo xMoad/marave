@@ -341,7 +341,10 @@ class MainWidget (QtGui.QGraphicsView):
         self.editor.show()
         self.editor.setMouseTracking(True)
         self.editor.setFrameStyle(QtGui.QFrame.NoFrame)
-        self.editor.setStyleSheet("""background-color: transparent;
+        self.editor.setStyleSheet("""* {background-color: transparent;}
+                                     QMenu {background-color: lightgray;
+                                            border: 1px solid gray;
+                                            }
                                   """)
 
         # Keyboard shortcuts

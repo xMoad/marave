@@ -848,8 +848,6 @@ class MainWidget (QtGui.QGraphicsView):
         self.bg=QtGui.QImage(os.path.join(PATH,'backgrounds',bg))
         self.realBg=self.bg.scaled( self.size(), QtCore.Qt.KeepAspectRatioByExpanding)
         # FIXME: I can't find a way to force it to redraw the background nicely.
-        self.hide()
-        self.showFullScreen()
         
     def prevbg(self):
         bglist=os.listdir(os.path.join(PATH,'backgrounds'))
@@ -878,8 +876,6 @@ class MainWidget (QtGui.QGraphicsView):
                 self.realBG=None
                 self.bgcolor=bgcolor
                 # FIXME: I can't find a way to force it to redraw the background nicely.
-                self.hide()
-                self.showFullScreen()
         else:
             self.setbgcolor(QtGui.QColorDialog.getColor())
 
@@ -1125,12 +1121,13 @@ class MainWidget (QtGui.QGraphicsView):
 
     def _show(self):
         self.showButtons()
-        #self.show()
         self.showFullScreen()
+        self.show()
         self.raise_()
         self.activateWindow()
         self.adjustPositions()
         self.editor.setFocus()
+        
 def main():
     # Again, this is boilerplate, it's going to be the same on
     # almost every app you write
@@ -1142,6 +1139,9 @@ def main():
     window=MainWidget()
     if len(sys.argv) > 2:
         window.editor.open(sys.argv[1])
+    window.show()
+    window.raise_()
+    window.activateWindow()
     QtCore.QTimer.singleShot(0,window._show)
     
     

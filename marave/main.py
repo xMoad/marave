@@ -1127,6 +1127,8 @@ class MainWidget (QtGui.QGraphicsView):
         self.show()
         self.showButtons()
         self.showFullScreen()
+        self.activateWindow()
+        self.raise_()
         self.adjustPositions()
         self.editor.setFocus()
 

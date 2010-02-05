@@ -1137,8 +1137,6 @@ class MainWidget (QtGui.QGraphicsView):
         self.activateWindow()
         self.adjustPositions()
         self.editor.setFocus()
-        self.setEnabled(True)
-        self.editor.setEnabled(True)
         
 def main():
     # Again, this is boilerplate, it's going to be the same on

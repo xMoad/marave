@@ -667,8 +667,8 @@ class MainWidget (QtGui.QGraphicsView):
             self.hasSize=True
             self.editorX=x.toInt()[0]
             self.editorY=y.toInt()[0]
-            self.editorW=w.toInt()[0]
-            self.editorH=h.toInt()[0]     
+            self.editorW=max(w.toInt()[0], self.minW)
+            self.editorH=max(h.toInt()[0], self.minH)     
 
         l=self.settings.value('lang')
         if l.isValid():
@@ -1007,7 +1007,7 @@ class MainWidget (QtGui.QGraphicsView):
                 editorW=w-2*m
                 editorH=h-2*m
                 
-                if editorW > self.minW and editorH > self.minH:
+                if editorW >= self.minW and editorH >= self.minH:
                     self.editorX = editorX
                     self.editorY = editorY
                     self.editorW = editorW
@@ -1030,7 +1030,7 @@ class MainWidget (QtGui.QGraphicsView):
                     editorY=y+2*m
                     editorW=self.editorW-dx
                     editorH=self.editorH-dy
-                    if editorW > self.minW and editorH > self.minH:
+                    if editorW >= self.minW and editorH >= self.minH:
                         self.editorX = editorX
                         self.editorY = editorY
                         self.editorW = editorW
@@ -1052,7 +1052,7 @@ class MainWidget (QtGui.QGraphicsView):
                     editorY=y+2*m
                     editorW=self.editorW+dx
                     editorH=self.editorH-dy
-                    if editorW > self.minW and editorH > self.minH:
+                    if editorW >= self.minW and editorH >= self.minH:
                         self.editorY = editorY
                         self.editorW = editorW
                         self.editorH = editorH                
@@ -1072,7 +1072,7 @@ class MainWidget (QtGui.QGraphicsView):
                     dy=y-self.editorY-self.editorH
                     editorW=self.editorW+dx
                     editorH=self.editorH+dy
-                    if editorW > self.minW and editorH > self.minH:
+                    if editorW >= self.minW and editorH >= self.minH:
                         self.editorW = editorW
                         self.editorH = editorH                
                     self.hasSize=True
@@ -1092,7 +1092,7 @@ class MainWidget (QtGui.QGraphicsView):
                     editorX=x+2*m
                     editorW=self.editorW-dx
                     editorH=self.editorH+dy
-                    if editorW > self.minW and editorH > self.minH:
+                    if editorW >= self.minW and editorH >= self.minH:
                         self.editorX = editorX
                         self.editorW = editorW
                         self.editorH = editorH                

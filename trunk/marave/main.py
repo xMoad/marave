@@ -329,6 +329,9 @@ class MainWidget (QtGui.QGraphicsView):
         self.bgcolor=None
         self.bg=None
         self.bgItem=QtGui.QGraphicsPixmapItem()
+        self.notifItem=QtGui.QGraphicsTextItem()
+        self.notifCounter=0
+        self._scene.addItem(self.notifItem)
         self._scene.addItem(self.bgItem)
         self.beep=None
         self.music=None
@@ -529,6 +532,20 @@ class MainWidget (QtGui.QGraphicsView):
         self.layoutButtons()
         self.loadprefs()
 
+    def unnotify(self):
+        self.notifCounter-=1
+        print 'UNNOTIF', self.notifCounter
+        if self.notifCounter <= 0:
+            self.notifItem.hide()
+            self.notifCounter=0
+
+    def notify(self, text):
+        print 'NOTIF:',text
+        self.notifItem.setPlainText(text)
+        self.notifItem.show()
+        self.notifCounter+=1
+        QtCore.QTimer.singleShot(3000,self.unnotify)
+
     def layoutButtons(self):
         mainMenuLayout=QtGui.QGraphicsGridLayout()
         mainMenuLayout.setContentsMargins(0,0,0,0)
@@ -558,13 +575,12 @@ class MainWidget (QtGui.QGraphicsView):
         self._scene.addItem(self.mainMenu)
 
     def editoropacity(self, v):
-        print "Setting opacity to: ",v
+        self.notify("Setting opacity to: %s%%"%v)
         self.editorBG.setOpacity(v/100.)
         self.settings.setValue("editoropacity",v)
         self.settings.sync()
 
     def buttonstyle(self, idx):
-        print 'STYLE:',idx
         self.buttonStyle=idx
         self.settings.setValue('buttonstyle',self.buttonStyle)
         self.settings.sync()
@@ -595,10 +611,8 @@ class MainWidget (QtGui.QGraphicsView):
         self.saveprefs()
         
     def savetheme(self, themefile=None):
-        print 'Save theme', themefile
         if themefile is None or themefile is False:
             tdir=os.path.join(PATH,'themes')
-            print 'TDIR:', tdir
             self.savetheme(QtGui.QFileDialog.getSaveFileName(None, "Marave - Save Theme",tdir))
             return
         self.oldSettings=self.settings
@@ -630,7 +644,6 @@ class MainWidget (QtGui.QGraphicsView):
         self.settings.setValue('editoropacity', self.editorBG.opacity()*100)
 
         self.settings.sync()
-        print 'Settings stored'
 
     def loadprefs(self):
         # Load all settings
@@ -699,8 +712,6 @@ class MainWidget (QtGui.QGraphicsView):
     def setspellchecker(self, code):
         if isinstance (code, int):
             code=unicode(self.prefsWidget.ui.langBox.itemText(code))
-        
-        print "Setting spellchecker to:", code
         if "dict" not in self.editor.__dict__:
             # No pyenchant
             return
@@ -711,7 +722,6 @@ class MainWidget (QtGui.QGraphicsView):
         else:
             self.lang=code
             self.editor.initDict(self.lang)
-            print 'set dict to',self.lang
             self.prefsWidget.ui.langBox.setCurrentIndex(self.prefsWidget.ui.langBox.findText(self.lang))
         self.settings.setValue('lang',self.lang)
         self.settings.sync()
@@ -800,7 +810,7 @@ class MainWidget (QtGui.QGraphicsView):
 
     def setclick(self, clickname):
         self.currentClick=clickname
-        print '<< switching click to:', self.currentClick
+        self.notify('Switching click to: %s'%self.currentClick)
         self.beep = Phonon.createPlayer(Phonon.NotificationCategory,
                                   Phonon.MediaSource(os.path.join(PATH,'clicks',self.currentClick)))
         self.beep.play()
@@ -828,11 +838,12 @@ class MainWidget (QtGui.QGraphicsView):
         self.setclick(clist[idx])
 
     def noclick(self):
+        self.notify('Disabling click')
         self.beep=None
 
     def setstation(self, station):
         self.currentStation=station
-        print 'switching music to:', self.currentStation
+        self.notify('switching music to: %s'%self.currentStation)
         self.music = Phonon.createPlayer(Phonon.MusicCategory,
                                   Phonon.MediaSource(self.currentStation))
         self.music.play()
@@ -856,11 +867,12 @@ class MainWidget (QtGui.QGraphicsView):
     def nostation(self):
         if self.music:
             self.music.stop()
+            self.notify('Disabling music')
     
     def setbg(self, bg):
         self.currentBG=bg
         self.bgcolor=None
-        print '<< switching bg to:', self.currentBG
+        self.notify('Setting background to: %s'%self.currentBG)
         self.bg=QtGui.QImage(os.path.join(PATH,'backgrounds',bg))
         self.realBg=self.bg.scaled( self.size(), QtCore.Qt.KeepAspectRatioByExpanding)
         self.bgItem.setPixmap(QtGui.QPixmap(self.realBg))
@@ -896,6 +908,7 @@ class MainWidget (QtGui.QGraphicsView):
                 pm.fill(bgcolor)
                 self.bgItem.setPixmap(pm)
                 self.bgItem.setPos(0,0)
+                self.notify('Setting background to: %s'%bgcolor.name())
         else:
             self.setbgcolor(QtGui.QColorDialog.getColor())
 
@@ -951,10 +964,8 @@ class MainWidget (QtGui.QGraphicsView):
     def resizeEvent(self, ev):
         self._scene.setSceneRect(QtCore.QRectF(self.geometry()))
         if self.bg:
-            print 'Resizing to',self.geometry()
             self.setbg(self.currentBG)
         if not self.hasSize:
-            print 'Autoresizing editor'
             self.editorX=self.width()*.1
             self.editorH=max(self.height()*.9, self.minH)
             self.editorY=self.height()*.05

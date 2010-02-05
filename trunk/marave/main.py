@@ -318,6 +318,8 @@ class MainWidget (QtGui.QGraphicsView):
         self.currentStation=None
         self.bgcolor=None
         self.bg=None
+        self.bgItem=QtGui.QGraphicsPixmapItem()
+        self._scene.addItem(self.bgItem)
         self.beep=None
         self.music=None
         self.buttonStyle=0
@@ -852,10 +854,10 @@ class MainWidget (QtGui.QGraphicsView):
         print '<< switching bg to:', self.currentBG
         self.bg=QtGui.QImage(os.path.join(PATH,'backgrounds',bg))
         self.realBg=self.bg.scaled( self.size(), QtCore.Qt.KeepAspectRatioByExpanding)
-        # FIXME: I can't find a way to force it to redraw the background nicely.
-        self.hide()
-        self.show()
-        
+        self.bgItem.setPixmap(QtGui.QPixmap(self.realBg))
+        self.bgItem.setPos(self.width()-self.realBg.width(), self.height()-self.realBg.height())
+        print self.bgItem.boundingRect()
+
     def prevbg(self):
         bglist=os.listdir(os.path.join(PATH,'backgrounds'))
         bglist=[x for x in bglist if not x.startswith('.')]
@@ -882,9 +884,10 @@ class MainWidget (QtGui.QGraphicsView):
                 self.bg=None
                 self.realBG=None
                 self.bgcolor=bgcolor
-                # FIXME: I can't find a way to force it to redraw the background nicely.
-                self.hide()
-                self.show()
+                pm=QtGui.QPixmap(self.width(), self.height())
+                pm.fill(bgcolor)
+                self.bgItem.setPixmap(pm)
+                self.bgItem.setPos(0,0)
         else:
             self.setbgcolor(QtGui.QColorDialog.getColor())
 
@@ -937,20 +940,11 @@ class MainWidget (QtGui.QGraphicsView):
         self.settings.setValue('font',self.editor.font())
         self.settings.sync()
 
-    def drawBackground(self, painter, rect):
-        if self.bg:
-            #Anchor the image's bottom-right corner, which is usually the most interesting ;-)
-            dx=self.realBg.width()-self.width()
-            dy=self.realBg.height()-self.height()
-            source=QtCore.QRect(dx,dy,self.width(),self.height())
-            painter.drawImage(self.geometry(), self.realBg, source)
-        elif self.bgcolor:
-            painter.fillRect(self.geometry(),self.bgcolor)
-
     def resizeEvent(self, ev):
         self._scene.setSceneRect(QtCore.QRectF(self.geometry()))
         if self.bg:
-            self.realBg=self.bg.scaled( self.size(), QtCore.Qt.KeepAspectRatioByExpanding) 
+            print 'Resizing to',self.geometry()
+            self.setbg(self.currentBG)
         if not self.hasSize:
             print 'Autoresizing editor'
             self.editorX=self.width()*.1

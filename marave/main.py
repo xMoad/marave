@@ -162,13 +162,23 @@ class FunkyButton(QtGui.QPushButton, animatedOpacity):
         self.movingOp=False
         self.setFocusPolicy(QtCore.Qt.NoFocus)
         self.setMouseTracking(True)
+        print 'A'
         self.setStyleSheet("""
-            border: 1px solid gray;
-            border-radius: 3px;
-            padding: 5px 4px 3px 4px;
-            min-width: 24px;
-            min-height: 24px;
+            QPushButton {
+                border: 2px solid lightgray;
+                border-radius: 5px;
+                padding: 5px 4px 3px 4px;
+                min-width: 24px;
+                min-height: 24px;
+              }
+            *:hover {
+                border: 2px solid darkgray;
+            }
+            *:pressed {
+                background-color: darkgray;
+            }
         """)
+        print 'B'
         self.children=[]
         self.icon=icon
         self.text=text

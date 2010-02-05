@@ -13,6 +13,7 @@ setup(name='Marave',
       package_data={'marave': ['backgrounds/*jpg',
                                'icons/*svg',
                                'clicks/*wav',
+                               'themes/*',
                                'radios.txt'
                                ]},
      )

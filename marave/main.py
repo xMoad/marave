@@ -1124,14 +1124,13 @@ class MainWidget (QtGui.QGraphicsView):
         QtCore.QCoreApplication.instance().restoreOverrideCursor()
 
     def _show(self):
-        self.show()
         self.showButtons()
+        #self.show()
         self.showFullScreen()
-        self.activateWindow()
         self.raise_()
+        self.activateWindow()
         self.adjustPositions()
         self.editor.setFocus()
-
 def main():
     # Again, this is boilerplate, it's going to be the same on
     # almost every app you write

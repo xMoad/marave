@@ -261,21 +261,21 @@ class FunkyEditor(EditorClass):
         f=self.font()
         f.setPointSize(f.pointSize()-1)
         self.setFont(f)
-        self.parent().settings.setValue('fontsize',self.editor.font().pointSize())
+        self.parent().settings.setValue('fontsize',self.font().pointSize())
         self.parent().settings.sync()
         
     def larger(self):
         f=self.font()
         f.setPointSize(f.pointSize()+1)
         self.setFont(f)
-        self.parent().settings.setValue('fontsize',self.editor.font().pointSize())
+        self.parent().settings.setValue('fontsize',self.font().pointSize())
         self.parent().settings.sync()
 
     def default(self):
         f=self.font()
         f.setPointSize(self.defSize)
         self.setFont(f)
-        self.parent().settings.setValue('fontsize',self.editor.font().pointSize())
+        self.parent().settings.setValue('fontsize',self.font().pointSize())
         self.parent().settings.sync()
 
     def mouseMoveEvent(self, ev):

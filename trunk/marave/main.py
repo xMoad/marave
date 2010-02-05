@@ -848,6 +848,8 @@ class MainWidget (QtGui.QGraphicsView):
         self.bg=QtGui.QImage(os.path.join(PATH,'backgrounds',bg))
         self.realBg=self.bg.scaled( self.size(), QtCore.Qt.KeepAspectRatioByExpanding)
         # FIXME: I can't find a way to force it to redraw the background nicely.
+        self.hide()
+        self.show()
         
     def prevbg(self):
         bglist=os.listdir(os.path.join(PATH,'backgrounds'))
@@ -876,6 +878,8 @@ class MainWidget (QtGui.QGraphicsView):
                 self.realBG=None
                 self.bgcolor=bgcolor
                 # FIXME: I can't find a way to force it to redraw the background nicely.
+                self.hide()
+                self.show()
         else:
             self.setbgcolor(QtGui.QColorDialog.getColor())
 

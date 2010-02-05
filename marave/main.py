@@ -27,13 +27,12 @@ else:
 
 # Import Qt modules
 from PyQt4 import QtCore,QtGui
-#from PyQt4 import QtOpenGL
 from PyQt4.phonon import Phonon
 
 try:
     import enchant
     from spelltextedit import SpellTextEdit as EditorClass
-    print 'Spellchecking enabled'
+    print 'Spellchecking available'
 except ImportError:
     EditorClass=QtGui.QPlainTextEdit
     print 'Spellchecking disabled'
@@ -204,13 +203,29 @@ class FunkyFontList(QtGui.QFontComboBox, animatedOpacity):
             padding: 9px 0px 6px 3px;
         """)
          
-class FunkyEditor(EditorClass):
+class FunkyEditor(EditorClass, animatedOpacity):
     def __init__(self, parent):
         EditorClass.__init__(self, parent)
         self.setMouseTracking(True)
         self.viewport().setMouseTracking(True)
         self.defSize=self.font().pointSize()
         self.docName=''
+        
+        # This is a version that makes the editor be *in*
+        # the graphicsview but things like selecting text fail
+        
+        #EditorClass.__init__(self)
+        #self.setMouseTracking(True)
+        #self.viewport().setMouseTracking(True)
+        #self.defSize=self.font().pointSize()
+        #self.docName=''
+        #self.proxy=parent._scene.addWidget(self)
+        #self.proxy.setOpacity(1)
+        #self.movingOp=False
+        #self.setFocusPolicy(QtCore.Qt.StrongFocus)
+        #self.children=[]
+        #self.parent=lambda: parent
+        #self.proxy.setFlag(QtGui.QGraphicsItem.ItemIsMovable, False)
 
     def save(self):
         if not self.docName:
@@ -305,11 +320,6 @@ class MainWidget (QtGui.QGraphicsView):
         self.minH=80*self.m
         self.hasSize=False
         
-        #self.editorH=.9*self.height()
-        #self.editorW=self.fontMetrics().averageCharWidth()*80
-        #self.editorY=self.height()*.05
-        #self.editorX=self.width()*.1
-
         self.editor=None
         self.setFocusPolicy(QtCore.Qt.NoFocus)
         self.setMouseTracking(True)
@@ -329,7 +339,6 @@ class MainWidget (QtGui.QGraphicsView):
 
         self.setHorizontalScrollBarPolicy(QtCore.Qt.ScrollBarAlwaysOff)
         self.setVerticalScrollBarPolicy(QtCore.Qt.ScrollBarAlwaysOff)
-        #self.setViewport(QtOpenGL.QGLWidget())
 
         # These are the positions for the elements of the screen
         # They are recalculated on resize
@@ -856,7 +865,6 @@ class MainWidget (QtGui.QGraphicsView):
         self.realBg=self.bg.scaled( self.size(), QtCore.Qt.KeepAspectRatioByExpanding)
         self.bgItem.setPixmap(QtGui.QPixmap(self.realBg))
         self.bgItem.setPos(self.width()-self.realBg.width(), self.height()-self.realBg.height())
-        print self.bgItem.boundingRect()
 
     def prevbg(self):
         bglist=os.listdir(os.path.join(PATH,'backgrounds'))

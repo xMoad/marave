@@ -607,10 +607,10 @@ class MainWidget (QtGui.QGraphicsView):
             self.settings.setValue('background',self.currentBG)
 
         if self.hasSize:
-            self.settings.setValue('x',self.editorX)
-            self.settings.setValue('y',self.editorY)
-            self.settings.setValue('w',self.editorW)
-            self.settings.setValue('h',self.editorH)
+            self.settings.setValue('x',int(self.editorX))
+            self.settings.setValue('y',int(self.editorY))
+            self.settings.setValue('w',int(self.editorW))
+            self.settings.setValue('h',int(self.editorH))
 
         self.settings.setValue('buttonstyle',self.buttonStyle)
         self.settings.setValue('editoropacity', self.editorBG.opacity()*100)
@@ -620,6 +620,19 @@ class MainWidget (QtGui.QGraphicsView):
 
     def loadprefs(self):
         # Load all settings
+        
+        x=self.settings.value('x')
+        y=self.settings.value('y')
+        w=self.settings.value('w')
+        h=self.settings.value('h')
+        if x.isValid() and y.isValid() and w.isValid() and h.isValid():
+            self.hasSize=True
+            self.editorX=x.toInt()[0]
+            self.editorY=y.toInt()[0]
+            self.editorW=max(w.toInt()[0], self.minW)
+            self.editorH=max(h.toInt()[0], self.minH)
+        self.adjustPositions()
+                
         f=QtGui.QFont()
         f.fromString(self.settings.value('font').toString())
         fs,ok=self.settings.value('fontsize').toInt()
@@ -661,17 +674,6 @@ class MainWidget (QtGui.QGraphicsView):
             self.setbg(unicode(bg.toString()))
         elif bgcolor.isValid():
             self.setbgcolor(QtGui.QColor(bgcolor.toString()))
-
-        x=self.settings.value('x')
-        y=self.settings.value('y')
-        w=self.settings.value('w')
-        h=self.settings.value('h')
-        if x.isValid() and y.isValid() and w.isValid() and h.isValid():
-            self.hasSize=True
-            self.editorX=x.toInt()[0]
-            self.editorY=y.toInt()[0]
-            self.editorW=max(w.toInt()[0], self.minW)
-            self.editorH=max(h.toInt()[0], self.minH)     
 
         l=self.settings.value('lang')
         if l.isValid():
@@ -947,6 +949,7 @@ class MainWidget (QtGui.QGraphicsView):
         if self.bg:
             self.realBg=self.bg.scaled( self.size(), QtCore.Qt.KeepAspectRatioByExpanding) 
         if not self.hasSize:
+            print 'Autoresizing editor'
             self.editorX=self.width()*.1
             self.editorH=max(self.height()*.9, self.minH)
             self.editorY=self.height()*.05
@@ -977,10 +980,10 @@ class MainWidget (QtGui.QGraphicsView):
             self.handles[2].setPos(self.editorX+self.editorW,self.editorY+self.editorH)
             self.handles[3].setPos(self.editorX-2*m,self.editorY+self.editorH)
             if self.hasSize:
-                self.settings.setValue('x',self.editorX)
-                self.settings.setValue('y',self.editorY)
-                self.settings.setValue('w',self.editorW)
-                self.settings.setValue('h',self.editorH)
+                self.settings.setValue('x',int(self.editorX))
+                self.settings.setValue('y',int(self.editorY))
+                self.settings.setValue('w',int(self.editorW))
+                self.settings.setValue('h',int(self.editorH))
                 self.settings.sync()
 
 

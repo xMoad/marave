@@ -654,7 +654,10 @@ class MainWidget (QtGui.QGraphicsView):
 
         bgcolor=self.settings.value('bgcolor')
         bg=self.settings.value('background')
-        if bg.isValid():
+        if not bg.isValid() and not bgcolor.isValid():
+            # Probably first run
+            self.nextbg()        
+        elif bg.isValid():
             self.setbg(unicode(bg.toString()))
         elif bgcolor.isValid():
             self.setbgcolor(QtGui.QColor(bgcolor.toString()))

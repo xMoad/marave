@@ -1,0 +1,57 @@
+INTRO
+=====
+
+Marave is a text editor whose goal is to help you focus on writing.
+
+It's inspired by ommwriter, Darkroom and many other "simple" text 
+editors.
+
+REQUIREMENTS
+============
+
+As far as I know, all that's needed is:
+
+* PyQt 4.5 or later.
+  On Ubuntu and other linuxes, this may mean python-qt4-phonon or some other
+  packages in addition to PyQt.
+* PyEnchant if you want spellchecking
+
+CONFIGURATION
+=============
+
+Not there yet, but...
+
+* You can add new key click sounds by dropping audio files in the clicks folder
+* You can add new backgrounds by dropping image files in the backgrounds folder
+* You can add new radio stations by adding them in the radios.txt file (one
+  per line)
+
+INSTALLATION
+============
+
+To install from sources try this:
+
+python setup.py install
+
+To use Marave without installing, run
+
+python main.py
+
+in the marave folder.
+
+
+CHEATCODES
+==========
+
+Since the UI is minimal, there are some key combinatios that do things you will not
+find any buttons for.
+
+* Undo: Ctrl+Z 
+* Redo: Strift+Ctrl+Z 
+* New Document: Ctrl+N
+* Open: Ctrl+O
+* Save: Ctrl+S
+* Save As: Shift+Ctrl+S
+* Toggle Spell Checker: Shift+Ctrl+Y
+* Find: Ctrl+F
+* Quit: Ctrl+Q

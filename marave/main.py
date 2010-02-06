@@ -165,14 +165,15 @@ class FunkyButton(QtGui.QPushButton, animatedOpacity):
         print 'A'
         self.setStyleSheet("""
             QPushButton {
-                border: 2px solid lightgray;
+                background-color: lightgray;
+                border: 3px solid darkgray;
                 border-radius: 5px;
                 padding: 5px 4px 3px 4px;
                 min-width: 24px;
                 min-height: 24px;
               }
             *:hover {
-                border: 2px solid darkgray;
+                border: 3px solid gray;
             }
             *:pressed {
                 background-color: darkgray;
@@ -975,6 +976,8 @@ class MainWidget (QtGui.QGraphicsView):
         self._scene.setSceneRect(QtCore.QRectF(self.geometry()))
         if self.bg:
             self.setbg(self.currentBG)
+        elif self.bgcolor:
+            self.setbgcolor(self.bgcolor)
         if not self.hasSize:
             self.editorX=self.width()*.1
             self.editorH=max(self.height()*.9, self.minH)

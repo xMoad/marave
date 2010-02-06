@@ -399,6 +399,10 @@ class MainWidget (QtGui.QGraphicsView):
         self.sc9 = QtGui.QShortcut(QtGui.QKeySequence("Shift+Ctrl+P"), self);
         self.sc9.activated.connect(self.showprefs)
 
+        # Document information
+        self.sc10 = QtGui.QShortcut(QtGui.QKeySequence("Ctrl+I"), self);
+        self.sc10.activated.connect(self.showinfo)
+
         self.editorBG=QtGui.QGraphicsRectItem()
         self.editorBG.setFlag(QtGui.QGraphicsItem.ItemIsMovable, True)
         self.editorBG.setCursor(QtCore.Qt.PointingHandCursor)
@@ -540,6 +544,9 @@ class MainWidget (QtGui.QGraphicsView):
 
         self.layoutButtons()
         self.loadprefs()
+
+    def showinfo(self):
+        self.notify('document info goes here')
 
     def unnotify(self):
         self.notifCounter-=1

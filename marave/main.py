@@ -499,6 +499,7 @@ class MainWidget (QtGui.QGraphicsView):
         self.prefsWidget.ui.buttonStyle.currentIndexChanged.connect(self.buttonstyle)
         self.prefsWidget.ui.langBox.currentIndexChanged.connect(self.setspellchecker)
         self.prefsWidget.ui.opacity.valueChanged.connect(self.editoropacity)
+        self.prefsWidget.ui.buttonStyle.setCurrentIndex(self.settings.value('buttonstyle').toInt()[0])
         
         prefsLayout=QtGui.QGraphicsLinearLayout()
         prefsLayout.setContentsMargins(0,0,0,0)
@@ -1019,6 +1020,7 @@ class MainWidget (QtGui.QGraphicsView):
                 self.settings.setValue('w',int(self.editorW))
                 self.settings.setValue('h',int(self.editorH))
                 self.settings.sync()
+            self.notifItem.setPos(self.editorX, self.editorY+self.editorH+m)
 
 
     def scenechanged(self,region):

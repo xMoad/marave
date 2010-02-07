@@ -428,7 +428,7 @@ class MainWidget (QtGui.QGraphicsView):
 
         # Help
         self.sc11 = QtGui.QShortcut(QtGui.QKeySequence("F1"), self);
-        self.sc10.activated.connect(self.showhelp)
+        self.sc11.activated.connect(self.showhelp)
 
         self.editorBG=QtGui.QGraphicsRectItem()
         self.editorBG.setFlag(QtGui.QGraphicsItem.ItemIsMovable, True)

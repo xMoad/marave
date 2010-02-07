@@ -18,7 +18,7 @@
 # with this program; if not, write to the Free Software Foundation, Inc.,
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 
-import os,sys,codecs
+import os,sys,codecs,re
 
 if hasattr(sys, 'frozen'):
     PATH = os.path.abspath(os.path.dirname(sys.executable))
@@ -339,6 +339,10 @@ class MainWidget (QtGui.QGraphicsView):
         self.bg=None
         self.bgItem=QtGui.QGraphicsPixmapItem()
         self.notifItem=QtGui.QGraphicsTextItem()
+        f=self.notifItem.font()
+        f.setFamily('courier')
+        self.notifItem.setFont(f)
+        self.notifItem.setOpacity(.7)
         self.notifCounter=0
         self._scene.addItem(self.notifItem)
         self._scene.addItem(self.bgItem)
@@ -547,7 +551,12 @@ class MainWidget (QtGui.QGraphicsView):
         self.loadprefs()
 
     def showinfo(self):
-        self.notify('document info goes here')
+        txt=unicode(self.editor.toPlainText())
+        lc=len(txt.splitlines())
+        wc=len(re.split('\n\t ',txt))
+        name=os.path.basename(self.editor.docName) or "UNNAMED"
+        self.notify('Document: %s -- %d words %d lines %d characters.'%(
+            name,wc,lc,len(txt) ))
 
     def unnotify(self):
         self.notifCounter-=1
@@ -678,7 +687,11 @@ class MainWidget (QtGui.QGraphicsView):
         self.adjustPositions()
                 
         f=QtGui.QFont()
-        f.fromString(self.settings.value('font').toString())
+        fname=self.settings.value('font')
+        if fname.isValid():
+            f.fromString(fname.toString())
+        else:
+            f.setFamily('courier')
         fs,ok=self.settings.value('fontsize').toInt()
         if ok:
             f.setPointSize(fs)

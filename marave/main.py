@@ -359,6 +359,7 @@ class MainWidget (QtGui.QGraphicsView):
         self.bgcolor=None
         self.bg=None
         self.bgItem=QtGui.QGraphicsPixmapItem()
+        self.bgItem.setZValue(-1000)
         self._scene.addItem(self.bgItem)
         self.notifBar=FunkyStatusBar(self._scene, .7)
         self.notifBar.messageChanged.connect(self.notifChanged)
@@ -580,8 +581,7 @@ class MainWidget (QtGui.QGraphicsView):
         lc=len(txt.splitlines())
         wc=len(re.split('\n\t ',txt))
         name=os.path.basename(self.editor.docName) or "UNNAMED"
-        self.notify('Document: %s -- %d words %d lines %d characters.'%(
-            name,wc,lc,len(txt) ))
+        self.notify('Document: %s -- %d words %d lines %d characters.'%(name,wc,lc,len(txt) ))
 
     def notifChanged(self, msg):
         if unicode(msg):

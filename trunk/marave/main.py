@@ -423,6 +423,10 @@ class MainWidget (QtGui.QGraphicsView):
         self.sc10 = QtGui.QShortcut(QtGui.QKeySequence("Ctrl+I"), self);
         self.sc10.activated.connect(self.showinfo)
 
+        # Help
+        self.sc11 = QtGui.QShortcut(QtGui.QKeySequence("F1"), self);
+        self.sc10.activated.connect(self.showhelp)
+
         self.editorBG=QtGui.QGraphicsRectItem()
         self.editorBG.setFlag(QtGui.QGraphicsItem.ItemIsMovable, True)
         self.editorBG.setCursor(QtCore.Qt.PointingHandCursor)
@@ -567,6 +571,9 @@ class MainWidget (QtGui.QGraphicsView):
 
         self.layoutButtons()
         self.loadprefs()
+
+    def showhelp(self):
+        QtGui.QDesktopServices.openUrl(QtCore.QUrl('file://'+PATH+'/README.html'))
 
     def showinfo(self):
         txt=unicode(self.editor.toPlainText())

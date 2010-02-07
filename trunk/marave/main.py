@@ -531,8 +531,10 @@ class MainWidget (QtGui.QGraphicsView):
         # Search and replace widget
         self.searchReplaceWidget=SearchReplaceWidget(self._scene)
         self.searchReplaceWidget.ui.close.clicked.connect(self.hidewidgets)
-        self.searchReplaceWidget.ui.next.clicked.connect(self.doReplace)
-        self.searchReplaceWidget.ui.previous.clicked.connect(self.doReplaceBackwards)
+        self.searchReplaceWidget.ui.next.clicked.connect(self.doFindR)
+        self.searchReplaceWidget.ui.previous.clicked.connect(self.doFindRBackwards)
+        self.searchReplaceWidget.ui.replace.clicked.connect(self.doReplace)
+        #self.searchReplaceWidget.ui.replaceall.clicked.connect(self.doReplaceAll)
         
         searchReplaceLayout=QtGui.QGraphicsLinearLayout()
         searchReplaceLayout.setContentsMargins(0,0,0,0)
@@ -823,6 +825,26 @@ class MainWidget (QtGui.QGraphicsView):
             flags=flags|QtGui.QTextDocument.FindCaseSensitively
 
         text=unicode(self.searchWidget.ui.text.text())
+        r=self.editor.find(text,flags)
+
+    def doReplace(self):
+        qc=self.editor.textCursor()
+        if qc.hasSelection():
+            qc.insertText(self.searchReplaceWidget.ui.replaceWith.text())
+        self.doFindR(self.searchReplaceWidget.backwards)
+            
+    def doFindRBackwards (self):
+        return self.doFindR(backwards=True)
+
+    def doFindR(self, backwards=False):
+        self.searchReplaceWidget.backwards=backwards
+        flags=QtGui.QTextDocument.FindFlags()
+        if backwards:
+            flags=QtGui.QTextDocument.FindBackward
+        if self.searchReplaceWidget.ui.matchCase.isChecked():
+            flags=flags|QtGui.QTextDocument.FindCaseSensitively
+
+        text=unicode(self.searchReplaceWidget.ui.text.text())
         r=self.editor.find(text,flags)
 
     def doFindBackwards (self):

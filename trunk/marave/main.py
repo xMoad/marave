@@ -1188,12 +1188,13 @@ def main():
     # Again, this is boilerplate, it's going to be the same on
     # almost every app you write
     app = QtGui.QApplication(sys.argv)
+    print sys.argv
 
     if len(sys.argv) > 2:
         QtGui.QMessageBox.information(None,'FOCUS!','Marave only opens one document at a time.\nThe whole idea is focusing!\nSo, this is the first one you asked for.')
 
     window=MainWidget()
-    if len(sys.argv) > 2:
+    if len(sys.argv) == 2:
         window.editor.open(sys.argv[1])
     window.show()
     window.raise_()

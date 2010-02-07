@@ -432,6 +432,7 @@ class MainWidget (QtGui.QGraphicsView):
         self.editorBG.setFlag(QtGui.QGraphicsItem.ItemIsMovable, True)
         self.editorBG.setCursor(QtCore.Qt.PointingHandCursor)
         self.editorBG.setBrush(QtGui.QColor(1,1,1))
+        self.editorBG.setZValue(0)
         self._scene.addItem(self.editorBG)
 
         self.handles=[]

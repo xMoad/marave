@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'searchreplwidget.ui'
 #
-# Created: Mon Feb  1 22:25:50 2010
+# Created: Sun Feb  7 11:55:03 2010
 #      by: PyQt4 UI code generator 4.6.2
 #
 # WARNING! All changes made in this file will be lost!
@@ -58,9 +58,9 @@ class Ui_Form(object):
         self.label_2.setAlignment(QtCore.Qt.AlignRight|QtCore.Qt.AlignTrailing|QtCore.Qt.AlignVCenter)
         self.label_2.setObjectName("label_2")
         self.gridLayout.addWidget(self.label_2, 1, 1, 1, 1)
-        self.lineEdit = QtGui.QLineEdit(Form)
-        self.lineEdit.setObjectName("lineEdit")
-        self.gridLayout.addWidget(self.lineEdit, 1, 2, 1, 1)
+        self.replaceWith = QtGui.QLineEdit(Form)
+        self.replaceWith.setObjectName("replaceWith")
+        self.gridLayout.addWidget(self.replaceWith, 1, 2, 1, 1)
         self.replace = QtGui.QPushButton(Form)
         self.replace.setObjectName("replace")
         self.gridLayout.addWidget(self.replace, 1, 3, 1, 1)
@@ -68,7 +68,7 @@ class Ui_Form(object):
         self.replaceall.setObjectName("replaceall")
         self.gridLayout.addWidget(self.replaceall, 1, 4, 1, 1)
         self.label.setBuddy(self.text)
-        self.label_2.setBuddy(self.lineEdit)
+        self.label_2.setBuddy(self.replaceWith)
 
         self.retranslateUi(Form)
         QtCore.QObject.connect(self.text, QtCore.SIGNAL("returnPressed()"), self.next.animateClick)

@@ -211,6 +211,23 @@ class FunkyFontList(QtGui.QFontComboBox, animatedOpacity):
         self.setStyleSheet("""
             padding: 9px 0px 6px 3px;
         """)
+
+class FunkyStatusBar(QtGui.QStatusBar, animatedOpacity):
+    def __init__(self, scene,opacity=.3):
+        QtGui.QStatusBar.__init__(self)
+        self.baseOpacity=opacity
+        self.proxy=scene.addWidget(self)
+        self.proxy.setOpacity(opacity)
+        self.movingOp=False
+        self.setFocusPolicy(QtCore.Qt.NoFocus)
+        self.children=[]
+        self.setStyleSheet("""
+            border: 1px solid gray;
+            border-radius: 3px;
+            padding: 5px 4px 3px 4px;
+            background-color: lightgray;
+        """)
+        self.setSizeGripEnabled(False)
          
 class FunkyEditor(EditorClass, animatedOpacity):
     def __init__(self, parent):
@@ -338,14 +355,9 @@ class MainWidget (QtGui.QGraphicsView):
         self.bgcolor=None
         self.bg=None
         self.bgItem=QtGui.QGraphicsPixmapItem()
-        self.notifItem=QtGui.QGraphicsTextItem()
-        f=self.notifItem.font()
-        f.setFamily('courier')
-        self.notifItem.setFont(f)
-        self.notifItem.setOpacity(.7)
-        self.notifCounter=0
-        self._scene.addItem(self.notifItem)
         self._scene.addItem(self.bgItem)
+        self.notifBar=FunkyStatusBar(self._scene, .7)
+        self.notifBar.messageChanged.connect(self.notifChanged)
         self.beep=None
         self.music=None
         self.buttonStyle=0
@@ -560,19 +572,17 @@ class MainWidget (QtGui.QGraphicsView):
         self.notify('Document: %s -- %d words %d lines %d characters.'%(
             name,wc,lc,len(txt) ))
 
-    def unnotify(self):
-        self.notifCounter-=1
-        print 'UNNOTIF', self.notifCounter
-        if self.notifCounter <= 0:
-            self.notifItem.hide()
-            self.notifCounter=0
+    def notifChanged(self, msg):
+        if unicode(msg):
+            self.notifBar.targetOpacity=.7
+        else:
+            self.notifBar.targetOpacity=.0
+        self.notifBar.moveOpacity()
 
     def notify(self, text):
         print 'NOTIF:',text
-        self.notifItem.setPlainText(text)
-        self.notifItem.show()
-        self.notifCounter+=1
-        QtCore.QTimer.singleShot(3000,self.unnotify)
+        self.notifBar.showMessage(text, 3000)
+        self.notifBar.proxy.setPos(self.editorX, self.editorY+self.editorH+self.m)
 
     def layoutButtons(self):
         mainMenuLayout=QtGui.QGraphicsGridLayout()
@@ -1055,8 +1065,8 @@ class MainWidget (QtGui.QGraphicsView):
                 self.settings.setValue('w',int(self.editorW))
                 self.settings.setValue('h',int(self.editorH))
                 self.settings.sync()
-            self.notifItem.setPos(self.editorX, self.editorY+self.editorH+m)
-
+            self.notifBar.proxy.setPos(self.editorX+m, self.editorY+self.editorH+2*m)
+            self.notifBar.setFixedWidth(self.editorW-2*m)
 
     def scenechanged(self,region):
         if not self.changing:

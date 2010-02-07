@@ -3,7 +3,7 @@
 from distutils.core import setup
 
 setup(name='Marave',
-      version='0.2',
+      version='0.3',
       description='A relaxed text editor',
       author='Roberto Alsina',
       author_email='ralsina@netmanagers.com.ar',

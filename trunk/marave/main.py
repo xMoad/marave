@@ -90,6 +90,7 @@ class PrefsWidget(QtGui.QWidget, animatedOpacity):
         self.ui.setupUi(self)
         self.loadthemelist()
         self.loadSpellcheckers()
+        self.proxy.setZValue(100)
 
     def loadSpellcheckers(self):
         self.ui.langBox.clear()
@@ -122,6 +123,8 @@ class SearchWidget(QtGui.QWidget, animatedOpacity):
         self.movingOp=False
         self.children=[]
         self.ui.setupUi(self)
+        self.proxy.setZValue(100)
+
 
 class SearchReplaceWidget(QtGui.QWidget, animatedOpacity):
     def __init__(self, scene, opacity=0):
@@ -134,6 +137,7 @@ class SearchReplaceWidget(QtGui.QWidget, animatedOpacity):
         self.movingOp=False
         self.children=[]
         self.ui.setupUi(self)
+        self.proxy.setZValue(100)
 
 
 class FunkyLabel(QtGui.QLabel, animatedOpacity):

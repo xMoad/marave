@@ -310,6 +310,7 @@ class MainWidget (QtGui.QGraphicsView):
         self.currentClick=None
         self.currentStation=None
         self.bgcolor=None
+        self.fontcolor=None
         self.bg=None
         self.bgItem=QtGui.QGraphicsPixmapItem()
         self.bgItem.setZValue(-1000)
@@ -629,6 +630,12 @@ class MainWidget (QtGui.QGraphicsView):
         self.oldSettings=self.settings
         self.settings=QtCore.QSettings(QtCore.QString(themefile),QtCore.QSettings.IniFormat)
         self.saveprefs()
+        # Don't save the size and position of the editor in the theme
+        self.settings.remove('x')
+        self.settings.remove('y')
+        self.settings.remove('w')
+        self.settings.remove('h')
+        
         self.settings=self.oldSettings
         self.prefsWidget.loadthemelist()
         self.prefsWidget.ui.themeList.currentIndexChanged.connect(self.loadtheme)
@@ -651,6 +658,9 @@ class MainWidget (QtGui.QGraphicsView):
         else:
             self.settings.setValue('bgcolor',QtCore.QVariant())
             self.settings.setValue('background',self.currentBG)
+            
+        if self.fontcolor:
+            self.settings.setValue('fontcolor',self.fontcolor.name())
 
         if self.hasSize:
             self.settings.setValue('x',int(self.editorX))
@@ -984,6 +994,7 @@ class MainWidget (QtGui.QGraphicsView):
                                             color: %s;
                                           """%(unicode(color.name())))
                 self.settings.setValue('fontcolor',color.name())
+                self.fontcolor=color
                 self.settings.sync()
         else:
             self.setfontcolor(QtGui.QColorDialog.getColor(QtGui.QColor("black")))

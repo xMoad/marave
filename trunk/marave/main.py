@@ -106,7 +106,7 @@ class PrefsWidget(QtGui.QWidget, animatedOpacity):
         
     def loadthemelist(self):
         self.ui.themeList.clear()
-        self.ui.themeList.addItem('')
+        self.ui.themeList.addItem('Current')
         tdir=os.path.join(PATH,'themes')
         for t in os.listdir(tdir):
             if t.startswith('.'):
@@ -617,15 +617,21 @@ class MainWidget (QtGui.QGraphicsView):
         self.saveprefs()
         
     def savetheme(self, themefile=None):
+        #from pudb import set_trace; set_trace()
+        try:
+            self.prefsWidget.ui.themeList.currentIndexChanged.disconnect()
+        except TypeError:
+            pass
         if themefile is None or themefile is False:
             tdir=os.path.join(PATH,'themes')
-            self.savetheme(QtGui.QFileDialog.getSaveFileName(None, "Marave - Save Theme",tdir))
+            self.savetheme(unicode(QtGui.QFileDialog.getSaveFileName(None, "Marave - Save Theme",tdir)))
             return
         self.oldSettings=self.settings
         self.settings=QtCore.QSettings(QtCore.QString(themefile),QtCore.QSettings.IniFormat)
         self.saveprefs()
         self.settings=self.oldSettings
         self.prefsWidget.loadthemelist()
+        self.prefsWidget.ui.themeList.currentIndexChanged.connect(self.loadtheme)
 
     def saveprefs(self):
         # Save all settings at once

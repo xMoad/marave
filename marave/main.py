@@ -690,6 +690,9 @@ class MainWidget (QtGui.QGraphicsView):
             f.setPointSize(fs)
         self.editor.setFont(f)
         self.fontList.setCurrentFont(f)
+        fontcolor=self.settings.value('fontcolor')
+        if fontcolor.isValid():
+            self.setfontcolor(QtGui.QColor(fontcolor.toString()))
         
         o,ok=self.settings.value('editoropacity').toInt()
         if ok:
@@ -980,8 +983,10 @@ class MainWidget (QtGui.QGraphicsView):
                 self.editor.setStyleSheet("""background-color: transparent;
                                             color: %s;
                                           """%(unicode(color.name())))
+                self.settings.setValue('fontcolor',color.name())
+                self.settings.sync()
         else:
-            self.setfontcolor(QtGui.QColorDialog.getColor())
+            self.setfontcolor(QtGui.QColorDialog.getColor(QtGui.QColor("black")))
 
     def tajmode(self):
         self.noclick()

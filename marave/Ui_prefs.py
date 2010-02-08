@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'marave/prefs.ui'
+# Form implementation generated from reading ui file 'prefs.ui'
 #
-# Created: Thu Feb  4 16:17:20 2010
+# Created: Sun Feb  7 23:16:53 2010
 #      by: PyQt4 UI code generator 4.6.2
 #
 # WARNING! All changes made in this file will be lost!
@@ -51,27 +51,33 @@ class Ui_Form(object):
         self.formLayout.setLayout(0, QtGui.QFormLayout.FieldRole, self.horizontalLayout)
         self.label = QtGui.QLabel(Form)
         self.label.setObjectName("label")
-        self.formLayout.setWidget(1, QtGui.QFormLayout.LabelRole, self.label)
+        self.formLayout.setWidget(2, QtGui.QFormLayout.LabelRole, self.label)
         self.langBox = QtGui.QComboBox(Form)
         self.langBox.setObjectName("langBox")
-        self.formLayout.setWidget(1, QtGui.QFormLayout.FieldRole, self.langBox)
+        self.formLayout.setWidget(2, QtGui.QFormLayout.FieldRole, self.langBox)
         self.label_3 = QtGui.QLabel(Form)
         self.label_3.setObjectName("label_3")
-        self.formLayout.setWidget(2, QtGui.QFormLayout.LabelRole, self.label_3)
+        self.formLayout.setWidget(3, QtGui.QFormLayout.LabelRole, self.label_3)
         self.buttonStyle = QtGui.QComboBox(Form)
         self.buttonStyle.setObjectName("buttonStyle")
         self.buttonStyle.addItem("")
         self.buttonStyle.addItem("")
         self.buttonStyle.addItem("")
-        self.formLayout.setWidget(2, QtGui.QFormLayout.FieldRole, self.buttonStyle)
+        self.formLayout.setWidget(3, QtGui.QFormLayout.FieldRole, self.buttonStyle)
         self.label_4 = QtGui.QLabel(Form)
         self.label_4.setObjectName("label_4")
-        self.formLayout.setWidget(3, QtGui.QFormLayout.LabelRole, self.label_4)
+        self.formLayout.setWidget(4, QtGui.QFormLayout.LabelRole, self.label_4)
         self.opacity = QtGui.QSlider(Form)
         self.opacity.setMaximum(100)
         self.opacity.setOrientation(QtCore.Qt.Horizontal)
         self.opacity.setObjectName("opacity")
-        self.formLayout.setWidget(3, QtGui.QFormLayout.FieldRole, self.opacity)
+        self.formLayout.setWidget(4, QtGui.QFormLayout.FieldRole, self.opacity)
+        self.label_5 = QtGui.QLabel(Form)
+        self.label_5.setObjectName("label_5")
+        self.formLayout.setWidget(1, QtGui.QFormLayout.LabelRole, self.label_5)
+        self.styleList = QtGui.QComboBox(Form)
+        self.styleList.setObjectName("styleList")
+        self.formLayout.setWidget(1, QtGui.QFormLayout.FieldRole, self.styleList)
         self.horizontalLayout_2.addLayout(self.formLayout)
         spacerItem2 = QtGui.QSpacerItem(55, 20, QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Minimum)
         self.horizontalLayout_2.addItem(spacerItem2)
@@ -79,6 +85,7 @@ class Ui_Form(object):
         self.label.setBuddy(self.langBox)
         self.label_3.setBuddy(self.buttonStyle)
         self.label_4.setBuddy(self.opacity)
+        self.label_5.setBuddy(self.styleList)
 
         self.retranslateUi(Form)
         QtCore.QMetaObject.connectSlotsByName(Form)
@@ -95,6 +102,7 @@ class Ui_Form(object):
         self.buttonStyle.setItemText(1, QtGui.QApplication.translate("Form", "Text", None, QtGui.QApplication.UnicodeUTF8))
         self.buttonStyle.setItemText(2, QtGui.QApplication.translate("Form", "Text + Icons", None, QtGui.QApplication.UnicodeUTF8))
         self.label_4.setText(QtGui.QApplication.translate("Form", "&Editor Opacity:", None, QtGui.QApplication.UnicodeUTF8))
+        self.label_5.setText(QtGui.QApplication.translate("Form", "St&yle", None, QtGui.QApplication.UnicodeUTF8))
 
 import icons_rc
 

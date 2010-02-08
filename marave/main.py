@@ -370,8 +370,8 @@ class MainWidget (QtGui.QGraphicsView):
         self.editorBG=QtGui.QGraphicsRectItem()
         self.editorBG.setFlag(QtGui.QGraphicsItem.ItemIsMovable, True)
         self.editorBG.setCursor(QtCore.Qt.PointingHandCursor)
-        self.editorBG.setBrush(QtGui.QColor(1,1,1))
-        self.editorBG.setZValue(0)
+        self.editorBG.setBrush(QtGui.QColor(255,255,255))
+        self.editorBG.setZValue(-999)
         self._scene.addItem(self.editorBG)
 
         self.handles=[]
@@ -1171,7 +1171,7 @@ def main():
     # Again, this is boilerplate, it's going to be the same on
     # almost every app you write
     app = QtGui.QApplication(sys.argv)
-    app.setStyleSheet(open(os.path.join(PATH,'marave.style')).read())
+    app.setStyleSheet(open(os.path.join(PATH,'stylesheets','default')).read())
     print sys.argv
 
     if len(sys.argv) > 2:

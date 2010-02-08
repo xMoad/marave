@@ -639,6 +639,7 @@ class MainWidget (QtGui.QGraphicsView):
         self.settings.remove('y')
         self.settings.remove('w')
         self.settings.remove('h')
+        self.settings.sync()
         
         self.settings=self.oldSettings
         self.prefsWidget.loadthemelist()

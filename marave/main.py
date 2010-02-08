@@ -972,7 +972,7 @@ class MainWidget (QtGui.QGraphicsView):
             if self.bgcolor:
                 self.setbgcolor(QtGui.QColorDialog.getColor(self.bgcolor))
             else:
-                self.setbgcolor(QtGui.QColorDialog.getColor(QTGui.QColor("white")))
+                self.setbgcolor(QtGui.QColorDialog.getColor(QtGui.QColor("white")))
 
     def setfontcolor(self, color=None):
         if isinstance(color, QtGui.QColor):

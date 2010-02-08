@@ -45,3 +45,9 @@ FunkyStatusBar {
 MainWidget {
     border: 0px solid gray;
 }
+
+/* They are in the prefs widget */
+
+QComboBox {
+    min-width: 100;
+}

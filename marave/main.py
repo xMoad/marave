@@ -241,9 +241,11 @@ class FunkyEditor(EditorClass, animatedOpacity):
                 elif r==QtGui.QMessageBox.Discard:
                     self.docName=''
                     self.setPlainText('')
+                    self.parent().setWindowTitle('Untitled - Marave')
             else:
                     self.docName=''
                     self.setPlainText('')
+                    self.parent().setWindowTitle('Untitled - Marave')
         except:
             pass
         QtCore.QCoreApplication.instance().restoreOverrideCursor()
@@ -257,6 +259,8 @@ class FunkyEditor(EditorClass, animatedOpacity):
         if fname:
             self.docName=fname
             self.setPlainText(codecs.open(fname,'r','utf-8').read())
+            
+        self.parent().setWindowTitle('%s - Marave'%self.docName)
 
     def smaller(self):
         f=self.font()

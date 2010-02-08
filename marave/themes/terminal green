@@ -7,3 +7,5 @@ bgcolor=#000000
 background=@Invalid()
 buttonstyle=0
 editoropacity=0
+lang=@Invalid()
+fontcolor=#27ff1c

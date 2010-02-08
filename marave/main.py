@@ -682,12 +682,14 @@ class MainWidget (QtGui.QGraphicsView):
         fname=self.settings.value('font')
         if fname.isValid():
             f.fromString(fname.toString())
+            print 'Loaded font:',f.family()
         else:
             f.setFamily('courier')
         fs,ok=self.settings.value('fontsize').toInt()
         if ok:
             f.setPointSize(fs)
         self.editor.setFont(f)
+        self.fontList.setCurrentFont(f)
         
         o,ok=self.settings.value('editoropacity').toInt()
         if ok:

@@ -89,6 +89,7 @@ class PrefsWidget(QtGui.QWidget, animatedOpacity):
         self.children=[]
         self.ui.setupUi(self)
         self.loadthemelist()
+        self.loadstylelist()
         self.loadSpellcheckers()
         self.proxy.setZValue(100)
         self.proxy.setFlag(QtGui.QGraphicsItem.ItemIsMovable, False)
@@ -111,6 +112,14 @@ class PrefsWidget(QtGui.QWidget, animatedOpacity):
             if t.startswith('.'):
                 continue
             self.ui.themeList.addItem(t)
+
+    def loadstylelist(self):
+        self.ui.styleList.clear()
+        sdir=os.path.join(PATH,'stylesheets')
+        for t in os.listdir(sdir):
+            if t.startswith('.'):
+                continue
+            self.ui.styleList.addItem(t)
         
 
 class SearchWidget(QtGui.QWidget, animatedOpacity):
@@ -461,6 +470,7 @@ class MainWidget (QtGui.QGraphicsView):
         self.prefsWidget.ui.close.clicked.connect(self.hidewidgets)
         self.prefsWidget.ui.saveTheme.clicked.connect(self.savetheme)
         self.prefsWidget.ui.themeList.currentIndexChanged.connect(self.loadtheme)
+        self.prefsWidget.ui.styleList.currentIndexChanged.connect(self.loadstyle)
         self.prefsWidget.ui.buttonStyle.currentIndexChanged.connect(self.buttonstyle)
         self.prefsWidget.ui.langBox.currentIndexChanged.connect(self.setspellchecker)
         self.prefsWidget.ui.opacity.valueChanged.connect(self.editoropacity)
@@ -588,6 +598,16 @@ class MainWidget (QtGui.QGraphicsView):
                 b.adjustSize()
         self.layoutButtons()
 
+    def loadstyle(self, styleidx):
+        if not styleidx:
+            return
+        stylename=unicode(self.prefsWidget.ui.styleList.itemText(styleidx))
+        stylefile=os.path.join(PATH,'stylesheets',stylename)
+        QtCore.QCoreApplication.instance().setStyleSheet(open(stylefile).read())
+        self.notify ('Loaded style: %s'%stylename)
+        self.settings.setValue('style',stylename)
+        self.settings.sync()
+        
     def loadtheme(self, themeidx):
         if not themeidx:
             return
@@ -614,8 +634,14 @@ class MainWidget (QtGui.QGraphicsView):
         # Save all settings at once
         self.settings.setValue('font',self.editor.font())
         self.settings.setValue('fontsize',self.editor.font().pointSize())
-        self.settings.setValue('click',self.currentClick)
-        self.settings.setValue('station',self.currentStation)
+        if self.currentClick:
+            self.settings.setValue('click',self.currentClick)
+        else:
+            self.settings.setValue('click',QtCore.QVariant())
+        if self.currentStation:
+            self.settings.setValue('station',self.currentStation)
+        else:
+            self.settings.setValue('station',QtCore.QVariant())
         if self.bgcolor:
             self.settings.setValue('bgcolor',self.bgcolor.name())
             self.settings.setValue('background',QtCore.QVariant())
@@ -701,6 +727,12 @@ class MainWidget (QtGui.QGraphicsView):
         else:
             self.setspellchecker('None')
             
+        style=self.settings.value('style')
+        if style.isValid():
+            style=unicode(style.toString())
+        else:
+            style='default'
+        QtGui.QApplication.instance().setStyleSheet(open(os.path.join(PATH,'stylesheets',style)).read())        
 
     def setspellchecker(self, code):
         if isinstance (code, int):
@@ -853,6 +885,7 @@ class MainWidget (QtGui.QGraphicsView):
     def noclick(self):
         self.notify('Disabling click')
         self.beep=None
+        self.currentClick=None
 
     def setstation(self, station):
         self.currentStation=station
@@ -881,7 +914,8 @@ class MainWidget (QtGui.QGraphicsView):
         if self.music:
             self.music.stop()
             self.notify('Disabling music')
-    
+        self.currentStation=None
+        
     def setbg(self, bg):
         self.currentBG=bg
         self.bgcolor=None
@@ -1016,8 +1050,8 @@ class MainWidget (QtGui.QGraphicsView):
                 self.settings.setValue('w',int(self.editorW))
                 self.settings.setValue('h',int(self.editorH))
                 self.settings.sync()
-            self.notifBar.proxy.setPos(self.editorX+m, self.editorY+self.editorH+2*m)
-            self.notifBar.setFixedWidth(self.editorW-2*m)
+            self.notifBar.proxy.setPos(self.editorX-m, self.editorY+self.editorH+2*m)
+            self.notifBar.setFixedWidth(self.editorW+2*m)
 
     def scenechanged(self,region):
         if not self.changing:
@@ -1171,7 +1205,6 @@ def main():
     # Again, this is boilerplate, it's going to be the same on
     # almost every app you write
     app = QtGui.QApplication(sys.argv)
-    app.setStyleSheet(open(os.path.join(PATH,'stylesheets','default')).read())
     print sys.argv
 
     if len(sys.argv) > 2:

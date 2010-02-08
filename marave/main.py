@@ -599,12 +599,9 @@ class MainWidget (QtGui.QGraphicsView):
         self.layoutButtons()
 
     def loadstyle(self, styleidx):
-        if not styleidx:
-            return
         stylename=unicode(self.prefsWidget.ui.styleList.itemText(styleidx))
         stylefile=os.path.join(PATH,'stylesheets',stylename)
-        QtCore.QCoreApplication.instance().setStyleSheet(open(stylefile).read())
-        self.notify ('Loaded style: %s'%stylename)
+        self.notify ('Changing to style %s reqires restarting Marave'%stylename)
         self.settings.setValue('style',stylename)
         self.settings.sync()
         
@@ -732,7 +729,8 @@ class MainWidget (QtGui.QGraphicsView):
             style=unicode(style.toString())
         else:
             style='default'
-        QtGui.QApplication.instance().setStyleSheet(open(os.path.join(PATH,'stylesheets',style)).read())        
+        print 'Loading style:',style
+        QtCore.QCoreApplication.instance().setStyleSheet(open(os.path.join(PATH,'stylesheets',style)).read())        
 
     def setspellchecker(self, code):
         if isinstance (code, int):
@@ -887,11 +885,17 @@ class MainWidget (QtGui.QGraphicsView):
         self.beep=None
         self.currentClick=None
 
+    def audiometadatachanged(self):
+        try:
+            self.notify ('Listening to: %s'%self.music.metaData('TITLE')[0])
+        except:
+            pass
+    
     def setstation(self, station):
         self.currentStation=station
-        self.notify('switching music to: %s'%self.currentStation)
         self.music = Phonon.createPlayer(Phonon.MusicCategory,
                                   Phonon.MediaSource(self.currentStation))
+        self.music.metaDataChanged.connect(self.audiometadatachanged)
         self.music.play()
         self.settings.setValue('station',self.currentStation)
         self.settings.sync()

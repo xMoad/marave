@@ -94,6 +94,29 @@ If you don't like the artwork that comes with Marave, you are of course free to 
 * You can add new radio stations by adding them in the radios.txt file (one
   per line)
 
+THEMES and STYLES
+=================
+
+You can save your settings as a "theme", or choose your theme from the provided presets.
+
+A theme contains: 
+
+* Background
+* Font and font size
+* Editor size and position
+* Editor opacity
+* Style
+* Music and click sound
+* Button style (icon only/text+icon/text only)
+
+Themes are saved in the themes folder, the syntax is INI-like.
+
+A style is a file with a syntax similar to CSS, and it lets you change the look of all UI elements
+in Marave. These files are saved in the stylesheets folder, and you can select them from the 
+preferences panel.
+
+Note: Style changes only take effect after you restart Marave.
+
 INSTALLATION
 ============
 

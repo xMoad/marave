@@ -1,5 +1,5 @@
 [General]
-font=@Variant(\0\0\0@\0\0\0\x14\0\x44\0r\0o\0i\0\x64\0 \0S\0\x61\0n\0s@\"\0\0\0\0\0\0\xff\xff\xff\xff\x5\x1\0\x32\x10)
+font=@Variant(\0\0\0@\0\0\0\x16\0\x43\0o\0u\0r\0i\0\x65\0r\0 \0N\0\x65\0w@\"\0\0\0\0\0\0\xff\xff\xff\xff\x5\x1\0\x32\x10)
 fontsize=9
 click=@Invalid()
 station=@Invalid()
@@ -7,8 +7,4 @@ bgcolor=#000000
 background=@Invalid()
 buttonstyle=0
 editoropacity=0
-x=132
-y=88
-w=521
-h=676
 lang=@Invalid()

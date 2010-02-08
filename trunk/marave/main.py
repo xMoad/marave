@@ -142,20 +142,6 @@ class SearchReplaceWidget(QtGui.QWidget, animatedOpacity):
         self.proxy.setZValue(100)
 
 
-class FunkyLabel(QtGui.QLabel, animatedOpacity):
-    def __init__(self, text, scene,opacity=.3):
-        QtGui.QLabel.__init__(self,text)
-        self.baseOpacity=opacity
-        self.proxy=scene.addWidget(self)
-        self.proxy.setOpacity(opacity)
-        self.movingOp=False
-        self.setFocusPolicy(QtCore.Qt.ClickFocus)
-        self.children=[]
-        self.setStyleSheet("""
-                              padding: 5px 4px 3px 4px;
-                              text-align: left;
-                           """)
-
 buttons=[]
 
 class FunkyButton(QtGui.QPushButton, animatedOpacity):
@@ -168,43 +154,11 @@ class FunkyButton(QtGui.QPushButton, animatedOpacity):
         self.movingOp=False
         self.setFocusPolicy(QtCore.Qt.NoFocus)
         self.setMouseTracking(True)
-        self.setStyleSheet("""
-            QPushButton {
-                background-color: lightgray;
-                border: 3px solid darkgray;
-                border-radius: 3px;
-                padding: 5px 4px 3px 4px;
-                min-width: 24px;
-                min-height: 24px;
-              }
-            *:hover {
-                border: 3px solid gray;
-            }
-            *:pressed {
-                background-color: darkgray;
-            }
-        """)
         self.children=[]
         self.icon=icon
         self.text=text
         buttons.append(self)
         
-class FunkyLineEdit(QtGui.QLineEdit, animatedOpacity):
-    def __init__(self, scene,opacity=.3):
-        QtGui.QLineEdit.__init__(self)
-        self.baseOpacity=opacity
-        self.proxy=scene.addWidget(self)
-        self.proxy.setOpacity(opacity)
-        self.movingOp=False
-        self.setStyleSheet("""
-            border: 1px solid gray;
-            border-radius: 3px;
-            padding: 5px 4px 3px 4px;
-            min-width: 60px;
-        """)
-        self.setFocusPolicy(QtCore.Qt.NoFocus)
-        self.children=[]
-
 class FunkyFontList(QtGui.QFontComboBox, animatedOpacity):
     def __init__(self, scene,opacity=.3):
         QtGui.QFontComboBox.__init__(self)
@@ -214,9 +168,6 @@ class FunkyFontList(QtGui.QFontComboBox, animatedOpacity):
         self.movingOp=False
         self.setFocusPolicy(QtCore.Qt.NoFocus)
         self.children=[]
-        self.setStyleSheet("""
-            padding: 9px 0px 6px 3px;
-        """)
 
 class FunkyStatusBar(QtGui.QStatusBar, animatedOpacity):
     def __init__(self, scene,opacity=.3):
@@ -227,12 +178,6 @@ class FunkyStatusBar(QtGui.QStatusBar, animatedOpacity):
         self.movingOp=False
         self.setFocusPolicy(QtCore.Qt.NoFocus)
         self.children=[]
-        self.setStyleSheet("""
-            border: 1px solid gray;
-            border-radius: 3px;
-            padding: 5px 4px 3px 4px;
-            background-color: lightgray;
-        """)
         self.setSizeGripEnabled(False)
          
 class FunkyEditor(EditorClass, animatedOpacity):
@@ -333,9 +278,6 @@ class FunkyEditor(EditorClass, animatedOpacity):
 class MainWidget (QtGui.QGraphicsView):
     def __init__(self):
         QtGui.QGraphicsView.__init__(self)
-        self.setStyleSheet("""
-            border: 0px solid gray;
-        """)
         self._scene=QtGui.QGraphicsScene()
         self._scene.changed.connect(self.scenechanged)
         self.setScene(self._scene)
@@ -387,11 +329,6 @@ class MainWidget (QtGui.QGraphicsView):
         self.editor.show()
         self.editor.setMouseTracking(True)
         self.editor.setFrameStyle(QtGui.QFrame.NoFrame)
-        self.editor.setStyleSheet("""* {background-color: transparent;}
-                                     QMenu {background-color: lightgray;
-                                            border: 1px solid gray;
-                                            }
-                                  """)
 
         # Keyboard shortcuts
         self.sc1 = QtGui.QShortcut(QtGui.QKeySequence("Ctrl+F"), self);
@@ -1234,6 +1171,7 @@ def main():
     # Again, this is boilerplate, it's going to be the same on
     # almost every app you write
     app = QtGui.QApplication(sys.argv)
+    app.setStyleSheet(open(os.path.join(PATH,'marave.style')).read())
     print sys.argv
 
     if len(sys.argv) > 2:

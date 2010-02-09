@@ -218,7 +218,7 @@ class FunkyEditor(EditorClass, animatedOpacity):
             self.document().setModified(False)
 
     def saveas(self):
-        fname=unicode(QtGui.QFileDialog.getSaveFileName())
+        fname=unicode(QtGui.QFileDialog.getSaveFileName(self.parent()))
         if fname:
             self.docName=fname
             self.save()
@@ -249,7 +249,7 @@ class FunkyEditor(EditorClass, animatedOpacity):
         if self.docName:
             return
         if not fname:
-            fname=unicode(QtGui.QFileDialog.getOpenFileName())
+            fname=unicode(QtGui.QFileDialog.getOpenFileName(self.parent()))
         if fname:
             self.docName=fname
             self.setPlainText(codecs.open(fname,'r','utf-8').read())
@@ -622,7 +622,7 @@ class MainWidget (QtGui.QGraphicsView):
             pass
         if themefile is None or themefile is False:
             tdir=os.path.join(PATH,'themes')
-            self.savetheme(unicode(QtGui.QFileDialog.getSaveFileName(None, "Marave - Save Theme",tdir)))
+            self.savetheme(unicode(QtGui.QFileDialog.getSaveFileName(self.parent(), "Marave - Save Theme",tdir)))
             return
         self.oldSettings=self.settings
         self.settings=QtCore.QSettings(QtCore.QString(themefile),QtCore.QSettings.IniFormat)

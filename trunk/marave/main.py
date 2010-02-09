@@ -191,24 +191,27 @@ class FunkyStatusBar(QtGui.QStatusBar, animatedOpacity):
          
 class FunkyEditor(EditorClass, animatedOpacity):
     def __init__(self, parent):
-        #EditorClass.__init__(self, parent)
-        #self.setMouseTracking(True)
-        #self.viewport().setMouseTracking(True)
-        #self.defSize=self.font().pointSize()
-        #self.docName=''
+        print 
         
-        EditorClass.__init__(self)
-        self.setMouseTracking(True)
-        self.viewport().setMouseTracking(True)
-        self.defSize=self.font().pointSize()
-        self.docName=''
-        self.proxy=parent._scene.addWidget(self)
-        self.proxy.setOpacity(1)
-        self.movingOp=False
-        self.setFocusPolicy(QtCore.Qt.StrongFocus)
-        self.children=[]
-        self.parent=lambda: parent
-        self.proxy.setFlag(QtGui.QGraphicsItem.ItemIsMovable, False)
+        if QtCore.QCoreApplication.instance().style().objectName() == 'oxygen':
+            EditorClass.__init__(self, parent)
+            self.setMouseTracking(True)
+            self.viewport().setMouseTracking(True)
+            self.defSize=self.font().pointSize()
+            self.docName=''
+        else:
+            EditorClass.__init__(self)
+            self.setMouseTracking(True)
+            self.viewport().setMouseTracking(True)
+            self.defSize=self.font().pointSize()
+            self.docName=''
+            self.proxy=parent._scene.addWidget(self)
+            self.proxy.setOpacity(1)
+            self.movingOp=False
+            self.setFocusPolicy(QtCore.Qt.StrongFocus)
+            self.children=[]
+            self.parent=lambda: parent
+            self.proxy.setFlag(QtGui.QGraphicsItem.ItemIsMovable, False)
 
     def save(self):
         if not self.docName:

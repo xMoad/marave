@@ -7,6 +7,7 @@ __docformat__ = 'restructuredtext en'
  
 import re
 import sys
+import codecs
 
 try:
     import enchant
@@ -27,7 +28,7 @@ from PyQt4.Qt import Qt
 from PyQt4.Qt import QColor
 from PyQt4.Qt import QPalette
 from PyQt4.QtCore import pyqtSignal
-from PyQt4 import QtGui
+from PyQt4 import QtGui, QtCore
  
 class SpellTextEdit(QPlainTextEdit):
  

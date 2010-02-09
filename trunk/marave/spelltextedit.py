@@ -61,6 +61,7 @@ class SpellTextEdit(QPlainTextEdit):
     def contextMenuEvent(self, event):
         popup_menu = self.createStandardContextMenu()
         pal=QApplication.instance().palette()
+        # This fixes Issue 20
         popup_menu.setStyleSheet("""
                                   * { background-color: %s;
                                       color: %s;}

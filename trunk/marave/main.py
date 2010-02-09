@@ -877,7 +877,7 @@ class MainWidget (QtGui.QGraphicsView):
             self.bg=QtGui.QImage(os.path.join(PATH,'backgrounds',bg))
             self.realBg=self.bg.scaled( self.size(), QtCore.Qt.KeepAspectRatioByExpanding)
             self.bgItem.setPixmap(QtGui.QPixmap(self.realBg))
-        self.bgItem.setPos(self.width()-self.realBg.width(), self.height()-self.realBg.height())
+            self.bgItem.setPos(self.width()-self.realBg.width(), self.height()-self.realBg.height())
 
     def prevbg(self):
         bglist=os.listdir(os.path.join(PATH,'backgrounds'))

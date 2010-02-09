@@ -866,18 +866,29 @@ class MainWidget (QtGui.QGraphicsView):
         self.currentStation=None
         
     def setbg(self, bg):
+        #from pudb import set_trace; set_trace()
         self.currentBG=bg
         self.bgcolor=None
         self.notify('Setting background to: %s'%self.currentBG)
         if self.currentBG.split('.')[-1] in ["svg","svgz"]:
-            self.bgItem=QtSvg.QGraphicsSvgItem(os.path.join(PATH,'backgrounds',bg))
-            self.bgItem.setZValue(-1000)
-            self._scene.addItem(self.bgItem)
+            # Render the SVG to a QImage
+            renderer=QtSvg.QSvgRenderer(os.path.join(PATH,'backgrounds',bg))
+            w,h=renderer.defaultSize().width(), renderer.defaultSize().height()
+            while w < self.width() or \
+                  h < self.height():
+                w *=1.2
+                h *=1.2
+            print 'WH:',w,h
+            self.bg=QtGui.QImage(w,h,QtGui.QImage.Format_ARGB32_Premultiplied)
+            painter=QtGui.QPainter(self.bg)
+            renderer.render(painter)
+            painter.end()
+            #self.bg=QtGui.QImage(pm)
         else:
             self.bg=QtGui.QImage(os.path.join(PATH,'backgrounds',bg))
-            self.realBg=self.bg.scaled( self.size(), QtCore.Qt.KeepAspectRatioByExpanding)
-            self.bgItem.setPixmap(QtGui.QPixmap(self.realBg))
-            self.bgItem.setPos(self.width()-self.realBg.width(), self.height()-self.realBg.height())
+        self.realBg=self.bg.scaled( self.size(), QtCore.Qt.KeepAspectRatioByExpanding, QtCore.Qt.SmoothTransformation)
+        self.bgItem.setPixmap(QtGui.QPixmap(self.realBg))
+        self.bgItem.setPos(self.width()-self.realBg.width(), self.height()-self.realBg.height())
 
     def prevbg(self):
         bglist=os.listdir(os.path.join(PATH,'backgrounds'))

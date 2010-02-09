@@ -27,6 +27,7 @@ else:
 
 # Import Qt modules
 from PyQt4 import QtCore, QtGui, QtSvg
+#from PyQt4 import QtOpenGL
 from PyQt4.phonon import Phonon
 
 from spelltextedit import SpellTextEdit as EditorClass
@@ -215,6 +216,7 @@ class MainWidget (QtGui.QGraphicsView):
         self._scene.changed.connect(self.scenechanged)
         self.setScene(self._scene)
         self.settings=QtCore.QSettings('NetManagers','Marave')
+        #self.setViewport(QtOpenGL.QGLWidget())
         self.changing=False
         self.visibleWidget=None
 

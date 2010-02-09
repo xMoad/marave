@@ -119,7 +119,9 @@ class SpellTextEdit(QPlainTextEdit):
             self.document().setModified(False)
 
     def saveas(self):
+        QtCore.QCoreApplication.instance().setOverrideCursor(QtCore.Qt.ArrowCursor)
         fname=unicode(QtGui.QFileDialog.getSaveFileName(self.parent()))
+        QtCore.QCoreApplication.instance().restoreOverrideCursor()
         if fname:
             self.docName=fname
             self.save()
@@ -150,7 +152,9 @@ class SpellTextEdit(QPlainTextEdit):
         if self.docName:
             return
         if not fname:
+            QtCore.QCoreApplication.instance().setOverrideCursor(QtCore.Qt.ArrowCursor)
             fname=unicode(QtGui.QFileDialog.getOpenFileName(self.parent()))
+            QtCore.QCoreApplication.instance().restoreOverrideCursor()
         if fname:
             self.docName=fname
             self.setPlainText(codecs.open(fname,'r','utf-8').read())

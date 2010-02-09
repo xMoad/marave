@@ -7,9 +7,13 @@ __docformat__ = 'restructuredtext en'
  
 import re
 import sys
- 
-import enchant
- 
+
+try:
+    import enchant
+except ImportError:
+    enchant = None
+
+
 from PyQt4.Qt import QAction
 from PyQt4.Qt import QApplication
 from PyQt4.Qt import QEvent
@@ -31,6 +35,8 @@ class SpellTextEdit(QPlainTextEdit):
         self.initDict()
 
     def initDict(self, lang=None):
+        if not enchant:
+            return
         # Default dictionary based on the current locale.
         if lang==None:
             self.dict = enchant.Dict()
@@ -68,19 +74,22 @@ class SpellTextEdit(QPlainTextEdit):
  
         # Check if the selected word is misspelled and offer spelling
         # suggestions if it is.
-        if self.textCursor().hasSelection():
-            text = unicode(self.textCursor().selectedText())
-            if not self.dict.check(text):
-                spell_menu = QMenu('Spelling Suggestions')
-                for word in self.dict.suggest(text):
-                    action = SpellAction(word, spell_menu)
-                    action.correct.connect(self.correctWord)
-                    spell_menu.addAction(action)
-                # Only add the spelling suggests to the menu if there are
-                # suggestions.
-                if len(spell_menu.actions()) != 0:
-                    popup_menu.insertSeparator(popup_menu.actions()[0])
-                    popup_menu.insertMenu(popup_menu.actions()[0], spell_menu)
+        if enchant:
+            if self.textCursor().hasSelection():
+                text = unicode(self.textCursor().selectedText())
+                if not self.dict.check(text):
+                    spell_menu = QMenu('Spelling Suggestions')
+                    for word in self.dict.suggest(text):
+                        action = SpellAction(word, spell_menu)
+                        action.correct.connect(self.correctWord)
+                        spell_menu.addAction(action)
+                    # Only add the spelling suggests to the menu if there are
+                    # suggestions.
+                    if len(spell_menu.actions()) != 0:
+                        popup_menu.insertSeparator(popup_menu.actions()[0])
+                        popup_menu.insertMenu(popup_menu.actions()[0], spell_menu)
+                        
+        # FIXME: add change dict and disable spellcheck options
  
         popup_menu.exec_(event.globalPos())
  

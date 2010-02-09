@@ -29,13 +29,7 @@ else:
 from PyQt4 import QtCore,QtGui
 from PyQt4.phonon import Phonon
 
-try:
-    import enchant
-    from spelltextedit import SpellTextEdit as EditorClass
-    print 'Spellchecking available'
-except ImportError:
-    from textedit import TextEdit as EditorClass
-    print 'Spellchecking disabled'
+from spelltextedit import SpellTextEdit as EditorClass
 
 from Ui_searchwidget import Ui_Form as UI_SearchWidget
 from Ui_searchreplacewidget import Ui_Form as UI_SearchReplaceWidget

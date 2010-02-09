@@ -981,9 +981,9 @@ class MainWidget (QtGui.QGraphicsView):
                 self.notify('Setting background to: %s'%bgcolor.name())
         else:
             if self.bgcolor:
-                self.setbgcolor(QtGui.QColorDialog.getColor(self.bgcolor))
+                self.setbgcolor(QtGui.QColorDialog.getColor(self.bgcolor, self))
             else:
-                self.setbgcolor(QtGui.QColorDialog.getColor(QtGui.QColor("white")))
+                self.setbgcolor(QtGui.QColorDialog.getColor(QtGui.QColor("white"), self))
 
     def setfontcolor(self, color=None):
         if isinstance(color, QtGui.QColor):
@@ -995,7 +995,7 @@ class MainWidget (QtGui.QGraphicsView):
                 self.fontcolor=color
                 self.settings.sync()
         else:
-            self.setfontcolor(QtGui.QColorDialog.getColor(QtGui.QColor("black")))
+            self.setfontcolor(QtGui.QColorDialog.getColor(QtGui.QColor("black"), self))
 
     def tajmode(self):
         self.noclick()

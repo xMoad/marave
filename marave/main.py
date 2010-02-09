@@ -26,7 +26,7 @@ else:
     PATH = os.path.abspath(os.path.dirname(__file__))
 
 # Import Qt modules
-from PyQt4 import QtCore,QtGui
+from PyQt4 import QtCore, QtGui, QtSvg
 from PyQt4.phonon import Phonon
 
 from spelltextedit import SpellTextEdit as EditorClass
@@ -869,9 +869,14 @@ class MainWidget (QtGui.QGraphicsView):
         self.currentBG=bg
         self.bgcolor=None
         self.notify('Setting background to: %s'%self.currentBG)
-        self.bg=QtGui.QImage(os.path.join(PATH,'backgrounds',bg))
-        self.realBg=self.bg.scaled( self.size(), QtCore.Qt.KeepAspectRatioByExpanding)
-        self.bgItem.setPixmap(QtGui.QPixmap(self.realBg))
+        if self.currentBG.split('.')[-1] in ["svg","svgz"]:
+            self.bgItem=QtSvg.QGraphicsSvgItem(os.path.join(PATH,'backgrounds',bg))
+            self.bgItem.setZValue(-1000)
+            self._scene.addItem(self.bgItem)
+        else:
+            self.bg=QtGui.QImage(os.path.join(PATH,'backgrounds',bg))
+            self.realBg=self.bg.scaled( self.size(), QtCore.Qt.KeepAspectRatioByExpanding)
+            self.bgItem.setPixmap(QtGui.QPixmap(self.realBg))
         self.bgItem.setPos(self.width()-self.realBg.width(), self.height()-self.realBg.height())
 
     def prevbg(self):

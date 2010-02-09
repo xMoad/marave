@@ -227,7 +227,7 @@ class FunkyEditor(EditorClass, animatedOpacity):
         QtCore.QCoreApplication.instance().setOverrideCursor(QtCore.Qt.ArrowCursor)
         try:
             if self.document().isModified():
-                r=QtGui.QMessageBox.question(None, "New Document - Marave", "The document \"%s\" has been modified."\
+                r=QtGui.QMessageBox.question(self.parent(), "New Document - Marave", "The document \"%s\" has been modified."\
                     "\nDo you want to save your changes or discard them?"%self.docName or "UNNAMED",
                     QtGui.QMessageBox.Save|QtGui.QMessageBox.Discard|QtGui.QMessageBox.Cancel,QtGui.QMessageBox.Cancel)
                 if r==QtGui.QMessageBox.Save:
@@ -772,7 +772,7 @@ class MainWidget (QtGui.QGraphicsView):
     def close(self):
         QtCore.QCoreApplication.instance().setOverrideCursor(QtCore.Qt.ArrowCursor)
         if self.editor.document().isModified():
-            r=QtGui.QMessageBox.question(None, "Close Document - Marave", "The document \"%s\" has been modified."\
+            r=QtGui.QMessageBox.question(self, "Close Document - Marave", "The document \"%s\" has been modified."\
                 "\nDo you want to save your changes or discard them?"%self.editor.docName or "UNNAMED",
                 QtGui.QMessageBox.Save|QtGui.QMessageBox.Discard|QtGui.QMessageBox.Cancel,QtGui.QMessageBox.Cancel)
             if r==QtGui.QMessageBox.Save:

@@ -21,6 +21,7 @@ from PyQt4.Qt import QTextCharFormat
 from PyQt4.Qt import QTextCursor
 from PyQt4.Qt import Qt
 from PyQt4.Qt import QColor
+from PyQt4.Qt import QPalette
 from PyQt4.QtCore import pyqtSignal
  
 class SpellTextEdit(QPlainTextEdit):
@@ -53,6 +54,12 @@ class SpellTextEdit(QPlainTextEdit):
  
     def contextMenuEvent(self, event):
         popup_menu = self.createStandardContextMenu()
+        pal=QApplication.instance().palette()
+        popup_menu.setStyleSheet("""
+                                  * { background-color: %s;
+                                      color: %s;}
+                                  """%(unicode(pal.color(QPalette.Button).name()),
+                                        unicode(pal.color(QPalette.WindowText).name())))
  
         # Select the word under the cursor.
         cursor = self.textCursor()

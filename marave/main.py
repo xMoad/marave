@@ -34,7 +34,7 @@ try:
     from spelltextedit import SpellTextEdit as EditorClass
     print 'Spellchecking available'
 except ImportError:
-    EditorClass=QtGui.QPlainTextEdit
+    from textedit import TextEdit as EditorClass
     print 'Spellchecking disabled'
 
 from Ui_searchwidget import Ui_Form as UI_SearchWidget
@@ -191,14 +191,14 @@ class FunkyStatusBar(QtGui.QStatusBar, animatedOpacity):
          
 class FunkyEditor(EditorClass, animatedOpacity):
     def __init__(self, parent):
-        print 
-        
+        # This is for Issue 28
         if QtCore.QCoreApplication.instance().style().objectName() == 'oxygen':
             EditorClass.__init__(self, parent)
             self.setMouseTracking(True)
             self.viewport().setMouseTracking(True)
             self.defSize=self.font().pointSize()
             self.docName=''
+            # This is for Issue 20
         else:
             EditorClass.__init__(self)
             self.setMouseTracking(True)
@@ -343,7 +343,6 @@ class MainWidget (QtGui.QGraphicsView):
         self.editor.show()
         self.editor.setMouseTracking(True)
         self.editor.setFrameStyle(QtGui.QFrame.NoFrame)
-
         # Keyboard shortcuts
         self.sc1 = QtGui.QShortcut(QtGui.QKeySequence("Ctrl+F"), self);
         self.sc1.activated.connect(self.showsearch)

@@ -410,7 +410,7 @@ class MainWidget (QtGui.QGraphicsView):
         self.prefsWidget.ui.styleList.currentIndexChanged.connect(self.loadstyle)
         self.prefsWidget.ui.buttonStyle.currentIndexChanged.connect(self.buttonstyle)
         self.prefsWidget.ui.langBox.currentIndexChanged.connect(self.setspellchecker)
-        #self.prefsWidget.ui.opacity.valueChanged.connect(self.editoropacity)
+        self.prefsWidget.ui.opacity.valueChanged.connect(self.editoropacity)
         self.prefsWidget.ui.buttonStyle.setCurrentIndex(self.settings.value('buttonstyle').toInt()[0])
         
         prefsLayout=QtGui.QGraphicsLinearLayout()

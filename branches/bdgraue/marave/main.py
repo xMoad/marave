@@ -645,11 +645,11 @@ class MainWidget (QtGui.QGraphicsView):
         if fontcolor.isValid():
             self.setfontcolor(QtGui.QColor(fontcolor.toString()))
         
-        #o,ok=self.settings.value('editoropacity').toInt()
-        #if ok:
-            #self.editorBG.setOpacity(o/100.)
-        #else:
-            #self.editorBG.setOpacity(.03)
+        o,ok=self.settings.value('editoropacity').toInt()
+        if ok:
+            self.editorBG.setOpacity(o/100.)
+        else:
+            self.editorBG.setOpacity(.03)
         
         bs,ok=self.settings.value('buttonstyle').toInt()
         if ok:

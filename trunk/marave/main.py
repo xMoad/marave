@@ -215,6 +215,7 @@ class FunkyEditor(EditorClass, animatedOpacity):
 class MainWidget (QtGui.QGraphicsView):
     def __init__(self, opengl=False):
         QtGui.QGraphicsView.__init__(self)
+        self.setWindowIcon(QtGui.QIcon(os.path.join(PATH,'icons','marave.svg')))
         self._scene=QtGui.QGraphicsScene()
         if opengl:
             if QtCore.QCoreApplication.instance().style().objectName() == 'oxygen':
@@ -316,7 +317,8 @@ class MainWidget (QtGui.QGraphicsView):
         self.editorBG=QtGui.QGraphicsRectItem()
         self.editorBG.setFlag(QtGui.QGraphicsItem.ItemIsMovable, True)
         self.editorBG.setCursor(QtCore.Qt.PointingHandCursor)
-        self.editorBG.setBrush(QtGui.QColor(255,255,255))
+        # Commenting this fixes Isue 15?????
+        #self.editorBG.setBrush(QtGui.QColor(255,255,255))
         self.editorBG.setZValue(-999)
         self._scene.addItem(self.editorBG)
 

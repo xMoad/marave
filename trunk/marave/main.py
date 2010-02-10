@@ -103,7 +103,9 @@ class PrefsWidget(QtGui.QWidget, animatedOpacity):
         self.ui.themeList.clear()
         self.ui.themeList.addItem('Current')
         tdir=os.path.join(PATH,'themes')
-        for t in os.listdir(tdir):
+        l=os.listdir(tdir)
+        l.sort()
+        for t in l:
             if t.startswith('.'):
                 continue
             self.ui.themeList.addItem(t)
@@ -111,7 +113,9 @@ class PrefsWidget(QtGui.QWidget, animatedOpacity):
     def loadstylelist(self):
         self.ui.styleList.clear()
         sdir=os.path.join(PATH,'stylesheets')
-        for t in os.listdir(sdir):
+        l=os.listdir(sdir)
+        l.sort()
+        for t in l:
             if t.startswith('.'):
                 continue
             self.ui.styleList.addItem(t)
@@ -600,7 +604,11 @@ class MainWidget (QtGui.QGraphicsView):
 
     def loadprefs(self):
         # Load all settings
-        
+
+        if len(self.settings.allKeys()) == 0:
+            # First run
+            self.loadtheme(1)
+
         x=self.settings.value('x')
         y=self.settings.value('y')
         w=self.settings.value('w')

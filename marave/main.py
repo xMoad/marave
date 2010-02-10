@@ -317,8 +317,7 @@ class MainWidget (QtGui.QGraphicsView):
         self.editorBG=QtGui.QGraphicsRectItem()
         self.editorBG.setFlag(QtGui.QGraphicsItem.ItemIsMovable, True)
         self.editorBG.setCursor(QtCore.Qt.PointingHandCursor)
-        # Commenting this fixes Isue 15?????
-        #self.editorBG.setBrush(QtGui.QColor(255,255,255))
+        self.editorBG.setBrush(QtGui.QColor(255,255,255))
         self.editorBG.setZValue(-999)
         self._scene.addItem(self.editorBG)
 
@@ -1020,7 +1019,8 @@ class MainWidget (QtGui.QGraphicsView):
             else:
                 self.editor.setGeometry(self.editorX,self.editorY,self.editorW,self.editorH)
             self.editorBG.setPos(self.editorX-m,self.editorY-m)
-            self.editorBG.setBrush(QtGui.QColor(255,255,255,255))
+            # Commenting this fixes Isue 15?????
+            #self.editorBG.setBrush(QtGui.QColor(255,255,255,255))
             self.editorBG.setRect(0,0,self.editorW+2*m,self.editorH+2*m)
             self.mainMenu.setPos(self.editorX+self.editorW+3*m,self.editorY)
             self.searchBar.setPos(self.editorX,self.editorY+self.editorH-self.searchWidget.height())

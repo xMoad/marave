@@ -606,7 +606,7 @@ class MainWidget (QtGui.QGraphicsView):
             self.settings.setValue('h',int(self.editorH))
 
         self.settings.setValue('buttonstyle',self.buttonStyle)
-        #self.settings.setValue('editoropacity', self.editorBG.opacity()*100)
+        self.settings.setValue('editoropacity', self.editorBG.opacity()*100)
 
         self.settings.sync()
 

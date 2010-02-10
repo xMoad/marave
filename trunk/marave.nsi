@@ -42,7 +42,7 @@
 ;--------------------------------
 ;Installer Sections
 
-Section "Dummy Section" SecDummy
+Section "Install"
 
   SetOutPath "$INSTDIR"
   File /r "dist\marave"
@@ -54,6 +54,12 @@ Section "Dummy Section" SecDummy
   ;Create uninstaller
   WriteUninstaller "$INSTDIR\Uninstall.exe"
 
+  ;Create shortcuts
+  CreateDirectory $SMPROGRAMS\Marave
+  CreateShortCut "$SMPROGRAMS\Marave\Marave.lnk" "$INSTDIR\marave\marave.exe" ; use defaults for parameters, icon, etc.
+  CreateShortCut "$SMPROGRAMS\Marave\Uninstall Marave.lnk" "$INSTDIR\Uninstall.exe" ; use defaults for parameters, icon, etc.
+
+  
 SectionEnd
 
 

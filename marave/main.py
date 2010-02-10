@@ -230,7 +230,6 @@ class MainWidget (QtGui.QGraphicsView):
         self.hasSize=False
         
         self.editor=None
-        self.setFocusPolicy(QtCore.Qt.NoFocus)
         self.setMouseTracking(True)
         self.currentBG=None
         self.currentClick=None

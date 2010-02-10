@@ -410,7 +410,7 @@ class MainWidget (QtGui.QGraphicsView):
         self.prefsWidget.ui.styleList.currentIndexChanged.connect(self.loadstyle)
         self.prefsWidget.ui.buttonStyle.currentIndexChanged.connect(self.buttonstyle)
         self.prefsWidget.ui.langBox.currentIndexChanged.connect(self.setspellchecker)
-        self.prefsWidget.ui.opacity.valueChanged.connect(self.editoropacity)
+        #self.prefsWidget.ui.opacity.valueChanged.connect(self.editoropacity)
         self.prefsWidget.ui.buttonStyle.setCurrentIndex(self.settings.value('buttonstyle').toInt()[0])
         
         prefsLayout=QtGui.QGraphicsLinearLayout()
@@ -511,6 +511,7 @@ class MainWidget (QtGui.QGraphicsView):
         self._scene.addItem(self.mainMenu)
 
     def editoropacity(self, v):
+        return
         self.notify("Setting opacity to: %s%%"%v)
         self.editorBG.setOpacity(v/100.)
         self.settings.setValue("editoropacity",v)
@@ -606,7 +607,7 @@ class MainWidget (QtGui.QGraphicsView):
             self.settings.setValue('h',int(self.editorH))
 
         self.settings.setValue('buttonstyle',self.buttonStyle)
-        self.settings.setValue('editoropacity', self.editorBG.opacity()*100)
+        #self.settings.setValue('editoropacity', self.editorBG.opacity()*100)
 
         self.settings.sync()
 
@@ -615,7 +616,7 @@ class MainWidget (QtGui.QGraphicsView):
 
         if len(self.settings.allKeys()) == 0:
             # First run
-            self.loadtheme(1)
+            self.loadtheme(4)
 
         x=self.settings.value('x')
         y=self.settings.value('y')
@@ -645,11 +646,11 @@ class MainWidget (QtGui.QGraphicsView):
         if fontcolor.isValid():
             self.setfontcolor(QtGui.QColor(fontcolor.toString()))
         
-        o,ok=self.settings.value('editoropacity').toInt()
-        if ok:
-            self.editorBG.setOpacity(o/100.)
-        else:
-            self.editorBG.setOpacity(.03)
+        #o,ok=self.settings.value('editoropacity').toInt()
+        #if ok:
+            #self.editorBG.setOpacity(o/100.)
+        #else:
+            #self.editorBG.setOpacity(.03)
         
         bs,ok=self.settings.value('buttonstyle').toInt()
         if ok:
@@ -748,7 +749,7 @@ class MainWidget (QtGui.QGraphicsView):
         self.searchWidget.ui.text.setFocus()
 
     def showprefs(self):
-        self.prefsWidget.ui.opacity.setValue(self.editorBG.opacity()*100)
+        #self.prefsWidget.ui.opacity.setValue(self.editorBG.opacity()*100)
         self.showbar(self.prefsWidget)
 
 
@@ -1018,7 +1019,7 @@ class MainWidget (QtGui.QGraphicsView):
             else:
                 self.editor.setGeometry(self.editorX,self.editorY,self.editorW,self.editorH)
             self.editorBG.setPos(self.editorX-m,self.editorY-m)
-            self.editorBG.setBrush(QtGui.QColor(255,255,255,255))
+            #self.editorBG.setBrush(QtGui.QColor(255,255,255,255))
             self.editorBG.setRect(0,0,self.editorW+2*m,self.editorH+2*m)
             self.mainMenu.setPos(self.editorX+self.editorW+3*m,self.editorY)
             self.searchBar.setPos(self.editorX,self.editorY+self.editorH-self.searchWidget.height())

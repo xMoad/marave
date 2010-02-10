@@ -511,7 +511,6 @@ class MainWidget (QtGui.QGraphicsView):
         self._scene.addItem(self.mainMenu)
 
     def editoropacity(self, v):
-        return
         self.notify("Setting opacity to: %s%%"%v)
         self.editorBG.setOpacity(v/100.)
         self.settings.setValue("editoropacity",v)

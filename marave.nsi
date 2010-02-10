@@ -1,7 +1,3 @@
-;NSIS Modern User Interface
-;Basic Example Script
-;Written by Joost Verburg
-
 ;--------------------------------
 ;Include Modern UI
 
@@ -49,7 +45,7 @@
 Section "Dummy Section" SecDummy
 
   SetOutPath "$INSTDIR"
-  File /r "dist\main"
+  File /r "dist\marave"
 
   
   ;Store installation folder
@@ -65,11 +61,9 @@ SectionEnd
 ;Uninstaller Section
 
 Section "Uninstall"
-  File "dist\main\*"
 
   Delete "$INSTDIR\Uninstall.exe"
-
-  RMDir "$INSTDIR"
+  RMDir /r "$INSTDIR"
 
   DeleteRegKey /ifempty HKCU "Software\Marave"
 

@@ -748,7 +748,7 @@ class MainWidget (QtGui.QGraphicsView):
         self.searchWidget.ui.text.setFocus()
 
     def showprefs(self):
-        #self.prefsWidget.ui.opacity.setValue(self.editorBG.opacity()*100)
+        self.prefsWidget.ui.opacity.setValue(self.editorBG.opacity()*100)
         self.showbar(self.prefsWidget)
 
 

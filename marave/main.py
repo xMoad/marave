@@ -18,7 +18,7 @@
 # with this program; if not, write to the Free Software Foundation, Inc.,
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 
-import os,sys,codecs,re
+import os, sys, codecs, re, optparse
 
 if hasattr(sys, 'frozen'):
     PATH = os.path.abspath(os.path.dirname(sys.executable))
@@ -27,7 +27,6 @@ else:
 
 # Import Qt modules
 from PyQt4 import QtCore, QtGui, QtSvg
-#from PyQt4 import QtOpenGL
 from PyQt4.phonon import Phonon
 
 from spelltextedit import SpellTextEdit as EditorClass
@@ -214,13 +213,22 @@ class FunkyEditor(EditorClass, animatedOpacity):
 
 
 class MainWidget (QtGui.QGraphicsView):
-    def __init__(self):
+    def __init__(self, opengl=False):
         QtGui.QGraphicsView.__init__(self)
         self._scene=QtGui.QGraphicsScene()
+        if opengl:
+            if QtCore.QCoreApplication.instance().style().objectName() == 'oxygen':
+                print "OpenGL acceleration doesn't work well with Oxygen, disabling it"
+            else:
+                try:
+                    from PyQt4 import QtOpenGL
+                    self.setViewport(QtOpenGL.QGLWidget())
+                except ImportError:
+                    print 'Qt OpenGL support not available'
         self._scene.changed.connect(self.scenechanged)
         self.setScene(self._scene)
         self.settings=QtCore.QSettings('NetManagers','Marave')
-        #self.setViewport(QtOpenGL.QGLWidget())
+        #
         self.changing=False
         self.visibleWidget=None
 
@@ -1185,14 +1193,22 @@ def main():
     # Again, this is boilerplate, it's going to be the same on
     # almost every app you write
     app = QtGui.QApplication(sys.argv)
-    print sys.argv
 
-    if len(sys.argv) > 2:
+    parser = optparse.OptionParser()
+    parser.add_option('--opengl', 
+                      dest='opengl', 
+                      default=False,
+                      action='store_true', 
+                      help='Enable OpenGL acceleration')
+                     
+    options, args = parser.parse_args()
+
+    if len(args) > 1:
         QtGui.QMessageBox.information(None,'FOCUS!','Marave only opens one document at a time.\nThe whole idea is focusing!\nSo, this is the first one you asked for.')
 
-    window=MainWidget()
-    if len(sys.argv) == 2:
-        window.editor.open(sys.argv[1])
+    window=MainWidget(opengl=options.opengl)
+    if len(args) == 1:
+        window.editor.open(args[0])
     window.show()
     window.raise_()
     window.activateWindow()

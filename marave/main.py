@@ -27,10 +27,19 @@ else:
 
 # Import Qt modules
 from PyQt4 import QtCore, QtGui, QtSvg
+
+
+# Try to import Phonon from PyQt or PyKDE
+SOUND=False
 try:
     from PyQt4.phonon import Phonon
+    SOUND=True
 except ImportError:
-    from PyKDE4.phonon import Phonon
+    try:
+        from PyKDE4.phonon import Phonon
+        SOUND=True
+    except ImportError:
+        pass
 
 from spelltextedit import SpellTextEdit as EditorClass
 

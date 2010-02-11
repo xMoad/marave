@@ -108,7 +108,7 @@ class PrefsWidget(QtGui.QWidget, animatedOpacity):
         l=os.listdir(tdir)
         l.sort()
         for t in l:
-            if t.startswith('.'):
+            if t.startswith('.') or t.endswith('~'):
                 continue
             self.ui.themeList.addItem(t)
 
@@ -118,7 +118,7 @@ class PrefsWidget(QtGui.QWidget, animatedOpacity):
         l=os.listdir(sdir)
         l.sort()
         for t in l:
-            if t.startswith('.'):
+            if t.startswith('.') or t.endswith('~'):
                 continue
             self.ui.styleList.addItem(t)
         

@@ -348,8 +348,9 @@ class MainWidget (QtGui.QGraphicsView):
         self.sizeButton=FunkyButton("size.svg", 'Size', self._scene, 0)
         self.fileButton=FunkyButton("file.svg", 'File', self._scene, 0)
         self.bgButton=FunkyButton("bg.svg", 'Bg', self._scene, 0)
-        self.clickButton=FunkyButton("click.svg", 'Click', self._scene, 0)
-        self.musicButton=FunkyButton("music.svg", 'Music', self._scene, 0)
+        if SOUND:
+            self.clickButton=FunkyButton("click.svg", 'Click', self._scene, 0)
+            self.musicButton=FunkyButton("music.svg", 'Music', self._scene, 0)
         self.configButton=FunkyButton("configure.svg", 'Options', self._scene, 0)
         self.configButton.clicked.connect(self.showprefs)
         self.quitButton=FunkyButton("exit.svg", 'Quit', self._scene, 0)
@@ -359,12 +360,12 @@ class MainWidget (QtGui.QGraphicsView):
         self.buttons=[self.fontButton, 
                       self.sizeButton, 
                       self.fileButton, 
-                      self.bgButton, 
-                      self.clickButton,
-                      self.musicButton,
-                      self.configButton,
-                      self.quitButton,
-                      ]
+                      self.bgButton]
+        if SOUND:
+            self.buttons+=[self.clickButton,
+                           self.musicButton]
+        self.buttons+=[self.configButton,
+                       self.quitButton]
 
 
         self.fontList=FunkyFontList(self._scene,0)
@@ -398,21 +399,22 @@ class MainWidget (QtGui.QGraphicsView):
         self.bg3.clicked.connect(self.setbgcolor)
         self.bgButton.children+=[self.bg1, self.bg2, self.bg3]
 
-        self.click1=FunkyButton("previous.svg", 'Previous', self._scene,0)
-        self.click2=FunkyButton("next.svg", 'Next', self._scene,0)
-        self.click3=FunkyButton("mute.svg", 'Mute', self._scene,0)
-        self.click1.clicked.connect(self.prevclick)
-        self.click2.clicked.connect(self.nextclick)
-        self.click3.clicked.connect(self.noclick)
-        self.clickButton.children+=[self.click1, self.click2, self.click3]
+        if SOUND:
+            self.click1=FunkyButton("previous.svg", 'Previous', self._scene,0)
+            self.click2=FunkyButton("next.svg", 'Next', self._scene,0)
+            self.click3=FunkyButton("mute.svg", 'Mute', self._scene,0)
+            self.click1.clicked.connect(self.prevclick)
+            self.click2.clicked.connect(self.nextclick)
+            self.click3.clicked.connect(self.noclick)
+            self.clickButton.children+=[self.click1, self.click2, self.click3]
         
-        self.music1=FunkyButton("previous.svg", 'Previous', self._scene,0)
-        self.music2=FunkyButton("next.svg", 'Next', self._scene,0)
-        self.music3=FunkyButton("mute.svg", 'Mute', self._scene,0)
-        self.music1.clicked.connect(self.prevstation)
-        self.music2.clicked.connect(self.nextstation)
-        self.music3.clicked.connect(self.nostation)
-        self.musicButton.children+=[self.music1, self.music2, self.music3]
+            self.music1=FunkyButton("previous.svg", 'Previous', self._scene,0)
+            self.music2=FunkyButton("next.svg", 'Next', self._scene,0)
+            self.music3=FunkyButton("mute.svg", 'Mute', self._scene,0)
+            self.music1.clicked.connect(self.prevstation)
+            self.music2.clicked.connect(self.nextstation)
+            self.music3.clicked.connect(self.nostation)
+            self.musicButton.children+=[self.music1, self.music2, self.music3]
 
 
         # Prefs widget
@@ -512,12 +514,14 @@ class MainWidget (QtGui.QGraphicsView):
         mainMenuLayout.addItem(self.bg1.proxy,3,1)
         mainMenuLayout.addItem(self.bg2.proxy,3,2)
         mainMenuLayout.addItem(self.bg3.proxy,3,3)
-        mainMenuLayout.addItem(self.click1.proxy,4,1)
-        mainMenuLayout.addItem(self.click2.proxy,4,2)
-        mainMenuLayout.addItem(self.click3.proxy,4,3)
-        mainMenuLayout.addItem(self.music1.proxy,5,1)
-        mainMenuLayout.addItem(self.music2.proxy,5,2)
-        mainMenuLayout.addItem(self.music3.proxy,5,3)
+        if SOUND:
+            mainMenuLayout.addItem(self.click1.proxy,4,1)
+            mainMenuLayout.addItem(self.click2.proxy,4,2)
+            mainMenuLayout.addItem(self.click3.proxy,4,3)
+            mainMenuLayout.addItem(self.music1.proxy,5,1)
+            mainMenuLayout.addItem(self.music2.proxy,5,2)
+            mainMenuLayout.addItem(self.music3.proxy,5,3)
+            
         self.mainMenu=QtGui.QGraphicsWidget()
         self.mainMenu.setLayout(mainMenuLayout)
         self.mainMenu.setPos(self.editorX+self.editorW+20,self.editorY)

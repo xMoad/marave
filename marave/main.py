@@ -859,6 +859,8 @@ class MainWidget (QtGui.QGraphicsView):
     
     def setstation(self, station):
         self.currentStation=station
+        if self.music:
+            self.music.deleteLater()
         self.music = Phonon.createPlayer(Phonon.MusicCategory,
                                   Phonon.MediaSource(self.currentStation))
         self.music.metaDataChanged.connect(self.audiometadatachanged)

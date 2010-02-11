@@ -8,25 +8,15 @@
    height="162.5"
    id="svg101">
   <defs
-     id="defs7" />
+     id="defs5" />
   <path
-     d="M 28.4375,153.867 C 28.4375,153.867 138.125,153.867 138.125,153.867 C 138.125,153.867 138.633,33.5157 138.633,33.5157 C 138.633,33.5157 110.703,10.1562 110.703,10.1562 C 110.703,10.1562 28.9453,10.1562 28.9453,10.1562 C 28.9453,10.1562 28.9453,154.883 28.4375,153.867 z "
-     transform="translate(1.01562,0)"
-     style="font-size:12px;fill:#f0f0f8;fill-opacity:0.19607795;fill-rule:evenodd;stroke:#4a4b4f;stroke-width:12.5;stroke-linecap:round;stroke-linejoin:round"
-     id="path218" />
+     d="M 18.2812,107.148 C 18.2812,107.148 19.2969,23.1286 19.2969,23.1286 C 19.2969,23.1286 62.9688,23.1286 62.9688,23.1286 C 62.9688,23.1286 62.9688,33.7926 62.9688,33.7926 C 62.9688,33.7926 142.188,33.7926 142.188,33.7926 C 142.188,33.7926 142.188,46.7188 142.188,46.7188"
+     transform="matrix(1.06055,0,0,1.26923,-5.67732,5.17574)"
+     style="font-size:12px;fill:#f0f0f8;fill-opacity:0.19607795;fill-rule:evenodd;stroke:#4a4b4f;stroke-width:8.08045006;stroke-linecap:round;stroke-linejoin:round"
+     id="path312" />
   <path
-     d="M 108.672,10.6641 C 108.672,10.6641 109.18,36.5625 109.18,36.5625 C 109.18,36.5625 140.664,36.5625 140.664,36.5625"
-     transform="translate(-3.04688,3.04688)"
-     style="font-size:12px;fill:#f0f0f8;fill-opacity:0.19607795;fill-rule:evenodd;stroke:#4a4b4f;stroke-width:6.25;stroke-linecap:round;stroke-linejoin:round"
-     id="path219" />
-  <path
-     d="M 84.2969,131.016 L 83.7891,46.2109"
-     transform="translate(-0.790958,0)"
-     style="font-size:12px;fill:#f0f0f8;fill-opacity:0.19607795;fill-rule:evenodd;stroke:#4a4b4f;stroke-width:18.75;stroke-linecap:round;stroke-linejoin:round"
-     id="path127" />
-  <polygon
-     points="86.8359,51.7969 61.4162,51.7464 35.9964,51.696 48.75,29.707 61.5036,7.71811 74.1698,29.7575 86.8359,51.7969 "
-     transform="translate(21.8359,14.80609)"
-     style="font-size:12px;fill:#4a4b4f;fill-rule:evenodd;stroke:#4a4b4f;stroke-width:6.25;stroke-linecap:round;stroke-linejoin:round"
-     id="polygon129" />
+     d="M 152.344,47.2266 C 152.344,47.2266 34.5312,47.2266 34.5312,47.2266 C 34.5312,47.2266 18.7891,107.148 18.7891,107.148 C 18.7891,107.148 139.648,107.148 139.648,107.148 C 139.648,107.148 153.867,47.7344 152.344,47.2266 z "
+     transform="matrix(1.06055,0,0,1.26923,-5.67732,5.17574)"
+     style="font-size:12px;fill:#e3f0f8;fill-opacity:0.748148;fill-rule:evenodd;stroke:#4a4b4f;stroke-width:8.08045006;stroke-linecap:round;stroke-linejoin:round"
+     id="path311" />
 </svg>

@@ -827,6 +827,7 @@ class MainWidget (QtGui.QGraphicsView):
         r=self.editor.find(text,flags)
 
     def setclick(self, clickname):
+        if not SOUND: return
         self.currentClick=clickname
         self.notify('Switching click to: %s'%self.currentClick)
         self.beep = Phonon.createPlayer(Phonon.NotificationCategory,
@@ -867,6 +868,7 @@ class MainWidget (QtGui.QGraphicsView):
             pass
     
     def setstation(self, station):
+        if not SOUND: return
         self.currentStation=station
         if self.music:
             self.music.deleteLater()

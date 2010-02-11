@@ -475,6 +475,9 @@ class MainWidget (QtGui.QGraphicsView):
         self.layoutButtons()
         self.loadprefs()
 
+    def warnnosound(self):
+        self.notify('Sound support is not available, disabling sound')
+
     def showhelp(self):
         QtGui.QDesktopServices.openUrl(QtCore.QUrl('file://'+PATH+'/README.html'))
 
@@ -1209,7 +1212,10 @@ class MainWidget (QtGui.QGraphicsView):
         self.raise_()
         self.activateWindow()
         self.adjustPositions()
+        self.setFocus()
         self.editor.setFocus()
+        if not SOUND:
+            QtCore.QTimer.singleShot(2000,self.warnnosound)
         
 def main():
     # Again, this is boilerplate, it's going to be the same on

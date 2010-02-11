@@ -7,6 +7,7 @@ __docformat__ = 'restructuredtext en'
  
 import re
 import sys
+import os
 import codecs
 
 try:
@@ -112,11 +113,16 @@ class SpellTextEdit(QPlainTextEdit):
         if not self.docName:
             self.saveas()
         else:
-            f=codecs.open(self.docName,'w+','utf-8')
-            f.truncate()
-            f.write(unicode(self.toPlainText()))
-            f.close()
-            self.document().setModified(False)
+            try:
+                f=codecs.open(self.docName,'w+','utf-8')
+                f.truncate()
+                f.write(unicode(self.toPlainText()))
+                f.close()
+                self.document().setModified(False)
+            except:
+                QtGui.QMessageBox.information(self.parent(), "Error - Marave",
+                "Error saving %s."%self.docName)
+                
 
     def saveas(self):
         QtCore.QCoreApplication.instance().setOverrideCursor(QtCore.Qt.ArrowCursor)
@@ -157,7 +163,12 @@ class SpellTextEdit(QPlainTextEdit):
             QtCore.QCoreApplication.instance().restoreOverrideCursor()
         if fname:
             self.docName=fname
-            self.setPlainText(codecs.open(fname,'r','utf-8').read())
+            if os.path.exists(fname):
+                if os.path.isfile(fname):
+                    self.setPlainText(codecs.open(fname,'r','utf-8').read())
+                else:
+                    QtGui.QMessageBox.information(self.parent(), "Error - Marave",
+                    "%s is not a file."%fname)
             
         self.parent().setWindowTitle('%s - Marave'%self.docName)
 

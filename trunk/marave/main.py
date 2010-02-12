@@ -468,7 +468,6 @@ class MainWidget (QtGui.QGraphicsView):
         self.searchReplaceBar=QtGui.QGraphicsWidget()
         self.searchReplaceBar.setLayout(searchReplaceLayout)
         self._scene.addItem(self.searchReplaceBar)
-        self.adjustPositions()
 
     def warnnosound(self):
         self.notify(unicode(self.tr('Sound support is not available, disabling sound')))

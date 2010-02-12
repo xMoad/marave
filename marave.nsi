@@ -47,7 +47,7 @@ Section "Install"
   SetOutPath "$INSTDIR"
   File /r "dist\marave"
 
-  
+  ExecWait '"$INSTDIR\vc_redist.exe" /qn /c:"VCREDI~1.EXE /q:a /c:""msiexec /i vcredist.msi /qb!"" "'
   ;Store installation folder
   WriteRegStr HKCU "Software\Marave" "" $INSTDIR
   

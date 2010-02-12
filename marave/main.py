@@ -332,7 +332,6 @@ class MainWidget (QtGui.QGraphicsView):
         self.editorBG.setFlag(QtGui.QGraphicsItem.ItemIsMovable, True)
         self.editorBG.setCursor(QtCore.Qt.PointingHandCursor)
         self.editorBG.setBrush(QtGui.QColor(255,255,255))
-        self.editorBG.setOpacity(0)
         self.editorBG.setZValue(-999)
         self._scene.addItem(self.editorBG)
 
@@ -425,7 +424,7 @@ class MainWidget (QtGui.QGraphicsView):
         self.prefsWidget.ui.close.clicked.connect(self.hidewidgets)
         self.prefsWidget.ui.saveTheme.clicked.connect(self.savetheme)
         self.prefsWidget.ui.themeList.currentIndexChanged.connect(self.loadtheme)
-        self.prefsWidget.ui.styleList.currentIndexChanged.connect(self.setstyle)
+        self.prefsWidget.ui.styleList.currentIndexChanged.connect(self.loadstyle)
         self.prefsWidget.ui.buttonStyle.currentIndexChanged.connect(self.buttonstyle)
         self.prefsWidget.ui.langBox.currentIndexChanged.connect(self.setspellchecker)
         self.prefsWidget.ui.opacity.valueChanged.connect(self.editoropacity)
@@ -571,7 +570,7 @@ class MainWidget (QtGui.QGraphicsView):
                 b.adjustSize()
         self.layoutButtons()
 
-    def setstyle(self, styleidx):
+    def loadstyle(self, styleidx):
         stylename=unicode(self.prefsWidget.ui.styleList.itemText(styleidx))
         stylefile=os.path.join(PATH,'stylesheets',stylename)
         self.notify (unicode(self.tr('Changing to style %s requires restarting Marave'))%stylename)
@@ -734,12 +733,7 @@ class MainWidget (QtGui.QGraphicsView):
             self.setspellchecker(unicode(l.toString()))
         else:
             self.setspellchecker('None')
-        self.loadStyle()
-        
-        # Defer sound until later in the event loop
-        QtCore.QTimer.singleShot(10,self.loadSound)
-
-    def loadStyle(self):
+            
         style=self.settings.value('style')
         if style.isValid():
             style=unicode(style.toString())
@@ -747,6 +741,7 @@ class MainWidget (QtGui.QGraphicsView):
             style='default'
         print 'Loading style:',style
         QtCore.QCoreApplication.instance().setStyleSheet(open(os.path.join(PATH,'stylesheets',style)).read())        
+        QtCore.QTimer.singleShot(10,self.loadSound)
 
     def setspellchecker(self, code):
         if isinstance (code, int):
@@ -1270,22 +1265,17 @@ def main():
                      
     options, args = parser.parse_args()
 
+    if len(args) > 1:
+        QtGui.QMessageBox.information(None,'FOCUS!','Marave only opens one document at a time.\nThe whole idea is focusing!\nSo, this is the first one you asked for.')
+
     window=MainWidget(opengl=options.opengl)
     window.loadBG()
-    window.loadStyle()
-    window.showFullScreen()
+    window.show()
     window.raise_()
     window.activateWindow()
-    if len(args)>1:
-        QtGui.QMessageBox.information(None,window.tr("FOCUS!"),
-                '\n'.join(unicode(x) for x in (window.tr("Marave only opens one document at a time."),
-                                            window.tr("The whole idea is focusing!"),
-                                            window.tr("So, this is the first one you asked for."))))
-
-    if len(args)>0:
+    if args:
         load=lambda: window.editor.open(args[0])
         QtCore.QTimer.singleShot(10,load)
-        
     QtCore.QTimer.singleShot(0,window._show)
     
     # It's exec_ because exec is a reserved word in Python

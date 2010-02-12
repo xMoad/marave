@@ -1232,6 +1232,7 @@ class MainWidget (QtGui.QGraphicsView):
         QtCore.QCoreApplication.instance().restoreOverrideCursor()
 
     def _show(self):
+        self.show()
         self.loadGeometry()
         self.loadBG()
         self.showFullScreen()
@@ -1268,9 +1269,9 @@ def main():
         QtGui.QMessageBox.information(None,'FOCUS!','Marave only opens one document at a time.\nThe whole idea is focusing!\nSo, this is the first one you asked for.')
 
     window=MainWidget(opengl=options.opengl)
-    #window.show()
-    #window.raise_()
-    #window.activateWindow()
+    window.show()
+    window.raise_()
+    window.activateWindow()
     load=lambda: window.editor.open(args[0])
     QtCore.QTimer.singleShot(0,window._show)
     QtCore.QTimer.singleShot(10,load)

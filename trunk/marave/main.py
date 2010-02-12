@@ -469,22 +469,6 @@ class MainWidget (QtGui.QGraphicsView):
         self.searchReplaceBar.setLayout(searchReplaceLayout)
         self._scene.addItem(self.searchReplaceBar)
         self.adjustPositions()
-        
-    def init(self):
-        '''Initialization stuff that can really wait a little, so the window
-        appears faster'''
-        self.loadprefs()
-        self.layoutButtons()
-        self.showButtons()
-        self.adjustPositions()
-        self._scene.changed.connect(self.scenechanged)
-
-        # Event filters for showing/hiding buttons/cursor
-        self.editor.installEventFilter(self)
-        for b in self.buttons:
-            b.installEventFilter(self)
-        self.editor.modificationChanged.connect(self.setWindowModified)
-
 
     def warnnosound(self):
         self.notify(unicode(self.tr('Sound support is not available, disabling sound')))
@@ -1232,19 +1216,25 @@ class MainWidget (QtGui.QGraphicsView):
         QtCore.QCoreApplication.instance().restoreOverrideCursor()
 
     def _show(self):
-        self.show()
-        self.loadGeometry()
         self.loadBG()
         self.showFullScreen()
-        self.show()
-        self.raise_()
-        self.activateWindow()
-        self.setFocus()
         self.editor.setFocus()
         if not SOUND:
             QtCore.QTimer.singleShot(2000,self.warnnosound)
         QtCore.QTimer.singleShot(0,self.init)
-        
+
+    def init(self):
+        '''Initialization stuff that can really wait a little, so the window
+        appears faster'''
+        self._scene.changed.connect(self.scenechanged)
+
+        # Event filters for showing/hiding buttons/cursor
+        self.editor.installEventFilter(self)
+        for b in self.buttons:
+            b.installEventFilter(self)
+        self.editor.modificationChanged.connect(self.setWindowModified)
+
+
 def main():
 
     app = QtGui.QApplication(sys.argv)
@@ -1269,10 +1259,11 @@ def main():
         QtGui.QMessageBox.information(None,'FOCUS!','Marave only opens one document at a time.\nThe whole idea is focusing!\nSo, this is the first one you asked for.')
 
     window=MainWidget(opengl=options.opengl)
-    window.loadBG()
+    window.loadprefs()
     window.show()
     window.raise_()
     window.activateWindow()
+    window.showFullScreen()
     if args:
         load=lambda: window.editor.open(args[0])
         QtCore.QTimer.singleShot(10,load)

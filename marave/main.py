@@ -918,25 +918,26 @@ class MainWidget (QtGui.QGraphicsView):
         
     def setbg(self, bg):
         #from pudb import set_trace; set_trace()
-        self.currentBG=bg
-        self.bgcolor=None
-        self.notify(unicode(self.tr('Setting background to: %s'))%self.currentBG)
-        if self.currentBG.split('.')[-1] in ["svg","svgz"]:
-            # Render the SVG to a QImage
-            renderer=QtSvg.QSvgRenderer(os.path.join(PATH,'backgrounds',bg))
-            w,h=renderer.defaultSize().width(), renderer.defaultSize().height()
-            while w < self.width() or \
-                  h < self.height():
-                w *=1.2
-                h *=1.2
-            print 'WH:',w,h
-            self.bg=QtGui.QImage(w,h,QtGui.QImage.Format_ARGB32_Premultiplied)
-            painter=QtGui.QPainter(self.bg)
-            renderer.render(painter)
-            painter.end()
-            #self.bg=QtGui.QImage(pm)
-        else:
-            self.bg=QtGui.QImage(os.path.join(PATH,'backgrounds',bg))
+        if bg != self.currentBG:
+            self.currentBG=bg
+            self.bgcolor=None
+            self.notify(unicode(self.tr('Setting background to: %s'))%self.currentBG)
+            if self.currentBG.split('.')[-1] in ["svg","svgz"]:
+                # Render the SVG to a QImage
+                renderer=QtSvg.QSvgRenderer(os.path.join(PATH,'backgrounds',bg))
+                w,h=renderer.defaultSize().width(), renderer.defaultSize().height()
+                while w < self.width() or \
+                    h < self.height():
+                    w *=1.2
+                    h *=1.2
+                self.bg=QtGui.QImage(w,h,QtGui.QImage.Format_ARGB32_Premultiplied)
+                painter=QtGui.QPainter(self.bg)
+                renderer.render(painter)
+                painter.end()
+                #self.bg=QtGui.QImage(pm)
+            else:
+                print 'LOADING'
+                self.bg=QtGui.QImage(os.path.join(PATH,'backgrounds',bg))
         self.realBg=self.bg.scaled( self.size(), QtCore.Qt.KeepAspectRatioByExpanding, QtCore.Qt.SmoothTransformation)
         self.bgItem.setPixmap(QtGui.QPixmap(self.realBg))
         self.bgItem.setPos(self.width()-self.realBg.width(), self.height()-self.realBg.height())

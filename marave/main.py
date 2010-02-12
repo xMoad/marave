@@ -241,7 +241,6 @@ class MainWidget (QtGui.QGraphicsView):
                     self.setViewport(QtOpenGL.QGLWidget())
                 except ImportError:
                     print 'Qt OpenGL support not available'
-        self._scene.changed.connect(self.scenechanged)
         self.setScene(self._scene)
         self.settings=QtCore.QSettings('NetManagers','Marave')
         #
@@ -292,7 +291,6 @@ class MainWidget (QtGui.QGraphicsView):
         self.editor.show()
         self.editor.setMouseTracking(True)
         self.editor.setFrameStyle(QtGui.QFrame.NoFrame)
-        self.editor.modificationChanged.connect(self.setWindowModified)
         # Keyboard shortcuts
         self.sc1 = QtGui.QShortcut(QtGui.QKeySequence(self.tr("Ctrl+F","Find")), self);
         self.sc1.activated.connect(self.showsearch)
@@ -470,14 +468,23 @@ class MainWidget (QtGui.QGraphicsView):
         self.searchReplaceBar=QtGui.QGraphicsWidget()
         self.searchReplaceBar.setLayout(searchReplaceLayout)
         self._scene.addItem(self.searchReplaceBar)
+        self.adjustPositions()
         
+    def init(self):
+        '''Initialization stuff that can really wait a little, so the window
+        appears faster'''
+        self.loadprefs()
+        self.layoutButtons()
+        self.showButtons()
+        self.adjustPositions()
+        self._scene.changed.connect(self.scenechanged)
+
         # Event filters for showing/hiding buttons/cursor
         self.editor.installEventFilter(self)
         for b in self.buttons:
             b.installEventFilter(self)
+        self.editor.modificationChanged.connect(self.setWindowModified)
 
-        self.layoutButtons()
-        self.loadprefs()
 
     def warnnosound(self):
         self.notify(unicode(self.tr('Sound support is not available, disabling sound')))
@@ -505,7 +512,6 @@ class MainWidget (QtGui.QGraphicsView):
         self.notifBar.moveOpacity()
 
     def notify(self, text):
-        print 'NOTIF:',text.encode('utf-8')
         self.notifBar.showMessage(text, 3000)
         self.notifBar.proxy.setPos(self.editorX, self.editorY+self.editorH+self.m)
 
@@ -628,24 +634,48 @@ class MainWidget (QtGui.QGraphicsView):
         if self.fontcolor:
             self.settings.setValue('fontcolor',self.fontcolor.name())
 
-        if self.hasSize:
-            self.settings.setValue('x',int(self.editorX))
-            self.settings.setValue('y',int(self.editorY))
-            self.settings.setValue('w',int(self.editorW))
-            self.settings.setValue('h',int(self.editorH))
-
+        self.saveEditorGeometry()
         self.settings.setValue('buttonstyle',self.buttonStyle)
         self.settings.setValue('editoropacity', self.editorBG.opacity()*100)
 
         self.settings.sync()
 
-    def loadprefs(self):
-        # Load all settings
+    def saveEditorGeometry(self):
+        if self.hasSize:
+            self.settings.setValue('x',int(self.editorX))
+            self.settings.setValue('y',int(self.editorY))
+            self.settings.setValue('w',int(self.editorW))
+            self.settings.setValue('h',int(self.editorH))
+            self.settings.sync()
 
-        if len(self.settings.allKeys()) == 0:
-            # First run
-            self.loadtheme(1)
+    def loadBG(self):
+        "Load background from the preferences"
+        
+        bgcolor=self.settings.value('bgcolor')
+        bg=self.settings.value('background')
+        if not bg.isValid() and not bgcolor.isValid():
+            # Probably first run
+            self.nextbg()        
+        elif bg.isValid():
+            self.setbg(unicode(bg.toString()))
+        elif bgcolor.isValid():
+            self.setbgcolor(QtGui.QColor(bgcolor.toString()))
 
+    def loadSound(self):
+        "Load sound settings from config file"
+        c=self.settings.value('click')
+        if c.isValid():
+            self.setclick(unicode(c.toString()))
+        else:
+            self.noclick()
+        
+        s=self.settings.value('station')
+        if s.isValid():
+            self.setstation(unicode(s.toString()))
+        else:
+            self.nostation()
+
+    def loadGeometry(self):
         x=self.settings.value('x')
         y=self.settings.value('y')
         w=self.settings.value('w')
@@ -657,6 +687,15 @@ class MainWidget (QtGui.QGraphicsView):
             self.editorW=max(w.toInt()[0], self.minW)
             self.editorH=max(h.toInt()[0], self.minH)
         self.adjustPositions()
+
+    def loadprefs(self):
+        # Load all settings
+
+        if len(self.settings.allKeys()) == 0:
+            # First run
+            self.loadtheme(1)
+            
+        self.loadGeometry()
                 
         f=QtGui.QFont()
         fname=self.settings.value('font')
@@ -687,28 +726,8 @@ class MainWidget (QtGui.QGraphicsView):
             self.buttonStyle=0
         self.buttonstyle(self.buttonStyle)
         
-        c=self.settings.value('click')
-        if c.isValid():
-            self.setclick(unicode(c.toString()))
-        else:
-            self.noclick()
+        self.loadBG()
         
-        s=self.settings.value('station')
-        if s.isValid():
-            self.setstation(unicode(s.toString()))
-        else:
-            self.nostation()
-
-        bgcolor=self.settings.value('bgcolor')
-        bg=self.settings.value('background')
-        if not bg.isValid() and not bgcolor.isValid():
-            # Probably first run
-            self.nextbg()        
-        elif bg.isValid():
-            self.setbg(unicode(bg.toString()))
-        elif bgcolor.isValid():
-            self.setbgcolor(QtGui.QColor(bgcolor.toString()))
-
         l=self.settings.value('lang')
         if l.isValid():
             self.setspellchecker(unicode(l.toString()))
@@ -722,6 +741,7 @@ class MainWidget (QtGui.QGraphicsView):
             style='default'
         print 'Loading style:',style
         QtCore.QCoreApplication.instance().setStyleSheet(open(os.path.join(PATH,'stylesheets',style)).read())        
+        QtCore.QTimer.singleShot(10,self.loadSound)
 
     def setspellchecker(self, code):
         if isinstance (code, int):
@@ -1068,14 +1088,9 @@ class MainWidget (QtGui.QGraphicsView):
             self.handles[1].setPos(self.editorX+self.editorW,self.editorY-2*m)
             self.handles[2].setPos(self.editorX+self.editorW,self.editorY+self.editorH)
             self.handles[3].setPos(self.editorX-2*m,self.editorY+self.editorH)
-            if self.hasSize:
-                self.settings.setValue('x',int(self.editorX))
-                self.settings.setValue('y',int(self.editorY))
-                self.settings.setValue('w',int(self.editorW))
-                self.settings.setValue('h',int(self.editorH))
-                self.settings.sync()
             self.notifBar.proxy.setPos(self.editorX-m, self.editorY+self.editorH+2*m)
             self.notifBar.setFixedWidth(self.editorW+2*m)
+            self.saveEditorGeometry()
 
     def scenechanged(self,region):
         if not self.changing:
@@ -1217,16 +1232,17 @@ class MainWidget (QtGui.QGraphicsView):
         QtCore.QCoreApplication.instance().restoreOverrideCursor()
 
     def _show(self):
-        self.showButtons()
+        self.loadGeometry()
+        self.raise_()
+        self.loadBG()
         self.showFullScreen()
         self.show()
-        self.raise_()
         self.activateWindow()
-        self.adjustPositions()
         self.setFocus()
         self.editor.setFocus()
         if not SOUND:
             QtCore.QTimer.singleShot(2000,self.warnnosound)
+        QtCore.QTimer.singleShot(0,self.init)
         
 def main():
 
@@ -1252,13 +1268,11 @@ def main():
         QtGui.QMessageBox.information(None,'FOCUS!','Marave only opens one document at a time.\nThe whole idea is focusing!\nSo, this is the first one you asked for.')
 
     window=MainWidget(opengl=options.opengl)
-    if len(args) == 1:
-        window.editor.open(args[0])
-    window.show()
-    window.raise_()
-    window.activateWindow()
+    #if len(args) == 1:
+        #window.editor.open(args[0])
+    load=lambda: window.editor.open(args[0])
     QtCore.QTimer.singleShot(0,window._show)
-    
+    QtCore.QTimer.singleShot(10,load)
     
     # It's exec_ because exec is a reserved word in Python
     sys.exit(app.exec_())

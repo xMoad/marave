@@ -1222,10 +1222,15 @@ class MainWidget (QtGui.QGraphicsView):
             QtCore.QTimer.singleShot(2000,self.warnnosound)
         
 def main():
-    # Again, this is boilerplate, it's going to be the same on
-    # almost every app you write
+
     app = QtGui.QApplication(sys.argv)
     app.setApplicationName('Marave')
+
+    locale = QtCore.QLocale.system().name()
+    translator=QtCore.QTranslator()
+    translator.load("marave_" + locale)
+    app.installTranslator(translator)
+
 
     parser = optparse.OptionParser()
     parser.add_option('--opengl', 

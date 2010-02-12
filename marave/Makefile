@@ -20,4 +20,4 @@ marave_es.qm: marave_es.ts
 	lrelease marave_es.ts -compress -qm marave_es.qm
 	
 update_trans:
-	pylupdate4 *py -ts $(TRANSLATIONS)
+	pylupdate4 *py -noobsolete -ts $(TRANSLATIONS)

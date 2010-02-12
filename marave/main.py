@@ -294,13 +294,13 @@ class MainWidget (QtGui.QGraphicsView):
         self.editor.setFrameStyle(QtGui.QFrame.NoFrame)
         self.editor.modificationChanged.connect(self.setWindowModified)
         # Keyboard shortcuts
-        self.sc1 = QtGui.QShortcut(QtGui.QKeySequence("Ctrl+F"), self);
+        self.sc1 = QtGui.QShortcut(QtGui.QKeySequence(self.tr("Ctrl+F","Find")), self);
         self.sc1.activated.connect(self.showsearch)
-        self.sc1b = QtGui.QShortcut(QtGui.QKeySequence("Ctrl+R"), self);
+        self.sc1b = QtGui.QShortcut(QtGui.QKeySequence(self.tr("Ctrl+R","Find and Replace")), self);
         self.sc1b.activated.connect(self.showsearchreplace)
 
         # Taj mode!
-        self.sc2 = QtGui.QShortcut(QtGui.QKeySequence("Ctrl+T"), self);
+        self.sc2 = QtGui.QShortcut(QtGui.QKeySequence(self.tr("Ctrl+T","Taj Mode")), self);
         self.sc2.activated.connect(self.tajmode)
 
         ## Spell checker toggle
@@ -308,26 +308,26 @@ class MainWidget (QtGui.QGraphicsView):
         #self.sc3.activated.connect(self.togglespell)
 
         # Action shortcuts
-        self.sc4 = QtGui.QShortcut(QtGui.QKeySequence("Ctrl+O"), self);
+        self.sc4 = QtGui.QShortcut(QtGui.QKeySequence(self.tr("Ctrl+O","Open File")), self);
         self.sc4.activated.connect(self.editor.open)
-        self.sc5 = QtGui.QShortcut(QtGui.QKeySequence("Ctrl+S"), self);
+        self.sc5 = QtGui.QShortcut(QtGui.QKeySequence(self.tr("Ctrl+S","Save File")), self);
         self.sc5.activated.connect(self.editor.save)
-        self.sc6 = QtGui.QShortcut(QtGui.QKeySequence("Shift+Ctrl+S"), self);
+        self.sc6 = QtGui.QShortcut(QtGui.QKeySequence(self.tr("Shift+Ctrl+S","Save File As")), self);
         self.sc6.activated.connect(self.editor.saveas)
-        self.sc7 = QtGui.QShortcut(QtGui.QKeySequence("Ctrl+N"), self);
+        self.sc7 = QtGui.QShortcut(QtGui.QKeySequence(self.tr("Ctrl+N","New File")), self);
         self.sc7.activated.connect(self.editor.new)
-        self.sc8 = QtGui.QShortcut(QtGui.QKeySequence("Ctrl+Q"), self);
+        self.sc8 = QtGui.QShortcut(QtGui.QKeySequence(self.tr("Ctrl+Q","Quit")), self);
 
         # Prefs
-        self.sc9 = QtGui.QShortcut(QtGui.QKeySequence("Shift+Ctrl+P"), self);
+        self.sc9 = QtGui.QShortcut(QtGui.QKeySequence(self.tr("Shift+Ctrl+P","Show Preferences")), self);
         self.sc9.activated.connect(self.showprefs)
 
         # Document information
-        self.sc10 = QtGui.QShortcut(QtGui.QKeySequence("Ctrl+I"), self);
+        self.sc10 = QtGui.QShortcut(QtGui.QKeySequence(self.tr("Ctrl+I","Show Document Info")), self);
         self.sc10.activated.connect(self.showinfo)
 
         # Help
-        self.sc11 = QtGui.QShortcut(QtGui.QKeySequence("F1"), self);
+        self.sc11 = QtGui.QShortcut(QtGui.QKeySequence(self.tr("F1","Help")), self);
         self.sc11.activated.connect(self.showhelp)
 
         self.editorBG=QtGui.QGraphicsRectItem()
@@ -348,16 +348,16 @@ class MainWidget (QtGui.QGraphicsView):
             self._scene.addItem(h)
             self.handles.append(h)
 
-        self.fontButton=FunkyButton("fonts.svg", 'Font', self._scene, 0)
-        self.sizeButton=FunkyButton("size.svg", 'Size', self._scene, 0)
-        self.fileButton=FunkyButton("file.svg", 'File', self._scene, 0)
-        self.bgButton=FunkyButton("bg.svg", 'Bg', self._scene, 0)
+        self.fontButton=FunkyButton("fonts.svg", self.tr('Font'), self._scene, 0)
+        self.sizeButton=FunkyButton("size.svg", self.tr('Size'), self._scene, 0)
+        self.fileButton=FunkyButton("file.svg", self.tr('File'), self._scene, 0)
+        self.bgButton=FunkyButton("bg.svg", self.tr('Bg'), self._scene, 0)
         if SOUND:
-            self.clickButton=FunkyButton("click.svg", 'Click', self._scene, 0)
-            self.musicButton=FunkyButton("music.svg", 'Music', self._scene, 0)
-        self.configButton=FunkyButton("configure.svg", 'Options', self._scene, 0)
+            self.clickButton=FunkyButton("click.svg", self.tr('Click'), self._scene, 0)
+            self.musicButton=FunkyButton("music.svg", self.tr('Music'), self._scene, 0)
+        self.configButton=FunkyButton("configure.svg", self.tr('Options'), self._scene, 0)
         self.configButton.clicked.connect(self.showprefs)
-        self.quitButton=FunkyButton("exit.svg", 'Quit', self._scene, 0)
+        self.quitButton=FunkyButton("exit.svg", self.tr('Quit'), self._scene, 0)
         self.quitButton.clicked.connect(self.close)
         self.sc8.activated.connect(self.quitButton.animateClick)
 
@@ -374,47 +374,47 @@ class MainWidget (QtGui.QGraphicsView):
 
         self.fontList=FunkyFontList(self._scene,0)
         self.fontList.currentFontChanged.connect(self.changefont)
-        self.fontColor=FunkyButton("color.svg", 'Color', self._scene,0)
+        self.fontColor=FunkyButton("color.svg", self.tr('Color'), self._scene,0)
         self.fontColor.clicked.connect(self.setfontcolor)
         self.fontButton.children+=[self.fontList,self.fontColor]
 
-        self.size1=FunkyButton("minus.svg", 'Smaller', self._scene,0)
-        self.size2=FunkyButton("equals.svg", 'Default', self._scene,0)
-        self.size3=FunkyButton("plus.svg", 'Larger', self._scene,0)
+        self.size1=FunkyButton("minus.svg", self.tr('Smaller'), self._scene,0)
+        self.size2=FunkyButton("equals.svg", self.tr('Default'), self._scene,0)
+        self.size3=FunkyButton("plus.svg", self.tr('Larger'), self._scene,0)
         self.size1.clicked.connect(self.editor.smaller)
         self.size3.clicked.connect(self.editor.larger)
         self.size2.clicked.connect(self.editor.default)
         self.sizeButton.children+=[self.size1, self.size2, self.size3]
 
 
-        self.file1=FunkyButton("open.svg", 'Open', self._scene, 0)
-        self.file2=FunkyButton("save.svg", 'Save', self._scene, 0)
-        self.file3=FunkyButton("saveas.svg", 'Save As', self._scene, 0)
+        self.file1=FunkyButton("open.svg", self.tr('Open'), self._scene, 0)
+        self.file2=FunkyButton("save.svg", self.tr('Save'), self._scene, 0)
+        self.file3=FunkyButton("saveas.svg", self.tr('Save As'), self._scene, 0)
         self.file1.clicked.connect(self.editor.open)
         self.file2.clicked.connect(self.editor.save)
         self.file3.clicked.connect(self.editor.saveas)
         self.fileButton.children+=[self.file1, self.file2, self.file3]
 
-        self.bg1=FunkyButton("previous.svg", 'Previous', self._scene,0)
-        self.bg2=FunkyButton("next.svg", 'Next', self._scene,0)
-        self.bg3=FunkyButton("color.svg", 'Color', self._scene,0)
+        self.bg1=FunkyButton("previous.svg", self.tr('Previous'), self._scene,0)
+        self.bg2=FunkyButton("next.svg", self.tr('Next'), self._scene,0)
+        self.bg3=FunkyButton("color.svg", self.tr('Color'), self._scene,0)
         self.bg1.clicked.connect(self.prevbg)
         self.bg2.clicked.connect(self.nextbg)
         self.bg3.clicked.connect(self.setbgcolor)
         self.bgButton.children+=[self.bg1, self.bg2, self.bg3]
 
         if SOUND:
-            self.click1=FunkyButton("previous.svg", 'Previous', self._scene,0)
-            self.click2=FunkyButton("next.svg", 'Next', self._scene,0)
-            self.click3=FunkyButton("mute.svg", 'Mute', self._scene,0)
+            self.click1=FunkyButton("previous.svg", self.tr('Previous'), self._scene,0)
+            self.click2=FunkyButton("next.svg", self.tr('Next'), self._scene,0)
+            self.click3=FunkyButton("mute.svg", self.tr('None'), self._scene,0)
             self.click1.clicked.connect(self.prevclick)
             self.click2.clicked.connect(self.nextclick)
             self.click3.clicked.connect(self.noclick)
             self.clickButton.children+=[self.click1, self.click2, self.click3]
         
-            self.music1=FunkyButton("previous.svg", 'Previous', self._scene,0)
-            self.music2=FunkyButton("next.svg", 'Next', self._scene,0)
-            self.music3=FunkyButton("mute.svg", 'Mute', self._scene,0)
+            self.music1=FunkyButton("previous.svg", self.tr('Previous'), self._scene,0)
+            self.music2=FunkyButton("next.svg", self.tr('Next'), self._scene,0)
+            self.music3=FunkyButton("mute.svg", self.tr('None'), self._scene,0)
             self.music1.clicked.connect(self.prevstation)
             self.music2.clicked.connect(self.nextstation)
             self.music3.clicked.connect(self.nostation)
@@ -480,7 +480,7 @@ class MainWidget (QtGui.QGraphicsView):
         self.loadprefs()
 
     def warnnosound(self):
-        self.notify('Sound support is not available, disabling sound')
+        self.notify(unicode(self.tr('Sound support is not available, disabling sound')))
 
     def showhelp(self):
         QtGui.QDesktopServices.openUrl(QtCore.QUrl('file://'+PATH+'/README.html'))
@@ -490,7 +490,12 @@ class MainWidget (QtGui.QGraphicsView):
         lc=len(txt.splitlines())
         wc=len(re.split('\n\t ',txt))
         name=os.path.basename(self.editor.docName) or "UNNAMED"
-        self.notify('Document: %s -- %d words %d lines %d characters.'%(name,wc,lc,len(txt) ))
+        s1=unicode(self.tr('Document: %s'))%name
+        s2=unicode(self.tr('%n words','',wc))
+        s3=unicode(self.tr('%n lines','',lc))
+        s4=unicode(self.tr('%n characters','',len(txt)))
+        
+        self.notify(s1+u' -- '+s2+u' -- '+s3+u' -- '+s4)
 
     def notifChanged(self, msg):
         if unicode(msg):
@@ -500,7 +505,7 @@ class MainWidget (QtGui.QGraphicsView):
         self.notifBar.moveOpacity()
 
     def notify(self, text):
-        print 'NOTIF:',text
+        print 'NOTIF:',text.encode('utf-8')
         self.notifBar.showMessage(text, 3000)
         self.notifBar.proxy.setPos(self.editorX, self.editorY+self.editorH+self.m)
 
@@ -535,7 +540,7 @@ class MainWidget (QtGui.QGraphicsView):
         self._scene.addItem(self.mainMenu)
 
     def editoropacity(self, v):
-        self.notify("Setting opacity to: %s%%"%v)
+        self.notify(unicode(self.tr("Setting opacity to: %s%%"))%v)
         self.editorBG.setOpacity(v/100.)
         self.settings.setValue("editoropacity",v)
         self.settings.sync()
@@ -562,7 +567,7 @@ class MainWidget (QtGui.QGraphicsView):
     def loadstyle(self, styleidx):
         stylename=unicode(self.prefsWidget.ui.styleList.itemText(styleidx))
         stylefile=os.path.join(PATH,'stylesheets',stylename)
-        self.notify ('Changing to style %s reqires restarting Marave'%stylename)
+        self.notify (unicode(self.tr('Changing to style %s requires restarting Marave'))%stylename)
         self.settings.setValue('style',stylename)
         self.settings.sync()
         
@@ -739,8 +744,9 @@ class MainWidget (QtGui.QGraphicsView):
     def close(self):
         QtCore.QCoreApplication.instance().setOverrideCursor(QtCore.Qt.ArrowCursor)
         if self.editor.document().isModified():
-            r=QtGui.QMessageBox.question(self, "Close Document - Marave", "The document \"%s\" has been modified."\
-                "\nDo you want to save your changes or discard them?"%self.editor.docName or "UNNAMED",
+            r=QtGui.QMessageBox.question(self, self.tr("Close Document - Marave"), 
+                unicode(self.tr("The document \"%s\" has been modified."))%(self.editor.docName or self.tr("UNNAMED"))+
+                self.tr("\nDo you want to save your changes or discard them?"),
                 QtGui.QMessageBox.Save|QtGui.QMessageBox.Discard|QtGui.QMessageBox.Cancel,QtGui.QMessageBox.Cancel)
             if r==QtGui.QMessageBox.Save:
                 self.editor.save()
@@ -840,7 +846,7 @@ class MainWidget (QtGui.QGraphicsView):
     def setclick(self, clickname):
         if not SOUND: return
         self.currentClick=clickname
-        self.notify('Switching click to: %s'%self.currentClick)
+        self.notify(unicode(self.tr('Switching click to: %s'))%self.currentClick)
         self.beep = Phonon.createPlayer(Phonon.NotificationCategory,
                                   Phonon.MediaSource(os.path.join(PATH,'clicks',self.currentClick)))
         self.beep.play()
@@ -868,13 +874,13 @@ class MainWidget (QtGui.QGraphicsView):
         self.setclick(clist[idx])
 
     def noclick(self):
-        self.notify('Disabling click')
+        self.notify(unicode(self.tr('Disabling click')))
         self.beep=None
         self.currentClick=None
 
     def audiometadatachanged(self):
         try:
-            self.notify ('Listening to: %s'%self.music.metaData('TITLE')[0])
+            self.notify (unicode(self.tr('Listening to: %s'))%self.music.metaData('TITLE')[0])
         except:
             pass
     
@@ -907,14 +913,14 @@ class MainWidget (QtGui.QGraphicsView):
     def nostation(self):
         if self.music:
             self.music.stop()
-            self.notify('Disabling music')
+            self.notify(unicode(self.tr('Disabling music')))
         self.currentStation=None
         
     def setbg(self, bg):
         #from pudb import set_trace; set_trace()
         self.currentBG=bg
         self.bgcolor=None
-        self.notify('Setting background to: %s'%self.currentBG)
+        self.notify(unicode(self.tr('Setting background to: %s'))%self.currentBG)
         if self.currentBG.split('.')[-1] in ["svg","svgz"]:
             # Render the SVG to a QImage
             renderer=QtSvg.QSvgRenderer(os.path.join(PATH,'backgrounds',bg))
@@ -965,7 +971,7 @@ class MainWidget (QtGui.QGraphicsView):
                 pm.fill(bgcolor)
                 self.bgItem.setPixmap(pm)
                 self.bgItem.setPos(0,0)
-                self.notify('Setting background to: %s'%bgcolor.name())
+                self.notify(unicode(self.tr('Setting background to: %s'))%bgcolor.name())
         else:
             if self.bgcolor:
                 self.setbgcolor(QtGui.QColorDialog.getColor(self.bgcolor, self))

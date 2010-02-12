@@ -292,6 +292,7 @@ class MainWidget (QtGui.QGraphicsView):
         self.editor.show()
         self.editor.setMouseTracking(True)
         self.editor.setFrameStyle(QtGui.QFrame.NoFrame)
+        self.editor.modificationChanged.connect(self.setWindowModified)
         # Keyboard shortcuts
         self.sc1 = QtGui.QShortcut(QtGui.QKeySequence("Ctrl+F"), self);
         self.sc1.activated.connect(self.showsearch)
@@ -1224,6 +1225,7 @@ def main():
     # Again, this is boilerplate, it's going to be the same on
     # almost every app you write
     app = QtGui.QApplication(sys.argv)
+    app.setApplicationName('Marave')
 
     parser = optparse.OptionParser()
     parser.add_option('--opengl', 

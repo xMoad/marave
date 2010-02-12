@@ -7,5 +7,5 @@ rd dist\marave\themes\.svn /s /q
 rd dist\marave\sylesheets\.svn /s /q
 rd dist\marave\clicks\.svn /s /q
 rd dist\marave\icons\.svn /s /q
-
+copy vcredist_x86.exe dist\marave
 "c:\Program Files\NSIS\makensisw.exe" marave.nsi

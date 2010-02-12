@@ -204,6 +204,7 @@ class FunkyStatusBar(QtGui.QStatusBar, animatedOpacity):
 class FunkyEditor(EditorClass, animatedOpacity):
     def __init__(self, parent):
         # This is for Issue 28
+        # FIXME: this is not necessary for Oxygen of KDE 4.4 and Qt 4.6
         if QtCore.QCoreApplication.instance().style().objectName() == 'oxygen':
             EditorClass.__init__(self, parent)
             self.setMouseTracking(True)

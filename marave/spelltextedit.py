@@ -144,11 +144,11 @@ class SpellTextEdit(QPlainTextEdit):
                 elif r==QtGui.QMessageBox.Discard:
                     self.docName=''
                     self.setPlainText('')
-                    self.parent().setWindowTitle('Untitled - Marave')
+                    self.parent().setWindowFilePath('Untitled')
             else:
                     self.docName=''
                     self.setPlainText('')
-                    self.parent().setWindowTitle('Untitled - Marave')
+                    self.parent().setWindowFilePath('Untitled')
         except:
             pass
         QtCore.QCoreApplication.instance().restoreOverrideCursor()
@@ -170,7 +170,7 @@ class SpellTextEdit(QPlainTextEdit):
                     QtGui.QMessageBox.information(self.parent(), "Error - Marave",
                     "%s is not a file."%fname)
             
-        self.parent().setWindowTitle('%s - Marave'%self.docName)
+        self.parent().setWindowFilePath(self.docName)
 
     def smaller(self):
         f=self.font()

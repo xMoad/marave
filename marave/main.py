@@ -1261,8 +1261,6 @@ def main():
     window.loadprefs()
     window.show()
     window.raise_()
-    window.activateWindow()
-    window.showFullScreen()
     if args:
         load=lambda: window.editor.open(args[0])
         QtCore.QTimer.singleShot(10,load)

@@ -167,6 +167,7 @@ class FunkyButton(QtGui.QPushButton, animatedOpacity):
     def __init__(self, icon, text, scene,opacity=.3):
         QtGui.QPushButton.__init__(self,QtGui.QIcon(os.path.join(PATH,'icons',icon)),"")
         self.setAttribute(QtCore.Qt.WA_Hover, True)
+        self.setAttribute(QtCore.Qt.WA_TranslucentBackground, True)
         self.baseOpacity=opacity
         self.proxy=scene.addWidget(self)
         self.proxy.setOpacity(opacity)
@@ -193,6 +194,7 @@ class FunkyStatusBar(QtGui.QStatusBar, animatedOpacity):
         QtGui.QStatusBar.__init__(self)
         self.baseOpacity=opacity
         self.proxy=scene.addWidget(self)
+        self.setAttribute(QtCore.Qt.WA_TranslucentBackground, True)
         self.proxy.setOpacity(opacity)
         self.movingOp=False
         self.setFocusPolicy(QtCore.Qt.NoFocus)

@@ -13,7 +13,7 @@ QMenu {
 FunkyButton {
     background-color: palette(window);
     border: 1px solid palette(dark);
-    border-radius: 3px;
+    border-radius: 6px;
     padding: 5px 4px 3px 4px;
     min-width: 24px;
     min-height: 24px;
@@ -35,7 +35,7 @@ QFontComboBox {
 /* The notification area below the editor */
 FunkyStatusBar {
     border: 1px solid palette(dark);
-    border-radius: 3px;
+    border-radius: 6px;
     padding: 5px 4px 3px 4px;
     background-color: palette(window);    
 }

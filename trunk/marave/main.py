@@ -468,6 +468,7 @@ class MainWidget (QtGui.QGraphicsView):
         self.searchReplaceBar=QtGui.QGraphicsWidget()
         self.searchReplaceBar.setLayout(searchReplaceLayout)
         self._scene.addItem(self.searchReplaceBar)
+        self.mainMenu=QtGui.QGraphicsWidget()
 
     def warnnosound(self):
         self.notify(unicode(self.tr('Sound support is not available, disabling sound')))
@@ -523,7 +524,6 @@ class MainWidget (QtGui.QGraphicsView):
             mainMenuLayout.addItem(self.music2.proxy,5,2)
             mainMenuLayout.addItem(self.music3.proxy,5,3)
             
-        self.mainMenu=QtGui.QGraphicsWidget()
         self.mainMenu.setLayout(mainMenuLayout)
         self.mainMenu.setPos(self.editorX+self.editorW+20,self.editorY)
         self._scene.addItem(self.mainMenu)

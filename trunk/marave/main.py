@@ -479,7 +479,7 @@ class MainWidget (QtGui.QGraphicsView):
     def showinfo(self):
         txt=unicode(self.editor.toPlainText())
         lc=len(txt.splitlines())
-        wc=len(re.split('\n\t ',txt))
+        wc=len(re.split('[\n\t ]',txt))
         name=os.path.basename(self.editor.docName) or "UNNAMED"
         s1=unicode(self.tr('Document: %s'))%name
         s2=unicode(self.tr('%n words','',wc))

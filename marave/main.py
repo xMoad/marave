@@ -62,7 +62,7 @@ class animatedOpacity:
             if self.proxy.opacity()<self.targetOpacity:
                 self.proxy.setOpacity(self.proxy.opacity()+self.step)
             else:
-                self.proxy.setOpacity(self.proxy.opacity()+self.step)
+                self.proxy.setOpacity(self.proxy.opacity()-self.step)
             QtCore.QTimer.singleShot(10,self.moveOpacity)
 
     def showChildren(self):

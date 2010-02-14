@@ -274,6 +274,9 @@ class MainWidget (QtGui.QGraphicsView):
         self.buttonStyle=0
         self.lang=None
 
+        self.mainMenu=QtGui.QGraphicsWidget()
+        self._scene.addItem(self.mainMenu)
+
         self.stations=[x.strip() for x in open(os.path.join(PATH,'radios.txt')).readlines()]
 
         self.setHorizontalScrollBarPolicy(QtCore.Qt.ScrollBarAlwaysOff)
@@ -468,7 +471,6 @@ class MainWidget (QtGui.QGraphicsView):
         self.searchReplaceBar=QtGui.QGraphicsWidget()
         self.searchReplaceBar.setLayout(searchReplaceLayout)
         self._scene.addItem(self.searchReplaceBar)
-        self.mainMenu=QtGui.QGraphicsWidget()
 
     def warnnosound(self):
         self.notify(unicode(self.tr('Sound support is not available, disabling sound')))
@@ -523,10 +525,11 @@ class MainWidget (QtGui.QGraphicsView):
             mainMenuLayout.addItem(self.music1.proxy,5,1)
             mainMenuLayout.addItem(self.music2.proxy,5,2)
             mainMenuLayout.addItem(self.music3.proxy,5,3)
-            
+
+        self.mainMenu=QtGui.QGraphicsWidget()
+        self._scene.addItem(self.mainMenu)
         self.mainMenu.setLayout(mainMenuLayout)
         self.mainMenu.setPos(self.editorX+self.editorW+20,self.editorY)
-        self._scene.addItem(self.mainMenu)
 
     def editoropacity(self, v):
         self.notify(unicode(self.tr("Setting opacity to: %s%%"))%v)
@@ -567,7 +570,10 @@ class MainWidget (QtGui.QGraphicsView):
         themefile=os.path.join(PATH,'themes',themename)
         self.oldSettings=self.settings
         self.settings=QtCore.QSettings(themefile,QtCore.QSettings.IniFormat)
-        self.loadprefs()
+        #self.loadprefs()
+        self.loadBG()
+        self.loadOpacity()
+        self.loadFont()
         self.settings=self.oldSettings
         self.saveprefs()
         
@@ -671,15 +677,7 @@ class MainWidget (QtGui.QGraphicsView):
             self.editorH=max(h.toInt()[0], self.minH)
         self.adjustPositions()
 
-    def loadprefs(self):
-        # Load all settings
-
-        if len(self.settings.allKeys()) == 0:
-            # First run
-            self.loadtheme(1)
-            
-        self.loadGeometry()
-                
+    def loadFont(self):
         f=QtGui.QFont()
         fname=self.settings.value('font')
         if fname.isValid():
@@ -695,12 +693,24 @@ class MainWidget (QtGui.QGraphicsView):
         fontcolor=self.settings.value('fontcolor')
         if fontcolor.isValid():
             self.setfontcolor(QtGui.QColor(fontcolor.toString()))
-        
+
+    def loadOpacity(self):
         o,ok=self.settings.value('editoropacity').toInt()
         if ok:
             self.editorBG.setOpacity(o/100.)
         else:
             self.editorBG.setOpacity(.03)
+
+    def loadprefs(self):
+        # Load all settings
+
+        if len(self.settings.allKeys()) == 0:
+            # First run
+            self.loadtheme(1)
+            
+        self.loadGeometry()
+        self.loadFont()
+        self.loadOpacity()
         
         bs,ok=self.settings.value('buttonstyle').toInt()
         if ok:

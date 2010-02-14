@@ -1,5 +1,5 @@
-TRANSLATIONS=marave_es.ts 
-TRANSLATED=marave_es.qm
+TRANSLATIONS=marave_es.ts marave_he.ts
+TRANSLATED=marave_es.qm marave_he.qm
 
 all: icons_rc.py Ui_searchreplacewidget.py Ui_searchwidget.py \
      Ui_prefs.py update_trans $(TRANSLATED) README.html
@@ -18,6 +18,8 @@ Ui_prefs.py: prefs.ui
 
 marave_es.qm: marave_es.ts
 	lrelease marave_es.ts -compress -qm marave_es.qm
+marave_he.qm: marave_he.ts
+	lrelease marave_he.ts -compress -qm marave_he.qm
 	
 update_trans:
 	pylupdate4 *py -noobsolete -ts $(TRANSLATIONS)

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS><TS version="1.1" language="es_AR">
+<!DOCTYPE TS><TS version="1.1" language="he_IN">
 <context>
     <name>Form</name>
     <message>
         <location filename="Ui_searchwidget.py" line="59"/>
         <source>Form</source>
-        <translation>Form</translation>
+        <translation>טופס</translation>
     </message>
     <message>
         <location filename="Ui_searchwidget.py" line="60"/>
@@ -20,82 +20,82 @@
     <message>
         <location filename="Ui_prefs.py" line="103"/>
         <source>&amp;Theme:</source>
-        <translation>&amp;Tema:</translation>
+        <translation>&amp;ערכת נושא:</translation>
     </message>
     <message>
         <location filename="Ui_prefs.py" line="106"/>
         <source>&amp;Spell Checking:</source>
-        <translation>&amp;Corrector Ortográfico:</translation>
+        <translation>&amp;בדיקת איות:</translation>
     </message>
     <message>
         <location filename="Ui_prefs.py" line="107"/>
         <source>&amp;Buttons:</source>
-        <translation>&amp;Botones:</translation>
+        <translation>&amp;לחצנים:</translation>
     </message>
     <message>
         <location filename="Ui_prefs.py" line="108"/>
         <source>Icons</source>
-        <translation>Iconos</translation>
+        <translation>סמלים</translation>
     </message>
     <message>
         <location filename="Ui_prefs.py" line="109"/>
         <source>Text</source>
-        <translation>Texto</translation>
+        <translation>טקסט</translation>
     </message>
     <message>
         <location filename="Ui_prefs.py" line="110"/>
         <source>Text + Icons</source>
-        <translation>Texto + Iconos</translation>
+        <translation>טקסט וסמלים</translation>
     </message>
     <message>
         <location filename="Ui_prefs.py" line="111"/>
         <source>&amp;Editor Opacity:</source>
-        <translation>Opacidad del &amp;editor:</translation>
+        <translation>&amp;אטימות העורך:</translation>
     </message>
     <message>
         <location filename="Ui_prefs.py" line="105"/>
         <source>St&amp;yle</source>
-        <translation>&amp;Estilo</translation>
+        <translation>&amp;סגנון</translation>
     </message>
     <message>
         <location filename="Ui_searchwidget.py" line="62"/>
         <source>&amp;Find:</source>
-        <translation>&amp;Buscar:</translation>
+        <translation>&amp;חיפוש:</translation>
     </message>
     <message>
         <location filename="Ui_searchwidget.py" line="63"/>
         <source>&amp;Previous</source>
-        <translation>&amp;Anterior</translation>
+        <translation>ה&amp;קודם</translation>
     </message>
     <message>
         <location filename="Ui_searchwidget.py" line="64"/>
         <source>&amp;Next</source>
-        <translation>&amp;Siguiente</translation>
+        <translation>ה&amp;בא</translation>
     </message>
     <message>
         <location filename="Ui_searchwidget.py" line="65"/>
         <source>&amp;Match Case</source>
-        <translation>&amp;Distinguir Mayúsculas</translation>
+        <translation>&amp;התאמת רשיות</translation>
     </message>
     <message>
         <location filename="Ui_searchreplacewidget.py" line="85"/>
         <source>Rep&amp;lace:</source>
-        <translation>Reemp&amp;lazar:</translation>
+        <translation>ה&amp;חלפה:</translation>
     </message>
     <message>
         <location filename="Ui_searchreplacewidget.py" line="86"/>
         <source>&amp;Replace</source>
-        <translation>&amp;Reemplazar</translation>
+        <translation>הח&amp;לפה</translation>
     </message>
     <message>
         <location filename="Ui_searchreplacewidget.py" line="87"/>
         <source>Replace &amp;All</source>
-        <translation>Reemplazar &amp;Todo</translation>
+        <translation>החלפת ה&amp;כל</translation>
     </message>
     <message>
         <location filename="Ui_prefs.py" line="112"/>
         <source>Auto save (minutes):</source>
-        <translation>Guardar automáticamente (minutos):</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -103,262 +103,262 @@
     <message>
         <location filename="main.py" line="515"/>
         <source>Sound support is not available, disabling sound</source>
-        <translation>Soporte para sonido no disponible, inhabilitando sonidos</translation>
+        <translation>התמיכה בצלילים אינה זמינה, השמע מבוטל</translation>
     </message>
     <message>
         <location filename="main.py" line="525"/>
         <source>Document: %s</source>
-        <translation>Documento: %s</translation>
+        <translation>מסמך: %s</translation>
     </message>
     <message numerus="yes">
         <location filename="main.py" line="526"/>
         <source>%n words</source>
         <translation>
-            <numerusform>%n palabra</numerusform>
-            <numerusform>%n palabras</numerusform>
+            <numerusform>מילה אחת</numerusform>
+            <numerusform>%n מילים</numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <location filename="main.py" line="527"/>
         <source>%n lines</source>
         <translation>
-            <numerusform>%n línea</numerusform>
-            <numerusform>%n líneas</numerusform>
+            <numerusform>שורה אחת</numerusform>
+            <numerusform>%n שורות</numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <location filename="main.py" line="528"/>
         <source>%n characters</source>
         <translation>
-            <numerusform>%n caracter</numerusform>
-            <numerusform>%n caracteres</numerusform>
+            <numerusform>תו אחד</numerusform>
+            <numerusform>%n תווים</numerusform>
         </translation>
     </message>
     <message>
         <location filename="main.py" line="801"/>
         <source>Close Document - Marave</source>
-        <translation>Cerrar Documento - Marave</translation>
+        <translation>סגירת המסמך - Marave</translation>
     </message>
     <message>
         <location filename="main.py" line="801"/>
         <source>The document &quot;%s&quot; has been modified.</source>
-        <translation>El documento &quot;%s&quot; ha sido modificado.</translation>
+        <translation>נערכו שינויים למסמך &quot;%s&quot;.</translation>
     </message>
     <message>
         <location filename="main.py" line="801"/>
         <source>UNNAMED</source>
-        <translation>SIN NOMBRE</translation>
+        <translation>ללא שם</translation>
     </message>
     <message>
         <location filename="main.py" line="801"/>
         <source>
 Do you want to save your changes or discard them?</source>
-        <translation>¿Desea guardar sus cambios o descartarlos?</translation>
+        <translation>האם לשמור את השינויים שנערכו או להתעלם מהם?</translation>
     </message>
     <message>
         <location filename="main.py" line="366"/>
         <source>Font</source>
-        <translation>TIpografía
+        <translation>גופן
 </translation>
     </message>
     <message>
         <location filename="main.py" line="367"/>
         <source>Size</source>
-        <translation>Tamaño</translation>
+        <translation>גודל</translation>
     </message>
     <message>
         <location filename="main.py" line="368"/>
         <source>File</source>
-        <translation>Archivo</translation>
+        <translation>קובץ</translation>
     </message>
     <message>
         <location filename="main.py" line="369"/>
         <source>Bg</source>
-        <translation>Fondo</translation>
+        <translation>רקע</translation>
     </message>
     <message>
         <location filename="main.py" line="371"/>
         <source>Click</source>
-        <translation>Click</translation>
+        <translation>לחיצה</translation>
     </message>
     <message>
         <location filename="main.py" line="372"/>
         <source>Music</source>
-        <translation>Música</translation>
+        <translation>מוזיקה</translation>
     </message>
     <message>
         <location filename="main.py" line="373"/>
         <source>Options</source>
-        <translation>Opciones</translation>
+        <translation>אפשרויות</translation>
     </message>
     <message>
         <location filename="main.py" line="375"/>
         <source>Quit</source>
-        <translation>Salir</translation>
+        <translation>יציאה</translation>
     </message>
     <message>
         <location filename="main.py" line="415"/>
         <source>Color</source>
-        <translation>Color</translation>
+        <translation>צבע</translation>
     </message>
     <message>
         <location filename="main.py" line="396"/>
         <source>Smaller</source>
-        <translation>Menor</translation>
+        <translation>קטן יותר</translation>
     </message>
     <message>
         <location filename="main.py" line="397"/>
         <source>Default</source>
-        <translation>Normal</translation>
+        <translation>ברירת מחדל</translation>
     </message>
     <message>
         <location filename="main.py" line="398"/>
         <source>Larger</source>
-        <translation>Mayor</translation>
+        <translation>גדול יותר</translation>
     </message>
     <message>
         <location filename="main.py" line="405"/>
         <source>Open</source>
-        <translation>Abrir</translation>
+        <translation>פתיחה</translation>
     </message>
     <message>
         <location filename="main.py" line="406"/>
         <source>Save</source>
-        <translation>Guardar</translation>
+        <translation>שמירה</translation>
     </message>
     <message>
         <location filename="main.py" line="407"/>
         <source>Save As</source>
-        <translation>Guardar Como</translation>
+        <translation>שמירה בשם</translation>
     </message>
     <message>
         <location filename="main.py" line="430"/>
         <source>Previous</source>
-        <translation>Anterior</translation>
+        <translation>הקודם</translation>
     </message>
     <message>
         <location filename="main.py" line="431"/>
         <source>Next</source>
-        <translation>Siguiente</translation>
+        <translation>הבא</translation>
     </message>
     <message>
         <location filename="main.py" line="432"/>
         <source>None</source>
-        <translation>Ninguna</translation>
+        <translation>אין</translation>
     </message>
     <message>
         <location filename="main.py" line="574"/>
         <source>Setting opacity to: %s%%</source>
-        <translation>Opacidad: %s%%</translation>
+        <translation>הגדרת האטימות ל־: %s%%</translation>
     </message>
     <message>
         <location filename="main.py" line="903"/>
         <source>Switching click to: %s</source>
-        <translation>Cambiando click a: %s</translation>
+        <translation>החלפת הלחיצה ל־: %s</translation>
     </message>
     <message>
         <location filename="main.py" line="931"/>
         <source>Disabling click</source>
-        <translation>Inhabilitando click</translation>
+        <translation>נטרול הלחיצה</translation>
     </message>
     <message>
         <location filename="main.py" line="937"/>
         <source>Listening to: %s</source>
-        <translation>Escuchando: %s</translation>
+        <translation>השיר ברקע: %s</translation>
     </message>
     <message>
         <location filename="main.py" line="970"/>
         <source>Disabling music</source>
-        <translation>Inhabilitando música</translation>
+        <translation>נטרול המוזיקה</translation>
     </message>
     <message>
         <location filename="main.py" line="1029"/>
         <source>Setting background to: %s</source>
-        <translation>Cambiando fondo a: %s</translation>
+        <translation>הגדרת הרקע ל־: %s</translation>
     </message>
     <message>
         <location filename="main.py" line="601"/>
         <source>Changing to style %s requires restarting Marave</source>
-        <translation>Cambiar al estilo %s requiere reiniciar Marave</translation>
+        <translation>השינוי לסגנון %s דורש את אתחול Marave</translation>
     </message>
     <message>
         <location filename="main.py" line="312"/>
         <source>Ctrl+F</source>
         <comment>Find</comment>
-        <translation></translation>
+        <translation>חיפוש</translation>
     </message>
     <message>
         <location filename="main.py" line="314"/>
         <source>Ctrl+R</source>
         <comment>Find and Replace</comment>
-        <translation></translation>
+        <translation>חיפוש והחלפה</translation>
     </message>
     <message>
         <location filename="main.py" line="318"/>
         <source>Ctrl+T</source>
         <comment>Taj Mode</comment>
-        <translation></translation>
+        <translation>מצב Taj</translation>
     </message>
     <message>
         <location filename="main.py" line="326"/>
         <source>Ctrl+O</source>
         <comment>Open File</comment>
-        <translation></translation>
+        <translation>פתיחת קובץ</translation>
     </message>
     <message>
         <location filename="main.py" line="328"/>
         <source>Ctrl+S</source>
         <comment>Save File</comment>
-        <translation></translation>
+        <translation>שמירת קובץ</translation>
     </message>
     <message>
         <location filename="main.py" line="330"/>
         <source>Shift+Ctrl+S</source>
         <comment>Save File As</comment>
-        <translation></translation>
+        <translation>שמירת קובץ בשם</translation>
     </message>
     <message>
         <location filename="main.py" line="332"/>
         <source>Ctrl+N</source>
         <comment>New File</comment>
-        <translation></translation>
+        <translation>קובץ חדש</translation>
     </message>
     <message>
         <location filename="main.py" line="334"/>
         <source>Ctrl+Q</source>
         <comment>Quit</comment>
-        <translation></translation>
+        <translation>יציאה</translation>
     </message>
     <message>
         <location filename="main.py" line="337"/>
         <source>Shift+Ctrl+P</source>
         <comment>Show Preferences</comment>
-        <translation></translation>
+        <translation>הצגת ההעדפות</translation>
     </message>
     <message>
         <location filename="main.py" line="341"/>
         <source>Ctrl+I</source>
         <comment>Show Document Info</comment>
-        <translation></translation>
+        <translation>הצגת נתוני המסמך</translation>
     </message>
     <message>
         <location filename="main.py" line="345"/>
         <source>F1</source>
         <comment>Help</comment>
-        <translation></translation>
+        <translation>עזרה</translation>
     </message>
     <message numerus="yes">
         <location filename="main.py" line="499"/>
         <source>Saving every %n minutes</source>
-        <translation>
-            <numerusform>Guardando cada %n minuto</numerusform>
-            <numerusform>Guardando cada %n minutos</numerusform>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+            <numerusform></numerusform>
         </translation>
     </message>
     <message>
         <location filename="main.py" line="503"/>
         <source>Disabled automatic saving</source>
-        <translation>Guardado automático inhabilitado</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 </TS>

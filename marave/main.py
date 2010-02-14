@@ -183,6 +183,7 @@ class FunkyFontList(QtGui.QFontComboBox, animatedOpacity):
     def __init__(self, scene,opacity=.3):
         QtGui.QFontComboBox.__init__(self)
         self.setAttribute(QtCore.Qt.WA_TranslucentBackground, True)
+        self.setSizePolicy(QtGui.QSizePolicy.Expanding,QtGui.QSizePolicy.Expanding)
         self.baseOpacity=opacity
         self.proxy=scene.addWidget(self)
         self.proxy.setOpacity(opacity)

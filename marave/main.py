@@ -1231,14 +1231,6 @@ class MainWidget (QtGui.QGraphicsView):
     def showCursor(self):
         QtCore.QCoreApplication.instance().restoreOverrideCursor()
 
-    def _show(self):
-        self.loadBG()
-        self.showFullScreen()
-        self.editor.setFocus()
-        if not SOUND:
-            QtCore.QTimer.singleShot(2000,self.warnnosound)
-        QtCore.QTimer.singleShot(0,self.init)
-
     def init(self):
         '''Initialization stuff that can really wait a little, so the window
         appears faster'''
@@ -1276,12 +1268,19 @@ def main():
 
     window=MainWidget(opengl=options.opengl)
     window.loadprefs()
+    window.loadBG()
     window.show()
     window.raise_()
+    window.showFullScreen()
+    app.processEvents()
+    window.editor.setFocus()
+    app.processEvents()
+    if not SOUND:
+        QtCore.QTimer.singleShot(2000,self.warnnosound)
+    QtCore.QTimer.singleShot(0,window.init)
     if args:
         load=lambda: window.editor.open(args[0])
         QtCore.QTimer.singleShot(10,load)
-    QtCore.QTimer.singleShot(0,window._show)
     
     # It's exec_ because exec is a reserved word in Python
     sys.exit(app.exec_())

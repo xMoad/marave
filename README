@@ -49,18 +49,18 @@ They are:
 
 * A "music station" selector
 
-  Cycle available music stations, or disbale music.
+  Cycle available music stations, or disable music.
 
 * Extra preferences
 
-  Several options, including editor opacity, spellchecking language and more.
+  Several options, including editor opacity, spell-checking language and more.
 
 * Quit
 
 CHEATCODES
 ==========
 
-Since the UI is minimal, there are some key combinatios that do things you will not
+Since the UI is minimal, there are some key combinations that do things you will not
 find any buttons for.
 
 * Undo: Ctrl+Z 
@@ -81,8 +81,7 @@ The Marave window is *always* full screen, you can't change that, but you can ch
 
 If you move your mouse, you will see 4 faint boxes in the corners. Dragging them makes the editor larger or smaller.
 
-If you place the mouse just outside the editor, it should change its shape to a hand. Clicking and dragging will let you move the editor. Remember that the buttons are on the right side, so 
-you need some space there.
+If you place the mouse just outside the editor, it should change its shape to a hand. Clicking and dragging will let you move the editor. Remember that the buttons are on the right side, so you need some space there.
 
 CUSTOMIZATION
 =============

@@ -237,6 +237,7 @@ class MainWidget (QtGui.QGraphicsView):
         QtGui.QGraphicsView.__init__(self)
         self.setWindowIcon(QtGui.QIcon(os.path.join(PATH,'icons','marave.svg')))
         self._scene=QtGui.QGraphicsScene()
+        self.setObjectName ("Main")
         if opengl:
             if QtCore.QCoreApplication.instance().style().objectName() == 'oxygen':
                 print "OpenGL acceleration doesn't work well with Oxygen, disabling it"

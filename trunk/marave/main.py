@@ -738,6 +738,7 @@ class MainWidget (QtGui.QGraphicsView):
         else:
             style='default'
         print 'Loading style:',style
+        self.prefsWidget.ui.styleList.setCurrentIndex(self.prefsWidget.ui.styleList.findText(style))
         QtCore.QCoreApplication.instance().setStyleSheet(open(os.path.join(PATH,'stylesheets',style)).read())        
         QtCore.QTimer.singleShot(10,self.loadSound)
 

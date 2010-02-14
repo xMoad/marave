@@ -42,12 +42,16 @@ class SpellTextEdit(QPlainTextEdit):
             return
         # Default dictionary based on the current locale.
         if lang==None:
-            self.dict = enchant.Dict()
+            try:
+                self.dict = enchant.Dict()
+            except enchant.DictNotFoundError:
+                self.dict=None
         else:
             self.dict = enchant.Dict(lang)
         self.highlighter = Highlighter(self.document())
-        self.highlighter.setDict(self.dict)
-        self.highlighter.rehighlight()
+        if self.dict:
+            self.highlighter.setDict(self.dict)
+            self.highlighter.rehighlight()
 
     def killDict(self):
         print 'Disabling spellchecker'

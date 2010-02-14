@@ -29,11 +29,6 @@ FunkyButton:pressed {
 
 /* Font selector */
 QFontComboBox {
-    min-width: null;
-/*    min-height: 24px;
-    max-height: 24px;*/
-//     min-width: 200;
-/*    padding: 9px 0px 6px 3px; */
 }
 
 /* The notification area below the editor */

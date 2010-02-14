@@ -447,6 +447,7 @@ class MainWidget (QtGui.QGraphicsView):
         self.prefsWidget.ui.langBox.currentIndexChanged.connect(self.setspellchecker)
         self.prefsWidget.ui.opacity.valueChanged.connect(self.editoropacity)
         self.prefsWidget.ui.buttonStyle.setCurrentIndex(self.settings.value('buttonstyle').toInt()[0])
+        self.prefsWidget.ui.autoSave.setValue(self.settings.value('autosave').toInt()[0])
         
         prefsLayout=QtGui.QGraphicsLinearLayout()
         prefsLayout.setContentsMargins(0,0,0,0)
@@ -641,6 +642,7 @@ class MainWidget (QtGui.QGraphicsView):
         self.saveEditorGeometry()
         self.settings.setValue('buttonstyle',self.buttonStyle)
         self.settings.setValue('editoropacity', self.editorBG.opacity()*100)
+        self.settings.setValue('autosave', self.prefsWidget.ui.autoSave.value())
 
         self.settings.sync()
 

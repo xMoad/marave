@@ -216,7 +216,6 @@ class FunkyEditor(EditorClass, animatedOpacity):
             self.setMouseTracking(True)
             self.viewport().setMouseTracking(True)
             self.defSize=self.font().pointSize()
-            self.docName=''
             # This is for Issue 20
         else:
             EditorClass.__init__(self)
@@ -447,6 +446,9 @@ class MainWidget (QtGui.QGraphicsView):
         self.prefsWidget.ui.langBox.currentIndexChanged.connect(self.setspellchecker)
         self.prefsWidget.ui.opacity.valueChanged.connect(self.editoropacity)
         self.prefsWidget.ui.buttonStyle.setCurrentIndex(self.settings.value('buttonstyle').toInt()[0])
+        self.prefsWidget.ui.autoSave.valueChanged.connect(self.setsavetimer)
+        self.saveTimer=QtCore.QTimer()
+        self.saveTimer.timeout.connect(self.savebytimer)
         self.prefsWidget.ui.autoSave.setValue(self.settings.value('autosave').toInt()[0])
         
         prefsLayout=QtGui.QGraphicsLinearLayout()
@@ -487,6 +489,27 @@ class MainWidget (QtGui.QGraphicsView):
         self.searchReplaceBar=QtGui.QGraphicsWidget()
         self.searchReplaceBar.setLayout(searchReplaceLayout)
         self._scene.addItem(self.searchReplaceBar)
+
+    def setsavetimer(self, value=None):
+        if value is None:
+            return
+        self.settings.setValue('autosave', value)
+        self.settings.sync()
+        if value:
+            self.notify(self.tr('Saving every %n minutes','',value))
+            self.saveTimer.setInterval(60*1000*value)
+            self.saveTimer.start()
+        else:
+            self.notify(self.tr('Disabled automatic saving'))
+            self.saveTimer.stop()
+
+    def savebytimer(self):
+        try:
+            if self.editor.docName: # No autosaving UNNAMED
+                self.editor.save()
+        except:
+            pass
+        self.setsavetimer()
 
     def warnnosound(self):
         self.notify(unicode(self.tr('Sound support is not available, disabling sound')))

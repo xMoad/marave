@@ -29,7 +29,6 @@ FunkyButton:pressed {
 
 /* Font selector */
 QFontComboBox {
-    padding: 9px 0px 6px 3px;
 }
 
 /* The notification area below the editor */
@@ -48,6 +47,6 @@ MainWidget {
 
 /* They are in the prefs widget */
 
-QComboBox {
+#Form QComboBox {
     min-width: 100;
 }

@@ -49,6 +49,7 @@ from Ui_searchreplacewidget import Ui_Form as UI_SearchReplaceWidget
 from Ui_prefs import Ui_Form as UI_Prefs
 
 class animatedOpacity:
+    step = .1
     def moveOpacity(self):
         if abs(abs(self.proxy.opacity())-abs(self.targetOpacity))<.1:
             self.proxy.setOpacity(self.targetOpacity)
@@ -59,9 +60,9 @@ class animatedOpacity:
             self.show()
             self.movingOp=True
             if self.proxy.opacity()<self.targetOpacity:
-                self.proxy.setOpacity(self.proxy.opacity()+.1)
+                self.proxy.setOpacity(self.proxy.opacity()+self.step)
             else:
-                self.proxy.setOpacity(self.proxy.opacity()-.1)
+                self.proxy.setOpacity(self.proxy.opacity()+self.step)
             QtCore.QTimer.singleShot(10,self.moveOpacity)
 
     def showChildren(self):
@@ -235,12 +236,15 @@ class BGItem(QtGui.QGraphicsPixmapItem, animatedOpacity):
     def __init__(self):
         QtGui.QGraphicsPixmapItem.__init__(self)
         self.targetOpacity=1
+        self.setOpacity(0)
         self.proxy=self
+        self.step=.2
 
 class MainWidget (QtGui.QGraphicsView):
     def __init__(self, opengl=False):
         QtGui.QGraphicsView.__init__(self)
         self.setWindowIcon(QtGui.QIcon(os.path.join(PATH,'icons','marave.svg')))
+        self.setGeometry(QtCore.QCoreApplication.instance().desktop().screenGeometry(self))
         self._scene=QtGui.QGraphicsScene()
         self.setObjectName ("Main")
         if opengl:

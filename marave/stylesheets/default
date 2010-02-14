@@ -50,3 +50,77 @@ MainWidget {
 #Form QComboBox {
     min-width: 100;
 }
+
+/* These are all the buttons in the 'menu' */
+
+#Font {
+}
+
+#Size {
+}
+
+#File {
+}
+
+#Bg {
+}
+
+#Click {
+}
+
+#Music {
+}
+
+#Options {
+}
+
+#Quit {
+}
+
+#FontColor {
+}
+
+#Smaller {
+}
+
+#Default {
+}
+
+#Larger {
+}
+
+#Open {
+}
+
+#Save {
+}
+
+#SaveAs {
+}
+
+#PreviousBG {
+}
+
+#NextBG {
+}
+
+#ColorBG {
+}
+
+#PreviousClick {
+}
+
+#NextClick {
+}
+
+#NoClick {
+}
+
+#PreviousMusic {
+}
+
+#NextMusic {
+}
+
+#NoMusic {
+}

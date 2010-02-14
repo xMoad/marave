@@ -164,7 +164,7 @@ class SearchReplaceWidget(QtGui.QWidget, animatedOpacity):
 buttons=[]
 
 class FunkyButton(QtGui.QPushButton, animatedOpacity):
-    def __init__(self, icon, text, scene,opacity=.3):
+    def __init__(self, icon, text, scene, opacity=.3, name=None):
         QtGui.QPushButton.__init__(self,QtGui.QIcon(os.path.join(PATH,'icons',icon)),"")
         self.setAttribute(QtCore.Qt.WA_Hover, True)
         self.setAttribute(QtCore.Qt.WA_TranslucentBackground, True)
@@ -177,6 +177,9 @@ class FunkyButton(QtGui.QPushButton, animatedOpacity):
         self.children=[]
         self.icon=icon
         self.text=text
+        if name is None:
+            name=text
+        self.setObjectName(name)
         buttons.append(self)
         
 class FunkyFontList(QtGui.QFontComboBox, animatedOpacity):
@@ -377,7 +380,7 @@ class MainWidget (QtGui.QGraphicsView):
 
         self.fontList=FunkyFontList(self._scene,0)
         self.fontList.currentFontChanged.connect(self.changefont)
-        self.fontColor=FunkyButton("color.svg", self.tr('Color'), self._scene,0)
+        self.fontColor=FunkyButton("color.svg", self.tr('Color'), self._scene, 0,"FontColor")
         self.fontColor.clicked.connect(self.setfontcolor)
         self.fontButton.children+=[self.fontList,self.fontColor]
 
@@ -392,32 +395,32 @@ class MainWidget (QtGui.QGraphicsView):
 
         self.file1=FunkyButton("open.svg", self.tr('Open'), self._scene, 0)
         self.file2=FunkyButton("save.svg", self.tr('Save'), self._scene, 0)
-        self.file3=FunkyButton("saveas.svg", self.tr('Save As'), self._scene, 0)
+        self.file3=FunkyButton("saveas.svg", self.tr('Save As'), self._scene, 0, "SaveAs")
         self.file1.clicked.connect(self.editor.open)
         self.file2.clicked.connect(self.editor.save)
         self.file3.clicked.connect(self.editor.saveas)
         self.fileButton.children+=[self.file1, self.file2, self.file3]
 
-        self.bg1=FunkyButton("previous.svg", self.tr('Previous'), self._scene,0)
-        self.bg2=FunkyButton("next.svg", self.tr('Next'), self._scene,0)
-        self.bg3=FunkyButton("color.svg", self.tr('Color'), self._scene,0)
+        self.bg1=FunkyButton("previous.svg", self.tr('Previous'), self._scene,0,"PreviousBG")
+        self.bg2=FunkyButton("next.svg", self.tr('Next'), self._scene,0, "NextBG")
+        self.bg3=FunkyButton("color.svg", self.tr('Color'), self._scene,0, "ColorBG")
         self.bg1.clicked.connect(self.prevbg)
         self.bg2.clicked.connect(self.nextbg)
         self.bg3.clicked.connect(self.setbgcolor)
         self.bgButton.children+=[self.bg1, self.bg2, self.bg3]
 
         if SOUND:
-            self.click1=FunkyButton("previous.svg", self.tr('Previous'), self._scene,0)
-            self.click2=FunkyButton("next.svg", self.tr('Next'), self._scene,0)
-            self.click3=FunkyButton("mute.svg", self.tr('None'), self._scene,0)
+            self.click1=FunkyButton("previous.svg", self.tr('Previous'), self._scene,0, "PreviousClick")
+            self.click2=FunkyButton("next.svg", self.tr('Next'), self._scene,0, "NextClick")
+            self.click3=FunkyButton("mute.svg", self.tr('None'), self._scene,0, "NoCLick")
             self.click1.clicked.connect(self.prevclick)
             self.click2.clicked.connect(self.nextclick)
             self.click3.clicked.connect(self.noclick)
             self.clickButton.children+=[self.click1, self.click2, self.click3]
         
-            self.music1=FunkyButton("previous.svg", self.tr('Previous'), self._scene,0)
-            self.music2=FunkyButton("next.svg", self.tr('Next'), self._scene,0)
-            self.music3=FunkyButton("mute.svg", self.tr('None'), self._scene,0)
+            self.music1=FunkyButton("previous.svg", self.tr('Previous'), self._scene,0,"PreviousMusic")
+            self.music2=FunkyButton("next.svg", self.tr('Next'), self._scene,0,"NextMusic")
+            self.music3=FunkyButton("mute.svg", self.tr('None'), self._scene,0,"NoMusic")
             self.music1.clicked.connect(self.prevstation)
             self.music2.clicked.connect(self.nextstation)
             self.music3.clicked.connect(self.nostation)

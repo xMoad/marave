@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>390</width>
-    <height>132</height>
+    <height>149</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -109,6 +109,19 @@
        </item>
       </layout>
      </item>
+     <item row="1" column="0">
+      <widget class="QLabel" name="label_5">
+       <property name="text">
+        <string>St&amp;yle</string>
+       </property>
+       <property name="buddy">
+        <cstring>styleList</cstring>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="1">
+      <widget class="QComboBox" name="styleList"/>
+     </item>
      <item row="2" column="0">
       <widget class="QLabel" name="label">
        <property name="text">
@@ -171,18 +184,15 @@
        </property>
       </widget>
      </item>
-     <item row="1" column="0">
-      <widget class="QLabel" name="label_5">
+     <item row="5" column="0">
+      <widget class="QLabel" name="label_6">
        <property name="text">
-        <string>St&amp;yle</string>
-       </property>
-       <property name="buddy">
-        <cstring>styleList</cstring>
+        <string>Auto save (minutes):</string>
        </property>
       </widget>
      </item>
-     <item row="1" column="1">
-      <widget class="QComboBox" name="styleList"/>
+     <item row="5" column="1">
+      <widget class="QSpinBox" name="autoSave"/>
      </item>
     </layout>
    </item>

@@ -231,6 +231,11 @@ class FunkyEditor(EditorClass, animatedOpacity):
             self.parent=lambda: parent
             self.proxy.setFlag(QtGui.QGraphicsItem.ItemIsMovable, False)
 
+class BGItem(QtGui.QGraphicsPixmapItem, animatedOpacity):
+    def __init__(self):
+        QtGui.QGraphicsPixmapItem.__init__(self)
+        self.targetOpacity=1
+        self.proxy=self
 
 class MainWidget (QtGui.QGraphicsView):
     def __init__(self, opengl=False):
@@ -270,7 +275,7 @@ class MainWidget (QtGui.QGraphicsView):
         self.bgcolor=None
         self.fontcolor=None
         self.bg=None
-        self.bgItem=QtGui.QGraphicsPixmapItem()
+        self.bgItem=BGItem()
         self.bgItem.setZValue(-1000)
         self._scene.addItem(self.bgItem)
         self.notifBar=FunkyStatusBar(self._scene, .7)
@@ -1235,6 +1240,8 @@ class MainWidget (QtGui.QGraphicsView):
         '''Initialization stuff that can really wait a little, so the window
         appears faster'''
         self._scene.changed.connect(self.scenechanged)
+        
+        self.bgItem.moveOpacity()
 
         # Event filters for showing/hiding buttons/cursor
         self.editor.installEventFilter(self)

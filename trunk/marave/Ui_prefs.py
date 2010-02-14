@@ -2,8 +2,8 @@
 
 # Form implementation generated from reading ui file 'prefs.ui'
 #
-# Created: Sun Feb  7 23:16:53 2010
-#      by: PyQt4 UI code generator 4.6.2
+# Created: Sun Feb 14 17:55:29 2010
+#      by: PyQt4 UI code generator 4.7
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -12,7 +12,7 @@ from PyQt4 import QtCore, QtGui
 class Ui_Form(object):
     def setupUi(self, Form):
         Form.setObjectName("Form")
-        Form.resize(390, 132)
+        Form.resize(390, 149)
         self.horizontalLayout_2 = QtGui.QHBoxLayout(Form)
         self.horizontalLayout_2.setContentsMargins(4, 4, 4, 2)
         self.horizontalLayout_2.setObjectName("horizontalLayout_2")
@@ -49,6 +49,12 @@ class Ui_Form(object):
         self.saveTheme.setObjectName("saveTheme")
         self.horizontalLayout.addWidget(self.saveTheme)
         self.formLayout.setLayout(0, QtGui.QFormLayout.FieldRole, self.horizontalLayout)
+        self.label_5 = QtGui.QLabel(Form)
+        self.label_5.setObjectName("label_5")
+        self.formLayout.setWidget(1, QtGui.QFormLayout.LabelRole, self.label_5)
+        self.styleList = QtGui.QComboBox(Form)
+        self.styleList.setObjectName("styleList")
+        self.formLayout.setWidget(1, QtGui.QFormLayout.FieldRole, self.styleList)
         self.label = QtGui.QLabel(Form)
         self.label.setObjectName("label")
         self.formLayout.setWidget(2, QtGui.QFormLayout.LabelRole, self.label)
@@ -72,20 +78,20 @@ class Ui_Form(object):
         self.opacity.setOrientation(QtCore.Qt.Horizontal)
         self.opacity.setObjectName("opacity")
         self.formLayout.setWidget(4, QtGui.QFormLayout.FieldRole, self.opacity)
-        self.label_5 = QtGui.QLabel(Form)
-        self.label_5.setObjectName("label_5")
-        self.formLayout.setWidget(1, QtGui.QFormLayout.LabelRole, self.label_5)
-        self.styleList = QtGui.QComboBox(Form)
-        self.styleList.setObjectName("styleList")
-        self.formLayout.setWidget(1, QtGui.QFormLayout.FieldRole, self.styleList)
+        self.label_6 = QtGui.QLabel(Form)
+        self.label_6.setObjectName("label_6")
+        self.formLayout.setWidget(5, QtGui.QFormLayout.LabelRole, self.label_6)
+        self.autoSave = QtGui.QSpinBox(Form)
+        self.autoSave.setObjectName("autoSave")
+        self.formLayout.setWidget(5, QtGui.QFormLayout.FieldRole, self.autoSave)
         self.horizontalLayout_2.addLayout(self.formLayout)
         spacerItem2 = QtGui.QSpacerItem(55, 20, QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Minimum)
         self.horizontalLayout_2.addItem(spacerItem2)
         self.label_2.setBuddy(self.themeList)
+        self.label_5.setBuddy(self.styleList)
         self.label.setBuddy(self.langBox)
         self.label_3.setBuddy(self.buttonStyle)
         self.label_4.setBuddy(self.opacity)
-        self.label_5.setBuddy(self.styleList)
 
         self.retranslateUi(Form)
         QtCore.QMetaObject.connectSlotsByName(Form)
@@ -96,13 +102,14 @@ class Ui_Form(object):
         self.close.setShortcut(QtGui.QApplication.translate("Form", "Esc", None, QtGui.QApplication.UnicodeUTF8))
         self.label_2.setText(QtGui.QApplication.translate("Form", "&Theme:", None, QtGui.QApplication.UnicodeUTF8))
         self.saveTheme.setText(QtGui.QApplication.translate("Form", "...", None, QtGui.QApplication.UnicodeUTF8))
+        self.label_5.setText(QtGui.QApplication.translate("Form", "St&yle", None, QtGui.QApplication.UnicodeUTF8))
         self.label.setText(QtGui.QApplication.translate("Form", "&Spell Checking:", None, QtGui.QApplication.UnicodeUTF8))
         self.label_3.setText(QtGui.QApplication.translate("Form", "&Buttons:", None, QtGui.QApplication.UnicodeUTF8))
         self.buttonStyle.setItemText(0, QtGui.QApplication.translate("Form", "Icons", None, QtGui.QApplication.UnicodeUTF8))
         self.buttonStyle.setItemText(1, QtGui.QApplication.translate("Form", "Text", None, QtGui.QApplication.UnicodeUTF8))
         self.buttonStyle.setItemText(2, QtGui.QApplication.translate("Form", "Text + Icons", None, QtGui.QApplication.UnicodeUTF8))
         self.label_4.setText(QtGui.QApplication.translate("Form", "&Editor Opacity:", None, QtGui.QApplication.UnicodeUTF8))
-        self.label_5.setText(QtGui.QApplication.translate("Form", "St&yle", None, QtGui.QApplication.UnicodeUTF8))
+        self.label_6.setText(QtGui.QApplication.translate("Form", "Auto save (minutes):", None, QtGui.QApplication.UnicodeUTF8))
 
 import icons_rc
 

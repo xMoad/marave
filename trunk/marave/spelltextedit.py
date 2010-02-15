@@ -87,7 +87,7 @@ class SpellTextEdit(QPlainTextEdit):
             if self.textCursor().hasSelection():
                 text = unicode(self.textCursor().selectedText())
                 if not self.dict.check(text):
-                    spell_menu = QMenu('Spelling Suggestions')
+                    spell_menu = QMenu(self.tr('Spelling Suggestions'))
                     for word in self.dict.suggest(text):
                         action = SpellAction(word, spell_menu)
                         action.correct.connect(self.correctWord)

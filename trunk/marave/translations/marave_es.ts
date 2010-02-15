@@ -364,20 +364,25 @@ Do you want to save your changes or discard them?</source>
 <context>
     <name>SpellTextEdit</name>
     <message>
-        <location filename="spelltextedit.py" line="126"/>
+        <location filename="spelltextedit.py" line="127"/>
         <source>Document saved</source>
         <translation>Documento guardado</translation>
+    </message>
+    <message>
+        <location filename="spelltextedit.py" line="90"/>
+        <source>Spelling Suggestions</source>
+        <translation>Correcciones sugeridas</translation>
     </message>
 </context>
 <context>
     <name>app</name>
     <message>
-        <location filename="main.py" line="1303"/>
+        <location filename="main.py" line="1309"/>
         <source>FOCUS!</source>
         <translation>¡Enfócate!</translation>
     </message>
     <message>
-        <location filename="main.py" line="1303"/>
+        <location filename="main.py" line="1309"/>
         <source>Marave only opens one document at a time.
 The whole idea is focusing!
 So, this is the first one you asked for.</source>

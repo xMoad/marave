@@ -123,6 +123,7 @@ class SpellTextEdit(QPlainTextEdit):
                 f.write(unicode(self.toPlainText()))
                 f.close()
                 self.document().setModified(False)
+                self.parent().notify(self.tr('Document saved'))
             except:
                 QtGui.QMessageBox.information(self.parent(), "Error - Marave",
                 "Error saving %s."%self.docName)

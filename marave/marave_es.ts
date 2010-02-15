@@ -361,4 +361,12 @@ Do you want to save your changes or discard them?</source>
         <translation>Guardado automático inhabilitado</translation>
     </message>
 </context>
+<context>
+    <name>SpellTextEdit</name>
+    <message>
+        <location filename="spelltextedit.py" line="126"/>
+        <source>Document saved</source>
+        <translation>Documento guardado</translation>
+    </message>
+</context>
 </TS>

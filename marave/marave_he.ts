@@ -96,7 +96,7 @@
     <message>
         <location filename="Ui_prefs.py" line="105"/>
         <source>St&amp;yle:</source>
-        <translation type="unfinished">&amp;סגנון:</translation>
+        <translation>&amp;סגנון:</translation>
     </message>
 </context>
 <context>

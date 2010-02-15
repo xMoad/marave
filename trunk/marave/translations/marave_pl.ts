@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.0" language="pl_PL">
+<!DOCTYPE TS><TS version="1.1" language="pl_PL">
 <context>
     <name>Form</name>
     <message>
@@ -256,27 +255,27 @@ Czy chcesz zachować zmiany czy je odrzucić?</translation>
         <translation>Przezroczystość: %s%%</translation>
     </message>
     <message>
-        <location filename="main.py" line="912"/>
+        <location filename="main.py" line="922"/>
         <source>Switching click to: %s</source>
         <translation>Dźwięk kliknięcia: %s</translation>
     </message>
     <message>
-        <location filename="main.py" line="940"/>
+        <location filename="main.py" line="950"/>
         <source>Disabling click</source>
         <translation>Dźwięk kliknięcia wyłączony</translation>
     </message>
     <message>
-        <location filename="main.py" line="946"/>
+        <location filename="main.py" line="956"/>
         <source>Listening to: %s</source>
         <translation>Słuchasz: %s</translation>
     </message>
     <message>
-        <location filename="main.py" line="979"/>
+        <location filename="main.py" line="989"/>
         <source>Disabling music</source>
         <translation>Muzyka wyłączona</translation>
     </message>
     <message>
-        <location filename="main.py" line="1038"/>
+        <location filename="main.py" line="1048"/>
         <source>Setting background to: %s</source>
         <translation>Tło: %s</translation>
     </message>
@@ -382,12 +381,12 @@ Czy chcesz zachować zmiany czy je odrzucić?</translation>
 <context>
     <name>app</name>
     <message>
-        <location filename="main.py" line="1318"/>
+        <location filename="main.py" line="1328"/>
         <source>FOCUS!</source>
         <translation>Skup się!</translation>
     </message>
     <message>
-        <location filename="main.py" line="1318"/>
+        <location filename="main.py" line="1328"/>
         <source>Marave only opens one document at a time.
 The whole idea is focusing!
 So, this is the first one you asked for.</source>

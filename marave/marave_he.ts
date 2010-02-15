@@ -53,11 +53,6 @@
         <translation>&amp;אטימות העורך:</translation>
     </message>
     <message>
-        <location filename="Ui_prefs.py" line="105"/>
-        <source>St&amp;yle</source>
-        <translation>&amp;סגנון</translation>
-    </message>
-    <message>
         <location filename="Ui_searchwidget.py" line="62"/>
         <source>&amp;Find:</source>
         <translation>&amp;חיפוש:</translation>
@@ -95,6 +90,11 @@
     <message>
         <location filename="Ui_prefs.py" line="112"/>
         <source>Auto save (minutes):</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="Ui_prefs.py" line="105"/>
+        <source>St&amp;yle:</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

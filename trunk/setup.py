@@ -15,6 +15,7 @@ setup(name='Marave',
                                'clicks/*wav',
                                'themes/*',
                                'stylesheets/*',
+                               'translations/*',
                                'radios.txt'
                                ]},
      )

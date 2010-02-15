@@ -480,7 +480,7 @@ class MainWidget (QtGui.QGraphicsView):
         self.searchReplaceWidget.ui.next.clicked.connect(self.doFindR)
         self.searchReplaceWidget.ui.previous.clicked.connect(self.doFindRBackwards)
         self.searchReplaceWidget.ui.replace.clicked.connect(self.doReplace)
-        #self.searchReplaceWidget.ui.replaceall.clicked.connect(self.doReplaceAll)
+        self.searchReplaceWidget.ui.replaceall.clicked.connect(self.doReplaceAll)
         
         searchReplaceLayout=QtGui.QGraphicsLinearLayout()
         searchReplaceLayout.setContentsMargins(0,0,0,0)
@@ -848,24 +848,41 @@ class MainWidget (QtGui.QGraphicsView):
         #self.editor.resize(self.editorW,self.editorH)
 
     def doReplaceAllBackwards(self):
+        # Backwards and forwards are exactly the
+        # same thing if we are replacing all!
         self.doReplaceAll(backwards=True)
 
-    def doReplaceAll(self, backwards=False):
-        pass
+    def doReplaceAll(self):
+        # Replace all occurences without interaction
+        
+        old=self.searchReplaceWidget.ui.text.text()
+        new=self.searchReplaceWidget.ui.replaceWith.text()
+
+        # Beginning of undo block
+        cursor=self.editor.textCursor()
+        cursor.beginEditBlock()
+        
+        # Use flags for case match
+        flags=QtGui.QTextDocument.FindFlags()
+        if self.searchReplaceWidget.ui.matchCase.isChecked():
+            flags=flags|QtGui.QTextDocument.FindCaseSensitively
+            
+        # Replace all we can
+        while True:
+            r=self.editor.find(old,flags)
+            if r:
+                qc=self.editor.textCursor()
+                if qc.hasSelection():
+                    qc.insertText(new)
+            else:
+                break
+                
+        # Mark end of undo block
+        cursor.endEditBlock()
 
     def doReplaceBackwards (self):
         return self.doReplace(backwards=True)
         
-    def doReplace(self, backwards=False):
-        flags=QtGui.QTextDocument.FindFlags()
-        if backwards:
-            flags=QtGui.QTextDocument.FindBackward
-        if self.searchWidget.ui.matchCase.isChecked():
-            flags=flags|QtGui.QTextDocument.FindCaseSensitively
-
-        text=unicode(self.searchWidget.ui.text.text())
-        r=self.editor.find(text,flags)
-
     def doReplace(self):
         qc=self.editor.textCursor()
         if qc.hasSelection():

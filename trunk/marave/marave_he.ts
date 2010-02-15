@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.0" language="he_IL">
+<!DOCTYPE TS><TS version="1.1" language="he_IL">
 <context>
     <name>Form</name>
     <message>
@@ -353,12 +352,13 @@ Do you want to save your changes or discard them?</source>
         <source>Saving every %n minutes</source>
         <translation type="unfinished">
             <numerusform></numerusform>
+            <numerusform></numerusform>
         </translation>
     </message>
     <message>
         <location filename="main.py" line="503"/>
         <source>Disabled automatic saving</source>
-        <translation type="unfinished"></translation>
+        <translation>נטרול השמירה האוטומטית</translation>
     </message>
 </context>
 <context>
@@ -366,7 +366,7 @@ Do you want to save your changes or discard them?</source>
     <message>
         <location filename="spelltextedit.py" line="126"/>
         <source>Document saved</source>
-        <translation type="unfinished"></translation>
+        <translation>המסמך נשמר</translation>
     </message>
 </context>
 <context>
@@ -374,14 +374,16 @@ Do you want to save your changes or discard them?</source>
     <message>
         <location filename="main.py" line="1303"/>
         <source>FOCUS!</source>
-        <translation type="unfinished"></translation>
+        <translation>להתמקד!!</translation>
     </message>
     <message>
         <location filename="main.py" line="1303"/>
         <source>Marave only opens one document at a time.
 The whole idea is focusing!
 So, this is the first one you asked for.</source>
-        <translation type="unfinished"></translation>
+        <translation>Marave מאפשרת פתיחה של מסמך אחד בלבד.
+כל הרעין הוא להתמקד!
+לכן, זהו הראשון שביקשת.</translation>
     </message>
 </context>
 </TS>

@@ -375,7 +375,7 @@ Czy chcesz zapisać zmiany czy je odrzucić?</translation>
     <message>
         <location filename="spelltextedit.py" line="90"/>
         <source>Spelling Suggestions</source>
-        <translation type="unfinished"></translation>
+        <translation>Poprawki pisowni</translation>
     </message>
 </context>
 <context>

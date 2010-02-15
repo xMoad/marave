@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS><TS version="1.1" language="he_IL">
+<!DOCTYPE TS>
+<TS version="2.0" language="he_IL">
 <context>
     <name>Form</name>
     <message>
@@ -95,7 +96,7 @@
     <message>
         <location filename="Ui_prefs.py" line="105"/>
         <source>St&amp;yle:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">&amp;סגנון:</translation>
     </message>
 </context>
 <context>
@@ -351,7 +352,6 @@ Do you want to save your changes or discard them?</source>
         <location filename="main.py" line="499"/>
         <source>Saving every %n minutes</source>
         <translation type="unfinished">
-            <numerusform></numerusform>
             <numerusform></numerusform>
         </translation>
     </message>

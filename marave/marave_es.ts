@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS><TS version="1.1" language="es_AR">
+<!DOCTYPE TS>
+<TS version="2.0" language="es_AR">
 <context>
     <name>Form</name>
     <message>
@@ -95,7 +96,7 @@
     <message>
         <location filename="Ui_prefs.py" line="105"/>
         <source>St&amp;yle:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">E&amp;stilo:</translation>
     </message>
 </context>
 <context>

@@ -17,8 +17,8 @@ As far as I know, all that's needed is:
 
 * PyEnchant if you want spellchecking, plus the spellchecking dictionaries for your language.
 
-* I intend to make binaries available for Windows, and am looking for volunteers help to have
-  Mac binaries as well.
+* I intend to make binaries available for Windows, and am looking for volunteers 
+  help to have Mac binaries as well.
 
 MENU
 ====
@@ -144,6 +144,7 @@ TRANSLATIONS
 ------------
 
 The hebrew translation was created by Yaron Shahrabani
+The german translation was created by Marc Cheng
 
 ICONS
 -----

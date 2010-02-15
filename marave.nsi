@@ -8,7 +8,7 @@
 
   ;Name and file
   Name "Marave"
-  OutFile "Marave-0.5.win32.exe"
+  OutFile "Marave-0.6.win32.exe"
 
   ;Default installation folder
   InstallDir "$LOCALAPPDATA\Marave"

@@ -1,5 +1,5 @@
-TRANSLATIONS=marave_es.ts marave_he.ts marave_de.ts
-TRANSLATED=marave_es.qm marave_he.qm marave_de.qm
+TRANSLATIONS=marave_es.ts marave_he.ts marave_de.ts marave_pl.ts
+TRANSLATED=marave_es.qm marave_he.qm marave_de.qm marave_pl.qm
 
 all: icons_rc.py Ui_searchreplacewidget.py Ui_searchwidget.py \
      Ui_prefs.py update_trans $(TRANSLATED) README.html
@@ -22,9 +22,11 @@ marave_he.qm: marave_he.ts
 	lrelease marave_he.ts -compress -qm marave_he.qm
 marave_de.qm: marave_de.ts
 	lrelease marave_de.ts -compress -qm marave_de.qm
+marave_pl.qm: marave_pl.ts
+	lrelease marave_pl.ts -compress -qm marave_pl.qm
 	
 update_trans:
-	pylupdate4 *py -noobsolete -ts $(TRANSLATIONS)
+	pylupdate4 *py -ts $(TRANSLATIONS)
 
 README.html: ../README
 	rst2html ../README README.html

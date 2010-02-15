@@ -1286,7 +1286,7 @@ def main():
 
     locale = QtCore.QLocale.system().name()
     translator=QtCore.QTranslator()
-    translator.load(os.path.join(PATH,"marave_" + unicode(locale)))
+    translator.load(os.path.join(PATH,"translations","marave_" + unicode(locale)))
     app.installTranslator(translator)
 
 

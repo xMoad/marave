@@ -1300,7 +1300,7 @@ def main():
     options, args = parser.parse_args()
 
     if len(args) > 1:
-        QtGui.QMessageBox.information(None,'FOCUS!','Marave only opens one document at a time.\nThe whole idea is focusing!\nSo, this is the first one you asked for.')
+        QtGui.QMessageBox.information(None,app.tr('FOCUS!'),app.tr('Marave only opens one document at a time.\nThe whole idea is focusing!\nSo, this is the first one you asked for.'))
 
     window=MainWidget(opengl=options.opengl)
     window.loadprefs()

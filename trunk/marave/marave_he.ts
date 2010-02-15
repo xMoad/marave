@@ -369,4 +369,19 @@ Do you want to save your changes or discard them?</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
+<context>
+    <name>app</name>
+    <message>
+        <location filename="main.py" line="1303"/>
+        <source>FOCUS!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="main.py" line="1303"/>
+        <source>Marave only opens one document at a time.
+The whole idea is focusing!
+So, this is the first one you asked for.</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
 </TS>

@@ -252,27 +252,27 @@ Do you want to save your changes or discard them?</source>
         <translation>הגדרת האטימות ל־: %s%%</translation>
     </message>
     <message>
-        <location filename="main.py" line="912"/>
+        <location filename="main.py" line="922"/>
         <source>Switching click to: %s</source>
         <translation>החלפת הלחיצה ל־: %s</translation>
     </message>
     <message>
-        <location filename="main.py" line="940"/>
+        <location filename="main.py" line="950"/>
         <source>Disabling click</source>
         <translation>נטרול הלחיצה</translation>
     </message>
     <message>
-        <location filename="main.py" line="946"/>
+        <location filename="main.py" line="956"/>
         <source>Listening to: %s</source>
         <translation>השיר ברקע: %s</translation>
     </message>
     <message>
-        <location filename="main.py" line="979"/>
+        <location filename="main.py" line="989"/>
         <source>Disabling music</source>
         <translation>נטרול המוזיקה</translation>
     </message>
     <message>
-        <location filename="main.py" line="1038"/>
+        <location filename="main.py" line="1048"/>
         <source>Setting background to: %s</source>
         <translation>הגדרת הרקע ל־: %s</translation>
     </message>
@@ -377,12 +377,12 @@ Do you want to save your changes or discard them?</source>
 <context>
     <name>app</name>
     <message>
-        <location filename="main.py" line="1318"/>
+        <location filename="main.py" line="1328"/>
         <source>FOCUS!</source>
         <translation>להתמקד!!</translation>
     </message>
     <message>
-        <location filename="main.py" line="1318"/>
+        <location filename="main.py" line="1328"/>
         <source>Marave only opens one document at a time.
 The whole idea is focusing!
 So, this is the first one you asked for.</source>

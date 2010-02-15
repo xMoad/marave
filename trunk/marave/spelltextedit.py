@@ -35,6 +35,7 @@ class SpellTextEdit(QPlainTextEdit):
  
     def __init__(self, *args):
         QPlainTextEdit.__init__(self, *args)
+        self.docName = None
         self.initDict()
 
     def initDict(self, lang=None):

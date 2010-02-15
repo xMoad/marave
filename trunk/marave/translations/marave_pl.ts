@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS><TS version="1.1" language="pl_PL">
+<!DOCTYPE TS>
+<TS version="2.0" language="pl_PL">
 <context>
     <name>Form</name>
     <message>
@@ -157,7 +158,7 @@
         <source>
 Do you want to save your changes or discard them?</source>
         <translation>
-Czy chcesz zapisać zmiany czy je odrzucić?</translation>
+Czy chcesz zachować zmiany czy je odrzucić?</translation>
     </message>
     <message>
         <location filename="main.py" line="366"/>

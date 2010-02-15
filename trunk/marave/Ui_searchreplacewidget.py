@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'searchreplwidget.ui'
 #
-# Created: Mon Feb 15 15:36:57 2010
+# Created: Mon Feb 15 15:52:50 2010
 #      by: PyQt4 UI code generator 4.7
 #
 # WARNING! All changes made in this file will be lost!
@@ -75,6 +75,13 @@ class Ui_Form(object):
         self.retranslateUi(Form)
         QtCore.QObject.connect(self.text, QtCore.SIGNAL("returnPressed()"), self.next.animateClick)
         QtCore.QMetaObject.connectSlotsByName(Form)
+        Form.setTabOrder(self.text, self.replaceWith)
+        Form.setTabOrder(self.replaceWith, self.next)
+        Form.setTabOrder(self.next, self.previous)
+        Form.setTabOrder(self.previous, self.replace)
+        Form.setTabOrder(self.replace, self.replaceall)
+        Form.setTabOrder(self.replaceall, self.matchCase)
+        Form.setTabOrder(self.matchCase, self.close)
 
     def retranslateUi(self, Form):
         Form.setWindowTitle(QtGui.QApplication.translate("Form", "Form", None, QtGui.QApplication.UnicodeUTF8))

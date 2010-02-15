@@ -143,6 +143,16 @@
    </item>
   </layout>
  </widget>
+ <tabstops>
+  <tabstop>text</tabstop>
+  <tabstop>replaceWith</tabstop>
+  <tabstop>next</tabstop>
+  <tabstop>previous</tabstop>
+  <tabstop>replace</tabstop>
+  <tabstop>replaceall</tabstop>
+  <tabstop>matchCase</tabstop>
+  <tabstop>close</tabstop>
+ </tabstops>
  <resources>
   <include location="icons.qrc"/>
  </resources>

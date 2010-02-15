@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'searchreplwidget.ui'
 #
-# Created: Sun Feb 14 13:14:19 2010
+# Created: Mon Feb 15 15:36:57 2010
 #      by: PyQt4 UI code generator 4.7
 #
 # WARNING! All changes made in this file will be lost!
@@ -52,6 +52,8 @@ class Ui_Form(object):
         self.horizontalLayout.addWidget(self.next)
         self.gridLayout.addLayout(self.horizontalLayout, 0, 3, 1, 1)
         self.matchCase = QtGui.QCheckBox(Form)
+        self.matchCase.setEnabled(True)
+        self.matchCase.setChecked(True)
         self.matchCase.setObjectName("matchCase")
         self.gridLayout.addWidget(self.matchCase, 0, 4, 1, 1)
         self.label_2 = QtGui.QLabel(Form)

@@ -100,8 +100,14 @@
    </item>
    <item row="0" column="4">
     <widget class="QCheckBox" name="matchCase">
+     <property name="enabled">
+      <bool>true</bool>
+     </property>
      <property name="text">
       <string>&amp;Match Case</string>
+     </property>
+     <property name="checked">
+      <bool>true</bool>
      </property>
     </widget>
    </item>

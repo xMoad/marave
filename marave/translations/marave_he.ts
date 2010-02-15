@@ -73,17 +73,17 @@
         <translation>&amp;התאמת רשיות</translation>
     </message>
     <message>
-        <location filename="Ui_searchreplacewidget.py" line="85"/>
+        <location filename="Ui_searchreplacewidget.py" line="87"/>
         <source>Rep&amp;lace:</source>
         <translation>ה&amp;חלפה:</translation>
     </message>
     <message>
-        <location filename="Ui_searchreplacewidget.py" line="86"/>
+        <location filename="Ui_searchreplacewidget.py" line="88"/>
         <source>&amp;Replace</source>
         <translation>הח&amp;לפה</translation>
     </message>
     <message>
-        <location filename="Ui_searchreplacewidget.py" line="87"/>
+        <location filename="Ui_searchreplacewidget.py" line="89"/>
         <source>Replace &amp;All</source>
         <translation>החלפת ה&amp;כל</translation>
     </message>
@@ -135,22 +135,22 @@
         </translation>
     </message>
     <message>
-        <location filename="main.py" line="801"/>
+        <location filename="main.py" line="803"/>
         <source>Close Document - Marave</source>
         <translation>סגירת המסמך - Marave</translation>
     </message>
     <message>
-        <location filename="main.py" line="801"/>
+        <location filename="main.py" line="803"/>
         <source>The document &quot;%s&quot; has been modified.</source>
         <translation>נערכו שינויים למסמך &quot;%s&quot;.</translation>
     </message>
     <message>
-        <location filename="main.py" line="801"/>
+        <location filename="main.py" line="803"/>
         <source>UNNAMED</source>
         <translation>ללא שם</translation>
     </message>
     <message>
-        <location filename="main.py" line="801"/>
+        <location filename="main.py" line="803"/>
         <source>
 Do you want to save your changes or discard them?</source>
         <translation>האם לשמור את השינויים שנערכו או להתעלם מהם?</translation>
@@ -252,27 +252,27 @@ Do you want to save your changes or discard them?</source>
         <translation>הגדרת האטימות ל־: %s%%</translation>
     </message>
     <message>
-        <location filename="main.py" line="903"/>
+        <location filename="main.py" line="912"/>
         <source>Switching click to: %s</source>
         <translation>החלפת הלחיצה ל־: %s</translation>
     </message>
     <message>
-        <location filename="main.py" line="931"/>
+        <location filename="main.py" line="940"/>
         <source>Disabling click</source>
         <translation>נטרול הלחיצה</translation>
     </message>
     <message>
-        <location filename="main.py" line="937"/>
+        <location filename="main.py" line="946"/>
         <source>Listening to: %s</source>
         <translation>השיר ברקע: %s</translation>
     </message>
     <message>
-        <location filename="main.py" line="970"/>
+        <location filename="main.py" line="979"/>
         <source>Disabling music</source>
         <translation>נטרול המוזיקה</translation>
     </message>
     <message>
-        <location filename="main.py" line="1029"/>
+        <location filename="main.py" line="1038"/>
         <source>Setting background to: %s</source>
         <translation>הגדרת הרקע ל־: %s</translation>
     </message>
@@ -377,12 +377,12 @@ Do you want to save your changes or discard them?</source>
 <context>
     <name>app</name>
     <message>
-        <location filename="main.py" line="1309"/>
+        <location filename="main.py" line="1318"/>
         <source>FOCUS!</source>
         <translation>להתמקד!!</translation>
     </message>
     <message>
-        <location filename="main.py" line="1309"/>
+        <location filename="main.py" line="1318"/>
         <source>Marave only opens one document at a time.
 The whole idea is focusing!
 So, this is the first one you asked for.</source>

@@ -73,17 +73,17 @@
         <translation>&amp;Distinguir Mayúsculas</translation>
     </message>
     <message>
-        <location filename="Ui_searchreplacewidget.py" line="85"/>
+        <location filename="Ui_searchreplacewidget.py" line="87"/>
         <source>Rep&amp;lace:</source>
         <translation>Reemp&amp;lazar:</translation>
     </message>
     <message>
-        <location filename="Ui_searchreplacewidget.py" line="86"/>
+        <location filename="Ui_searchreplacewidget.py" line="88"/>
         <source>&amp;Replace</source>
         <translation>&amp;Reemplazar</translation>
     </message>
     <message>
-        <location filename="Ui_searchreplacewidget.py" line="87"/>
+        <location filename="Ui_searchreplacewidget.py" line="89"/>
         <source>Replace &amp;All</source>
         <translation>Reemplazar &amp;Todo</translation>
     </message>
@@ -135,22 +135,22 @@
         </translation>
     </message>
     <message>
-        <location filename="main.py" line="801"/>
+        <location filename="main.py" line="803"/>
         <source>Close Document - Marave</source>
         <translation>Cerrar Documento - Marave</translation>
     </message>
     <message>
-        <location filename="main.py" line="801"/>
+        <location filename="main.py" line="803"/>
         <source>The document &quot;%s&quot; has been modified.</source>
         <translation>El documento &quot;%s&quot; ha sido modificado.</translation>
     </message>
     <message>
-        <location filename="main.py" line="801"/>
+        <location filename="main.py" line="803"/>
         <source>UNNAMED</source>
         <translation>SIN NOMBRE</translation>
     </message>
     <message>
-        <location filename="main.py" line="801"/>
+        <location filename="main.py" line="803"/>
         <source>
 Do you want to save your changes or discard them?</source>
         <translation>¿Desea guardar sus cambios o descartarlos?</translation>
@@ -252,27 +252,27 @@ Do you want to save your changes or discard them?</source>
         <translation>Opacidad: %s%%</translation>
     </message>
     <message>
-        <location filename="main.py" line="903"/>
+        <location filename="main.py" line="912"/>
         <source>Switching click to: %s</source>
         <translation>Cambiando click a: %s</translation>
     </message>
     <message>
-        <location filename="main.py" line="931"/>
+        <location filename="main.py" line="940"/>
         <source>Disabling click</source>
         <translation>Inhabilitando click</translation>
     </message>
     <message>
-        <location filename="main.py" line="937"/>
+        <location filename="main.py" line="946"/>
         <source>Listening to: %s</source>
         <translation>Escuchando: %s</translation>
     </message>
     <message>
-        <location filename="main.py" line="970"/>
+        <location filename="main.py" line="979"/>
         <source>Disabling music</source>
         <translation>Inhabilitando música</translation>
     </message>
     <message>
-        <location filename="main.py" line="1029"/>
+        <location filename="main.py" line="1038"/>
         <source>Setting background to: %s</source>
         <translation>Cambiando fondo a: %s</translation>
     </message>
@@ -377,12 +377,12 @@ Do you want to save your changes or discard them?</source>
 <context>
     <name>app</name>
     <message>
-        <location filename="main.py" line="1309"/>
+        <location filename="main.py" line="1318"/>
         <source>FOCUS!</source>
         <translation>¡Enfócate!</translation>
     </message>
     <message>
-        <location filename="main.py" line="1309"/>
+        <location filename="main.py" line="1318"/>
         <source>Marave only opens one document at a time.
 The whole idea is focusing!
 So, this is the first one you asked for.</source>

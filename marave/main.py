@@ -1318,7 +1318,7 @@ def main():
     window.editor.setFocus()
     app.processEvents()
     if not SOUND:
-        QtCore.QTimer.singleShot(2000,self.warnnosound)
+        QtCore.QTimer.singleShot(2000,window.warnnosound)
     QtCore.QTimer.singleShot(0,window.init)
     if args:
         load=lambda: window.editor.open(args[0])

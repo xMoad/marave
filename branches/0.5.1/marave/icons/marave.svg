@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   version="1.0"
+   width="162.5"
+   height="162.5"
+   id="svg101"
+   inkscape:version="0.47 r22583"
+   sodipodi:docname="marave.svg">
+  <metadata
+     id="metadata28">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1440"
+     inkscape:window-height="850"
+     id="namedview26"
+     showgrid="false"
+     inkscape:zoom="1.4523077"
+     inkscape:cx="-40.28072"
+     inkscape:cy="81.25"
+     inkscape:window-x="-1"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg101" />
+  <defs
+     id="defs25">
+    <inkscape:perspective
+       sodipodi:type="inkscape:persp3d"
+       inkscape:vp_x="0 : 81.25 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_z="162.5 : 81.25 : 1"
+       inkscape:persp3d-origin="81.25 : 54.166667 : 1"
+       id="perspective30" />
+  </defs>
+  <path
+     d="M 29.45312,153.867 C 29.45312,153.867 139.1406,153.867 139.1406,153.867 C 139.1406,153.867 139.6486,33.51567 139.6486,33.51567 C 139.6486,33.51567 111.7186,10.15617 111.7186,10.15617 C 111.7186,10.15617 29.96092,10.15617 29.96092,10.15617 C 29.96092,10.15617 29.96092,154.883 29.45312,153.867 z "
+     style="font-size:12px;fill:#9999cf;fill-opacity:0.89912283;fill-rule:evenodd;stroke:#4a4b4f;stroke-width:12.50000000000000000;stroke-linecap:round;stroke-linejoin:round"
+     id="path218" />
+  <path
+     d="M 105.6251,13.71097 C 105.6251,13.71097 106.1331,39.60937 106.1331,39.60937 C 106.1331,39.60937 137.6171,39.60937 137.6171,39.60937"
+     style="font-size:12px;fill:#f0f0f8;fill-opacity:0.503704;fill-rule:evenodd;stroke:#4a4b4f;stroke-width:6.25;stroke-linecap:round;stroke-linejoin:round"
+     id="path219" />
+</svg>

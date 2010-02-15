@@ -368,20 +368,25 @@ Czy chcesz zapisać zmiany czy je odrzucić?</translation>
 <context>
     <name>SpellTextEdit</name>
     <message>
-        <location filename="spelltextedit.py" line="126"/>
+        <location filename="spelltextedit.py" line="127"/>
         <source>Document saved</source>
         <translation>Dokument zapisany</translation>
+    </message>
+    <message>
+        <location filename="spelltextedit.py" line="90"/>
+        <source>Spelling Suggestions</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>app</name>
     <message>
-        <location filename="main.py" line="1303"/>
+        <location filename="main.py" line="1309"/>
         <source>FOCUS!</source>
         <translation>Skup się!</translation>
     </message>
     <message>
-        <location filename="main.py" line="1303"/>
+        <location filename="main.py" line="1309"/>
         <source>Marave only opens one document at a time.
 The whole idea is focusing!
 So, this is the first one you asked for.</source>

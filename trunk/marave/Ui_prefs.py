@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'prefs.ui'
 #
-# Created: Sun Feb 14 17:55:29 2010
+# Created: Sun Feb 14 21:57:08 2010
 #      by: PyQt4 UI code generator 4.7
 #
 # WARNING! All changes made in this file will be lost!
@@ -12,7 +12,7 @@ from PyQt4 import QtCore, QtGui
 class Ui_Form(object):
     def setupUi(self, Form):
         Form.setObjectName("Form")
-        Form.resize(390, 149)
+        Form.resize(390, 193)
         self.horizontalLayout_2 = QtGui.QHBoxLayout(Form)
         self.horizontalLayout_2.setContentsMargins(4, 4, 4, 2)
         self.horizontalLayout_2.setObjectName("horizontalLayout_2")
@@ -102,7 +102,7 @@ class Ui_Form(object):
         self.close.setShortcut(QtGui.QApplication.translate("Form", "Esc", None, QtGui.QApplication.UnicodeUTF8))
         self.label_2.setText(QtGui.QApplication.translate("Form", "&Theme:", None, QtGui.QApplication.UnicodeUTF8))
         self.saveTheme.setText(QtGui.QApplication.translate("Form", "...", None, QtGui.QApplication.UnicodeUTF8))
-        self.label_5.setText(QtGui.QApplication.translate("Form", "St&yle", None, QtGui.QApplication.UnicodeUTF8))
+        self.label_5.setText(QtGui.QApplication.translate("Form", "St&yle:", None, QtGui.QApplication.UnicodeUTF8))
         self.label.setText(QtGui.QApplication.translate("Form", "&Spell Checking:", None, QtGui.QApplication.UnicodeUTF8))
         self.label_3.setText(QtGui.QApplication.translate("Form", "&Buttons:", None, QtGui.QApplication.UnicodeUTF8))
         self.buttonStyle.setItemText(0, QtGui.QApplication.translate("Form", "Icons", None, QtGui.QApplication.UnicodeUTF8))

@@ -53,11 +53,6 @@
         <translation>Opacidad del &amp;editor:</translation>
     </message>
     <message>
-        <location filename="Ui_prefs.py" line="105"/>
-        <source>St&amp;yle</source>
-        <translation>&amp;Estilo</translation>
-    </message>
-    <message>
         <location filename="Ui_searchwidget.py" line="62"/>
         <source>&amp;Find:</source>
         <translation>&amp;Buscar:</translation>
@@ -96,6 +91,11 @@
         <location filename="Ui_prefs.py" line="112"/>
         <source>Auto save (minutes):</source>
         <translation>Guardar automáticamente (minutos):</translation>
+    </message>
+    <message>
+        <location filename="Ui_prefs.py" line="105"/>
+        <source>St&amp;yle:</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

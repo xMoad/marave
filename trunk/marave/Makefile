@@ -1,6 +1,6 @@
 
 all: icons_rc.py Ui_searchreplacewidget.py Ui_searchwidget.py \
-     Ui_prefs.py README.html translations
+     Ui_prefs.py README.html 
 
 icons_rc.py: icons.qrc
 	pyrcc4 icons.qrc -o icons_rc.py

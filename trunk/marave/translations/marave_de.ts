@@ -60,7 +60,7 @@
     <message>
         <location filename="Ui_searchwidget.py" line="63"/>
         <source>&amp;Previous</source>
-        <translation>&amp;Anterior</translation>
+        <translation>&amp;Zurück</translation>
     </message>
     <message>
         <location filename="Ui_searchwidget.py" line="64"/>
@@ -70,7 +70,7 @@
     <message>
         <location filename="Ui_searchwidget.py" line="65"/>
         <source>&amp;Match Case</source>
-        <translation>&amp;Auswahl suchen</translation>
+        <translation>&amp;Groß-/Kleinschreibung beachten</translation>
     </message>
     <message>
         <location filename="Ui_searchreplacewidget.py" line="85"/>
@@ -90,7 +90,7 @@
     <message>
         <location filename="Ui_prefs.py" line="112"/>
         <source>Auto save (minutes):</source>
-        <translation>Automatisch Speichern (Minuten):</translation>
+        <translation>Änderungen automatisch speichern (Minuten):</translation>
     </message>
     <message>
         <location filename="Ui_prefs.py" line="105"/>
@@ -244,7 +244,7 @@ Möchten Sie die Änderungen speichern oder verwerfen?</translation>
     <message>
         <location filename="main.py" line="432"/>
         <source>None</source>
-        <translation>Nichts</translation>
+        <translation>Aus</translation>
     </message>
     <message>
         <location filename="main.py" line="574"/>
@@ -351,7 +351,7 @@ Möchten Sie die Änderungen speichern oder verwerfen?</translation>
         <location filename="main.py" line="499"/>
         <source>Saving every %n minutes</source>
         <translation>
-            <numerusform>Speichere jede %n Minute</numerusform>
+            <numerusform>Speichere jede Minute</numerusform>
             <numerusform>Speichere alle %n Minuten</numerusform>
         </translation>
     </message>
@@ -366,7 +366,7 @@ Möchten Sie die Änderungen speichern oder verwerfen?</translation>
     <message>
         <location filename="spelltextedit.py" line="126"/>
         <source>Document saved</source>
-        <translation type="unfinished"></translation>
+        <translation>Datei wurde gespeichert</translation>
     </message>
 </context>
 <context>
@@ -374,14 +374,16 @@ Möchten Sie die Änderungen speichern oder verwerfen?</translation>
     <message>
         <location filename="main.py" line="1303"/>
         <source>FOCUS!</source>
-        <translation type="unfinished"></translation>
+        <translation>FOKUS!</translation>
     </message>
     <message>
         <location filename="main.py" line="1303"/>
         <source>Marave only opens one document at a time.
 The whole idea is focusing!
 So, this is the first one you asked for.</source>
-        <translation type="unfinished"></translation>
+        <translation>Marave öffnet immer nur eine Datei.
+Die Idee ist sich voll zu konzentrieren!
+Die erstgewählte Datei wird geöffnet.</translation>
     </message>
 </context>
 </TS>

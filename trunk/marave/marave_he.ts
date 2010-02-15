@@ -361,4 +361,12 @@ Do you want to save your changes or discard them?</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
+<context>
+    <name>SpellTextEdit</name>
+    <message>
+        <location filename="spelltextedit.py" line="126"/>
+        <source>Document saved</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
 </TS>

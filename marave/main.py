@@ -1284,7 +1284,13 @@ def main():
     app = QtGui.QApplication(sys.argv)
     app.setApplicationName('Marave')
 
-    locale = QtCore.QLocale.system().name()
+    locale = unicode(QtCore.QLocale.system().name())
+    
+    qtTranslator=QtCore.QTranslator()
+    qtTranslator.load("qt_" + locale,
+            QtCore.QLibraryInfo.location(QtCore.QLibraryInfo.TranslationsPath))
+    app.installTranslator(qtTranslator);    
+    
     translator=QtCore.QTranslator()
     translator.load(os.path.join(PATH,"translations","marave_" + unicode(locale)))
     app.installTranslator(translator)

@@ -733,6 +733,8 @@ class MainWidget (QtGui.QGraphicsView):
         fontcolor=self.settings.value('fontcolor')
         if fontcolor.isValid():
             self.setfontcolor(QtGui.QColor(fontcolor.toString()))
+        else:
+            self.setfontcolor(QtGui.QColor('black'))
 
     def loadOpacity(self):
         o,ok=self.settings.value('editoropacity').toInt()

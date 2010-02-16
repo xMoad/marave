@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'prefs.ui'
 #
-# Created: Tue Feb 16 11:42:37 2010
+# Created: Tue Feb 16 19:33:36 2010
 #      by: PyQt4 UI code generator 4.7
 #
 # WARNING! All changes made in this file will be lost!
@@ -12,7 +12,7 @@ from PyQt4 import QtCore, QtGui
 class Ui_Form(object):
     def setupUi(self, Form):
         Form.setObjectName("Form")
-        Form.resize(390, 193)
+        Form.resize(390, 257)
         self.horizontalLayout_2 = QtGui.QHBoxLayout(Form)
         self.horizontalLayout_2.setContentsMargins(4, 4, 4, 2)
         self.horizontalLayout_2.setObjectName("horizontalLayout_2")
@@ -73,6 +73,7 @@ class Ui_Form(object):
         self.label.setObjectName("label")
         self.formLayout.setWidget(4, QtGui.QFormLayout.LabelRole, self.label)
         self.schemeList = QtGui.QComboBox(Form)
+        self.schemeList.setEnabled(False)
         self.schemeList.setObjectName("schemeList")
         self.formLayout.setWidget(4, QtGui.QFormLayout.FieldRole, self.schemeList)
         self.label_3 = QtGui.QLabel(Form)

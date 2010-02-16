@@ -19,7 +19,6 @@ README.html: ../README
 	rst2html ../README README.html
 
 translations: force
-	pylupdate4 *py -ts translations/*.ts
 	cd translations ; make
 
 force:

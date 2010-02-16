@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'prefs.ui'
 #
-# Created: Sun Feb 14 21:57:08 2010
+# Created: Tue Feb 16 11:02:22 2010
 #      by: PyQt4 UI code generator 4.7
 #
 # WARNING! All changes made in this file will be lost!
@@ -63,27 +63,33 @@ class Ui_Form(object):
         self.formLayout.setWidget(2, QtGui.QFormLayout.FieldRole, self.langBox)
         self.label_3 = QtGui.QLabel(Form)
         self.label_3.setObjectName("label_3")
-        self.formLayout.setWidget(3, QtGui.QFormLayout.LabelRole, self.label_3)
+        self.formLayout.setWidget(4, QtGui.QFormLayout.LabelRole, self.label_3)
         self.buttonStyle = QtGui.QComboBox(Form)
         self.buttonStyle.setObjectName("buttonStyle")
         self.buttonStyle.addItem("")
         self.buttonStyle.addItem("")
         self.buttonStyle.addItem("")
-        self.formLayout.setWidget(3, QtGui.QFormLayout.FieldRole, self.buttonStyle)
+        self.formLayout.setWidget(4, QtGui.QFormLayout.FieldRole, self.buttonStyle)
         self.label_4 = QtGui.QLabel(Form)
         self.label_4.setObjectName("label_4")
-        self.formLayout.setWidget(4, QtGui.QFormLayout.LabelRole, self.label_4)
+        self.formLayout.setWidget(5, QtGui.QFormLayout.LabelRole, self.label_4)
         self.opacity = QtGui.QSlider(Form)
         self.opacity.setMaximum(100)
         self.opacity.setOrientation(QtCore.Qt.Horizontal)
         self.opacity.setObjectName("opacity")
-        self.formLayout.setWidget(4, QtGui.QFormLayout.FieldRole, self.opacity)
+        self.formLayout.setWidget(5, QtGui.QFormLayout.FieldRole, self.opacity)
         self.label_6 = QtGui.QLabel(Form)
         self.label_6.setObjectName("label_6")
-        self.formLayout.setWidget(5, QtGui.QFormLayout.LabelRole, self.label_6)
+        self.formLayout.setWidget(6, QtGui.QFormLayout.LabelRole, self.label_6)
         self.autoSave = QtGui.QSpinBox(Form)
         self.autoSave.setObjectName("autoSave")
-        self.formLayout.setWidget(5, QtGui.QFormLayout.FieldRole, self.autoSave)
+        self.formLayout.setWidget(6, QtGui.QFormLayout.FieldRole, self.autoSave)
+        self.syntaxList = QtGui.QComboBox(Form)
+        self.syntaxList.setObjectName("syntaxList")
+        self.formLayout.setWidget(3, QtGui.QFormLayout.FieldRole, self.syntaxList)
+        self.label_7 = QtGui.QLabel(Form)
+        self.label_7.setObjectName("label_7")
+        self.formLayout.setWidget(3, QtGui.QFormLayout.LabelRole, self.label_7)
         self.horizontalLayout_2.addLayout(self.formLayout)
         spacerItem2 = QtGui.QSpacerItem(55, 20, QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Minimum)
         self.horizontalLayout_2.addItem(spacerItem2)
@@ -110,6 +116,7 @@ class Ui_Form(object):
         self.buttonStyle.setItemText(2, QtGui.QApplication.translate("Form", "Text + Icons", None, QtGui.QApplication.UnicodeUTF8))
         self.label_4.setText(QtGui.QApplication.translate("Form", "&Editor Opacity:", None, QtGui.QApplication.UnicodeUTF8))
         self.label_6.setText(QtGui.QApplication.translate("Form", "Auto save (minutes):", None, QtGui.QApplication.UnicodeUTF8))
+        self.label_7.setText(QtGui.QApplication.translate("Form", "Syntax Highlight:", None, QtGui.QApplication.UnicodeUTF8))
 
 import icons_rc
 

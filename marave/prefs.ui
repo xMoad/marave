@@ -135,7 +135,7 @@
      <item row="2" column="1">
       <widget class="QComboBox" name="langBox"/>
      </item>
-     <item row="3" column="0">
+     <item row="4" column="0">
       <widget class="QLabel" name="label_3">
        <property name="text">
         <string>&amp;Buttons:</string>
@@ -145,7 +145,7 @@
        </property>
       </widget>
      </item>
-     <item row="3" column="1">
+     <item row="4" column="1">
       <widget class="QComboBox" name="buttonStyle">
        <item>
         <property name="text">
@@ -164,7 +164,7 @@
        </item>
       </widget>
      </item>
-     <item row="4" column="0">
+     <item row="5" column="0">
       <widget class="QLabel" name="label_4">
        <property name="text">
         <string>&amp;Editor Opacity:</string>
@@ -174,7 +174,7 @@
        </property>
       </widget>
      </item>
-     <item row="4" column="1">
+     <item row="5" column="1">
       <widget class="QSlider" name="opacity">
        <property name="maximum">
         <number>100</number>
@@ -184,15 +184,25 @@
        </property>
       </widget>
      </item>
-     <item row="5" column="0">
+     <item row="6" column="0">
       <widget class="QLabel" name="label_6">
        <property name="text">
         <string>Auto save (minutes):</string>
        </property>
       </widget>
      </item>
-     <item row="5" column="1">
+     <item row="6" column="1">
       <widget class="QSpinBox" name="autoSave"/>
+     </item>
+     <item row="3" column="1">
+      <widget class="QComboBox" name="syntaxList"/>
+     </item>
+     <item row="3" column="0">
+      <widget class="QLabel" name="label_7">
+       <property name="text">
+        <string>Syntax Highlight:</string>
+       </property>
+      </widget>
      </item>
     </layout>
    </item>

@@ -28,6 +28,11 @@ else:
 # Import Qt modules
 from PyQt4 import QtCore, QtGui, QtSvg
 
+try:
+    import pygments
+    import pygments.lexers
+except ImportError:
+    pygments = False
 
 # Try to import Phonon from PyQt or PyKDE
 SOUND=False
@@ -98,8 +103,17 @@ class PrefsWidget(QtGui.QWidget, animatedOpacity):
         self.loadthemelist()
         self.loadstylelist()
         self.loadSpellcheckers()
+        self.loadLexers()
         self.proxy.setZValue(100)
         self.proxy.setFlag(QtGui.QGraphicsItem.ItemIsMovable, False)
+
+    def loadLexers(self):
+        if pygments:
+            self.ui.syntaxList.clear()
+            for l in pygments.lexers.get_all_lexers():
+                self.ui.syntaxList.addItem(l[0])
+        else:
+            self.ui.syntaxList.setEnabled(False)
 
     def loadSpellcheckers(self):
         self.ui.langBox.clear()

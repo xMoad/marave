@@ -210,6 +210,7 @@ class FunkyStatusBar(QtGui.QStatusBar, animatedOpacity):
         self.children=[]
         self.setSizeGripEnabled(False)
 
+
 class FunkyEditor(SpellTextEdit, animatedOpacity):
     def __init__(self, parent):
         # This is for Issue 28

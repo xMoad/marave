@@ -40,6 +40,12 @@ except ImportError:
     except ImportError:
         pass
 
+# Syntax highlight support
+try:
+    from highlight.SyntaxHighlighter import srchiliteqt
+except ImportError:
+    schiliteqt = None
+
 from spelltextedit import SpellTextEdit
 
 from Ui_searchwidget import Ui_Form as UI_SearchWidget
@@ -102,7 +108,20 @@ class PrefsWidget(QtGui.QWidget, animatedOpacity):
         self.proxy.setFlag(QtGui.QGraphicsItem.ItemIsMovable, False)
 
     def loadLexers(self):
-        pass
+        if srchiliteqt:
+            # FIXME: clean extensions from styles and languages
+            self._langs=srchiliteqt.LanguageComboBox()
+            self._styles=srchiliteqt.StyleComboBox()
+            self.ui.syntaxList.clear()
+            for i in range(self._langs.count()):
+                t=self._langs.itemText(i)
+                if t:
+                    self.ui.syntaxList.addItem(t)
+            self.ui.schemeList.clear()
+            for i in range(self._styles.count()):
+                t=self._styles.itemText(i)
+                if t:
+                    self.ui.schemeList.addItem(t)
 
     def loadSpellcheckers(self):
         self.ui.langBox.clear()

@@ -26,7 +26,7 @@ if __name__ == "__main__":
 
     def changeLang(idx):
         print langs.currentText(), styles.currentText()
-        hp.init(langs.currentText(), styles.currentText())
+        hp.init(langs.currentText())
         hp.setFormattingStyle(styles.currentText())
         hp.rehighlight()
 

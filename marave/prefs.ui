@@ -123,19 +123,43 @@
       <widget class="QComboBox" name="styleList"/>
      </item>
      <item row="2" column="0">
-      <widget class="QLabel" name="label">
+      <widget class="QRadioButton" name="radioButton_2">
        <property name="text">
         <string>&amp;Spell Checking:</string>
        </property>
-       <property name="buddy">
-        <cstring>langBox</cstring>
+       <property name="checked">
+        <bool>true</bool>
        </property>
       </widget>
      </item>
      <item row="2" column="1">
       <widget class="QComboBox" name="langBox"/>
      </item>
+     <item row="3" column="0">
+      <widget class="QRadioButton" name="radioButton">
+       <property name="text">
+        <string>Syntax Highlight:</string>
+       </property>
+      </widget>
+     </item>
+     <item row="3" column="1">
+      <widget class="QComboBox" name="syntaxList">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
+      </widget>
+     </item>
      <item row="4" column="0">
+      <widget class="QLabel" name="label">
+       <property name="text">
+        <string>Color Scheme:</string>
+       </property>
+      </widget>
+     </item>
+     <item row="4" column="1">
+      <widget class="QComboBox" name="schemeList"/>
+     </item>
+     <item row="5" column="0">
       <widget class="QLabel" name="label_3">
        <property name="text">
         <string>&amp;Buttons:</string>
@@ -145,7 +169,7 @@
        </property>
       </widget>
      </item>
-     <item row="4" column="1">
+     <item row="5" column="1">
       <widget class="QComboBox" name="buttonStyle">
        <item>
         <property name="text">
@@ -164,7 +188,7 @@
        </item>
       </widget>
      </item>
-     <item row="5" column="0">
+     <item row="6" column="0">
       <widget class="QLabel" name="label_4">
        <property name="text">
         <string>&amp;Editor Opacity:</string>
@@ -174,7 +198,7 @@
        </property>
       </widget>
      </item>
-     <item row="5" column="1">
+     <item row="6" column="1">
       <widget class="QSlider" name="opacity">
        <property name="maximum">
         <number>100</number>
@@ -184,25 +208,15 @@
        </property>
       </widget>
      </item>
-     <item row="6" column="0">
+     <item row="7" column="0">
       <widget class="QLabel" name="label_6">
        <property name="text">
         <string>Auto save (minutes):</string>
        </property>
       </widget>
      </item>
-     <item row="6" column="1">
+     <item row="7" column="1">
       <widget class="QSpinBox" name="autoSave"/>
-     </item>
-     <item row="3" column="1">
-      <widget class="QComboBox" name="syntaxList"/>
-     </item>
-     <item row="3" column="0">
-      <widget class="QLabel" name="label_7">
-       <property name="text">
-        <string>Syntax Highlight:</string>
-       </property>
-      </widget>
      </item>
     </layout>
    </item>
@@ -224,5 +238,54 @@
  <resources>
   <include location="icons.qrc"/>
  </resources>
- <connections/>
+ <connections>
+  <connection>
+   <sender>radioButton_2</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>langBox</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>165</x>
+     <y>68</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>246</x>
+     <y>68</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>radioButton</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>syntaxList</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>168</x>
+     <y>89</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>229</x>
+     <y>88</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>radioButton</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>schemeList</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>116</x>
+     <y>90</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>273</x>
+     <y>115</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
 </ui>

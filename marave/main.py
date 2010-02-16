@@ -41,7 +41,7 @@ except ImportError:
     except ImportError:
         pass
 
-from spelltextedit import SpellTextEdit as EditorClass
+from spelltextedit import SpellTextEdit
 
 from Ui_searchwidget import Ui_Form as UI_SearchWidget
 from Ui_searchreplacewidget import Ui_Form as UI_SearchReplaceWidget
@@ -207,18 +207,18 @@ class FunkyStatusBar(QtGui.QStatusBar, animatedOpacity):
         self.children=[]
         self.setSizeGripEnabled(False)
          
-class FunkyEditor(EditorClass, animatedOpacity):
+class FunkyEditor(SpellTextEdit, animatedOpacity):
     def __init__(self, parent):
         # This is for Issue 28
         # FIXME: this is not necessary for Oxygen of KDE 4.4 and Qt 4.6
         if QtCore.QCoreApplication.instance().style().objectName() == 'oxygen':
-            EditorClass.__init__(self, parent)
+            SpellTextEdit.__init__(self, parent)
             self.setMouseTracking(True)
             self.viewport().setMouseTracking(True)
             self.defSize=self.font().pointSize()
             # This is for Issue 20
         else:
-            EditorClass.__init__(self)
+            SpellTextEdit.__init__(self)
             self.setMouseTracking(True)
             self.viewport().setMouseTracking(True)
             self.defSize=self.font().pointSize()

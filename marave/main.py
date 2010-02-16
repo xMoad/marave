@@ -28,12 +28,6 @@ else:
 # Import Qt modules
 from PyQt4 import QtCore, QtGui, QtSvg
 
-try:
-    import pygments
-    import pygments.lexers
-except ImportError:
-    pygments = False
-
 # Try to import Phonon from PyQt or PyKDE
 SOUND=False
 try:
@@ -108,12 +102,7 @@ class PrefsWidget(QtGui.QWidget, animatedOpacity):
         self.proxy.setFlag(QtGui.QGraphicsItem.ItemIsMovable, False)
 
     def loadLexers(self):
-        if pygments:
-            self.ui.syntaxList.clear()
-            for l in pygments.lexers.get_all_lexers():
-                self.ui.syntaxList.addItem(l[0])
-        else:
-            self.ui.syntaxList.setEnabled(False)
+        pass
 
     def loadSpellcheckers(self):
         self.ui.langBox.clear()
@@ -220,7 +209,7 @@ class FunkyStatusBar(QtGui.QStatusBar, animatedOpacity):
         self.setFocusPolicy(QtCore.Qt.NoFocus)
         self.children=[]
         self.setSizeGripEnabled(False)
-         
+
 class FunkyEditor(SpellTextEdit, animatedOpacity):
     def __init__(self, parent):
         # This is for Issue 28

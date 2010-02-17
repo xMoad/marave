@@ -26,6 +26,7 @@ public:
     void setFormattingStyle(const QString &styleFile);
     void setDocument ( QTextDocument * doc );
     void rehighlightBlock ( const QTextBlock & block );
+    const QString getLangDefFileFromFileName(const QString &filename);
 
 private:
    Qt4SyntaxHighlighter(const srchiliteqt::Qt4SyntaxHighlighter&);

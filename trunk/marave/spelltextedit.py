@@ -188,8 +188,11 @@ class SpellTextEdit(QPlainTextEdit):
                         self.highlighter=srchiliteqt.Qt4SyntaxHighlighter(self.document())
                         self.highlighter.setDefaultToMonosapce(False)
                         langName=self.highlighter.getLangDefFileFromFileName(fname)
-                        self.langChanged.emit(langName)
-                        self.highlighter.init(langName)
+                        if langName:
+                            self.langChanged.emit(langName)
+                            self.highlighter.init(langName)
+                        else: # Can't figure the language
+                            self.highlighter.setDocument(None)
                     text=codecs.open(fname,'r','utf-8').read()
                     self.setPlainText(text)
                         

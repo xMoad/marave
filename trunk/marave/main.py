@@ -138,7 +138,7 @@ class PrefsWidget(QtGui.QWidget, animatedOpacity):
         
     def loadthemelist(self):
         self.ui.themeList.clear()
-        self.ui.themeList.addItem('Current')
+        self.ui.themeList.addItem(self.tr('Current'))
         tdir=os.path.join(PATH,'themes')
         l=os.listdir(tdir)
         l.sort()

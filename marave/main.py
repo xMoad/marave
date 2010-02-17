@@ -1,5 +1,6 @@
 #-*- coding: utf-8 -*-
 
+
 """The user interface for our app"""
 
 # Marave, a relaxing text editor.
@@ -127,7 +128,7 @@ class PrefsWidget(QtGui.QWidget, animatedOpacity):
 
     def loadSpellcheckers(self):
         self.ui.langBox.clear()
-        self.ui.langBox.addItem('None')
+        self.ui.langBox.addItem(self.tr('None'))
         try:
             import enchant
             for l, _ in enchant.Broker().list_dicts():

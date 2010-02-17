@@ -123,7 +123,7 @@
       <widget class="QComboBox" name="styleList"/>
      </item>
      <item row="2" column="0">
-      <widget class="QRadioButton" name="radioButton_2">
+      <widget class="QRadioButton" name="spelling">
        <property name="text">
         <string>&amp;Spell Checking:</string>
        </property>
@@ -136,7 +136,7 @@
       <widget class="QComboBox" name="langBox"/>
      </item>
      <item row="3" column="0">
-      <widget class="QRadioButton" name="radioButton">
+      <widget class="QRadioButton" name="syntax">
        <property name="text">
         <string>Syntax Highlight:</string>
        </property>
@@ -244,7 +244,7 @@
  </resources>
  <connections>
   <connection>
-   <sender>radioButton_2</sender>
+   <sender>spelling</sender>
    <signal>toggled(bool)</signal>
    <receiver>langBox</receiver>
    <slot>setEnabled(bool)</slot>
@@ -260,7 +260,7 @@
    </hints>
   </connection>
   <connection>
-   <sender>radioButton</sender>
+   <sender>syntax</sender>
    <signal>toggled(bool)</signal>
    <receiver>syntaxList</receiver>
    <slot>setEnabled(bool)</slot>
@@ -276,7 +276,7 @@
    </hints>
   </connection>
   <connection>
-   <sender>radioButton</sender>
+   <sender>syntax</sender>
    <signal>toggled(bool)</signal>
    <receiver>schemeList</receiver>
    <slot>setEnabled(bool)</slot>

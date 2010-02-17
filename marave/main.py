@@ -109,19 +109,21 @@ class PrefsWidget(QtGui.QWidget, animatedOpacity):
 
     def loadLexers(self):
         if srchiliteqt:
-            # FIXME: clean extensions from styles and languages
+            self._l={}
             self._langs=srchiliteqt.LanguageComboBox()
             self._styles=srchiliteqt.StyleComboBox()
             self.ui.syntaxList.clear()
             for i in range(self._langs.count()):
-                t=self._langs.itemText(i)
+                t=unicode(self._langs.itemText(i))
                 if t:
-                    self.ui.syntaxList.addItem(t)
+                    self.ui.syntaxList.addItem(t.split('.')[0])
+                    self._l['lang-'+t.split('.')[0]]=t
             self.ui.schemeList.clear()
             for i in range(self._styles.count()):
-                t=self._styles.itemText(i)
+                t=unicode(self._styles.itemText(i))
                 if t:
-                    self.ui.schemeList.addItem(t)
+                    self.ui.schemeList.addItem(t.split('.')[0])
+                    self._l['scheme-'+t.split('.')[0]]=t
 
     def loadSpellcheckers(self):
         self.ui.langBox.clear()
@@ -466,10 +468,14 @@ class MainWidget (QtGui.QGraphicsView):
         self.prefsWidget.ui.themeList.currentIndexChanged.connect(self.loadtheme)
         self.prefsWidget.ui.styleList.currentIndexChanged.connect(self.loadstyle)
         self.prefsWidget.ui.buttonStyle.currentIndexChanged.connect(self.buttonstyle)
-        self.prefsWidget.ui.langBox.currentIndexChanged.connect(self.setspellchecker)
+        self.prefsWidget.ui.langBox.currentIndexChanged.connect(self.setHL)
         self.prefsWidget.ui.opacity.valueChanged.connect(self.editoropacity)
         self.prefsWidget.ui.buttonStyle.setCurrentIndex(self.settings.value('buttonstyle').toInt()[0])
         self.prefsWidget.ui.autoSave.valueChanged.connect(self.setsavetimer)
+        self.prefsWidget.ui.syntaxList.currentIndexChanged.connect(self.setHL)
+        self.prefsWidget.ui.schemeList.currentIndexChanged.connect(self.setHL)
+        self.prefsWidget.ui.syntax.toggled.connect(self.setHL)
+        self.prefsWidget.ui.spelling.toggled.connect(self.setHL)
         self.saveTimer=QtCore.QTimer()
         self.saveTimer.timeout.connect(self.savebytimer)
         self.prefsWidget.ui.autoSave.setValue(self.settings.value('autosave').toInt()[0])
@@ -512,6 +518,19 @@ class MainWidget (QtGui.QGraphicsView):
         self.searchReplaceBar=QtGui.QGraphicsWidget()
         self.searchReplaceBar.setLayout(searchReplaceLayout)
         self._scene.addItem(self.searchReplaceBar)
+
+    def setHL(self, idx):
+        # Ignore args, take the data from prefsWidget
+        if self.prefsWidget.ui.spelling.isChecked():
+            # Enable spellchecking
+            self.setspellchecker(unicode(self.prefsWidget.ui.langBox.currentText()))
+        else:
+            # Enable syntax highlighting
+            l=self.prefsWidget._l
+            lang='lang-'+unicode(self.prefsWidget.ui.syntaxList.currentText())
+            scheme='scheme-'+unicode(self.prefsWidget.ui.schemeList.currentText())
+            self.editor.setHL(l[lang],
+                l[scheme])
 
     def setsavetimer(self, value=None):
         if value is None:

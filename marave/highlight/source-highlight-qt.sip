@@ -22,8 +22,10 @@ public:
     void init(const QString &langFile, const QString &styleFile=
             "default.style");
     bool initFromFileName(const QString &fileName);
-    void rehighlight();
+    virtual void rehighlight();
     void setFormattingStyle(const QString &styleFile);
+    void setDocument ( QTextDocument * doc );
+    void rehighlightBlock ( const QTextBlock & block );
 
 private:
    Qt4SyntaxHighlighter(const srchiliteqt::Qt4SyntaxHighlighter&);

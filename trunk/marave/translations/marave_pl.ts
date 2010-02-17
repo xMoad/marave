@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS><TS version="1.1" language="pl_PL">
+<!DOCTYPE TS>
+<TS version="2.0" language="pl_PL">
 <context>
     <name>Form</name>
     <message>
@@ -100,12 +101,12 @@
     <message>
         <location filename="Ui_prefs.py" line="124"/>
         <source>Syntax Highlight:</source>
-        <translation type="unfinished"></translation>
+        <translation>Podświetlanie składni:</translation>
     </message>
     <message>
         <location filename="Ui_prefs.py" line="125"/>
         <source>Color Scheme:</source>
-        <translation type="unfinished"></translation>
+        <translation>Schemat kolorów:</translation>
     </message>
 </context>
 <context>

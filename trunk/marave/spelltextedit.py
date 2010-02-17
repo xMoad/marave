@@ -20,7 +20,7 @@ except ImportError:
 try:
     from highlight.SyntaxHighlighter import srchiliteqt
 except ImportError:
-    schiliteqt = None
+    srchiliteqt = None
 
 
 from PyQt4.Qt import QAction

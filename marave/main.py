@@ -44,7 +44,7 @@ except ImportError:
 try:
     from highlight.SyntaxHighlighter import srchiliteqt
 except ImportError:
-    schiliteqt = None
+    srchiliteqt = None
 
 from spelltextedit import SpellTextEdit
 

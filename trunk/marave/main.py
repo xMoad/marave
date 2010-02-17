@@ -108,8 +108,8 @@ class PrefsWidget(QtGui.QWidget, animatedOpacity):
         self.proxy.setFlag(QtGui.QGraphicsItem.ItemIsMovable, False)
 
     def loadLexers(self):
+        self._l={}
         if srchiliteqt:
-            self._l={}
             self._langs=srchiliteqt.LanguageComboBox()
             self._styles=srchiliteqt.StyleComboBox()
             self.ui.syntaxList.clear()
@@ -536,7 +536,7 @@ class MainWidget (QtGui.QGraphicsView):
             l=unicode(self.prefsWidget.ui.langBox.currentText())
             self.setspellchecker(l)
             self.settings.setValue('lang',l)
-        else:
+        elif srchiliteqt:
             # Enable syntax highlighting
             l=self.prefsWidget._l
             lang='lang-'+unicode(self.prefsWidget.ui.syntaxList.currentText())

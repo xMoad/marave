@@ -541,6 +541,7 @@ class MainWidget (QtGui.QGraphicsView):
             l=self.prefsWidget._l
             lang='lang-'+unicode(self.prefsWidget.ui.syntaxList.currentText())
             scheme='scheme-'+unicode(self.prefsWidget.ui.schemeList.currentText())
+            self.settings.setValue('scheme', self.prefsWidget.ui.schemeList.currentText())
             self.editor.setHL(l[lang], l[scheme])
             self.settings.setValue('lang',QtCore.QVariant())
         self.settings.sync()
@@ -831,7 +832,15 @@ class MainWidget (QtGui.QGraphicsView):
             style='default'
         print 'Loading style:',style
         self.prefsWidget.ui.styleList.setCurrentIndex(self.prefsWidget.ui.styleList.findText(style))
-        QtCore.QCoreApplication.instance().setStyleSheet(open(os.path.join(PATH,'stylesheets',style)).read())        
+        QtCore.QCoreApplication.instance().setStyleSheet(open(os.path.join(PATH,'stylesheets',style)).read())
+        
+        # Color scheme for syntax highlighter
+        scheme=self.settings.value('scheme')
+        if scheme.isValid():
+            scheme=unicode(scheme.toString())
+        else:
+            scheme='default'
+        self.prefsWidget.ui.schemeList.setCurrentIndex(self.prefsWidget.ui.schemeList.findText(scheme))        
         QtCore.QTimer.singleShot(10,self.loadSound)
 
     def setspellchecker(self, code):

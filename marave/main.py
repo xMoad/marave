@@ -333,6 +333,8 @@ class MainWidget (QtGui.QGraphicsView):
         self.editor.show()
         self.editor.setMouseTracking(True)
         self.editor.setFrameStyle(QtGui.QFrame.NoFrame)
+        self.editor.langChanged.connect(self.editorLangChanged)
+        
         # Keyboard shortcuts
         self.sc1 = QtGui.QShortcut(QtGui.QKeySequence(self.tr("Ctrl+F","Find")), self);
         self.sc1.activated.connect(self.showsearch)
@@ -518,6 +520,14 @@ class MainWidget (QtGui.QGraphicsView):
         self.searchReplaceBar=QtGui.QGraphicsWidget()
         self.searchReplaceBar.setLayout(searchReplaceLayout)
         self._scene.addItem(self.searchReplaceBar)
+
+    def editorLangChanged(self, lang):
+        lang=unicode(lang).split('.')[0]
+        idx=self.prefsWidget.ui.syntaxList.findText(lang)
+        self.prefsWidget.ui.syntax.setChecked(True)
+        self.prefsWidget.ui.syntaxList.currentIndexChanged.disconnect(self.setHL)
+        self.prefsWidget.ui.syntaxList.setCurrentIndex(idx)
+        self.prefsWidget.ui.syntaxList.currentIndexChanged.connect(self.setHL)
 
     def setHL(self, idx):
         # Ignore args, take the data from prefsWidget

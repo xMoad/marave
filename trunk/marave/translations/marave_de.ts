@@ -100,12 +100,12 @@
     <message>
         <location filename="Ui_prefs.py" line="124"/>
         <source>Syntax Highlight:</source>
-        <translation type="unfinished"></translation>
+        <translation>Syntax Highlight:</translation>
     </message>
     <message>
         <location filename="Ui_prefs.py" line="125"/>
         <source>Color Scheme:</source>
-        <translation type="unfinished"></translation>
+        <translation>Farbschema:</translation>
     </message>
 </context>
 <context>
@@ -381,7 +381,7 @@ Möchten Sie die Änderungen speichern oder verwerfen?</translation>
     <message>
         <location filename="spelltextedit.py" line="100"/>
         <source>Spelling Suggestions</source>
-        <translation type="unfinished"></translation>
+        <translation>Rechtschreibvorschlag</translation>
     </message>
 </context>
 <context>

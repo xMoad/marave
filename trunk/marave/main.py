@@ -523,7 +523,9 @@ class MainWidget (QtGui.QGraphicsView):
         # Ignore args, take the data from prefsWidget
         if self.prefsWidget.ui.spelling.isChecked():
             # Enable spellchecking
-            self.setspellchecker(unicode(self.prefsWidget.ui.langBox.currentText()))
+            l=unicode(self.prefsWidget.ui.langBox.currentText())
+            self.setspellchecker(l)
+            self.settings.setValue('lang',l)
         else:
             # Enable syntax highlighting
             l=self.prefsWidget._l
@@ -531,6 +533,8 @@ class MainWidget (QtGui.QGraphicsView):
             scheme='scheme-'+unicode(self.prefsWidget.ui.schemeList.currentText())
             self.editor.setHL(l[lang],
                 l[scheme])
+            self.settings.setValue('lang',QtCore.QVariant())
+        self.settings.sync()
 
     def setsavetimer(self, value=None):
         if value is None:
@@ -835,7 +839,10 @@ class MainWidget (QtGui.QGraphicsView):
             self.lang=code
             self.editor.initDict(self.lang)
             self.prefsWidget.ui.langBox.setCurrentIndex(self.prefsWidget.ui.langBox.findText(self.lang))
-        self.settings.setValue('lang',self.lang)
+        if self.prefsWidget.ui.spelling.isChecked():
+            self.settings.setValue('lang',self.lang)
+        else:
+            self.settings.setValue('lang',QtCore.QVariant())
         self.settings.sync()
         
 

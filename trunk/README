@@ -20,24 +20,6 @@ As far as I know, all that's needed is:
 * I intend to make binaries available for Windows, and am looking for volunteers 
   help to have Mac binaries as well.
 
-Syntax Highlighting
--------------------
-
-The syntax highlighting support is experimental and a bit hard to enable.
-
-You need to install the following:
-
-* GNU source-highlight, from http://www.gnu.org/software/src-highlite/
-* Source-highlight-qt, from http://srchiliteqt.sourceforge.net/
-* SIP, which should come with PyQt
-* A C++ compiler
-
-Then, go to the marave/highlight folder and run
-
-python configure.py 
-make
-
-If all goes well (unlikely), it should work ;-)
 
 MENU
 ====
@@ -138,15 +120,41 @@ Note: Style changes only take effect after you restart Marave.
 INSTALLATION
 ============
 
-To install from sources try this:
 
-python setup.py install
+
+To install from sources try this::
+
+    python setup.py install
 
 To use Marave without installing, run
 
-python main.py
+::
+
+    python main.py
 
 in the marave folder.
+
+.. sidebar:: Syntax Highlighting
+
+    The syntax highlighting support is experimental and a bit hard to enable.
+
+    You need to install the following:
+
+    * GNU source-highlight, from http://www.gnu.org/software/src-highlite/
+    * Source-highlight-qt, from http://srchiliteqt.sourceforge.net/
+    * SIP, which should come with PyQt
+    * A C++ compiler
+
+    Then, run
+    
+    ::
+
+        python setup.py build_hl
+        python setup.py install
+
+    If all goes well (unlikely ;-), it should work. If it doesn't marave will work anyway, just without 
+    syntax highlighting.
+
 
 CREDITS
 =======

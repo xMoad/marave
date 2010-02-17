@@ -100,12 +100,12 @@
     <message>
         <location filename="Ui_prefs.py" line="124"/>
         <source>Syntax Highlight:</source>
-        <translation type="unfinished"></translation>
+        <translation>Resaltado de sintaxis:</translation>
     </message>
     <message>
         <location filename="Ui_prefs.py" line="125"/>
         <source>Color Scheme:</source>
-        <translation type="unfinished"></translation>
+        <translation>Esquema de colores:</translation>
     </message>
 </context>
 <context>

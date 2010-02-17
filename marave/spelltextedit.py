@@ -185,6 +185,7 @@ class SpellTextEdit(QPlainTextEdit):
                 if os.path.isfile(fname):
                     # If spell checking is disabled, use syntax highlighter
                     if not self.dict and srchiliteqt:
+                        self.highlighter.setDocument(None)
                         self.highlighter=srchiliteqt.Qt4SyntaxHighlighter(self.document())
                         self.highlighter.setDefaultToMonosapce(False)
                         langName=self.highlighter.getLangDefFileFromFileName(fname)

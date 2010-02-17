@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'prefs.ui'
 #
-# Created: Tue Feb 16 19:33:36 2010
+# Created: Tue Feb 16 20:54:22 2010
 #      by: PyQt4 UI code generator 4.7
 #
 # WARNING! All changes made in this file will be lost!
@@ -55,16 +55,16 @@ class Ui_Form(object):
         self.styleList = QtGui.QComboBox(Form)
         self.styleList.setObjectName("styleList")
         self.formLayout.setWidget(1, QtGui.QFormLayout.FieldRole, self.styleList)
-        self.radioButton_2 = QtGui.QRadioButton(Form)
-        self.radioButton_2.setChecked(True)
-        self.radioButton_2.setObjectName("radioButton_2")
-        self.formLayout.setWidget(2, QtGui.QFormLayout.LabelRole, self.radioButton_2)
+        self.spelling = QtGui.QRadioButton(Form)
+        self.spelling.setChecked(True)
+        self.spelling.setObjectName("spelling")
+        self.formLayout.setWidget(2, QtGui.QFormLayout.LabelRole, self.spelling)
         self.langBox = QtGui.QComboBox(Form)
         self.langBox.setObjectName("langBox")
         self.formLayout.setWidget(2, QtGui.QFormLayout.FieldRole, self.langBox)
-        self.radioButton = QtGui.QRadioButton(Form)
-        self.radioButton.setObjectName("radioButton")
-        self.formLayout.setWidget(3, QtGui.QFormLayout.LabelRole, self.radioButton)
+        self.syntax = QtGui.QRadioButton(Form)
+        self.syntax.setObjectName("syntax")
+        self.formLayout.setWidget(3, QtGui.QFormLayout.LabelRole, self.syntax)
         self.syntaxList = QtGui.QComboBox(Form)
         self.syntaxList.setEnabled(False)
         self.syntaxList.setObjectName("syntaxList")
@@ -108,9 +108,9 @@ class Ui_Form(object):
         self.label_4.setBuddy(self.opacity)
 
         self.retranslateUi(Form)
-        QtCore.QObject.connect(self.radioButton_2, QtCore.SIGNAL("toggled(bool)"), self.langBox.setEnabled)
-        QtCore.QObject.connect(self.radioButton, QtCore.SIGNAL("toggled(bool)"), self.syntaxList.setEnabled)
-        QtCore.QObject.connect(self.radioButton, QtCore.SIGNAL("toggled(bool)"), self.schemeList.setEnabled)
+        QtCore.QObject.connect(self.spelling, QtCore.SIGNAL("toggled(bool)"), self.langBox.setEnabled)
+        QtCore.QObject.connect(self.syntax, QtCore.SIGNAL("toggled(bool)"), self.syntaxList.setEnabled)
+        QtCore.QObject.connect(self.syntax, QtCore.SIGNAL("toggled(bool)"), self.schemeList.setEnabled)
         QtCore.QMetaObject.connectSlotsByName(Form)
 
     def retranslateUi(self, Form):
@@ -120,8 +120,8 @@ class Ui_Form(object):
         self.label_2.setText(QtGui.QApplication.translate("Form", "&Theme:", None, QtGui.QApplication.UnicodeUTF8))
         self.saveTheme.setText(QtGui.QApplication.translate("Form", "...", None, QtGui.QApplication.UnicodeUTF8))
         self.label_5.setText(QtGui.QApplication.translate("Form", "St&yle:", None, QtGui.QApplication.UnicodeUTF8))
-        self.radioButton_2.setText(QtGui.QApplication.translate("Form", "&Spell Checking:", None, QtGui.QApplication.UnicodeUTF8))
-        self.radioButton.setText(QtGui.QApplication.translate("Form", "Syntax Highlight:", None, QtGui.QApplication.UnicodeUTF8))
+        self.spelling.setText(QtGui.QApplication.translate("Form", "&Spell Checking:", None, QtGui.QApplication.UnicodeUTF8))
+        self.syntax.setText(QtGui.QApplication.translate("Form", "Syntax Highlight:", None, QtGui.QApplication.UnicodeUTF8))
         self.label.setText(QtGui.QApplication.translate("Form", "Color Scheme:", None, QtGui.QApplication.UnicodeUTF8))
         self.label_3.setText(QtGui.QApplication.translate("Form", "&Buttons:", None, QtGui.QApplication.UnicodeUTF8))
         self.buttonStyle.setItemText(0, QtGui.QApplication.translate("Form", "Icons", None, QtGui.QApplication.UnicodeUTF8))

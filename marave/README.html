@@ -324,21 +324,6 @@ packages in addition to PyQt.</li>
 <li>I intend to make binaries available for Windows, and am looking for volunteers
 help to have Mac binaries as well.</li>
 </ul>
-<div class="section" id="syntax-highlighting">
-<h2>Syntax Highlighting</h2>
-<p>The syntax highlighting support is experimental and a bit hard to enable.</p>
-<p>You need to install the following:</p>
-<ul class="simple">
-<li>GNU source-highlight, from <a class="reference external" href="http://www.gnu.org/software/src-highlite/">http://www.gnu.org/software/src-highlite/</a></li>
-<li>Source-highlight-qt, from <a class="reference external" href="http://srchiliteqt.sourceforge.net/">http://srchiliteqt.sourceforge.net/</a></li>
-<li>SIP, which should come with PyQt</li>
-<li>A C++ compiler</li>
-</ul>
-<p>Then, go to the marave/highlight folder and run</p>
-<p>python configure.py
-make</p>
-<p>If all goes well (unlikely), it should work ;-)</p>
-</div>
 </div>
 <div class="section" id="menu">
 <h1>MENU</h1>
@@ -425,10 +410,32 @@ preferences panel.</p>
 <div class="section" id="installation">
 <h1>INSTALLATION</h1>
 <p>To install from sources try this:</p>
-<p>python setup.py install</p>
+<pre class="literal-block">
+python setup.py install
+</pre>
 <p>To use Marave without installing, run</p>
-<p>python main.py</p>
+<pre class="literal-block">
+python main.py
+</pre>
 <p>in the marave folder.</p>
+<div class="sidebar">
+<p class="first sidebar-title">Syntax Highlighting</p>
+<p>The syntax highlighting support is experimental and a bit hard to enable.</p>
+<p>You need to install the following:</p>
+<ul class="simple">
+<li>GNU source-highlight, from <a class="reference external" href="http://www.gnu.org/software/src-highlite/">http://www.gnu.org/software/src-highlite/</a></li>
+<li>Source-highlight-qt, from <a class="reference external" href="http://srchiliteqt.sourceforge.net/">http://srchiliteqt.sourceforge.net/</a></li>
+<li>SIP, which should come with PyQt</li>
+<li>A C++ compiler</li>
+</ul>
+<p>Then, run</p>
+<pre class="literal-block">
+python setup.py build_hl
+python setup.py install
+</pre>
+<p class="last">If all goes well (unlikely ;-), it should work. If it doesn't marave will work anyway, just without
+syntax highlighting.</p>
+</div>
 </div>
 <div class="section" id="credits">
 <h1>CREDITS</h1>

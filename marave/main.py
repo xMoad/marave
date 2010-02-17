@@ -541,8 +541,7 @@ class MainWidget (QtGui.QGraphicsView):
             l=self.prefsWidget._l
             lang='lang-'+unicode(self.prefsWidget.ui.syntaxList.currentText())
             scheme='scheme-'+unicode(self.prefsWidget.ui.schemeList.currentText())
-            self.editor.setHL(l[lang],
-                l[scheme])
+            self.editor.setHL(l[lang], l[scheme])
             self.settings.setValue('lang',QtCore.QVariant())
         self.settings.sync()
 

@@ -54,7 +54,11 @@ MainWidget {
 /* They are in the prefs widget */
 
 #Form QComboBox {
-    min-width: 100;
+    min-width: 15em;
+    max-width: 15em;
+}
+
+#Form QRadioButton {
 }
 
 /* These are all the buttons in the 'menu' */

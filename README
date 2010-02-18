@@ -167,6 +167,9 @@ http://john.nachtimwald.com/2009/08/22/qplaintextedit-with-in-line-spell-check/
 
 Several patches by Filipe Maia
 
+Plugin system inspired by Armin Ronacher's code at 
+http://lucumr.pocoo.org/2006/7/3/python-plugin-system
+
 The rest is written by me: Roberto Alsina <ralsina@netmanagers.com.ar>
 
 TRANSLATIONS

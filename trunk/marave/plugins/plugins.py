@@ -16,6 +16,7 @@ class ConfigDialog(QtGui.QDialog):
 class Plugin (object):
     
     instances = {}
+    settings = None
     
     def __init__(self, client):
         '''client is the MainWindow of Marave, everything is there somewhere'''
@@ -29,17 +30,30 @@ class Plugin (object):
         '''Add whatever config widgets are needed to dialog'''
         
     @classmethod
-    def showConfig(self, parent=None):
+    def loadConfig(self):
+        # Override shortcut with settings
+        if self.settings:
+            sc=self.settings.value('shortcut-'+self.name+'-shortcut')
+            if sc.isValid():
+                self.shortcut=unicode(sc.toString())
+        
+    @classmethod
+    def showConfig(self, parent):
+        self.settings=parent.settings
         dialog=ConfigDialog(parent)
+        self.loadConfig()
         self.addConfigWidgets(dialog)
         dialog.ui.shortcut.setText(self.shortcut)
-        r=dialog.exec_()
+        r=dialog.exec_()        
         if r==QtGui.QDialog.Accepted:
             self.saveConfig(dialog)
             
     @classmethod
     def saveConfig(self, dialog):
         self.shortcut=unicode(dialog.ui.shortcut.text())
+        if self.settings:
+            self.settings.setValue('plugin-'+self.name+'-shortcut', self.shortcut)
+            self.settings.sync()
     
     @classmethod
     def selectorWidget(self):

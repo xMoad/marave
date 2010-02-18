@@ -4,6 +4,7 @@ from plugins import Plugin
 from PyQt4 import QtGui
 
 class Smarty(Plugin):
+    name='smarty'
     shortcut='Ctrl+.'
     description='Smart quote and dash replacement'
     mode="qBde"
@@ -30,8 +31,22 @@ class Smarty(Plugin):
         l.addWidget(self.e)
 
     @classmethod
+    def loadConfig(self):
+        print 'SMARTY loadconfig', self.settings
+        if self.settings:
+            sc=self.settings.value('plugin-'+self.name+'-shortcut')
+            if sc.isValid():
+                self.shortcut=unicode(sc.toString())
+            mode=self.settings.value('plugin-smarty-mode')
+            if mode.isValid():
+                self.mode=unicode(mode.toString())
+
+    @classmethod
     def saveConfig(self, dialog):
+        
         self.shortcut=unicode(dialog.ui.shortcut.text())
+        self.settings.setValue('plugin-'+self.name+'-shortcut', self.shortcut)
+        
         newmode=""
         if self.q.isChecked():
             newmode+='q'
@@ -42,6 +57,9 @@ class Smarty(Plugin):
         if self.e.isChecked():
             newmode+='e'
         self.mode=newmode
+        
+        self.settings.setValue('plugin-smarty-mode',self.mode)
+        self.settings.sync()
 
     def run(self):
         print 'running smarty plugin'

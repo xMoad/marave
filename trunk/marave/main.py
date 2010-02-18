@@ -890,7 +890,7 @@ class MainWidget (QtGui.QGraphicsView):
         w.show()
         self.editor.resize(self.editorW, self.editorH-w.height())
         self.setFocus()
-        w.targetOpacity=.7
+        w.targetOpacity=.9
         w.moveOpacity()
 
     def showsearchreplace(self):

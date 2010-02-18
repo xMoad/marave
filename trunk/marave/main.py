@@ -93,7 +93,7 @@ class Handle(QtGui.QGraphicsRectItem, animatedOpacity):
         self.children=[]
 
 class PrefsWidget(QtGui.QWidget, animatedOpacity):
-    def __init__(self, scene, opacity=0):
+    def __init__(self, scene, opacity=0, mainwindow=None):
         QtGui.QWidget.__init__(self)
         # Set up the UI from designer
         self.ui=UI_Prefs()
@@ -110,6 +110,7 @@ class PrefsWidget(QtGui.QWidget, animatedOpacity):
         self.loadPlugins()
         self.proxy.setZValue(100)
         self.proxy.setFlag(QtGui.QGraphicsItem.ItemIsMovable, False)
+        self.mainwindow=mainwindow
 
     def loadPlugins(self):
         Plugin.initPlugins()
@@ -123,7 +124,7 @@ class PrefsWidget(QtGui.QWidget, animatedOpacity):
     def enablePlugin(self, pluginClass, enabled=None):
         if enabled is None: return
         print pluginClass, enabled
-        print Plugin.instance(pluginClass)
+        print Plugin.instance(pluginClass, self.mainwindow)
 
     def loadLexers(self):
         self._l={}
@@ -492,7 +493,7 @@ class MainWidget (QtGui.QGraphicsView):
 
 
         # Prefs widget
-        self.prefsWidget=PrefsWidget(self._scene)
+        self.prefsWidget=PrefsWidget(self._scene,mainwindow=self)
         self.prefsWidget.ui.close.clicked.connect(self.hidewidgets)
         self.prefsWidget.ui.saveTheme.clicked.connect(self.savetheme)
         self.prefsWidget.ui.themeList.currentIndexChanged.connect(self.loadtheme)

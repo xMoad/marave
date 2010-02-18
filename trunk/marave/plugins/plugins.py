@@ -9,6 +9,13 @@ class Plugin (object):
     
     instances = {}
     
+    def __init__(self, client):
+        '''client is the MainWindow of Marave, everything is there somewhere'''
+        self.client=client
+        print client
+        self.sc=QtGui.QShortcut(QtGui.QKeySequence(self.shortcut), client)
+        self.sc.activated.connect(self.run)
+    
     @classmethod
     def selectorWidget(self):
         w=QtGui.QWidget()
@@ -21,9 +28,9 @@ class Plugin (object):
         return w
         
     @classmethod
-    def instance(self,pluginClass):
+    def instance(self, pluginClass, client):
         if pluginClass not in self.instances:
-            self.instances[pluginClass]=pluginClass()
+            self.instances[pluginClass]=pluginClass(client)
         return self.instances[pluginClass]
             
 

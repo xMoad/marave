@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'prefs.ui'
 #
-# Created: Wed Feb 17 23:45:47 2010
+# Created: Thu Feb 18 00:04:55 2010
 #      by: PyQt4 UI code generator 4.7
 #
 # WARNING! All changes made in this file will be lost!
@@ -109,6 +109,22 @@ class Ui_Form(object):
         self.tabWidget.addTab(self.tab, "")
         self.tab_2 = QtGui.QWidget()
         self.tab_2.setObjectName("tab_2")
+        self.verticalLayout_3 = QtGui.QVBoxLayout(self.tab_2)
+        self.verticalLayout_3.setObjectName("verticalLayout_3")
+        self.pluginContainer = QtGui.QScrollArea(self.tab_2)
+        self.pluginContainer.setWidgetResizable(True)
+        self.pluginContainer.setObjectName("pluginContainer")
+        self.scrollAreaWidgetContents = QtGui.QWidget(self.pluginContainer)
+        self.scrollAreaWidgetContents.setGeometry(QtCore.QRect(0, 0, 259, 204))
+        self.scrollAreaWidgetContents.setObjectName("scrollAreaWidgetContents")
+        self.verticalLayout_5 = QtGui.QVBoxLayout(self.scrollAreaWidgetContents)
+        self.verticalLayout_5.setMargin(0)
+        self.verticalLayout_5.setObjectName("verticalLayout_5")
+        self.pluginLayout = QtGui.QVBoxLayout()
+        self.pluginLayout.setObjectName("pluginLayout")
+        self.verticalLayout_5.addLayout(self.pluginLayout)
+        self.pluginContainer.setWidget(self.scrollAreaWidgetContents)
+        self.verticalLayout_3.addWidget(self.pluginContainer)
         self.tabWidget.addTab(self.tab_2, "")
         self.horizontalLayout_2.addWidget(self.tabWidget)
         spacerItem2 = QtGui.QSpacerItem(55, 20, QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Minimum)

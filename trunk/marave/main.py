@@ -41,6 +41,8 @@ except ImportError:
     except ImportError:
         pass
 
+from plugins import plugins
+
 # Syntax highlight support
 try:
     from highlight.SyntaxHighlighter import srchiliteqt
@@ -105,8 +107,15 @@ class PrefsWidget(QtGui.QWidget, animatedOpacity):
         self.loadstylelist()
         self.loadSpellcheckers()
         self.loadLexers()
+        self.loadPlugins()
         self.proxy.setZValue(100)
         self.proxy.setFlag(QtGui.QGraphicsItem.ItemIsMovable, False)
+
+    def loadPlugins(self):
+        plugins.initPlugins()
+        classes = plugins.listPlugins()
+        for p in classes:
+            self.ui.pluginLayout.addWidget(p.selectorWidget())
 
     def loadLexers(self):
         self._l={}

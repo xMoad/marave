@@ -41,7 +41,7 @@ except ImportError:
     except ImportError:
         pass
 
-from plugins import plugins
+from plugins.plugins import Plugin
 
 # Syntax highlight support
 try:
@@ -112,8 +112,8 @@ class PrefsWidget(QtGui.QWidget, animatedOpacity):
         self.proxy.setFlag(QtGui.QGraphicsItem.ItemIsMovable, False)
 
     def loadPlugins(self):
-        plugins.initPlugins()
-        classes = plugins.listPlugins()
+        Plugin.initPlugins()
+        classes = Plugin.listPlugins()
         for p in classes:
             sel=p.selectorWidget()
             f=lambda b: self.enablePlugin(p,b)
@@ -123,6 +123,7 @@ class PrefsWidget(QtGui.QWidget, animatedOpacity):
     def enablePlugin(self, pluginClass, enabled=None):
         if enabled is None: return
         print pluginClass, enabled
+        print Plugin.instance(pluginClass)
 
     def loadLexers(self):
         self._l={}

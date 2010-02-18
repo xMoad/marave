@@ -6,6 +6,9 @@ from PyQt4 import QtGui
 PATH = os.path.abspath(os.path.dirname(__file__))
 
 class Plugin (object):
+    
+    instances = {}
+    
     @classmethod
     def selectorWidget(self):
         w=QtGui.QWidget()
@@ -16,14 +19,23 @@ class Plugin (object):
         l.addWidget(w.conf)
         w.setLayout(l)
         return w
+        
+    @classmethod
+    def instance(self,pluginClass):
+        if pluginClass not in self.instances:
+            self.instances[pluginClass]=pluginClass()
+        return self.instances[pluginClass]
+            
 
-def initPlugins():
-    l=[]
-    for p in os.listdir(PATH):
-        if p.endswith('.py') and p != 'plugins.py':
-            l.append(p)
-    for p in l:
-        __import__('plugins.'+p[:-3], level=-1)
+    @classmethod
+    def initPlugins(self):
+        l=[]
+        for p in os.listdir(PATH):
+            if p.endswith('.py') and p != 'plugins.py':
+                l.append(p)
+        for p in l:
+            __import__('plugins.'+p[:-3], level=-1)
 
-def listPlugins():
-    return Plugin.__subclasses__()
+    @classmethod
+    def listPlugins(self):
+        return Plugin.__subclasses__()

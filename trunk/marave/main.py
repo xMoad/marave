@@ -1036,12 +1036,17 @@ class MainWidget (QtGui.QGraphicsView):
         text=unicode(self.searchWidget.ui.text.text())
         r=self.editor.find(text,flags)
 
+    def rewind(self):
+        if self.beep:
+            self.beep.seek(0)
+
     def setclick(self, clickname):
         if not SOUND: return
         self.currentClick=clickname
         self.notify(unicode(self.tr('Switching click to: %s'))%self.currentClick)
         self.beep = Phonon.createPlayer(Phonon.NotificationCategory,
                                   Phonon.MediaSource(os.path.join(PATH,'clicks',self.currentClick)))
+        self.beep.finished.connect( self.rewind )
         self.beep.play()
         self.settings.setValue('click',self.currentClick)
         self.settings.sync()
@@ -1194,6 +1199,8 @@ class MainWidget (QtGui.QGraphicsView):
         if obj==self.editor:
             if event.type()==QtCore.QEvent.KeyPress:
                 if self.beep:
+                    if self.beep.state()==2:
+                        self.beep.stop()
                     self.beep.play()
                 self.hideCursor()
                 self.hideButtons()
@@ -1210,7 +1217,6 @@ class MainWidget (QtGui.QGraphicsView):
 
     def keyEvent(self, ev):
         self.hideCursor()
-        QtGui.QGraphicsView.keyEvent(self, ev)
 
     def mouseMoveEvent(self, ev):
         self.showCursor()

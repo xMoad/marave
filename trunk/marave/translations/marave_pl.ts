@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS><TS version="1.1" language="pl_PL">
+<!DOCTYPE TS>
+<TS version="2.0" language="pl_PL">
 <context>
     <name>Form</name>
     <message>
@@ -380,7 +381,7 @@ Czy chcesz zachować zmiany czy je odrzucić?</translation>
     <message>
         <location filename="main.py" line="131"/>
         <source>None</source>
-        <translation type="unfinished">Brak</translation>
+        <translation>Brak</translation>
     </message>
 </context>
 <context>

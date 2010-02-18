@@ -14,4 +14,7 @@ marave_pl.qm: marave_pl.ts
 	
 update_trans:
 	pylupdate4 ../*py -ts $(TRANSLATIONS)
-
+	@for ts in ${TRANSLATIONS};\
+	do \
+	  sed 's/filename="/filename="..\//g' -i $$ts;\
+	done

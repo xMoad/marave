@@ -272,27 +272,27 @@ Do you want to save your changes or discard them?</source>
         <translation>Opacitá: %s%%</translation>
     </message>
     <message>
-        <location filename="../main.py" line="1042"/>
+        <location filename="../main.py" line="1046"/>
         <source>Switching click to: %s</source>
         <translation>Click selezionato: %s</translation>
     </message>
     <message>
-        <location filename="../main.py" line="1070"/>
+        <location filename="../main.py" line="1075"/>
         <source>Disabling click</source>
         <translation>Click disabilitato</translation>
     </message>
     <message>
-        <location filename="../main.py" line="1076"/>
+        <location filename="../main.py" line="1081"/>
         <source>Listening to: %s</source>
         <translation>Stai ascoltando: %s</translation>
     </message>
     <message>
-        <location filename="../main.py" line="1109"/>
+        <location filename="../main.py" line="1114"/>
         <source>Disabling music</source>
         <translation>Musica disabilitata</translation>
     </message>
     <message>
-        <location filename="../main.py" line="1168"/>
+        <location filename="../main.py" line="1173"/>
         <source>Setting background to: %s</source>
         <translation>Sfondo selezionato: %s</translation>
     </message>
@@ -410,16 +410,16 @@ Do you want to save your changes or discard them?</source>
 <context>
     <name>app</name>
     <message>
-        <location filename="../main.py" line="1460"/>
+        <location filename="../../main.py" line="1466"/>
         <source>FOCUS!</source>
-        <translation>Concentrati!</translation>
+        <translation type="obsolete">Concentrati!</translation>
     </message>
     <message>
-        <location filename="../main.py" line="1460"/>
+        <location filename="../../main.py" line="1466"/>
         <source>Marave only opens one document at a time.
 The whole idea is focusing!
 So, this is the first one you asked for.</source>
-        <translation>Marave apre un solo documento per volta
+        <translation type="obsolete">Marave apre un solo documento per volta
 L&apos;idea é di concentrarsi!
 Perció questo é il primo che hai chiesto.</translation>
     </message>

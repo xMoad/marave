@@ -272,27 +272,27 @@ Möchten Sie die Änderungen speichern oder verwerfen?</translation>
         <translation>Setze Transparenz auf: %s%%</translation>
     </message>
     <message>
-        <location filename="../main.py" line="1042"/>
+        <location filename="../main.py" line="1046"/>
         <source>Switching click to: %s</source>
         <translation>Ändere Klick zu: %s</translation>
     </message>
     <message>
-        <location filename="../main.py" line="1070"/>
+        <location filename="../main.py" line="1075"/>
         <source>Disabling click</source>
         <translation>Deaktiviere Klick</translation>
     </message>
     <message>
-        <location filename="../main.py" line="1076"/>
+        <location filename="../main.py" line="1081"/>
         <source>Listening to: %s</source>
         <translation>Höre: %s</translation>
     </message>
     <message>
-        <location filename="../main.py" line="1109"/>
+        <location filename="../main.py" line="1114"/>
         <source>Disabling music</source>
         <translation>Musik ausgeschaltet</translation>
     </message>
     <message>
-        <location filename="../main.py" line="1168"/>
+        <location filename="../main.py" line="1173"/>
         <source>Setting background to: %s</source>
         <translation>Hintergrund geändert zu: %s</translation>
     </message>
@@ -410,16 +410,16 @@ Möchten Sie die Änderungen speichern oder verwerfen?</translation>
 <context>
     <name>app</name>
     <message>
-        <location filename="../main.py" line="1460"/>
+        <location filename="../../main.py" line="1466"/>
         <source>FOCUS!</source>
-        <translation>FOKUS!</translation>
+        <translation type="obsolete">FOKUS!</translation>
     </message>
     <message>
-        <location filename="../main.py" line="1460"/>
+        <location filename="../../main.py" line="1466"/>
         <source>Marave only opens one document at a time.
 The whole idea is focusing!
 So, this is the first one you asked for.</source>
-        <translation>Marave öffnet immer nur eine Datei.
+        <translation type="obsolete">Marave öffnet immer nur eine Datei.
 Die Idee ist sich voll zu konzentrieren!
 Die erstgewählte Datei wird geöffnet.</translation>
     </message>

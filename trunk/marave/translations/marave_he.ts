@@ -272,27 +272,27 @@ Do you want to save your changes or discard them?</source>
         <translation>הגדרת האטימות ל־: %s%%</translation>
     </message>
     <message>
-        <location filename="../main.py" line="1042"/>
+        <location filename="../main.py" line="1046"/>
         <source>Switching click to: %s</source>
         <translation>החלפת הלחיצה ל־: %s</translation>
     </message>
     <message>
-        <location filename="../main.py" line="1070"/>
+        <location filename="../main.py" line="1075"/>
         <source>Disabling click</source>
         <translation>נטרול הלחיצה</translation>
     </message>
     <message>
-        <location filename="../main.py" line="1076"/>
+        <location filename="../main.py" line="1081"/>
         <source>Listening to: %s</source>
         <translation>השיר ברקע: %s</translation>
     </message>
     <message>
-        <location filename="../main.py" line="1109"/>
+        <location filename="../main.py" line="1114"/>
         <source>Disabling music</source>
         <translation>נטרול המוזיקה</translation>
     </message>
     <message>
-        <location filename="../main.py" line="1168"/>
+        <location filename="../main.py" line="1173"/>
         <source>Setting background to: %s</source>
         <translation>הגדרת הרקע ל־: %s</translation>
     </message>
@@ -410,16 +410,16 @@ Do you want to save your changes or discard them?</source>
 <context>
     <name>app</name>
     <message>
-        <location filename="../main.py" line="1460"/>
+        <location filename="../../main.py" line="1466"/>
         <source>FOCUS!</source>
-        <translation>להתמקד!!</translation>
+        <translation type="obsolete">להתמקד!!</translation>
     </message>
     <message>
-        <location filename="../main.py" line="1460"/>
+        <location filename="../../main.py" line="1466"/>
         <source>Marave only opens one document at a time.
 The whole idea is focusing!
 So, this is the first one you asked for.</source>
-        <translation>Marave מאפשרת פתיחה של מסמך אחד בלבד.
+        <translation type="obsolete">Marave מאפשרת פתיחה של מסמך אחד בלבד.
 כל הרעיון הוא להתמקד!
 לכן, זהו הראשון שביקשת.</translation>
     </message>

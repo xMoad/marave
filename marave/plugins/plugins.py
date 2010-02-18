@@ -24,6 +24,9 @@ class Plugin (object):
         self.sc=QtGui.QShortcut(QtGui.QKeySequence(self.shortcut), client)
         self.sc.activated.connect(self.run)
         print self.run
+
+    def run(self):
+	pass
     
     @classmethod
     def addConfigWidgets(self, dialog):

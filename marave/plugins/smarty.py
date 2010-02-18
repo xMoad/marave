@@ -13,13 +13,35 @@ class Smarty(Plugin):
         print 'Adding widgets to smarty config'
         l=dialog.ui.layout
         self.q=QtGui.QCheckBox(dialog.tr('Replace normal quotes'))
+        if 'q' in self.mode:
+            self.q.setChecked(True)
         self.b=QtGui.QCheckBox(dialog.tr('Replace backtick-style quotes (` and ``)'))
+        if 'B' in self.mode:
+            self.b.setChecked(True)
         self.d=QtGui.QCheckBox(dialog.tr('Replace -- by en-dash, --- by em-dash'))
+        if 'd' in self.mode:
+            self.d.setChecked(True)
         self.e=QtGui.QCheckBox(dialog.tr('Replace ellipses'))
+        if 'e' in self.mode:
+            self.e.setChecked(True)
         l.addWidget(self.q)
         l.addWidget(self.b)
         l.addWidget(self.d)
         l.addWidget(self.e)
+
+    @classmethod
+    def saveConfig(self, dialog):
+        self.shortcut=unicode(dialog.ui.shortcut.text())
+        newmode=""
+        if self.q.isChecked():
+            newmode+='q'
+        if self.b.isChecked():
+            newmode+='B'
+        if self.d.isChecked():
+            newmode+='d'
+        if self.e.isChecked():
+            newmode+='e'
+        self.mode=newmode
 
     def run(self):
         print 'running smarty plugin'
@@ -31,7 +53,7 @@ class Smarty(Plugin):
         prog.show()
         output=[]
         for i,l in enumerate(text):
-            output.append(unescape(smartyPants(l,"1")))
+            output.append(unescape(smartyPants(l,self.mode)))
             prog.setValue(i)
             QtGui.QApplication.instance().processEvents()
         prog.hide()

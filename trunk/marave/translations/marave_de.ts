@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS><TS version="1.1" language="de_DE">
+<!DOCTYPE TS>
+<TS version="2.0" language="de_DE">
 <context>
     <name>Form</name>
     <message>
@@ -110,12 +111,12 @@
     <message>
         <location filename="../Ui_prefs.py" line="157"/>
         <source>Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Einstellungen</translation>
     </message>
     <message>
         <location filename="../Ui_prefs.py" line="158"/>
         <source>Plugins</source>
-        <translation type="unfinished"></translation>
+        <translation>Erweiterungen</translation>
     </message>
 </context>
 <context>
@@ -391,7 +392,7 @@ Möchten Sie die Änderungen speichern oder verwerfen?</translation>
     <message>
         <location filename="../main.py" line="158"/>
         <source>Current</source>
-        <translation type="unfinished"></translation>
+        <translation>Aktuell</translation>
     </message>
 </context>
 <context>

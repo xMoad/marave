@@ -118,8 +118,13 @@ class PrefsWidget(QtGui.QWidget, animatedOpacity):
         for p in classes:
             sel=p.selectorWidget()
             f=lambda b: self.enablePlugin(p,b)
+            c=lambda: self.showPluginConf(p)
             sel.check.toggled.connect(f)
+            sel.conf.clicked.connect(c)
             self.ui.pluginLayout.addWidget(sel)
+
+    def showPluginConf(self, pluginClass):
+        pluginClass.showConfig(self.mainwindow)
 
     def enablePlugin(self, pluginClass, enabled=None):
         if enabled is None: return

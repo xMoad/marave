@@ -115,7 +115,14 @@ class PrefsWidget(QtGui.QWidget, animatedOpacity):
         plugins.initPlugins()
         classes = plugins.listPlugins()
         for p in classes:
-            self.ui.pluginLayout.addWidget(p.selectorWidget())
+            sel=p.selectorWidget()
+            f=lambda b: self.enablePlugin(p,b)
+            sel.check.toggled.connect(f)
+            self.ui.pluginLayout.addWidget(sel)
+
+    def enablePlugin(self, pluginClass, enabled=None):
+        if enabled is None: return
+        print pluginClass, enabled
 
     def loadLexers(self):
         self._l={}
@@ -1398,7 +1405,7 @@ def main():
                       default=False,
                       action='store_true', 
                       help='Enable OpenGL acceleration')
-                     
+
     options, args = parser.parse_args()
 
     if len(args) > 1:

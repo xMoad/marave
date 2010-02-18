@@ -170,6 +170,9 @@ Several patches by Filipe Maia
 Plugin system inspired by Armin Ronacher's code at 
 http://lucumr.pocoo.org/2006/7/3/python-plugin-system
 
+Smartypants plugin based on smartypants.py by John Gruber and Chad Miller,
+http://web.chad.org/projects/smartypants.py/ ( See the `license <smartypants_license.html>`_)
+
 The rest is written by me: Roberto Alsina <ralsina@netmanagers.com.ar>
 
 TRANSLATIONS

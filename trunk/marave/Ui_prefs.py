@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'prefs.ui'
 #
-# Created: Thu Feb 18 00:04:55 2010
+# Created: Thu Feb 18 10:00:03 2010
 #      by: PyQt4 UI code generator 4.7
 #
 # WARNING! All changes made in this file will be lost!
@@ -112,10 +112,11 @@ class Ui_Form(object):
         self.verticalLayout_3 = QtGui.QVBoxLayout(self.tab_2)
         self.verticalLayout_3.setObjectName("verticalLayout_3")
         self.pluginContainer = QtGui.QScrollArea(self.tab_2)
+        self.pluginContainer.setFrameShape(QtGui.QFrame.NoFrame)
         self.pluginContainer.setWidgetResizable(True)
         self.pluginContainer.setObjectName("pluginContainer")
         self.scrollAreaWidgetContents = QtGui.QWidget(self.pluginContainer)
-        self.scrollAreaWidgetContents.setGeometry(QtCore.QRect(0, 0, 259, 204))
+        self.scrollAreaWidgetContents.setGeometry(QtCore.QRect(0, 0, 265, 210))
         self.scrollAreaWidgetContents.setObjectName("scrollAreaWidgetContents")
         self.verticalLayout_5 = QtGui.QVBoxLayout(self.scrollAreaWidgetContents)
         self.verticalLayout_5.setMargin(0)
@@ -135,7 +136,7 @@ class Ui_Form(object):
         self.label_4.setBuddy(self.opacity)
 
         self.retranslateUi(Form)
-        self.tabWidget.setCurrentIndex(0)
+        self.tabWidget.setCurrentIndex(1)
         QtCore.QMetaObject.connectSlotsByName(Form)
 
     def retranslateUi(self, Form):

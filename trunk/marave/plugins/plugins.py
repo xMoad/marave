@@ -5,6 +5,14 @@ from PyQt4 import QtGui
 
 PATH = os.path.abspath(os.path.dirname(__file__))
 
+from Ui_conf import Ui_Dialog as ConfDialog
+
+class ConfigDialog(QtGui.QDialog):
+    def __init__(self, parent):
+        QtGui.QDialog.__init__(self, parent)
+        self.ui=ConfDialog()
+        self.ui.setupUi(self)
+
 class Plugin (object):
     
     instances = {}
@@ -12,9 +20,20 @@ class Plugin (object):
     def __init__(self, client):
         '''client is the MainWindow of Marave, everything is there somewhere'''
         self.client=client
-        print client
         self.sc=QtGui.QShortcut(QtGui.QKeySequence(self.shortcut), client)
         self.sc.activated.connect(self.run)
+        print self.run
+    
+    @classmethod
+    def addConfigWidgets(self, dialog):
+        '''Add whatever config widgets are needed to dialog'''
+        
+    @classmethod
+    def showConfig(self, parent=None):
+        dialog=ConfigDialog(parent)
+        self.addConfigWidgets(dialog)
+        dialog.ui.shortcut.setText(self.shortcut)
+        dialog.exec_()
     
     @classmethod
     def selectorWidget(self):

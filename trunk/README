@@ -120,8 +120,6 @@ Note: Style changes only take effect after you restart Marave.
 INSTALLATION
 ============
 
-
-
 To install from sources try this::
 
     python setup.py install
@@ -189,6 +187,8 @@ ICONS
 
 The icons are taken from the Reinhardt SVG icon set, or based on them:
 http://www.kde-look.org/content/show.php/The+Reinhardt+Icon+Set?content=6153
+
+The Marave icon is by Pierpaolo Da Fieno
 
 IMAGES
 ------

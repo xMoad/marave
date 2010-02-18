@@ -250,16 +250,25 @@ class FunkyStatusBar(QtGui.QStatusBar, animatedOpacity):
 
 
 class FunkyEditor(SpellTextEdit, animatedOpacity):
-    def __init__(self, parent):
+    def __init__(self, parent, canvaseditor=None):
         # This is for Issue 28
-        # FIXME: this is not necessary for Oxygen of KDE 4.4 and Qt 4.6
-        if QtCore.QCoreApplication.instance().style().objectName() == 'oxygen':
+        
+        if canvaseditor is None:
+            if QtCore.QCoreApplication.instance().style().objectName() == 'oxygen' \
+                and QtCore.QT_VERSION_STR < '4.6.0':
+                canvaseditor = False
+            else:
+                canvaseditor = True
+        
+        if not canvaseditor:
+            print 'Using non-canvas editor'
             SpellTextEdit.__init__(self, parent)
             self.setMouseTracking(True)
             self.viewport().setMouseTracking(True)
             self.defSize=self.font().pointSize()
             # This is for Issue 20
         else:
+            print 'Using canvas editor'
             SpellTextEdit.__init__(self)
             self.setMouseTracking(True)
             self.viewport().setMouseTracking(True)
@@ -282,14 +291,15 @@ class BGItem(QtGui.QGraphicsPixmapItem, animatedOpacity):
         self.step=.2
 
 class MainWidget (QtGui.QGraphicsView):
-    def __init__(self, opengl=False):
+    def __init__(self, opengl=False, canvaseditor=None):
         QtGui.QGraphicsView.__init__(self)
         self.setWindowIcon(QtGui.QIcon(os.path.join(PATH,'icons','marave.svg')))
         self.setGeometry(QtCore.QCoreApplication.instance().desktop().screenGeometry(self))
         self._scene=QtGui.QGraphicsScene()
         self.setObjectName ("Main")
         if opengl:
-            if QtCore.QCoreApplication.instance().style().objectName() == 'oxygen':
+            if QtCore.QCoreApplication.instance().style().objectName() == 'oxygen' \
+               and QtCore.QT_VERSION_STR < '4.6.0':
                 print "OpenGL acceleration doesn't work well with Oxygen, disabling it"
             else:
                 try:
@@ -346,7 +356,7 @@ class MainWidget (QtGui.QGraphicsView):
         self.editorH=400
         self.editorW=400
 
-        self.editor=FunkyEditor(self)
+        self.editor=FunkyEditor(self, canvaseditor)
         self.editor.show()
         self.editor.setMouseTracking(True)
         self.editor.setFrameStyle(QtGui.QFrame.NoFrame)
@@ -1405,13 +1415,25 @@ def main():
                       default=False,
                       action='store_true', 
                       help='Enable OpenGL acceleration')
+                      
+    parser.add_option('--use-in-canvas-editor', 
+                      dest='canvas', 
+                      default=None,
+                      action='store_true', 
+                      help='Use an in-canvas editor, may be slower/prettier')
+
+    parser.add_option('--use-off-canvas-editor', 
+                      dest='canvas', 
+                      default=None,
+                      action='store_false', 
+                      help='Use an off-canvas editor, may be faster/uglier')
 
     options, args = parser.parse_args()
 
     if len(args) > 1:
         QtGui.QMessageBox.information(None,app.tr('FOCUS!'),app.tr('Marave only opens one document at a time.\nThe whole idea is focusing!\nSo, this is the first one you asked for.'))
 
-    window=MainWidget(opengl=options.opengl)
+    window=MainWidget(opengl=options.opengl, canvaseditor=options.canvas)
     window.loadprefs()
     window.loadBG()
     window.show()

@@ -96,6 +96,7 @@ class PrefsWidget(QtGui.QWidget, animatedOpacity):
     def __init__(self, scene, opacity=0, mainwindow=None):
         QtGui.QWidget.__init__(self)
         # Set up the UI from designer
+        self.mainwindow=mainwindow
         self.ui=UI_Prefs()
         self.baseOpacity=opacity
         self.proxy=scene.addWidget(self)
@@ -110,13 +111,19 @@ class PrefsWidget(QtGui.QWidget, animatedOpacity):
         self.loadPlugins()
         self.proxy.setZValue(100)
         self.proxy.setFlag(QtGui.QGraphicsItem.ItemIsMovable, False)
-        self.mainwindow=mainwindow
 
     def loadPlugins(self):
         Plugin.initPlugins()
         classes = Plugin.listPlugins()
+        enabled = self.mainwindow.settings.value('enabledplugins')
+        if enabled.isValid():
+            enabled=unicode(enabled.toString()).split(',')
+        else:
+            enabled=[]
         for p in classes:
             sel=p.selectorWidget()
+            if p.name in enabled:
+                sel.check.setChecked(True)
             f=lambda b: self.enablePlugin(p,b)
             c=lambda: self.showPluginConf(p)
             sel.check.toggled.connect(f)
@@ -128,8 +135,20 @@ class PrefsWidget(QtGui.QWidget, animatedOpacity):
 
     def enablePlugin(self, pluginClass, enabled=None):
         if enabled is None: return
-        print pluginClass, enabled
-        print Plugin.instance(pluginClass, self.mainwindow)
+        enabledPlugins = self.mainwindow.settings.value('enabledplugins')
+        if enabledPlugins.isValid():
+            enabledPlugins=unicode(enabledPlugins.toString()).split(',')
+        else:
+            enabledPlugins=[]
+        if pluginClass.name not in enabledPlugins and enabled:
+            enabledPlugins.append(pluginClass.name)
+        elif pluginClass.name in enabledPlugins and not enabled:
+            enabledPlugins.remove(pluginClass.name)
+        
+        self.mainwindow.settings.setValue('enabledplugins',','.join(enabledPlugins))
+        self.mainwindow.settings.sync()
+        
+        Plugin.instance(pluginClass, self.mainwindow)
 
     def loadLexers(self):
         self._l={}

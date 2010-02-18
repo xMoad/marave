@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS><TS version="1.1" language="pl_PL">
+<!DOCTYPE TS>
+<TS version="2.0" language="pl_PL">
 <context>
     <name>Form</name>
     <message>
@@ -110,12 +111,12 @@
     <message>
         <location filename="../Ui_prefs.py" line="157"/>
         <source>Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Ustawienia</translation>
     </message>
     <message>
         <location filename="../Ui_prefs.py" line="158"/>
         <source>Plugins</source>
-        <translation type="unfinished"></translation>
+        <translation>Wtyczki</translation>
     </message>
 </context>
 <context>
@@ -395,7 +396,7 @@ Czy chcesz zachować zmiany czy je odrzucić?</translation>
     <message>
         <location filename="../main.py" line="158"/>
         <source>Current</source>
-        <translation type="unfinished"></translation>
+        <translation>Obecny</translation>
     </message>
 </context>
 <context>

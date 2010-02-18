@@ -19,37 +19,37 @@
         <translation>Esc</translation>
     </message>
     <message>
-        <location filename="../../Ui_prefs.py" line="120"/>
+        <location filename="../Ui_prefs.py" line="120"/>
         <source>&amp;Theme:</source>
         <translation>&amp;Thema:</translation>
     </message>
     <message>
-        <location filename="../../Ui_prefs.py" line="123"/>
+        <location filename="../Ui_prefs.py" line="123"/>
         <source>&amp;Spell Checking:</source>
         <translation>&amp;Rechtschreibprüfung:</translation>
     </message>
     <message>
-        <location filename="../../Ui_prefs.py" line="126"/>
+        <location filename="../Ui_prefs.py" line="126"/>
         <source>&amp;Buttons:</source>
         <translation>&amp;Knöpfe:</translation>
     </message>
     <message>
-        <location filename="../../Ui_prefs.py" line="127"/>
+        <location filename="../Ui_prefs.py" line="127"/>
         <source>Icons</source>
         <translation>Symbole</translation>
     </message>
     <message>
-        <location filename="../../Ui_prefs.py" line="128"/>
+        <location filename="../Ui_prefs.py" line="128"/>
         <source>Text</source>
         <translation>Text</translation>
     </message>
     <message>
-        <location filename="../../Ui_prefs.py" line="129"/>
+        <location filename="../Ui_prefs.py" line="129"/>
         <source>Text + Icons</source>
         <translation>Text + Symbole</translation>
     </message>
     <message>
-        <location filename="../../Ui_prefs.py" line="130"/>
+        <location filename="../Ui_prefs.py" line="130"/>
         <source>&amp;Editor Opacity:</source>
         <translation>&amp;Editor Transparenz:</translation>
     </message>
@@ -89,7 +89,7 @@
         <translation>&amp;Alle ersetzen</translation>
     </message>
     <message>
-        <location filename="../../Ui_prefs.py" line="131"/>
+        <location filename="../Ui_prefs.py" line="131"/>
         <source>Auto save (minutes):</source>
         <translation>Änderungen automatisch speichern (Minuten):</translation>
     </message>

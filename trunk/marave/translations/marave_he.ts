@@ -90,7 +90,7 @@
     <message>
         <location filename="../Ui_prefs.py" line="156"/>
         <source>Auto save (minutes):</source>
-        <translation type="unfinished"></translation>
+        <translation>שמירה אוטומטית (בדקות):</translation>
     </message>
     <message>
         <location filename="../Ui_prefs.py" line="147"/>
@@ -100,12 +100,12 @@
     <message>
         <location filename="../Ui_prefs.py" line="149"/>
         <source>Syntax Highlight:</source>
-        <translation type="unfinished"></translation>
+        <translation>הדגשת תחביר:</translation>
     </message>
     <message>
         <location filename="../Ui_prefs.py" line="150"/>
         <source>Color Scheme:</source>
-        <translation type="unfinished"></translation>
+        <translation>ערכת צבעים:</translation>
     </message>
     <message>
         <location filename="../Ui_prefs.py" line="157"/>
@@ -370,9 +370,9 @@ Do you want to save your changes or discard them?</source>
     <message numerus="yes">
         <location filename="../main.py" line="583"/>
         <source>Saving every %n minutes</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>שמירה כל דקה</numerusform>
+            <numerusform>שמירה בכל %n דקות</numerusform>
         </translation>
     </message>
     <message>
@@ -386,7 +386,7 @@ Do you want to save your changes or discard them?</source>
     <message>
         <location filename="../main.py" line="148"/>
         <source>None</source>
-        <translation type="unfinished">אין</translation>
+        <translation>אין</translation>
     </message>
     <message>
         <location filename="../main.py" line="158"/>
@@ -404,7 +404,7 @@ Do you want to save your changes or discard them?</source>
     <message>
         <location filename="../spelltextedit.py" line="100"/>
         <source>Spelling Suggestions</source>
-        <translation type="unfinished"></translation>
+        <translation>הצעות איות</translation>
     </message>
 </context>
 <context>
@@ -420,7 +420,7 @@ Do you want to save your changes or discard them?</source>
 The whole idea is focusing!
 So, this is the first one you asked for.</source>
         <translation>Marave מאפשרת פתיחה של מסמך אחד בלבד.
-כל הרעין הוא להתמקד!
+כל הרעיון הוא להתמקד!
 לכן, זהו הראשון שביקשת.</translation>
     </message>
 </context>

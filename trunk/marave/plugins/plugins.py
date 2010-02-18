@@ -33,7 +33,13 @@ class Plugin (object):
         dialog=ConfigDialog(parent)
         self.addConfigWidgets(dialog)
         dialog.ui.shortcut.setText(self.shortcut)
-        dialog.exec_()
+        r=dialog.exec_()
+        if r==QtGui.QDialog.Accepted:
+            self.saveConfig(dialog)
+            
+    @classmethod
+    def saveConfig(self, dialog):
+        self.shortcut=unicode(dialog.ui.shortcut.text())
     
     @classmethod
     def selectorWidget(self):

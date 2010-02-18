@@ -74,17 +74,17 @@
         <translation>Uwzględniaj &amp;wielkość liter</translation>
     </message>
     <message>
-        <location filename="../Ui_searchreplacewidget.py line="94"/>
+        <location filename="../Ui_searchreplacewidget.py" line="94"/>
         <source>Rep&amp;lace:</source>
         <translation>Zas&amp;tąp:</translation>
     </message>
     <message>
-        <location filename="../Ui_searchreplacewidget.py line="95"/>
+        <location filename="../Ui_searchreplacewidget.py" line="95"/>
         <source>&amp;Replace</source>
         <translation>Za&amp;stąp</translation>
     </message>
     <message>
-        <location filename="../Ui_searchreplacewidget.py line="96"/>
+        <location filename="../Ui_searchreplacewidget.py" line="96"/>
         <source>Replace &amp;All</source>
         <translation>Zastąp wsz&amp;ystkie</translation>
     </message>

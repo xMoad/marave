@@ -402,9 +402,9 @@ Do you want to save your changes or discard them?</source>
         <translation>Documento salvato</translation>
     </message>
     <message>
-        <location filename="../spelltextedit.py" line="100"/>
+        <location filename="../../spelltextedit.py" line="100"/>
         <source>Spelling Suggestions</source>
-        <translation>Correzioni suggerite</translation>
+        <translation type="obsolete">Correzioni suggerite</translation>
     </message>
 </context>
 <context>
@@ -422,6 +422,11 @@ So, this is the first one you asked for.</source>
         <translation type="unfinished">Marave apre un solo documento per volta
 L&apos;idea é di concentrarsi!
 Perció questo é il primo che hai chiesto.</translation>
+    </message>
+    <message>
+        <location filename="../spelltextedit.py" line="100"/>
+        <source>Spelling Suggestions</source>
+        <translation type="unfinished">Correzioni suggerite</translation>
     </message>
 </context>
 </TS>

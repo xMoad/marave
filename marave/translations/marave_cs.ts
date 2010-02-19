@@ -400,11 +400,6 @@ Do you want to save your changes or discard them?</source>
 <context>
     <name>SpellTextEdit</name>
     <message>
-        <location filename="../spelltextedit.py" line="100"/>
-        <source>Spelling Suggestions</source>
-        <translation></translation>
-    </message>
-    <message>
         <location filename="../spelltextedit.py" line="137"/>
         <source>Document saved</source>
         <translation></translation>
@@ -424,6 +419,11 @@ The whole idea is focusing!
 So, this is the first one you asked for.</source>
         <translation type="unfinished">Marave pracuje pouze s jedním dokumentem najednou.
 Smyslem je soustředit se.</translation>
+    </message>
+    <message>
+        <location filename="../spelltextedit.py" line="100"/>
+        <source>Spelling Suggestions</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 </TS>

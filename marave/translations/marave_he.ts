@@ -402,9 +402,9 @@ Do you want to save your changes or discard them?</source>
         <translation>המסמך נשמר</translation>
     </message>
     <message>
-        <location filename="../spelltextedit.py" line="100"/>
+        <location filename="../../spelltextedit.py" line="100"/>
         <source>Spelling Suggestions</source>
-        <translation>הצעות איות</translation>
+        <translation type="obsolete">הצעות איות</translation>
     </message>
 </context>
 <context>
@@ -422,6 +422,11 @@ So, this is the first one you asked for.</source>
         <translation type="unfinished">Marave מאפשרת פתיחה של מסמך אחד בלבד.
 כל הרעיון הוא להתמקד!
 לכן, זהו הראשון שביקשת.</translation>
+    </message>
+    <message>
+        <location filename="../spelltextedit.py" line="100"/>
+        <source>Spelling Suggestions</source>
+        <translation type="unfinished">הצעות איות</translation>
     </message>
 </context>
 </TS>

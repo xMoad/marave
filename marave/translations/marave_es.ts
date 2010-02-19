@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS><TS version="1.1" language="es_AR">
+<!DOCTYPE TS>
+<TS version="2.0" language="es_AR">
 <context>
     <name>Form</name>
     <message>
@@ -402,9 +403,9 @@ Do you want to save your changes or discard them?</source>
         <translation>Documento guardado</translation>
     </message>
     <message>
-        <location filename="../spelltextedit.py" line="100"/>
+        <location filename="../../spelltextedit.py" line="100"/>
         <source>Spelling Suggestions</source>
-        <translation>Correcciones sugeridas</translation>
+        <translation type="obsolete">Correcciones sugeridas</translation>
     </message>
 </context>
 <context>
@@ -422,6 +423,11 @@ So, this is the first one you asked for.</source>
         <translation>Marave sólo abre un documento por vez.
 ¡La idea es enfocarse!
 Éste es el primero que pidió.</translation>
+    </message>
+    <message>
+        <location filename="../spelltextedit.py" line="100"/>
+        <source>Spelling Suggestions</source>
+        <translation>Correcciones sugeridas</translation>
     </message>
 </context>
 </TS>

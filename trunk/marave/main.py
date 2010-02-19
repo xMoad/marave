@@ -640,11 +640,14 @@ class MainWidget (QtGui.QGraphicsView):
             b.submenu=QtGui.QGraphicsWidget()
             self._scene.addItem(b.submenu)
             b.submenu.setLayout(QtGui.QGraphicsLinearLayout())
-            mmLayout.addItem(b.proxy,r,0,1,1,QtCore.Qt.AlignVCenter)
+            b.submenu.layout().setContentsMargins(0,0,0,0)
+            mmLayout.addItem(b.proxy,r,0,1,1,
+                QtCore.Qt.AlignVCenter|QtCore.Qt.AlignCenter)
             for c in b.children:
                 b.submenu.layout().addItem(c.proxy)
             b.submenu.layout().addStretch()
-            mmLayout.addItem(b.submenu,r,1,1,1,QtCore.Qt.AlignVCenter)
+            mmLayout.addItem(b.submenu,r,1,1,1,
+                QtCore.Qt.AlignVCenter|QtCore.Qt.AlignCenter)
             mmLayout.setRowFixedHeight(r, b.height())
             mmLayout.setRowSpacing(r, self.m)
 
@@ -666,15 +669,12 @@ class MainWidget (QtGui.QGraphicsView):
             if idx==0:
                 b.setIcon(QtGui.QIcon(os.path.join(PATH,'icons',b.icon)))
                 b.setText("")
-                b.adjustSize()
             elif idx==1:
                 b.setIcon(QtGui.QIcon())
                 b.setText(b.text)
-                b.adjustSize()
             elif idx==2:
                 b.setIcon(QtGui.QIcon(os.path.join(PATH,'icons',b.icon)))
                 b.setText(b.text)
-                b.adjustSize()
         self.layoutButtons()
 
     def loadstyle(self, styleidx):

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS><TS version="1.1" language="pl_PL">
+<!DOCTYPE TS>
+<TS version="2.0" language="pl_PL">
 <context>
     <name>Form</name>
     <message>
@@ -430,7 +431,7 @@ Więc oto pierwszy, o który prosiłeś.</translation>
     <message>
         <location filename="../spelltextedit.py" line="100"/>
         <source>Spelling Suggestions</source>
-        <translation type="unfinished">Poprawki pisowni</translation>
+        <translation>Poprawki pisowni</translation>
     </message>
 </context>
 </TS>

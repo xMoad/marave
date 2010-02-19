@@ -401,11 +401,6 @@ Do you want to save your changes or discard them?</source>
         <source>Document saved</source>
         <translation>המסמך נשמר</translation>
     </message>
-    <message>
-        <location filename="../../spelltextedit.py" line="100"/>
-        <source>Spelling Suggestions</source>
-        <translation type="obsolete">הצעות איות</translation>
-    </message>
 </context>
 <context>
     <name>app</name>

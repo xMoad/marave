@@ -402,9 +402,9 @@ Möchten Sie die Änderungen speichern oder verwerfen?</translation>
         <translation>Datei wurde gespeichert</translation>
     </message>
     <message>
-        <location filename="../spelltextedit.py" line="100"/>
+        <location filename="../../spelltextedit.py" line="100"/>
         <source>Spelling Suggestions</source>
-        <translation>Rechtschreibvorschlag</translation>
+        <translation type="obsolete">Rechtschreibvorschlag</translation>
     </message>
 </context>
 <context>
@@ -422,6 +422,11 @@ So, this is the first one you asked for.</source>
         <translation type="unfinished">Marave öffnet immer nur eine Datei.
 Die Idee ist sich voll zu konzentrieren!
 Die erstgewählte Datei wird geöffnet.</translation>
+    </message>
+    <message>
+        <location filename="../spelltextedit.py" line="100"/>
+        <source>Spelling Suggestions</source>
+        <translation type="unfinished">Rechtschreibvorschlag</translation>
     </message>
 </context>
 </TS>

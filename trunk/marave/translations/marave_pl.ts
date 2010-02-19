@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.0" language="pl_PL">
+<!DOCTYPE TS><TS version="1.1" language="pl_PL">
 <context>
     <name>Form</name>
     <message>
@@ -407,9 +406,9 @@ Czy chcesz zachować zmiany czy je odrzucić?</translation>
         <translation>Dokument zapisany</translation>
     </message>
     <message>
-        <location filename="../spelltextedit.py" line="100"/>
+        <location filename="../../spelltextedit.py" line="100"/>
         <source>Spelling Suggestions</source>
-        <translation>Poprawki pisowni</translation>
+        <translation type="obsolete">Poprawki pisowni</translation>
     </message>
 </context>
 <context>
@@ -427,6 +426,11 @@ So, this is the first one you asked for.</source>
         <translation>Marave otwiera tylko jeden dokument na raz.
 Chodzi o skupienie się!
 Więc oto pierwszy, o który prosiłeś.</translation>
+    </message>
+    <message>
+        <location filename="../spelltextedit.py" line="100"/>
+        <source>Spelling Suggestions</source>
+        <translation type="unfinished">Poprawki pisowni</translation>
     </message>
 </context>
 </TS>

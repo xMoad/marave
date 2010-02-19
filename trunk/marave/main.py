@@ -190,8 +190,6 @@ class MenuStrip(QtGui.QGraphicsWidget):
         self.proxy.setFlag(QtGui.QGraphicsItem.ItemIsMovable, False)
         self.setPos=self.proxy.setPos
         self.proxy.setOpacity(100)
-        self.proxy.setLayout(QtGui.QGraphicsGridLayout())
-        self.proxy.layout().setContentsMargins(0,0,0,0)
 
 class SearchReplaceWidget(QtGui.QWidget):
     def __init__(self, scene):
@@ -636,30 +634,17 @@ class MainWidget (QtGui.QGraphicsView):
 
     def layoutButtons(self):
         self.mainMenu=MenuStrip(self._scene)
-        self.mainMenu.show()
+        self.mainMenu.proxy.setLayout(QtGui.QGraphicsGridLayout())
+        self.mainMenu.proxy.layout().setContentsMargins(0,0,0,0)
         mainMenuLayout=self.mainMenu.proxy.layout()
-        for pos, button in enumerate(self.buttons):
-            mainMenuLayout.addItem(button.proxy,pos,0)
-        mainMenuLayout.setRowSpacing(len(self.buttons)-2,self.m*2)
-        mainMenuLayout.addItem(self.fontList.proxy,0,2,1,2)
-        mainMenuLayout.addItem(self.fontColor.proxy,0,1)
-        mainMenuLayout.addItem(self.size1.proxy,1,1)
-        mainMenuLayout.addItem(self.size2.proxy,1,2)
-        mainMenuLayout.addItem(self.size3.proxy,1,3)
-        mainMenuLayout.addItem(self.file1.proxy,2,1)
-        mainMenuLayout.addItem(self.file2.proxy,2,2)
-        mainMenuLayout.addItem(self.file3.proxy,2,3)
-        mainMenuLayout.addItem(self.bg1.proxy,3,1)
-        mainMenuLayout.addItem(self.bg2.proxy,3,2)
-        mainMenuLayout.addItem(self.bg3.proxy,3,3)
-        if SOUND:
-            mainMenuLayout.addItem(self.click1.proxy,4,1)
-            mainMenuLayout.addItem(self.click2.proxy,4,2)
-            mainMenuLayout.addItem(self.click3.proxy,4,3)
-            mainMenuLayout.addItem(self.music1.proxy,5,1)
-            mainMenuLayout.addItem(self.music2.proxy,5,2)
-            mainMenuLayout.addItem(self.music3.proxy,5,3)
-
+        for r, button in enumerate(self.buttons):
+            mainMenuLayout.addItem(button.proxy,r,0)
+            button.submenu=QtGui.QGraphicsWidget()
+            button.submenu.setLayout(QtGui.QGraphicsLinearLayout())
+            mainMenuLayout.addItem(button.submenu,r,1)
+            for c in button.children:
+                button.submenu.layout().addItem(c.proxy)
+ 
         self.mainMenu.setPos(self.editorX+self.editorW+20,self.editorY)
 
     def editoropacity(self, v):

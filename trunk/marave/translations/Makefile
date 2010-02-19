@@ -33,3 +33,10 @@ update_trans:
 	do \
 	  sed 's/filename="/filename="..\//g' -i $$ts;\
 	done
+
+remove_obsolete:
+	pylupdate4 -noobsolete ../*py -ts $(TRANSLATIONS)
+	@for ts in ${TRANSLATIONS};\
+	do \
+	  sed 's/filename="/filename="..\//g' -i $$ts;\
+	done

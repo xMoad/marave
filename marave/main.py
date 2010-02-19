@@ -428,6 +428,10 @@ class MainWidget (QtGui.QGraphicsView):
         self.sc11 = QtGui.QShortcut(QtGui.QKeySequence(self.tr("F1","Help")), self);
         self.sc11.activated.connect(self.showhelp)
 
+        # Dismiss bars
+        self.sc12 = QtGui.QShortcut(QtGui.QKeySequence(self.tr("Esc")), self);
+        self.sc12.activated.connect(self.hidewidgets)
+
         self.editorBG=QtGui.QGraphicsRectItem()
         self.editorBG.setFlag(QtGui.QGraphicsItem.ItemIsMovable, True)
         self.editorBG.setCursor(QtCore.Qt.PointingHandCursor)

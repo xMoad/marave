@@ -2,8 +2,8 @@
 
 # Form implementation generated from reading ui file 'searchwidget.ui'
 #
-# Created: Thu Jan 28 16:45:33 2010
-#      by: PyQt4 UI code generator 4.6.2
+# Created: Fri Feb 19 15:45:04 2010
+#      by: PyQt4 UI code generator 4.7
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -12,7 +12,7 @@ from PyQt4 import QtCore, QtGui
 class Ui_Form(object):
     def setupUi(self, Form):
         Form.setObjectName("Form")
-        Form.resize(531, 34)
+        Form.resize(531, 36)
         self.horizontalLayout = QtGui.QHBoxLayout(Form)
         self.horizontalLayout.setMargin(4)
         self.horizontalLayout.setObjectName("horizontalLayout")
@@ -58,7 +58,6 @@ class Ui_Form(object):
     def retranslateUi(self, Form):
         Form.setWindowTitle(QtGui.QApplication.translate("Form", "Form", None, QtGui.QApplication.UnicodeUTF8))
         self.close.setText(QtGui.QApplication.translate("Form", "...", None, QtGui.QApplication.UnicodeUTF8))
-        self.close.setShortcut(QtGui.QApplication.translate("Form", "Esc", None, QtGui.QApplication.UnicodeUTF8))
         self.label.setText(QtGui.QApplication.translate("Form", "&Find:", None, QtGui.QApplication.UnicodeUTF8))
         self.previous.setText(QtGui.QApplication.translate("Form", "&Previous", None, QtGui.QApplication.UnicodeUTF8))
         self.next.setText(QtGui.QApplication.translate("Form", "&Next", None, QtGui.QApplication.UnicodeUTF8))

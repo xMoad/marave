@@ -80,11 +80,11 @@ class SpellTextEdit(QPlainTextEdit):
         popup_menu = self.createStandardContextMenu()
         pal=QApplication.instance().palette()
         # This fixes Issue 20
-        popup_menu.setStyleSheet("""
-                                  * { background-color: %s;
+        menu_style=""" * { background-color: %s;
                                       color: %s;}
                                   """%(unicode(pal.color(QPalette.Button).name()),
-                                        unicode(pal.color(QPalette.WindowText).name())))
+                                        unicode(pal.color(QPalette.WindowText).name()))
+        popup_menu.setStyleSheet(menu_style)
  
         # Select the word under the cursor.
         cursor = self.textCursor()
@@ -97,7 +97,8 @@ class SpellTextEdit(QPlainTextEdit):
             if self.textCursor().hasSelection():
                 text = unicode(self.textCursor().selectedText())
                 if not self.dict.check(text):
-                    spell_menu = QMenu(QtCore.QCoreApplication.translate('app','Spelling Suggestions'))
+                    spell_menu = QMenu(QtCore.QCoreApplication.translate('app','Spelling Suggestions'), self)
+                    spell_menu.setStyleSheet(menu_style)
                     for word in self.dict.suggest(text):
                         action = SpellAction(word, spell_menu)
                         action.correct.connect(self.correctWord)

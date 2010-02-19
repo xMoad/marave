@@ -179,15 +179,19 @@ class SearchWidget(QtGui.QWidget):
         self.proxy.setFlag(QtGui.QGraphicsItem.ItemIsMovable, False)
         self.proxy.setOpacity(0)
 
-class MenuStrip(QtGui.QWidget):
+class MenuStrip(QtGui.QGraphicsWidget):
     def __init__(self, scene):
         QtGui.QWidget.__init__(self)
         # Set up the UI from designer
-        self.proxy=scene.addWidget(self)
+        self.proxy=self
+        scene.addItem(self)
         self.proxy.setZValue(100)
+        self.proxy.setFlag(QtGui.QGraphicsItem.ItemDoesntPropagateOpacityToChildren, True)
         self.proxy.setFlag(QtGui.QGraphicsItem.ItemIsMovable, False)
         self.setPos=self.proxy.setPos
-        self.proxy.setOpacity(0)
+        self.proxy.setOpacity(100)
+        self.proxy.setLayout(QtGui.QGraphicsGridLayout())
+        self.proxy.layout().setContentsMargins(0,0,0,0)
 
 class SearchReplaceWidget(QtGui.QWidget):
     def __init__(self, scene):
@@ -631,8 +635,9 @@ class MainWidget (QtGui.QGraphicsView):
         self.notifBar.proxy.setPos(self.editorX, self.editorY+self.editorH+self.m)
 
     def layoutButtons(self):
-        mainMenuLayout=QtGui.QGraphicsGridLayout()
-        mainMenuLayout.setContentsMargins(0,0,0,0)
+        self.mainMenu=MenuStrip(self._scene)
+        self.mainMenu.show()
+        mainMenuLayout=self.mainMenu.proxy.layout()
         for pos, button in enumerate(self.buttons):
             mainMenuLayout.addItem(button.proxy,pos,0)
         mainMenuLayout.setRowSpacing(len(self.buttons)-2,self.m*2)
@@ -655,9 +660,6 @@ class MainWidget (QtGui.QGraphicsView):
             mainMenuLayout.addItem(self.music2.proxy,5,2)
             mainMenuLayout.addItem(self.music3.proxy,5,3)
 
-        self.mainMenu=QtGui.QGraphicsWidget()
-        self._scene.addItem(self.mainMenu)
-        self.mainMenu.setLayout(mainMenuLayout)
         self.mainMenu.setPos(self.editorX+self.editorW+20,self.editorY)
 
     def editoropacity(self, v):

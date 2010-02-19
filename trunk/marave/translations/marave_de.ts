@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS><TS version="1.1" language="de_DE">
+<!DOCTYPE TS>
+<TS version="2.0" language="de_DE">
 <context>
     <name>Form</name>
     <message>
@@ -407,21 +408,21 @@ Möchten Sie die Änderungen speichern oder verwerfen?</translation>
     <message>
         <location filename="../main.py" line="1466"/>
         <source>FOCUS!</source>
-        <translation type="unfinished">FOKUS!</translation>
+        <translation>FOKUS!</translation>
     </message>
     <message>
         <location filename="../main.py" line="1466"/>
         <source>Marave only opens one document at a time.
 The whole idea is focusing!
 So, this is the first one you asked for.</source>
-        <translation type="unfinished">Marave öffnet immer nur eine Datei.
+        <translation>Marave öffnet immer nur eine Datei.
 Die Idee ist sich voll zu konzentrieren!
 Die erstgewählte Datei wird geöffnet.</translation>
     </message>
     <message>
         <location filename="../spelltextedit.py" line="100"/>
         <source>Spelling Suggestions</source>
-        <translation type="unfinished">Rechtschreibvorschlag</translation>
+        <translation>Rechtschreibvorschlag</translation>
     </message>
 </context>
 </TS>

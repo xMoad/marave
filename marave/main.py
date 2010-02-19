@@ -203,7 +203,7 @@ class SearchReplaceWidget(QtGui.QWidget):
 
 buttons=[]
 
-def fadein(thing, target=1.):
+def fadein(thing, target=1., thendo=None):
     if isinstance (thing, QtCore.QObject) and QtCore.QT_VERSION_STR >= '4.6.0':
         thing.anim=QtCore.QPropertyAnimation(thing.proxy, "opacity")
         thing.anim.setDuration(200)
@@ -211,12 +211,31 @@ def fadein(thing, target=1.):
         thing.anim.setEndValue(target)
         thing.anim.start()
         thing.anim.finished.connect(thing.anim.deleteLater)
+        if thendo:
+            thing.anim.finished.connect(thendo)
     else:
         # FIXME maybe implement a timeline based opacity for QGraphicsItems
         thing.setOpacity(target)
+        if thendo: thendo()
 
-def fadeout(thing):
-    fadein(thing, 0)
+def fadeout(thing, thendo=None):
+    fadein(thing, 0, thendo)
+
+def animheight(thing, target, thendo=None):
+    if isinstance (thing, QtCore.QObject) and QtCore.QT_VERSION_STR >= '4.6.0':
+        thing.hanim=QtCore.QPropertyAnimation(thing.proxy, "geometry")
+        thing.hanim.setDuration(200)
+        g1=thing.geometry()
+        g1.setHeight(target)
+        thing.hanim.setStartValue(thing.geometry())
+        thing.hanim.setEndValue(g1)
+        print thing.geometry().height(),'=>',g1.height()
+        thing.hanim.start()
+        thing.hanim.finished.connect(thing.hanim.deleteLater)
+        if thendo:
+            thing.hanim.finished.connect(thendo)
+    else:
+        thing.resize(thing.width(),target)
 
 class FunkyButton(QtGui.QPushButton):
     def __init__(self, icon, text, scene, name=None):
@@ -267,7 +286,7 @@ class FunkyStatusBar(QtGui.QStatusBar):
 class FunkyEditor(SpellTextEdit):
     def __init__(self, parent, canvaseditor=None):
         # This is for Issue 28
-        
+        self.autoResize=True
         if canvaseditor is None:
             if QtCore.QCoreApplication.instance().style().objectName() == 'oxygen' \
                 and QtCore.QT_VERSION_STR < '4.6.0':
@@ -913,9 +932,19 @@ class MainWidget (QtGui.QGraphicsView):
         self.hidewidgets()
         self.visibleWidget=w
         w.show()
-        self.editor.resize(self.editorW, self.editorH-w.height())
+        
+        def later():
+            self.editor.autoResize=True
+            fadein(w)
+
+        self.editor.autoResize=False
+        animheight(self.editor,self.editorH-w.height(), thendo=later)
+        
+        # Traditional alternative
+        #self.editor.resize(self.editorW,self.editorH-w.height())
+        #fadein(w)
+        
         self.setFocus()
-        fadein(w)
 
     def showsearchreplace(self):
         self.showbar(self.searchReplaceWidget)
@@ -929,13 +958,17 @@ class MainWidget (QtGui.QGraphicsView):
         self.prefsWidget.ui.opacity.setValue(self.editorBG.opacity()*100)
         self.showbar(self.prefsWidget)
 
-
     def hidewidgets(self):
-        for w in [self.searchWidget, self.searchReplaceWidget, self.prefsWidget]:            
-            fadeout(w)
+        def later():
+            self.editor.resize(self.editorW,self.editorH)
+            self.editor.autoResize=True
+            
+        self.editor.autoResize=False
+        fadeout(self.searchWidget)
+        fadeout(self.searchReplaceWidget)
+        fadeout(self.prefsWidget, thendo=later)
         self.editor.setFocus()
         self.visibleWidget=None
-        #self.editor.resize(self.editorW,self.editorH)
 
     def doReplaceAllBackwards(self):
         # Backwards and forwards are exactly the
@@ -1217,10 +1250,11 @@ class MainWidget (QtGui.QGraphicsView):
     def adjustPositions(self):
         m=self.m
         if self.editor:
-            if self.visibleWidget:
-                self.editor.setGeometry(self.editorX,self.editorY,self.editorW,self.editorH-self.visibleWidget.height()-self.m)
-            else:
-                self.editor.setGeometry(self.editorX,self.editorY,self.editorW,self.editorH)
+            if self.editor.autoResize:
+                if self.visibleWidget:
+                    self.editor.setGeometry(self.editorX,self.editorY,self.editorW,self.editorH-self.visibleWidget.height()-self.m)
+                else:
+                    self.editor.setGeometry(self.editorX,self.editorY,self.editorW,self.editorH)
             self.editorBG.setPos(self.editorX-m,self.editorY-m)
             # Commenting this fixes Isue 15?????
             #self.editorBG.setBrush(QtGui.QColor(255,255,255,255))

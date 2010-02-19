@@ -410,16 +410,16 @@ Do you want to save your changes or discard them?</source>
 <context>
     <name>app</name>
     <message>
-        <location filename="../../main.py" line="1466"/>
+        <location filename="../main.py" line="1466"/>
         <source>FOCUS!</source>
-        <translation type="obsolete">להתמקד!!</translation>
+        <translation type="unfinished">להתמקד!!</translation>
     </message>
     <message>
-        <location filename="../../main.py" line="1466"/>
+        <location filename="../main.py" line="1466"/>
         <source>Marave only opens one document at a time.
 The whole idea is focusing!
 So, this is the first one you asked for.</source>
-        <translation type="obsolete">Marave מאפשרת פתיחה של מסמך אחד בלבד.
+        <translation type="unfinished">Marave מאפשרת פתיחה של מסמך אחד בלבד.
 כל הרעיון הוא להתמקד!
 לכן, זהו הראשון שביקשת.</translation>
     </message>

@@ -1463,7 +1463,8 @@ def main():
     options, args = parser.parse_args()
 
     if len(args) > 1:
-        QtGui.QMessageBox.information(None,app.translate('FOCUS!'),app.translate('Marave only opens one document at a time.\nThe whole idea is focusing!\nSo, this is the first one you asked for.'))
+        QtGui.QMessageBox.information(None,app.translate('app','FOCUS!'),
+        app.translate('app','Marave only opens one document at a time.\nThe whole idea is focusing!\nSo, this is the first one you asked for.'))
 
     window=MainWidget(opengl=options.opengl, canvaseditor=options.canvas)
     window.loadprefs()

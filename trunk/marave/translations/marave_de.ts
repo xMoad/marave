@@ -401,11 +401,6 @@ Möchten Sie die Änderungen speichern oder verwerfen?</translation>
         <source>Document saved</source>
         <translation>Datei wurde gespeichert</translation>
     </message>
-    <message>
-        <location filename="../../spelltextedit.py" line="100"/>
-        <source>Spelling Suggestions</source>
-        <translation type="obsolete">Rechtschreibvorschlag</translation>
-    </message>
 </context>
 <context>
     <name>app</name>

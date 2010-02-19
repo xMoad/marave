@@ -634,16 +634,19 @@ class MainWidget (QtGui.QGraphicsView):
     def layoutButtons(self):
         
         mmLayout=QtGui.QGraphicsGridLayout()
+        mmLayout.setContentsMargins(0,0,0,0)
         
         for r, b in enumerate(self.buttons):
             b.submenu=QtGui.QGraphicsWidget()
             self._scene.addItem(b.submenu)
             b.submenu.setLayout(QtGui.QGraphicsLinearLayout())
-            mmLayout.addItem(b.proxy,r,0)
+            mmLayout.addItem(b.proxy,r,0,1,1,QtCore.Qt.AlignVCenter)
             for c in b.children:
                 b.submenu.layout().addItem(c.proxy)
             b.submenu.layout().addStretch()
-            mmLayout.addItem(b.submenu,r,1)
+            mmLayout.addItem(b.submenu,r,1,1,1,QtCore.Qt.AlignVCenter)
+            mmLayout.setRowFixedHeight(r, b.height())
+            mmLayout.setRowSpacing(r, 0)
 
         self.mainMenu=MenuStrip(self._scene)
         self.mainMenu.proxy.setLayout(mmLayout)

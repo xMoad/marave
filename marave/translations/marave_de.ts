@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.0" language="de_DE">
+<!DOCTYPE TS><TS version="1.1" language="de_DE">
 <context>
     <name>Form</name>
     <message>
@@ -122,17 +121,17 @@
 <context>
     <name>MainWidget</name>
     <message>
-        <location filename="../main.py" line="624"/>
+        <location filename="../main.py" line="605"/>
         <source>Sound support is not available, disabling sound</source>
         <translation>Soundunterstützung ist nicht vorhanden, deaktiviere Sound</translation>
     </message>
     <message>
-        <location filename="../main.py" line="634"/>
+        <location filename="../main.py" line="615"/>
         <source>Document: %s</source>
         <translation>Dockument: %s</translation>
     </message>
     <message numerus="yes">
-        <location filename="../main.py" line="635"/>
+        <location filename="../main.py" line="616"/>
         <source>%n words</source>
         <translation>
             <numerusform>%n Wort</numerusform>
@@ -140,7 +139,7 @@
         </translation>
     </message>
     <message numerus="yes">
-        <location filename="../main.py" line="636"/>
+        <location filename="../main.py" line="617"/>
         <source>%n lines</source>
         <translation>
             <numerusform>%n Zeile</numerusform>
@@ -148,7 +147,7 @@
         </translation>
     </message>
     <message numerus="yes">
-        <location filename="../main.py" line="637"/>
+        <location filename="../main.py" line="618"/>
         <source>%n characters</source>
         <translation>
             <numerusform>%n Zeichen</numerusform>
@@ -156,220 +155,220 @@
         </translation>
     </message>
     <message>
-        <location filename="../main.py" line="923"/>
+        <location filename="../main.py" line="903"/>
         <source>Close Document - Marave</source>
         <translation>Dokument Schließen - Marave</translation>
     </message>
     <message>
-        <location filename="../main.py" line="923"/>
+        <location filename="../main.py" line="903"/>
         <source>The document &quot;%s&quot; has been modified.</source>
         <translation>Das Dokument &quot;%s&quot; wurde geändert.</translation>
     </message>
     <message>
-        <location filename="../main.py" line="923"/>
+        <location filename="../main.py" line="903"/>
         <source>UNNAMED</source>
         <translation>Unbenannt</translation>
     </message>
     <message>
-        <location filename="../main.py" line="923"/>
+        <location filename="../main.py" line="903"/>
         <source>
 Do you want to save your changes or discard them?</source>
         <translation>
 Möchten Sie die Änderungen speichern oder verwerfen?</translation>
     </message>
     <message>
-        <location filename="../main.py" line="446"/>
+        <location filename="../main.py" line="427"/>
         <source>Font</source>
         <translation>Schrift</translation>
     </message>
     <message>
-        <location filename="../main.py" line="447"/>
+        <location filename="../main.py" line="428"/>
         <source>Size</source>
         <translation>Größe</translation>
     </message>
     <message>
-        <location filename="../main.py" line="448"/>
+        <location filename="../main.py" line="429"/>
         <source>File</source>
         <translation>Datei</translation>
     </message>
     <message>
-        <location filename="../main.py" line="449"/>
+        <location filename="../main.py" line="430"/>
         <source>Bg</source>
         <translation>Hintergrund</translation>
     </message>
     <message>
-        <location filename="../main.py" line="451"/>
+        <location filename="../main.py" line="432"/>
         <source>Click</source>
         <translation>Klick</translation>
     </message>
     <message>
-        <location filename="../main.py" line="452"/>
+        <location filename="../main.py" line="433"/>
         <source>Music</source>
         <translation>Musik</translation>
     </message>
     <message>
-        <location filename="../main.py" line="453"/>
+        <location filename="../main.py" line="434"/>
         <source>Options</source>
         <translation>Optionen</translation>
     </message>
     <message>
-        <location filename="../main.py" line="455"/>
+        <location filename="../main.py" line="436"/>
         <source>Quit</source>
         <translation>Beenden</translation>
     </message>
     <message>
-        <location filename="../main.py" line="495"/>
+        <location filename="../main.py" line="476"/>
         <source>Color</source>
         <translation>Farbe</translation>
     </message>
     <message>
-        <location filename="../main.py" line="476"/>
+        <location filename="../main.py" line="457"/>
         <source>Smaller</source>
         <translation>Kleiner</translation>
     </message>
     <message>
-        <location filename="../main.py" line="477"/>
+        <location filename="../main.py" line="458"/>
         <source>Default</source>
         <translation>Standard</translation>
     </message>
     <message>
-        <location filename="../main.py" line="478"/>
+        <location filename="../main.py" line="459"/>
         <source>Larger</source>
         <translation>Größer</translation>
     </message>
     <message>
-        <location filename="../main.py" line="485"/>
+        <location filename="../main.py" line="466"/>
         <source>Open</source>
         <translation>Öffnen</translation>
     </message>
     <message>
-        <location filename="../main.py" line="486"/>
+        <location filename="../main.py" line="467"/>
         <source>Save</source>
         <translation>Speichern</translation>
     </message>
     <message>
-        <location filename="../main.py" line="487"/>
+        <location filename="../main.py" line="468"/>
         <source>Save As</source>
         <translation>Speichern als</translation>
     </message>
     <message>
-        <location filename="../main.py" line="510"/>
+        <location filename="../main.py" line="491"/>
         <source>Previous</source>
         <translation>Zurück</translation>
     </message>
     <message>
-        <location filename="../main.py" line="511"/>
+        <location filename="../main.py" line="492"/>
         <source>Next</source>
         <translation>Vorwärts</translation>
     </message>
     <message>
-        <location filename="../main.py" line="512"/>
+        <location filename="../main.py" line="493"/>
         <source>None</source>
         <translation>Aus</translation>
     </message>
     <message>
-        <location filename="../main.py" line="683"/>
+        <location filename="../main.py" line="663"/>
         <source>Setting opacity to: %s%%</source>
         <translation>Setze Transparenz auf: %s%%</translation>
     </message>
     <message>
-        <location filename="../main.py" line="1046"/>
+        <location filename="../main.py" line="1023"/>
         <source>Switching click to: %s</source>
         <translation>Ändere Klick zu: %s</translation>
     </message>
     <message>
-        <location filename="../main.py" line="1075"/>
+        <location filename="../main.py" line="1052"/>
         <source>Disabling click</source>
         <translation>Deaktiviere Klick</translation>
     </message>
     <message>
-        <location filename="../main.py" line="1081"/>
+        <location filename="../main.py" line="1058"/>
         <source>Listening to: %s</source>
         <translation>Höre: %s</translation>
     </message>
     <message>
-        <location filename="../main.py" line="1114"/>
+        <location filename="../main.py" line="1091"/>
         <source>Disabling music</source>
         <translation>Musik ausgeschaltet</translation>
     </message>
     <message>
-        <location filename="../main.py" line="1173"/>
+        <location filename="../main.py" line="1150"/>
         <source>Setting background to: %s</source>
         <translation>Hintergrund geändert zu: %s</translation>
     </message>
     <message>
-        <location filename="../main.py" line="710"/>
+        <location filename="../main.py" line="690"/>
         <source>Changing to style %s requires restarting Marave</source>
         <translation>Ändern zu Stil %s erfordert einen Neustart von Marave</translation>
     </message>
     <message>
-        <location filename="../main.py" line="392"/>
+        <location filename="../main.py" line="374"/>
         <source>Ctrl+F</source>
         <comment>Find</comment>
         <translation></translation>
     </message>
     <message>
-        <location filename="../main.py" line="394"/>
+        <location filename="../main.py" line="376"/>
         <source>Ctrl+R</source>
         <comment>Find and Replace</comment>
         <translation></translation>
     </message>
     <message>
-        <location filename="../main.py" line="398"/>
+        <location filename="../main.py" line="380"/>
         <source>Ctrl+T</source>
         <comment>Taj Mode</comment>
         <translation></translation>
     </message>
     <message>
-        <location filename="../main.py" line="406"/>
+        <location filename="../main.py" line="388"/>
         <source>Ctrl+O</source>
         <comment>Open File</comment>
         <translation></translation>
     </message>
     <message>
-        <location filename="../main.py" line="408"/>
+        <location filename="../main.py" line="390"/>
         <source>Ctrl+S</source>
         <comment>Save File</comment>
         <translation></translation>
     </message>
     <message>
-        <location filename="../main.py" line="410"/>
+        <location filename="../main.py" line="392"/>
         <source>Shift+Ctrl+S</source>
         <comment>Save File As</comment>
         <translation></translation>
     </message>
     <message>
-        <location filename="../main.py" line="412"/>
+        <location filename="../main.py" line="394"/>
         <source>Ctrl+N</source>
         <comment>New File</comment>
         <translation></translation>
     </message>
     <message>
-        <location filename="../main.py" line="414"/>
+        <location filename="../main.py" line="396"/>
         <source>Ctrl+Q</source>
         <comment>Quit</comment>
         <translation></translation>
     </message>
     <message>
-        <location filename="../main.py" line="417"/>
+        <location filename="../main.py" line="399"/>
         <source>Shift+Ctrl+P</source>
         <comment>Show Preferences</comment>
         <translation></translation>
     </message>
     <message>
-        <location filename="../main.py" line="421"/>
+        <location filename="../main.py" line="403"/>
         <source>Ctrl+I</source>
         <comment>Show Document Info</comment>
         <translation></translation>
     </message>
     <message>
-        <location filename="../main.py" line="425"/>
+        <location filename="../main.py" line="407"/>
         <source>F1</source>
         <comment>Help</comment>
         <translation></translation>
     </message>
     <message numerus="yes">
-        <location filename="../main.py" line="608"/>
+        <location filename="../main.py" line="589"/>
         <source>Saving every %n minutes</source>
         <translation>
             <numerusform>Speichere jede Minute</numerusform>
@@ -377,7 +376,7 @@ Möchten Sie die Änderungen speichern oder verwerfen?</translation>
         </translation>
     </message>
     <message>
-        <location filename="../main.py" line="612"/>
+        <location filename="../main.py" line="593"/>
         <source>Disabled automatic saving</source>
         <translation>Automatisch Speichern deaktiviert</translation>
     </message>
@@ -385,12 +384,12 @@ Möchten Sie die Änderungen speichern oder verwerfen?</translation>
 <context>
     <name>PrefsWidget</name>
     <message>
-        <location filename="../main.py" line="173"/>
+        <location filename="../main.py" line="141"/>
         <source>None</source>
         <translation>Aus</translation>
     </message>
     <message>
-        <location filename="../main.py" line="183"/>
+        <location filename="../main.py" line="151"/>
         <source>Current</source>
         <translation>Aktuell</translation>
     </message>
@@ -398,7 +397,7 @@ Möchten Sie die Änderungen speichern oder verwerfen?</translation>
 <context>
     <name>SpellTextEdit</name>
     <message>
-        <location filename="../spelltextedit.py" line="137"/>
+        <location filename="../spelltextedit.py" line="138"/>
         <source>Document saved</source>
         <translation>Datei wurde gespeichert</translation>
     </message>
@@ -406,12 +405,12 @@ Möchten Sie die Änderungen speichern oder verwerfen?</translation>
 <context>
     <name>app</name>
     <message>
-        <location filename="../main.py" line="1466"/>
+        <location filename="../main.py" line="1440"/>
         <source>FOCUS!</source>
         <translation>FOKUS!</translation>
     </message>
     <message>
-        <location filename="../main.py" line="1466"/>
+        <location filename="../main.py" line="1440"/>
         <source>Marave only opens one document at a time.
 The whole idea is focusing!
 So, this is the first one you asked for.</source>

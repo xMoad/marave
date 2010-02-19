@@ -217,7 +217,7 @@ class SearchReplaceWidget(QtGui.QWidget):
 buttons=[]
 
 def fadein(thing, target=1.):
-    if isinstance (thing, QtCore.QObject):
+    if isinstance (thing, QtCore.QObject) and QtCore.QT_VERSION_STR >= '4.6.0':
         thing.anim=QtCore.QPropertyAnimation(thing.proxy, "opacity")
         thing.anim.setDuration(200)
         thing.anim.setStartValue(thing.proxy.opacity())

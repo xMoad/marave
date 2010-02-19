@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS><TS version="1.1" language="pl_PL">
+<!DOCTYPE TS>
+<TS version="2.0" language="pl_PL">
 <context>
     <name>Form</name>
     <message>
@@ -414,16 +415,16 @@ Czy chcesz zachować zmiany czy je odrzucić?</translation>
 <context>
     <name>app</name>
     <message>
-        <location filename="../../main.py" line="1466"/>
+        <location filename="../main.py" line="1466"/>
         <source>FOCUS!</source>
-        <translation type="obsolete">Skup się!</translation>
+        <translation>Skup się!</translation>
     </message>
     <message>
-        <location filename="../../main.py" line="1466"/>
+        <location filename="../main.py" line="1466"/>
         <source>Marave only opens one document at a time.
 The whole idea is focusing!
 So, this is the first one you asked for.</source>
-        <translation type="obsolete">Marave otwiera tylko jeden dokument na raz.
+        <translation>Marave otwiera tylko jeden dokument na raz.
 Chodzi o skupienie się!
 Więc oto pierwszy, o który prosiłeś.</translation>
     </message>

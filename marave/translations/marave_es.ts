@@ -410,16 +410,16 @@ Do you want to save your changes or discard them?</source>
 <context>
     <name>app</name>
     <message>
-        <location filename="../../../main.py" line="1396"/>
+        <location filename="../main.py" line="1466"/>
         <source>FOCUS!</source>
-        <translation type="obsolete">¡Enfócate!</translation>
+        <translation>¡Enfócate!</translation>
     </message>
     <message>
-        <location filename="../../../main.py" line="1396"/>
+        <location filename="../main.py" line="1466"/>
         <source>Marave only opens one document at a time.
 The whole idea is focusing!
 So, this is the first one you asked for.</source>
-        <translation type="obsolete">Marave sólo abre un documento por vez.
+        <translation>Marave sólo abre un documento por vez.
 ¡La idea es enfocarse!
 Éste es el primero que pidió.</translation>
     </message>

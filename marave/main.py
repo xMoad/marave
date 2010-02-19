@@ -251,6 +251,7 @@ class FunkyFontList(QtGui.QFontComboBox):
         self.setSizePolicy(QtGui.QSizePolicy.Expanding,QtGui.QSizePolicy.Expanding)
         self.proxy=scene.addWidget(self)
         self.setFocusPolicy(QtCore.Qt.NoFocus)
+        self.proxy.setOpacity(0)
 
 
 class FunkyStatusBar(QtGui.QStatusBar):

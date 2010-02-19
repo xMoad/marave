@@ -646,7 +646,7 @@ class MainWidget (QtGui.QGraphicsView):
             b.submenu.layout().addStretch()
             mmLayout.addItem(b.submenu,r,1,1,1,QtCore.Qt.AlignVCenter)
             mmLayout.setRowFixedHeight(r, b.height())
-            mmLayout.setRowSpacing(r, 0)
+            mmLayout.setRowSpacing(r, self.m)
 
         self.mainMenu=MenuStrip(self._scene)
         self.mainMenu.proxy.setLayout(mmLayout)

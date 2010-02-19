@@ -214,6 +214,18 @@ class SearchWidget(QtGui.QWidget, animatedOpacity):
         self.proxy.setZValue(100)
         self.proxy.setFlag(QtGui.QGraphicsItem.ItemIsMovable, False)
 
+class MenuStrip(QtGui.QWidget, animatedOpacity):
+    def __init__(self, scene, opacity = 0):
+        QtGui.QWidget.__init__(self)
+        # Set up the UI from designer
+        self.baseOpacity=opacity
+        self.proxy=scene.addWidget(self)
+        self.proxy.setOpacity(opacity)
+        self.movingOp=False
+        self.children=[]
+        self.proxy.setZValue(100)
+        self.proxy.setFlag(QtGui.QGraphicsItem.ItemIsMovable, False)
+        self.setPos=self.proxy.setPos
 
 class SearchReplaceWidget(QtGui.QWidget, animatedOpacity):
     def __init__(self, scene, opacity=0):
@@ -366,8 +378,9 @@ class MainWidget (QtGui.QGraphicsView):
         self.buttonStyle=0
         self.lang=None
 
-        self.mainMenu=QtGui.QGraphicsWidget()
-        self._scene.addItem(self.mainMenu)
+        #self.mainMenu=QtGui.QGraphicsWidget()
+        self.mainMenu=MenuStrip(self._scene)
+        #self._scene.addItem(self.mainMenu)
 
         self.stations=[x.strip() for x in open(os.path.join(PATH,'radios.txt')).readlines()]
 

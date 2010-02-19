@@ -56,34 +56,7 @@ from Ui_searchreplacewidget import Ui_Form as UI_SearchReplaceWidget
 from Ui_searchreplacewidget import Ui_Form as UI_SearchReplaceWidget
 from Ui_prefs import Ui_Form as UI_Prefs
 
-class animatedOpacity:
-    step = .1
-    def moveOpacity(self):
-        if abs(abs(self.proxy.opacity())-abs(self.targetOpacity))<.1:
-            self.proxy.setOpacity(self.targetOpacity)
-            if self.targetOpacity==0:
-                self.hide()
-            self.movingOp=False
-        else:
-            self.show()
-            self.movingOp=True
-            if self.proxy.opacity()<self.targetOpacity:
-                self.proxy.setOpacity(self.proxy.opacity()+self.step)
-            else:
-                self.proxy.setOpacity(self.proxy.opacity()-self.step)
-            QtCore.QTimer.singleShot(10,self.moveOpacity)
-
-    def showChildren(self):
-        for c in self.children:
-            c.targetOpacity=.8
-            c.moveOpacity()
-
-    def hideChildren(self):
-        for c in self.children:
-            c.targetOpacity=0.
-            c.moveOpacity()
-
-class Handle(QtGui.QGraphicsRectItem, animatedOpacity):
+class Handle(QtGui.QGraphicsRectItem):
     def __init__(self,x,y,w,h):
         QtGui.QGraphicsRectItem.__init__(self,x,y,w,h)
         self.setBrush(QtGui.QColor(100,100,100,80))
@@ -92,7 +65,7 @@ class Handle(QtGui.QGraphicsRectItem, animatedOpacity):
         self.proxy=self
         self.children=[]
 
-class PrefsWidget(QtGui.QWidget, animatedOpacity):
+class PrefsWidget(QtGui.QWidget):
     def __init__(self, scene, opacity=0, mainwindow=None):
         QtGui.QWidget.__init__(self)
         # Set up the UI from designer
@@ -200,7 +173,7 @@ class PrefsWidget(QtGui.QWidget, animatedOpacity):
             self.ui.styleList.addItem(t)
         
 
-class SearchWidget(QtGui.QWidget, animatedOpacity):
+class SearchWidget(QtGui.QWidget):
     def __init__(self, scene, opacity=0):
         QtGui.QWidget.__init__(self)
         # Set up the UI from designer
@@ -214,7 +187,7 @@ class SearchWidget(QtGui.QWidget, animatedOpacity):
         self.proxy.setZValue(100)
         self.proxy.setFlag(QtGui.QGraphicsItem.ItemIsMovable, False)
 
-class MenuStrip(QtGui.QWidget, animatedOpacity):
+class MenuStrip(QtGui.QWidget):
     def __init__(self, scene, opacity = 0):
         QtGui.QWidget.__init__(self)
         # Set up the UI from designer
@@ -227,7 +200,7 @@ class MenuStrip(QtGui.QWidget, animatedOpacity):
         self.proxy.setFlag(QtGui.QGraphicsItem.ItemIsMovable, False)
         self.setPos=self.proxy.setPos
 
-class SearchReplaceWidget(QtGui.QWidget, animatedOpacity):
+class SearchReplaceWidget(QtGui.QWidget):
     def __init__(self, scene, opacity=0):
         QtGui.QWidget.__init__(self)
         # Set up the UI from designer
@@ -243,7 +216,21 @@ class SearchReplaceWidget(QtGui.QWidget, animatedOpacity):
 
 buttons=[]
 
-class FunkyButton(QtGui.QPushButton, animatedOpacity):
+def fadein(thing, target=1.):
+    if isinstance (thing, QtCore.QObject):
+        thing.anim=QtCore.QPropertyAnimation(thing.proxy, "opacity")
+        thing.anim.setDuration(200)
+        thing.anim.setStartValue(thing.proxy.opacity())
+        thing.anim.setEndValue(target)
+        thing.anim.start()
+        thing.anim.finished.connect(thing.anim.deleteLater)
+    else:
+        thing.setOpacity(target)
+
+def fadeout(thing):
+    fadein(thing, 0)
+
+class FunkyButton(QtGui.QPushButton):
     def __init__(self, icon, text, scene, opacity=.3, name=None):
         QtGui.QPushButton.__init__(self,QtGui.QIcon(os.path.join(PATH,'icons',icon)),"")
         self.setAttribute(QtCore.Qt.WA_Hover, True)
@@ -261,8 +248,18 @@ class FunkyButton(QtGui.QPushButton, animatedOpacity):
             name=text
         self.setObjectName(name)
         buttons.append(self)
-        
-class FunkyFontList(QtGui.QFontComboBox, animatedOpacity):
+
+    def showChildren(self):
+        for c in self.children:
+            c.show()
+            fadein(c)
+
+    def hideChildren(self):
+        for c in self.children:
+            fadeout(c)
+
+
+class FunkyFontList(QtGui.QFontComboBox):
     def __init__(self, scene,opacity=.3):
         QtGui.QFontComboBox.__init__(self)
         self.setAttribute(QtCore.Qt.WA_TranslucentBackground, True)
@@ -274,7 +271,7 @@ class FunkyFontList(QtGui.QFontComboBox, animatedOpacity):
         self.setFocusPolicy(QtCore.Qt.NoFocus)
         self.children=[]
 
-class FunkyStatusBar(QtGui.QStatusBar, animatedOpacity):
+class FunkyStatusBar(QtGui.QStatusBar):
     def __init__(self, scene,opacity=.3):
         QtGui.QStatusBar.__init__(self)
         self.baseOpacity=opacity
@@ -287,7 +284,7 @@ class FunkyStatusBar(QtGui.QStatusBar, animatedOpacity):
         self.setSizeGripEnabled(False)
 
 
-class FunkyEditor(SpellTextEdit, animatedOpacity):
+class FunkyEditor(SpellTextEdit):
     def __init__(self, parent, canvaseditor=None):
         # This is for Issue 28
         
@@ -320,7 +317,7 @@ class FunkyEditor(SpellTextEdit, animatedOpacity):
             self.parent=lambda: parent
             self.proxy.setFlag(QtGui.QGraphicsItem.ItemIsMovable, False)
 
-class BGItem(QtGui.QGraphicsPixmapItem, animatedOpacity):
+class BGItem(QtGui.QGraphicsPixmapItem):
     def __init__(self):
         QtGui.QGraphicsPixmapItem.__init__(self)
         self.targetOpacity=1
@@ -653,10 +650,9 @@ class MainWidget (QtGui.QGraphicsView):
 
     def notifChanged(self, msg):
         if unicode(msg):
-            self.notifBar.targetOpacity=.7
+            fadein(self.notifBar)
         else:
-            self.notifBar.targetOpacity=.0
-        self.notifBar.moveOpacity()
+            fadeout(self.notifBar)
 
     def notify(self, text):
         self.notifBar.showMessage(text, 3000)
@@ -694,7 +690,7 @@ class MainWidget (QtGui.QGraphicsView):
 
     def editoropacity(self, v):
         self.notify(unicode(self.tr("Setting opacity to: %s%%"))%v)
-        self.editorBG.setOpacity(v/100.)
+        fadein(self.editorBG, target=v/100.)
         self.settings.setValue("editoropacity",v)
         self.settings.sync()
 
@@ -861,9 +857,9 @@ class MainWidget (QtGui.QGraphicsView):
     def loadOpacity(self):
         o,ok=self.settings.value('editoropacity').toInt()
         if ok:
-            self.editorBG.setOpacity(o/100.)
+            self.editorBG.setOpacity( o/100.)
         else:
-            self.editorBG.setOpacity(.03)
+            self.editorBG.setOpacity( .1)
 
     def loadprefs(self):
         # Load all settings
@@ -955,8 +951,7 @@ class MainWidget (QtGui.QGraphicsView):
         w.show()
         self.editor.resize(self.editorW, self.editorH-w.height())
         self.setFocus()
-        w.targetOpacity=.9
-        w.moveOpacity()
+        fadein(w)
 
     def showsearchreplace(self):
         self.showbar(self.searchReplaceWidget)
@@ -973,9 +968,7 @@ class MainWidget (QtGui.QGraphicsView):
 
     def hidewidgets(self):
         for w in [self.searchWidget, self.searchReplaceWidget, self.prefsWidget]:            
-            w.targetOpacity=.0
-            w.moveOpacity()
-            #w.hide()
+            fadeout(w)
         self.editor.setFocus()
         self.visibleWidget=None
         #self.editor.resize(self.editorW,self.editorH)
@@ -1408,14 +1401,13 @@ class MainWidget (QtGui.QGraphicsView):
                
     def showButtons(self):
         for w in self.buttons + self.handles:
-            w.targetOpacity=.8
-            w.moveOpacity()
+            fadein(w)
 
     def hideButtons(self):
         for w in self.buttons + self.handles:
-            w.targetOpacity=0.
-            w.moveOpacity()
-            w.hideChildren()
+            fadeout(w)
+            if isinstance(w, FunkyButton):
+                w.hideChildren()
 
     def hideCursor(self):
         QtCore.QCoreApplication.instance().setOverrideCursor(QtCore.Qt.BlankCursor)
@@ -1428,7 +1420,7 @@ class MainWidget (QtGui.QGraphicsView):
         appears faster'''
         self._scene.changed.connect(self.scenechanged)
         
-        self.bgItem.moveOpacity()
+        #self.bgItem.moveOpacity()
 
         # Event filters for showing/hiding buttons/cursor
         self.editor.installEventFilter(self)

@@ -182,7 +182,6 @@ class SearchWidget(QtGui.QWidget):
 class MenuStrip(QtGui.QGraphicsWidget):
     def __init__(self, scene):
         QtGui.QWidget.__init__(self)
-        # Set up the UI from designer
         self.proxy=self
         scene.addItem(self)
         self.proxy.setZValue(100)
@@ -633,18 +632,21 @@ class MainWidget (QtGui.QGraphicsView):
         self.notifBar.proxy.setPos(self.editorX, self.editorY+self.editorH+self.m)
 
     def layoutButtons(self):
+        
+        mmLayout=QtGui.QGraphicsGridLayout()
+        
+        for r, b in enumerate(self.buttons):
+            b.submenu=QtGui.QGraphicsWidget()
+            self._scene.addItem(b.submenu)
+            b.submenu.setLayout(QtGui.QGraphicsLinearLayout())
+            mmLayout.addItem(b.proxy,r,0)
+            for c in b.children:
+                b.submenu.layout().addItem(c.proxy)
+            b.submenu.layout().addStretch()
+            mmLayout.addItem(b.submenu,r,1)
+
         self.mainMenu=MenuStrip(self._scene)
-        self.mainMenu.proxy.setLayout(QtGui.QGraphicsGridLayout())
-        self.mainMenu.proxy.layout().setContentsMargins(0,0,0,0)
-        mainMenuLayout=self.mainMenu.proxy.layout()
-        for r, button in enumerate(self.buttons):
-            mainMenuLayout.addItem(button.proxy,r,0)
-            button.submenu=QtGui.QGraphicsWidget()
-            button.submenu.setLayout(QtGui.QGraphicsLinearLayout())
-            mainMenuLayout.addItem(button.submenu,r,1)
-            for c in button.children:
-                button.submenu.layout().addItem(c.proxy)
- 
+        self.mainMenu.proxy.setLayout(mmLayout)
         self.mainMenu.setPos(self.editorX+self.editorW+20,self.editorY)
 
     def editoropacity(self, v):

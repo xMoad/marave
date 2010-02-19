@@ -61,21 +61,15 @@ class Handle(QtGui.QGraphicsRectItem):
         QtGui.QGraphicsRectItem.__init__(self,x,y,w,h)
         self.setBrush(QtGui.QColor(100,100,100,80))
         self.setPen(QtGui.QColor(0,0,0,0))
-        self.targetOpacity=0
         self.proxy=self
-        self.children=[]
 
 class PrefsWidget(QtGui.QWidget):
-    def __init__(self, scene, opacity=0, mainwindow=None):
+    def __init__(self, scene, mainwindow=None):
         QtGui.QWidget.__init__(self)
         # Set up the UI from designer
         self.mainwindow=mainwindow
         self.ui=UI_Prefs()
-        self.baseOpacity=opacity
         self.proxy=scene.addWidget(self)
-        self.proxy.setOpacity(opacity)
-        self.movingOp=False
-        self.children=[]
         self.ui.setupUi(self)
         self.loadthemelist()
         self.loadstylelist()
@@ -84,6 +78,7 @@ class PrefsWidget(QtGui.QWidget):
         self.loadPlugins()
         self.proxy.setZValue(100)
         self.proxy.setFlag(QtGui.QGraphicsItem.ItemIsMovable, False)
+        self.proxy.setOpacity(0)
 
     def loadPlugins(self):
         Plugin.initPlugins()
@@ -174,44 +169,35 @@ class PrefsWidget(QtGui.QWidget):
         
 
 class SearchWidget(QtGui.QWidget):
-    def __init__(self, scene, opacity=0):
+    def __init__(self, scene):
         QtGui.QWidget.__init__(self)
         # Set up the UI from designer
         self.ui=UI_SearchWidget()
-        self.baseOpacity=opacity
         self.proxy=scene.addWidget(self)
-        self.proxy.setOpacity(opacity)
-        self.movingOp=False
-        self.children=[]
         self.ui.setupUi(self)
         self.proxy.setZValue(100)
         self.proxy.setFlag(QtGui.QGraphicsItem.ItemIsMovable, False)
+        self.proxy.setOpacity(0)
 
 class MenuStrip(QtGui.QWidget):
-    def __init__(self, scene, opacity = 0):
+    def __init__(self, scene):
         QtGui.QWidget.__init__(self)
         # Set up the UI from designer
-        self.baseOpacity=opacity
         self.proxy=scene.addWidget(self)
-        self.proxy.setOpacity(opacity)
-        self.movingOp=False
-        self.children=[]
         self.proxy.setZValue(100)
         self.proxy.setFlag(QtGui.QGraphicsItem.ItemIsMovable, False)
         self.setPos=self.proxy.setPos
+        self.proxy.setOpacity(0)
 
 class SearchReplaceWidget(QtGui.QWidget):
-    def __init__(self, scene, opacity=0):
+    def __init__(self, scene):
         QtGui.QWidget.__init__(self)
         # Set up the UI from designer
         self.ui=UI_SearchReplaceWidget()
-        self.baseOpacity=opacity
         self.proxy=scene.addWidget(self)
-        self.proxy.setOpacity(opacity)
-        self.movingOp=False
-        self.children=[]
         self.ui.setupUi(self)
         self.proxy.setZValue(100)
+        self.proxy.setOpacity(0)
 
 
 buttons=[]
@@ -232,14 +218,11 @@ def fadeout(thing):
     fadein(thing, 0)
 
 class FunkyButton(QtGui.QPushButton):
-    def __init__(self, icon, text, scene, opacity=.3, name=None):
+    def __init__(self, icon, text, scene, name=None):
         QtGui.QPushButton.__init__(self,QtGui.QIcon(os.path.join(PATH,'icons',icon)),"")
         self.setAttribute(QtCore.Qt.WA_Hover, True)
         self.setAttribute(QtCore.Qt.WA_TranslucentBackground, True)
-        self.baseOpacity=opacity
         self.proxy=scene.addWidget(self)
-        self.proxy.setOpacity(opacity)
-        self.movingOp=False
         self.setFocusPolicy(QtCore.Qt.NoFocus)
         self.setMouseTracking(True)
         self.children=[]
@@ -249,6 +232,7 @@ class FunkyButton(QtGui.QPushButton):
             name=text
         self.setObjectName(name)
         buttons.append(self)
+        self.proxy.setOpacity(0)
 
     def showChildren(self):
         for c in self.children:
@@ -261,27 +245,20 @@ class FunkyButton(QtGui.QPushButton):
 
 
 class FunkyFontList(QtGui.QFontComboBox):
-    def __init__(self, scene,opacity=.3):
+    def __init__(self, scene):
         QtGui.QFontComboBox.__init__(self)
         self.setAttribute(QtCore.Qt.WA_TranslucentBackground, True)
         self.setSizePolicy(QtGui.QSizePolicy.Expanding,QtGui.QSizePolicy.Expanding)
-        self.baseOpacity=opacity
         self.proxy=scene.addWidget(self)
-        self.proxy.setOpacity(opacity)
-        self.movingOp=False
         self.setFocusPolicy(QtCore.Qt.NoFocus)
-        self.children=[]
+
 
 class FunkyStatusBar(QtGui.QStatusBar):
-    def __init__(self, scene,opacity=.3):
+    def __init__(self, scene):
         QtGui.QStatusBar.__init__(self)
-        self.baseOpacity=opacity
         self.proxy=scene.addWidget(self)
         self.setAttribute(QtCore.Qt.WA_TranslucentBackground, True)
-        self.proxy.setOpacity(opacity)
-        self.movingOp=False
         self.setFocusPolicy(QtCore.Qt.NoFocus)
-        self.children=[]
         self.setSizeGripEnabled(False)
 
 
@@ -312,19 +289,13 @@ class FunkyEditor(SpellTextEdit):
             self.docName=''
             self.proxy=parent._scene.addWidget(self)
             self.proxy.setOpacity(1)
-            self.movingOp=False
             self.setFocusPolicy(QtCore.Qt.StrongFocus)
-            self.children=[]
             self.parent=lambda: parent
             self.proxy.setFlag(QtGui.QGraphicsItem.ItemIsMovable, False)
 
 class BGItem(QtGui.QGraphicsPixmapItem):
     def __init__(self):
         QtGui.QGraphicsPixmapItem.__init__(self)
-        self.targetOpacity=1
-        self.setOpacity(0)
-        self.proxy=self
-        self.step=.2
 
 class MainWidget (QtGui.QGraphicsView):
     def __init__(self, opengl=False, canvaseditor=None):
@@ -369,7 +340,7 @@ class MainWidget (QtGui.QGraphicsView):
         self.bgItem=BGItem()
         self.bgItem.setZValue(-1000)
         self._scene.addItem(self.bgItem)
-        self.notifBar=FunkyStatusBar(self._scene, .7)
+        self.notifBar=FunkyStatusBar(self._scene)
         self.notifBar.messageChanged.connect(self.notifChanged)
         self.beep=None
         self.music=None
@@ -449,21 +420,20 @@ class MainWidget (QtGui.QGraphicsView):
             h=Handle(0,0,10,10)
             h.setFlag(QtGui.QGraphicsItem.ItemIsMovable, True)
             h.setCursor(QtCore.Qt.SizeAllCursor)
-            h.setOpacity(.5)
             h.setZValue(100)
             self._scene.addItem(h)
             self.handles.append(h)
 
-        self.fontButton=FunkyButton("fonts.svg", self.tr('Font'), self._scene, 0)
-        self.sizeButton=FunkyButton("size.svg", self.tr('Size'), self._scene, 0)
-        self.fileButton=FunkyButton("file.svg", self.tr('File'), self._scene, 0)
-        self.bgButton=FunkyButton("bg.svg", self.tr('Bg'), self._scene, 0)
+        self.fontButton=FunkyButton("fonts.svg", self.tr('Font'), self._scene)
+        self.sizeButton=FunkyButton("size.svg", self.tr('Size'), self._scene)
+        self.fileButton=FunkyButton("file.svg", self.tr('File'), self._scene)
+        self.bgButton=FunkyButton("bg.svg", self.tr('Bg'), self._scene)
         if SOUND:
-            self.clickButton=FunkyButton("click.svg", self.tr('Click'), self._scene, 0)
-            self.musicButton=FunkyButton("music.svg", self.tr('Music'), self._scene, 0)
-        self.configButton=FunkyButton("configure.svg", self.tr('Options'), self._scene, 0)
+            self.clickButton=FunkyButton("click.svg", self.tr('Click'), self._scene)
+            self.musicButton=FunkyButton("music.svg", self.tr('Music'), self._scene)
+        self.configButton=FunkyButton("configure.svg", self.tr('Options'), self._scene)
         self.configButton.clicked.connect(self.showprefs)
-        self.quitButton=FunkyButton("exit.svg", self.tr('Quit'), self._scene, 0)
+        self.quitButton=FunkyButton("exit.svg", self.tr('Quit'), self._scene)
         self.quitButton.clicked.connect(self.close)
         self.sc8.activated.connect(self.quitButton.animateClick)
 
@@ -478,49 +448,49 @@ class MainWidget (QtGui.QGraphicsView):
                        self.quitButton]
 
 
-        self.fontList=FunkyFontList(self._scene,0)
+        self.fontList=FunkyFontList(self._scene)
         self.fontList.currentFontChanged.connect(self.changefont)
-        self.fontColor=FunkyButton("color.svg", self.tr('Color'), self._scene, 0,"FontColor")
+        self.fontColor=FunkyButton("color.svg", self.tr('Color'), self._scene,"FontColor")
         self.fontColor.clicked.connect(self.setfontcolor)
         self.fontButton.children+=[self.fontList,self.fontColor]
 
-        self.size1=FunkyButton("minus.svg", self.tr('Smaller'), self._scene,0)
-        self.size2=FunkyButton("equals.svg", self.tr('Default'), self._scene,0)
-        self.size3=FunkyButton("plus.svg", self.tr('Larger'), self._scene,0)
+        self.size1=FunkyButton("minus.svg", self.tr('Smaller'), self._scene)
+        self.size2=FunkyButton("equals.svg", self.tr('Default'), self._scene)
+        self.size3=FunkyButton("plus.svg", self.tr('Larger'), self._scene)
         self.size1.clicked.connect(self.editor.smaller)
         self.size3.clicked.connect(self.editor.larger)
         self.size2.clicked.connect(self.editor.default)
         self.sizeButton.children+=[self.size1, self.size2, self.size3]
 
 
-        self.file1=FunkyButton("open.svg", self.tr('Open'), self._scene, 0)
-        self.file2=FunkyButton("save.svg", self.tr('Save'), self._scene, 0)
-        self.file3=FunkyButton("saveas.svg", self.tr('Save As'), self._scene, 0, "SaveAs")
+        self.file1=FunkyButton("open.svg", self.tr('Open'), self._scene)
+        self.file2=FunkyButton("save.svg", self.tr('Save'), self._scene)
+        self.file3=FunkyButton("saveas.svg", self.tr('Save As'), self._scene, "SaveAs")
         self.file1.clicked.connect(self.editor.open)
         self.file2.clicked.connect(self.editor.save)
         self.file3.clicked.connect(self.editor.saveas)
         self.fileButton.children+=[self.file1, self.file2, self.file3]
 
-        self.bg1=FunkyButton("previous.svg", self.tr('Previous'), self._scene,0,"PreviousBG")
-        self.bg2=FunkyButton("next.svg", self.tr('Next'), self._scene,0, "NextBG")
-        self.bg3=FunkyButton("color.svg", self.tr('Color'), self._scene,0, "ColorBG")
+        self.bg1=FunkyButton("previous.svg", self.tr('Previous'), self._scene, "PreviousBG")
+        self.bg2=FunkyButton("next.svg", self.tr('Next'), self._scene,"NextBG")
+        self.bg3=FunkyButton("color.svg", self.tr('Color'), self._scene,"ColorBG")
         self.bg1.clicked.connect(self.prevbg)
         self.bg2.clicked.connect(self.nextbg)
         self.bg3.clicked.connect(self.setbgcolor)
         self.bgButton.children+=[self.bg1, self.bg2, self.bg3]
 
         if SOUND:
-            self.click1=FunkyButton("previous.svg", self.tr('Previous'), self._scene,0, "PreviousClick")
-            self.click2=FunkyButton("next.svg", self.tr('Next'), self._scene,0, "NextClick")
-            self.click3=FunkyButton("mute.svg", self.tr('None'), self._scene,0, "NoCLick")
+            self.click1=FunkyButton("previous.svg", self.tr('Previous'), self._scene,"PreviousClick")
+            self.click2=FunkyButton("next.svg", self.tr('Next'), self._scene,"NextClick")
+            self.click3=FunkyButton("mute.svg", self.tr('None'), self._scene,"NoCLick")
             self.click1.clicked.connect(self.prevclick)
             self.click2.clicked.connect(self.nextclick)
             self.click3.clicked.connect(self.noclick)
             self.clickButton.children+=[self.click1, self.click2, self.click3]
         
-            self.music1=FunkyButton("previous.svg", self.tr('Previous'), self._scene,0,"PreviousMusic")
-            self.music2=FunkyButton("next.svg", self.tr('Next'), self._scene,0,"NextMusic")
-            self.music3=FunkyButton("mute.svg", self.tr('None'), self._scene,0,"NoMusic")
+            self.music1=FunkyButton("previous.svg", self.tr('Previous'), self._scene,"PreviousMusic")
+            self.music2=FunkyButton("next.svg", self.tr('Next'), self._scene,"NextMusic")
+            self.music3=FunkyButton("mute.svg", self.tr('None'), self._scene,"NoMusic")
             self.music1.clicked.connect(self.prevstation)
             self.music2.clicked.connect(self.nextstation)
             self.music3.clicked.connect(self.nostation)
@@ -1421,8 +1391,6 @@ class MainWidget (QtGui.QGraphicsView):
         appears faster'''
         self._scene.changed.connect(self.scenechanged)
         
-        #self.bgItem.moveOpacity()
-
         # Event filters for showing/hiding buttons/cursor
         self.editor.installEventFilter(self)
         for b in self.buttons:

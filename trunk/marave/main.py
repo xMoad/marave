@@ -88,9 +88,15 @@ class PrefsWidget(QtGui.QWidget):
         enabled = self.mainwindow.settings.value('enabledplugins')
         if enabled.isValid():
             enabled=unicode(enabled.toString()).split(',')
-            print 'ENABLED', enabled
         else:
             enabled=[]
+            
+        if any(enabled):
+            self.mainwindow.pluginButton.show()
+        else:
+            self.mainwindow.pluginButton.hide()
+        self.mainwindow.layoutButtons()
+        
         self.enablers=[ partial (p.enable,client=self.mainwindow) for p in classes]
         self.configers=[ partial (p.showConfig, client=self.mainwindow) for p in classes]
         print self.enablers
@@ -446,6 +452,8 @@ class MainWidget (QtGui.QGraphicsView):
         self.quitButton.clicked.connect(self.close)
         self.sc8.activated.connect(self.quitButton.animateClick)
 
+        self.pluginButton=FunkyButton("plugins.svg", self.tr('Plugins'), self._scene)
+
         self.buttons=[self.fontButton, 
                       self.sizeButton, 
                       self.fileButton, 
@@ -454,6 +462,7 @@ class MainWidget (QtGui.QGraphicsView):
             self.buttons+=[self.clickButton,
                            self.musicButton]
         self.buttons+=[self.configButton,
+                       self.pluginButton, 
                        self.quitButton]
 
 
@@ -644,6 +653,7 @@ class MainWidget (QtGui.QGraphicsView):
         mmLayout.setContentsMargins(0,0,0,0)
         
         for r, b in enumerate(self.buttons):
+            if not b.isVisible(): continue
             b.submenu=QtGui.QGraphicsWidget()
             self._scene.addItem(b.submenu)
             b.submenu.setLayout(QtGui.QGraphicsLinearLayout())

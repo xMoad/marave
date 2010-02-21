@@ -22,7 +22,6 @@ class Plugin (object):
         self.client=client
         self.sc=QtGui.QShortcut(QtGui.QKeySequence(self.shortcut), client)
         self.sc.activated.connect(self.run)
-        print self.run
 
     def run(self):
 	pass
@@ -33,11 +32,9 @@ class Plugin (object):
         
     @classmethod
     def enable(self, enabled=None, client=None):
-        print 'X:',enabled, client
         if enabled is None: return
         if client is None: return
         
-        print self
         enabledPlugins = client.settings.value('enabledplugins')
         if enabledPlugins.isValid():
             enabledPlugins=unicode(enabledPlugins.toString()).split(',')
@@ -47,6 +44,12 @@ class Plugin (object):
             enabledPlugins.append(self.name)
         elif self.name in enabledPlugins and not enabled:
             enabledPlugins.remove(self.name)
+        
+        if any(enabledPlugins):
+            client.pluginButton.show()
+        else:
+            client.pluginButton.hide()
+        client.layoutButtons()
         
         client.settings.setValue('enabledplugins',','.join(enabledPlugins))
         client.settings.sync()

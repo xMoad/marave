@@ -87,6 +87,7 @@ class Plugin (object):
         w.conf=QtGui.QPushButton(QtGui.QIcon(os.path.join(PATH,'icons','configure.svg')),'')
         l=QtGui.QHBoxLayout()
         l.addWidget(w.check)
+        l.addStretch(10)
         l.addWidget(w.conf)
         w.setLayout(l)
         return w

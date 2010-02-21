@@ -23,7 +23,7 @@ class build_hl(Command):
         os.chdir(self._dir)
 
 setup(name='Marave',
-      version='0.6',
+      version='0.7',
       description='A relaxed text editor',
       author='Roberto Alsina',
       author_email='ralsina@netmanagers.com.ar',

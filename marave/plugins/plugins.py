@@ -2,8 +2,7 @@
 
 import os
 from PyQt4 import QtGui
-
-PATH = os.path.abspath(os.path.dirname(__file__))
+from marave.main import PATH
 
 from Ui_conf import Ui_Dialog as ConfDialog
 
@@ -62,7 +61,7 @@ class Plugin (object):
     def selectorWidget(self):
         w=QtGui.QWidget()
         w.check=QtGui.QCheckBox(self.description)
-        w.conf=QtGui.QPushButton(QtGui.QIcon(os.path.join(PATH,'..','icons','configure.svg')),'')
+        w.conf=QtGui.QPushButton(QtGui.QIcon(os.path.join(PATH,'icons','configure.svg')),'')
         l=QtGui.QHBoxLayout()
         l.addWidget(w.check)
         l.addWidget(w.conf)
@@ -79,11 +78,11 @@ class Plugin (object):
     @classmethod
     def initPlugins(self):
         l=[]
-        for p in os.listdir(PATH):
+        for p in os.listdir(os.path.join(PATH,'plugins')):
             if p.endswith('.py') and p != 'plugins.py':
                 l.append(p)
         for p in l:
-            __import__('plugins.'+p[:-3], level=-1)
+            __import__('marave.plugins.'+p[:-3], level=-1)
 
     @classmethod
     def listPlugins(self):

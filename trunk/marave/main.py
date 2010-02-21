@@ -1404,7 +1404,7 @@ class MainWidget (QtGui.QGraphicsView):
                
     def showButtons(self):
         for w in self.buttons + self.handles:
-            fadein(w)
+            fadein(w, target=0.7)
 
     def hideButtons(self):
         for w in self.buttons + self.handles:

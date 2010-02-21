@@ -128,9 +128,8 @@ To use Marave without installing, run
 
 ::
 
-    python main.py
+    python marave-editor
 
-in the marave folder.
 
 .. sidebar:: Syntax Highlighting
 

@@ -20,6 +20,7 @@
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 
 import os, sys, codecs, re, optparse
+from functools import partial
 
 if hasattr(sys, 'frozen'):
     PATH = os.path.abspath(os.path.dirname(sys.executable))
@@ -87,37 +88,20 @@ class PrefsWidget(QtGui.QWidget):
         enabled = self.mainwindow.settings.value('enabledplugins')
         if enabled.isValid():
             enabled=unicode(enabled.toString()).split(',')
+            print 'ENABLED', enabled
         else:
             enabled=[]
-        for p in classes:
+        self.enablers=[ partial (p.enable,client=self.mainwindow) for p in classes]
+        self.configers=[ partial (p.showConfig, client=self.mainwindow) for p in classes]
+        print self.enablers
+        for p,e,c in zip(classes, self.enablers, self.configers):
             sel=p.selectorWidget()
             if p.name in enabled:
                 sel.check.setChecked(True)
-            f=lambda b: self.enablePlugin(p,b)
-            c=lambda: self.showPluginConf(p)
-            sel.check.toggled.connect(f)
+            sel.check.toggled.connect(e)
             sel.conf.clicked.connect(c)
             self.ui.pluginLayout.addWidget(sel)
-
-    def showPluginConf(self, pluginClass):
-        pluginClass.showConfig(self.mainwindow)
-
-    def enablePlugin(self, pluginClass, enabled=None):
-        if enabled is None: return
-        enabledPlugins = self.mainwindow.settings.value('enabledplugins')
-        if enabledPlugins.isValid():
-            enabledPlugins=unicode(enabledPlugins.toString()).split(',')
-        else:
-            enabledPlugins=[]
-        if pluginClass.name not in enabledPlugins and enabled:
-            enabledPlugins.append(pluginClass.name)
-        elif pluginClass.name in enabledPlugins and not enabled:
-            enabledPlugins.remove(pluginClass.name)
-        
-        self.mainwindow.settings.setValue('enabledplugins',','.join(enabledPlugins))
-        self.mainwindow.settings.sync()
-        
-        Plugin.instance(pluginClass, self.mainwindow)
+        self.ui.pluginLayout.addStretch(10)
 
     def loadLexers(self):
         self._l={}
@@ -230,7 +214,6 @@ def animheight(thing, target, thendo=None):
         g1.setHeight(target)
         thing.hanim.setStartValue(thing.geometry())
         thing.hanim.setEndValue(g1)
-        print thing.geometry().height(),'=>',g1.height()
         thing.hanim.start()
         thing.hanim.finished.connect(thing.hanim.deleteLater)
         if thendo:

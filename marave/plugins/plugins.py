@@ -32,6 +32,29 @@ class Plugin (object):
         '''Add whatever config widgets are needed to dialog'''
         
     @classmethod
+    def enable(self, enabled=None, client=None):
+        print 'X:',enabled, client
+        if enabled is None: return
+        if client is None: return
+        
+        print self
+        enabledPlugins = client.settings.value('enabledplugins')
+        if enabledPlugins.isValid():
+            enabledPlugins=unicode(enabledPlugins.toString()).split(',')
+        else:
+            enabledPlugins=[]
+        if self.name not in enabledPlugins and enabled:
+            enabledPlugins.append(self.name)
+        elif self.name in enabledPlugins and not enabled:
+            enabledPlugins.remove(self.name)
+        
+        client.settings.setValue('enabledplugins',','.join(enabledPlugins))
+        client.settings.sync()
+        
+        Plugin.instance(self, client)
+        
+        
+    @classmethod
     def loadConfig(self):
         # Override shortcut with settings
         if self.settings:
@@ -40,9 +63,9 @@ class Plugin (object):
                 self.shortcut=unicode(sc.toString())
         
     @classmethod
-    def showConfig(self, parent):
-        self.settings=parent.settings
-        dialog=ConfigDialog(parent)
+    def showConfig(self, client):
+        self.settings=client.settings
+        dialog=ConfigDialog(client)
         self.loadConfig()
         self.addConfigWidgets(dialog)
         dialog.ui.shortcut.setText(self.shortcut)

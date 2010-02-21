@@ -41,6 +41,7 @@ except ImportError:
     except ImportError:
         pass
 
+sys.path.append(PATH)
 from plugins.plugins import Plugin
 
 # Syntax highlight support
@@ -1477,6 +1478,7 @@ def main():
     window.show()
     window.raise_()
     window.showFullScreen()
+    window.setWindowFilePath('UNNAMED.txt')
     app.processEvents()
     window.editor.setFocus()
     app.processEvents()

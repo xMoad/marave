@@ -51,7 +51,7 @@ try:
 except ImportError:
     srchiliteqt = None
 
-from spelltextedit import SpellTextEdit
+from editor import Editor
 
 from Ui_searchwidget import Ui_Form as UI_SearchWidget
 from Ui_searchreplacewidget import Ui_Form as UI_SearchReplaceWidget
@@ -272,7 +272,7 @@ class FunkyStatusBar(QtGui.QStatusBar):
         self.setSizeGripEnabled(False)
 
 
-class FunkyEditor(SpellTextEdit):
+class FunkyEditor(Editor):
     def __init__(self, parent, canvaseditor=None):
         # This is for Issue 28
         self.autoResize=True
@@ -285,14 +285,14 @@ class FunkyEditor(SpellTextEdit):
         
         if not canvaseditor:
             print 'Using non-canvas editor'
-            SpellTextEdit.__init__(self, parent)
+            Editor.__init__(self, parent)
             self.setMouseTracking(True)
             self.viewport().setMouseTracking(True)
             self.defSize=self.font().pointSize()
             # This is for Issue 20
         else:
             print 'Using canvas editor'
-            SpellTextEdit.__init__(self)
+            Editor.__init__(self)
             self.setMouseTracking(True)
             self.viewport().setMouseTracking(True)
             self.defSize=self.font().pointSize()
@@ -1416,7 +1416,7 @@ class MainWidget (QtGui.QGraphicsView):
         self.editor.installEventFilter(self)
         for b in self.buttons:
             b.installEventFilter(self)
-        self.editor.modificationChanged.connect(self.setWindowModified)
+        self.editor.document().modificationChanged.connect(self.setWindowModified)
 
 
 def main():

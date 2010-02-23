@@ -16,7 +16,7 @@ class build_hl(Command):
         pass    
     
     def run(self):
-        os.chdir(os.path.join(self._dir,'marave','highlight'))
+        os.chdir(os.path.join(self._dir,'marave','editor','highlight'))
         r=os.system('python configure.py')
         if r==0:
             os.system('make')
@@ -28,7 +28,7 @@ setup(name='Marave',
       author='Roberto Alsina',
       author_email='ralsina@netmanagers.com.ar',
       url='http://marave.googlecode.com',
-      packages=['marave','marave.plugins'],
+      packages=['marave','marave.editor','marave.plugins'],
       scripts=['marave-editor'],
       package_data={'marave': ['backgrounds/*',
                                'icons/*svg',

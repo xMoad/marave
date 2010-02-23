@@ -38,7 +38,9 @@ from PyQt4.Qt import QPalette
 from PyQt4.QtCore import pyqtSignal
 from PyQt4 import QtGui, QtCore
  
-class SpellTextEdit(QTextEdit):
+class Editor(QTextEdit):
+    '''A QTextEdit-based editor that supports syntax highlighting and
+    spellchecking out of the box'''
 
     langChanged = QtCore.pyqtSignal(QtCore.QString)
     

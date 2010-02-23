@@ -109,7 +109,7 @@ class Editor(QTextEdit):
  
         # Check if the selected word is misspelled and offer spelling
         # suggestions if it is.
-        if enchant:
+        if enchant and self.dict:
             if self.textCursor().hasSelection():
                 text = unicode(self.textCursor().selectedText())
                 if not self.dict.check(text):

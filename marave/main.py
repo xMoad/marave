@@ -157,7 +157,7 @@ class PrefsWidget(QtGui.QWidget):
 
 class MenuStrip(QtGui.QGraphicsWidget):
     def __init__(self, scene):
-        QtGui.QWidget.__init__(self)
+        QtGui.QGraphicsWidget.__init__(self)
         self.proxy=self
         scene.addItem(self)
         self.proxy.setZValue(100)
@@ -181,7 +181,10 @@ def fadein(thing, target=1., thendo=None):
             thing.anim.finished.connect(thendo)
     else:
         # FIXME maybe implement a timeline based opacity for QGraphicsItems
-        thing.proxy.setOpacity(target)
+        if isinstance(thing, QtGui.QGraphicsItem):
+            thing.setOpacity(target)
+        else:
+            thing.proxy.setOpacity(target)
         if thendo: thendo()
 
 def fadeout(thing, thendo=None):
@@ -555,6 +558,7 @@ class MainWidget (QtGui.QGraphicsView):
         self.searchReplaceBar.setLayout(searchReplaceLayout)
         self._scene.addItem(self.searchReplaceBar)
 
+
     def editorLangChanged(self, lang):
         lang=unicode(lang).split('.')[0]
         idx=self.prefsWidget.ui.syntaxList.findText(lang)
@@ -627,12 +631,11 @@ class MainWidget (QtGui.QGraphicsView):
 
     def notify(self, text):
         self.notifBar.showMessage(text, 3000)
-        self.notifBar.proxy.setPos(self.editorX, self.editorY+self.editorH+self.m)
 
     def layoutButtons(self):
         
         mmLayout=QtGui.QGraphicsGridLayout()
-        mmLayout.setContentsMargins(0,0,0,0)
+        mmLayout.setContentsMargins(self.m * 3,0,0,0)
         
         for r, b in enumerate(self.buttons):
             if not b.isVisible(): continue
@@ -653,6 +656,14 @@ class MainWidget (QtGui.QGraphicsView):
         self.mainMenu=MenuStrip(self._scene)
         self.mainMenu.proxy.setLayout(mmLayout)
         self.mainMenu.setPos(self.editorX+self.editorW+20,self.editorY)
+        
+        self.container=QtGui.QGraphicsWidget()
+        self._scene.addItem(self.container)
+        self.containerLayout=QtGui.QGraphicsLinearLayout()
+        self.containerLayout.setContentsMargins(0,0,0,0)
+        self.containerLayout.addItem(self.editor.proxy)
+        self.containerLayout.addItem(self.mainMenu)
+        self.container.setLayout(self.containerLayout)
 
     def editoropacity(self, v):
         self.notify(unicode(self.tr("Setting opacity to: %s%%"))%v)
@@ -918,10 +929,6 @@ class MainWidget (QtGui.QGraphicsView):
         self.editor.autoResize=False
         animheight(self.editor,self.editorH-w.height(), thendo=later)
         
-        # Traditional alternative
-        #self.editor.resize(self.editorW,self.editorH-w.height())
-        #fadein(w)
-        
         self.setFocus()
 
     def showsearchreplace(self):
@@ -1158,31 +1165,41 @@ class MainWidget (QtGui.QGraphicsView):
         
     def adjustPositions(self):
         m=self.m
+        #self.changing=False
+        menuW=self.mainMenu.geometry().width()
+        if self.isLeftToRight():
+            leftD=0
+        else:
+            leftD=menuW
         if self.editor:
             if self.editor.autoResize:
+                self.container.setGeometry(self.editorX-leftD,self.editorY, 
+                    self.editorW+menuW, self.editorH)
                 if self.visibleWidget:
-                    self.editor.setGeometry(self.editorX,self.editorY,self.editorW,self.editorH-self.visibleWidget.height()-self.m)
+                    self.editor.resize(self.editorW,self.editorH-self.visibleWidget.geometry().height()-2*self.m)
                 else:
-                    self.editor.setGeometry(self.editorX,self.editorY,self.editorW,self.editorH)
+                    self.editor.resize(self.editorW,self.editorH)
             self.editorBG.setPos(self.editorX-m,self.editorY-m)
+                
             # Commenting this fixes Isue 15?????
             #self.editorBG.setBrush(QtGui.QColor(255,255,255,255))
             self.editorBG.setRect(0,0,self.editorW+2*m,self.editorH+2*m)
-            self.mainMenu.setPos(self.editorX+self.editorW+3*m,self.editorY)
-            self.searchBar.setPos(self.editorX,self.editorY+self.editorH-self.searchWidget.height())
-            self.searchWidget.setFixedWidth(self.editor.width())
-            self.searchReplaceBar.setPos(self.editorX,self.editorY+self.editorH-self.searchReplaceWidget.height())
-            self.searchReplaceWidget.setFixedWidth(self.editor.width())
-            self.prefsBar.setPos(self.editorX,self.editorY+self.editorH-self.prefsWidget.height())
-            self.prefsWidget.setFixedWidth(self.editor.width())
+            
+            for bar, w in ((self.searchBar,self.searchWidget),
+                           (self.searchReplaceBar,self.searchReplaceWidget),
+                           (self.prefsBar, self.prefsWidget),
+                           (self.notifBar.proxy, self.notifBar)):
+                bar.setPos(self.editorX,self.editorY+self.editorH-w.height())
+                w.setFixedWidth(self.editor.width())
+
+            self.notifBar.proxy.setPos(self.editorX,self.editorY+self.editorH+2*m)
 
             self.handles[0].setPos(self.editorX-2*m,self.editorY-2*m)
             self.handles[1].setPos(self.editorX+self.editorW,self.editorY-2*m)
             self.handles[2].setPos(self.editorX+self.editorW,self.editorY+self.editorH)
             self.handles[3].setPos(self.editorX-2*m,self.editorY+self.editorH)
-            self.notifBar.proxy.setPos(self.editorX-m, self.editorY+self.editorH+2*m)
-            self.notifBar.setFixedWidth(self.editorW+2*m)
             self.saveEditorGeometry()
+        #self.changing=True
 
     def scenechanged(self,region):
         if not self.changing:

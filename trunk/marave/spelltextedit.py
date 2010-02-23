@@ -28,7 +28,7 @@ from PyQt4.Qt import QApplication
 from PyQt4.Qt import QEvent
 from PyQt4.Qt import QMenu
 from PyQt4.Qt import QMouseEvent
-from PyQt4.Qt import QPlainTextEdit
+from PyQt4.Qt import QTextEdit
 from PyQt4.Qt import QSyntaxHighlighter
 from PyQt4.Qt import QTextCharFormat
 from PyQt4.Qt import QTextCursor
@@ -38,12 +38,12 @@ from PyQt4.Qt import QPalette
 from PyQt4.QtCore import pyqtSignal
 from PyQt4 import QtGui, QtCore
  
-class SpellTextEdit(QPlainTextEdit):
+class SpellTextEdit(QTextEdit):
 
     langChanged = QtCore.pyqtSignal(QtCore.QString)
     
     def __init__(self, *args):
-        QPlainTextEdit.__init__(self, *args)
+        QTextEdit.__init__(self, *args)
         self.docName = None
         self.initDict()
 
@@ -75,7 +75,7 @@ class SpellTextEdit(QPlainTextEdit):
             # moved to the location of the pointer.
             event = QMouseEvent(QEvent.MouseButtonPress, event.pos(),
                 Qt.LeftButton, Qt.LeftButton, Qt.NoModifier)
-        QPlainTextEdit.mousePressEvent(self, event)
+        QTextEdit.mousePressEvent(self, event)
  
     def contextMenuEvent(self, event):
         popup_menu = self.createStandardContextMenu()
@@ -140,7 +140,6 @@ class SpellTextEdit(QPlainTextEdit):
             except:
                 QtGui.QMessageBox.information(self.parent(), "Error - Marave",
                 "Error saving %s."%self.docName)
-                
 
     def saveas(self):
         QtCore.QCoreApplication.instance().setOverrideCursor(QtCore.Qt.ArrowCursor)
@@ -242,7 +241,7 @@ class SpellTextEdit(QPlainTextEdit):
     def mouseMoveEvent(self, ev):
         self.parent().showButtons()
         self.parent().showCursor()
-        return QtGui.QPlainTextEdit.mouseMoveEvent(self, ev)
+        return QtGui.QTextEdit.mouseMoveEvent(self, ev)
  
  
 class SpellHighlighter(QSyntaxHighlighter):

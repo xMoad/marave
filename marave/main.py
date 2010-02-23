@@ -27,6 +27,10 @@ if hasattr(sys, 'frozen'):
 else:
     PATH = os.path.abspath(os.path.dirname(__file__))
 
+FORCE45=os.getenv('FORCE45') or False
+if FORCE45:
+    print 'Forcing Qt 4.5 mode'
+
 # Import Qt modules
 from PyQt4 import QtCore, QtGui, QtSvg
 
@@ -170,7 +174,7 @@ class MenuStrip(QtGui.QGraphicsWidget):
 buttons=[]
 
 def fadein(thing, target=1., thendo=None):
-    if isinstance (thing, QtCore.QObject) and QtCore.QT_VERSION_STR >= '4.6.0':
+    if FORCE45 or (isinstance (thing, QtCore.QObject) and QtCore.QT_VERSION_STR >= '4.6.0'):
         thing.anim=QtCore.QPropertyAnimation(thing.proxy, "opacity")
         thing.anim.setDuration(200)
         thing.anim.setStartValue(thing.proxy.opacity())
@@ -191,7 +195,7 @@ def fadeout(thing, thendo=None):
     fadein(thing, 0, thendo)
 
 def animheight(thing, target, thendo=None):
-    if isinstance (thing, QtCore.QObject) and QtCore.QT_VERSION_STR >= '4.6.0':
+    if FORCE45 or (isinstance (thing, QtCore.QObject) and QtCore.QT_VERSION_STR >= '4.6.0'):
         thing.hanim=QtCore.QPropertyAnimation(thing.proxy, "geometry")
         thing.hanim.setDuration(200)
         g1=thing.geometry()
@@ -256,8 +260,8 @@ class FunkyEditor(Editor):
         # This is for Issue 28
         self.autoResize=True
         if canvaseditor is None:
-            if QtCore.QCoreApplication.instance().style().objectName() == 'oxygen' \
-                and QtCore.QT_VERSION_STR < '4.6.0':
+            if FORCE45 or (QtCore.QCoreApplication.instance().style().objectName() == 'oxygen' \
+                and QtCore.QT_VERSION_STR < '4.6.0'):
                 canvaseditor = False
             else:
                 canvaseditor = True
@@ -294,8 +298,8 @@ class MainWidget (QtGui.QGraphicsView):
         self._scene=QtGui.QGraphicsScene()
         self.setObjectName ("Main")
         if opengl:
-            if QtCore.QCoreApplication.instance().style().objectName() == 'oxygen' \
-               and QtCore.QT_VERSION_STR < '4.6.0':
+            if FORCE45 or (QtCore.QCoreApplication.instance().style().objectName() == 'oxygen' \
+               and QtCore.QT_VERSION_STR < '4.6.0'):
                 print "OpenGL acceleration doesn't work well with Oxygen, disabling it"
             else:
                 try:
@@ -661,7 +665,7 @@ class MainWidget (QtGui.QGraphicsView):
         self._scene.addItem(self.container)
         self.containerLayout=QtGui.QGraphicsLinearLayout()
         self.containerLayout.setContentsMargins(0,0,0,0)
-        self.containerLayout.addItem(self.editor.proxy)
+        #self.containerLayout.addItem(self.editor.proxy)
         self.containerLayout.addItem(self.mainMenu)
         self.container.setLayout(self.containerLayout)
 

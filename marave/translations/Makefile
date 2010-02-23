@@ -28,7 +28,7 @@ marave_it.qm: marave_it.ts
 	lrelease marave_it.ts -compress -qm marave_it.qm
 	
 update_trans:
-	pylupdate4 ../*py -ts $(TRANSLATIONS)
+	pylupdate4 ../*py ../editor/*py ../editor/widgets/*py -ts $(TRANSLATIONS)
 	@for ts in ${TRANSLATIONS};\
 	do \
 	  sed 's/filename="/filename="..\//g' -i $$ts;\

@@ -437,9 +437,6 @@ Do you want to save your changes or discard them?</source>
     </message>
 </context>
 <context>
-    <name>SpellTextEdit</name>
-</context>
-<context>
     <name>app</name>
     <message>
         <location filename="../main.py" line="1393"/>

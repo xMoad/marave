@@ -1,7 +1,9 @@
-
-all: icons_rc.py Ui_searchreplacewidget.py Ui_searchwidget.py \
-     Ui_prefs.py README.html smartypants_license.html \
-     plugins/Ui_conf.py
+all: icons_rc.py \
+     Ui_prefs.py \
+     README.html \
+     smartypants_license.html \
+     plugins/Ui_conf.py \
+     editorwidgets
 
 icons_rc.py: icons.qrc
 	pyrcc4 icons.qrc -o icons_rc.py
@@ -25,7 +27,10 @@ smartypants_license.html: smartypants_license
 	rst2html smartypants_license smartypants_license.html
 
 translations: force
-	cd translations ; make
+	cd translations && make
+
+editorwidgets: force
+	cd editor/widgets && make
 
 force:
 	true

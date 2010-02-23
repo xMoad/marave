@@ -206,7 +206,7 @@ def fadein(thing, target=1., thendo=None):
             thing.anim.finished.connect(thendo)
     else:
         # FIXME maybe implement a timeline based opacity for QGraphicsItems
-        thing.setOpacity(target)
+        thing.proxy.setOpacity(target)
         if thendo: thendo()
 
 def fadeout(thing, thendo=None):

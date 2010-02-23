@@ -5,28 +5,29 @@
     <message>
         <location filename="../spelltextedit.py" line="154"/>
         <source>Document saved</source>
-        <translation type="unfinished">Documento guardado</translation>
+        <translation>Documento guardado</translation>
     </message>
     <message>
         <location filename="../spelltextedit.py" line="161"/>
         <source>Save as</source>
-        <translation type="unfinished"></translation>
+        <translation>Guardar como</translation>
     </message>
     <message>
         <location filename="../spelltextedit.py" line="171"/>
         <source>New Document</source>
-        <translation type="unfinished"></translation>
+        <translation>Nuevo documento</translation>
     </message>
     <message>
         <location filename="../spelltextedit.py" line="171"/>
         <source>The document &quot;%s&quot; has been modified.
 Do you want to save your changes or discard them?</source>
-        <translation type="unfinished"></translation>
+        <translation>El documento &quot;%s&quot; ha sido modificado.
+Desea guardar los cambios o descartarlos?</translation>
     </message>
     <message>
         <location filename="../spelltextedit.py" line="194"/>
         <source>Open file</source>
-        <translation type="unfinished"></translation>
+        <translation>Abrir archivo</translation>
     </message>
 </context>
 <context>
@@ -417,7 +418,7 @@ Do you want to save your changes or discard them?</source>
     <message>
         <location filename="../main.py" line="433"/>
         <source>Plugins</source>
-        <translation type="unfinished">Plugins</translation>
+        <translation>Plugins</translation>
     </message>
 </context>
 <context>
@@ -436,7 +437,7 @@ Do you want to save your changes or discard them?</source>
 <context>
     <name>SpellTextEdit</name>
     <message>
-        <location filename="../../spelltextedit.py" line="138"/>
+        <location filename="../../../spelltextedit.py" line="138"/>
         <source>Document saved</source>
         <translation type="obsolete">Documento guardado</translation>
     </message>

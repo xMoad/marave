@@ -49,6 +49,7 @@ class Editor(QTextEdit):
     
     def __init__(self, *args):
         QTextEdit.__init__(self, *args)
+        self.lastFolder = QtGui.QDesktopServices.storageLocation(QtGui.QDesktopServices.DocumentsLocation)
         self.docName = None
         self.initDict()
 
@@ -157,7 +158,7 @@ class Editor(QTextEdit):
 
     def saveas(self):
         QtCore.QCoreApplication.instance().setOverrideCursor(QtCore.Qt.ArrowCursor)
-        fname=unicode(QtGui.QFileDialog.getSaveFileName(self.parent()))
+        fname=unicode(QtGui.QFileDialog.getSaveFileName(self.parent(), self.tr("Save as"), self.lastFolder))
         QtCore.QCoreApplication.instance().restoreOverrideCursor()
         if fname:
             self.docName=fname
@@ -167,8 +168,8 @@ class Editor(QTextEdit):
         QtCore.QCoreApplication.instance().setOverrideCursor(QtCore.Qt.ArrowCursor)
         try:
             if self.document().isModified():
-                r=QtGui.QMessageBox.question(self.parent(), "New Document - Marave", "The document \"%s\" has been modified."\
-                    "\nDo you want to save your changes or discard them?"%self.docName or "UNNAMED",
+                r=QtGui.QMessageBox.question(self.parent(), self.tr("New Document"), self.tr("The document \"%s\" has been modified."\
+                    "\nDo you want to save your changes or discard them?")%self.docName or "UNNAMED",
                     QtGui.QMessageBox.Save|QtGui.QMessageBox.Discard|QtGui.QMessageBox.Cancel,QtGui.QMessageBox.Cancel)
                 if r==QtGui.QMessageBox.Save:
                     self.save()
@@ -190,11 +191,12 @@ class Editor(QTextEdit):
             return
         if not fname:
             QtCore.QCoreApplication.instance().setOverrideCursor(QtCore.Qt.ArrowCursor)
-            fname=unicode(QtGui.QFileDialog.getOpenFileName(self.parent()))
+            fname=unicode(QtGui.QFileDialog.getOpenFileName(self.parent(), 
+                self.tr("Open file"), self.lastFolder))
             QtCore.QCoreApplication.instance().restoreOverrideCursor()
         if fname:
             self.docName=fname
-            
+            self.lastFolder = os.path.dirname(fname)
                             
             if os.path.exists(fname):
                 if os.path.isfile(fname):

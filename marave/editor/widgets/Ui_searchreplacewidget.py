@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'searchreplwidget.ui'
 #
-# Created: Mon Feb 15 15:52:50 2010
+# Created: Tue Feb 23 11:11:12 2010
 #      by: PyQt4 UI code generator 4.7
 #
 # WARNING! All changes made in this file will be lost!
@@ -18,7 +18,7 @@ class Ui_Form(object):
         self.gridLayout.setObjectName("gridLayout")
         self.close = QtGui.QToolButton(Form)
         icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap(":/icons/close.svg"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon.addPixmap(QtGui.QPixmap(":/close.svg"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.close.setIcon(icon)
         self.close.setAutoRaise(True)
         self.close.setObjectName("close")

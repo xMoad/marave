@@ -24,7 +24,7 @@
      </property>
      <property name="icon">
       <iconset resource="icons.qrc">
-       <normaloff>:/icons/close.svg</normaloff>:/icons/close.svg</iconset>
+       <normaloff>:/close.svg</normaloff>:/close.svg</iconset>
      </property>
      <property name="shortcut">
       <string>Esc</string>
@@ -68,7 +68,7 @@
         <string>&amp;Previous</string>
        </property>
        <property name="icon">
-        <iconset resource="icons.qrc">
+        <iconset>
          <normaloff>:/icons/previous.svg</normaloff>:/icons/previous.svg</iconset>
        </property>
        <property name="toolButtonStyle">
@@ -85,7 +85,7 @@
         <string>&amp;Next</string>
        </property>
        <property name="icon">
-        <iconset resource="icons.qrc">
+        <iconset>
          <normaloff>:/icons/next.svg</normaloff>:/icons/next.svg</iconset>
        </property>
        <property name="toolButtonStyle">

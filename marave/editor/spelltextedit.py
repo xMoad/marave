@@ -38,6 +38,9 @@ from PyQt4.Qt import QPalette
 from PyQt4.QtCore import pyqtSignal
 from PyQt4 import QtGui, QtCore
  
+from widgets import SearchWidget
+from widgets import SearchReplaceWidget
+ 
 class Editor(QTextEdit):
     '''A QTextEdit-based editor that supports syntax highlighting and
     spellchecking out of the box'''
@@ -49,6 +52,15 @@ class Editor(QTextEdit):
         self.docName = None
         self.initDict()
 
+    def searchWidget(self):
+        '''Creates a search widget hooked to this editor (parent is None)'''
+        return SearchWidget(self)
+
+    def searchReplaceWidget(self):
+        '''Creates a search/replace widget hooked to this editor (parent is None)'''
+        return SearchReplaceWidget(self)
+
+        
     def initDict(self, lang=None):
         if enchant:
             if lang==None:
@@ -292,8 +304,8 @@ class SpellAction(QAction):
 def main(args=sys.argv):
     app = QApplication(args)
  
-    spellEdit = SpellTextEdit()
-    spellEdit.show()
+    editor = Editor()
+    editor.show()
  
     return app.exec_()
  

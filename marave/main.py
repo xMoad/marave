@@ -53,9 +53,6 @@ except ImportError:
 
 from editor import Editor
 
-from Ui_searchwidget import Ui_Form as UI_SearchWidget
-from Ui_searchreplacewidget import Ui_Form as UI_SearchReplaceWidget
-from Ui_searchreplacewidget import Ui_Form as UI_SearchReplaceWidget
 from Ui_prefs import Ui_Form as UI_Prefs
 
 class Handle(QtGui.QGraphicsRectItem):
@@ -158,17 +155,6 @@ class PrefsWidget(QtGui.QWidget):
             self.ui.styleList.addItem(t)
         
 
-class SearchWidget(QtGui.QWidget):
-    def __init__(self, scene):
-        QtGui.QWidget.__init__(self)
-        # Set up the UI from designer
-        self.ui=UI_SearchWidget()
-        self.proxy=scene.addWidget(self)
-        self.ui.setupUi(self)
-        self.proxy.setZValue(100)
-        self.proxy.setFlag(QtGui.QGraphicsItem.ItemIsMovable, False)
-        self.proxy.setOpacity(0)
-
 class MenuStrip(QtGui.QGraphicsWidget):
     def __init__(self, scene):
         QtGui.QWidget.__init__(self)
@@ -179,16 +165,6 @@ class MenuStrip(QtGui.QGraphicsWidget):
         self.proxy.setFlag(QtGui.QGraphicsItem.ItemIsMovable, False)
         self.setPos=self.proxy.setPos
         self.proxy.setOpacity(100)
-
-class SearchReplaceWidget(QtGui.QWidget):
-    def __init__(self, scene):
-        QtGui.QWidget.__init__(self)
-        # Set up the UI from designer
-        self.ui=UI_SearchReplaceWidget()
-        self.proxy=scene.addWidget(self)
-        self.ui.setupUi(self)
-        self.proxy.setZValue(100)
-        self.proxy.setOpacity(0)
 
 
 buttons=[]
@@ -543,10 +519,14 @@ class MainWidget (QtGui.QGraphicsView):
 
 
         # Search widget
-        self.searchWidget=SearchWidget(self._scene)
+        self.searchWidget=self.editor.searchWidget()
+        self.searchWidget.proxy=self._scene.addWidget(self.searchWidget)
+        self.searchWidget.proxy.setZValue(100)
+        self.searchWidget.proxy.setFlag(QtGui.QGraphicsItem.ItemIsMovable, False)
+        self.searchWidget.proxy.setOpacity(0)
+        # Don't autohide it because we animate it
+        self.searchWidget.ui.close.clicked.disconnect(self.searchWidget.hide)
         self.searchWidget.ui.close.clicked.connect(self.hidewidgets)
-        self.searchWidget.ui.next.clicked.connect(self.doFind)
-        self.searchWidget.ui.previous.clicked.connect(self.doFindBackwards)
         
         searchLayout=QtGui.QGraphicsLinearLayout()
         searchLayout.setContentsMargins(0,0,0,0)
@@ -557,12 +537,15 @@ class MainWidget (QtGui.QGraphicsView):
         self._scene.addItem(self.searchBar)
 
         # Search and replace widget
-        self.searchReplaceWidget=SearchReplaceWidget(self._scene)
+        self.searchReplaceWidget=self.editor.searchReplaceWidget()
+        self.searchReplaceWidget.hide()
+        self.searchReplaceWidget.proxy=self._scene.addWidget(self.searchReplaceWidget)
+        self.searchWidget.proxy.setZValue(100)
+        self.searchWidget.proxy.setFlag(QtGui.QGraphicsItem.ItemIsMovable, False)
+        self.searchWidget.proxy.setOpacity(0)
+        self.searchReplaceWidget.ui.close.clicked.disconnect(self.searchReplaceWidget.hide)
         self.searchReplaceWidget.ui.close.clicked.connect(self.hidewidgets)
-        self.searchReplaceWidget.ui.next.clicked.connect(self.doFindR)
-        self.searchReplaceWidget.ui.previous.clicked.connect(self.doFindRBackwards)
-        self.searchReplaceWidget.ui.replace.clicked.connect(self.doReplace)
-        self.searchReplaceWidget.ui.replaceall.clicked.connect(self.doReplaceAll)
+        
         
         searchReplaceLayout=QtGui.QGraphicsLinearLayout()
         searchReplaceLayout.setContentsMargins(0,0,0,0)
@@ -965,74 +948,6 @@ class MainWidget (QtGui.QGraphicsView):
         self.editor.setFocus()
         self.visibleWidget=None
 
-    def doReplaceAllBackwards(self):
-        # Backwards and forwards are exactly the
-        # same thing if we are replacing all!
-        self.doReplaceAll(backwards=True)
-
-    def doReplaceAll(self):
-        # Replace all occurences without interaction
-        
-        old=self.searchReplaceWidget.ui.text.text()
-        new=self.searchReplaceWidget.ui.replaceWith.text()
-
-        # Beginning of undo block
-        cursor=self.editor.textCursor()
-        cursor.beginEditBlock()
-        
-        # Use flags for case match
-        flags=QtGui.QTextDocument.FindFlags()
-        if self.searchReplaceWidget.ui.matchCase.isChecked():
-            flags=flags|QtGui.QTextDocument.FindCaseSensitively
-            
-        # Replace all we can
-        while True:
-            r=self.editor.find(old,flags)
-            if r:
-                qc=self.editor.textCursor()
-                if qc.hasSelection():
-                    qc.insertText(new)
-            else:
-                break
-                
-        # Mark end of undo block
-        cursor.endEditBlock()
-
-    def doReplaceBackwards (self):
-        return self.doReplace(backwards=True)
-        
-    def doReplace(self):
-        qc=self.editor.textCursor()
-        if qc.hasSelection():
-            qc.insertText(self.searchReplaceWidget.ui.replaceWith.text())
-        self.doFindR(self.searchReplaceWidget.backwards)
-            
-    def doFindRBackwards (self):
-        return self.doFindR(backwards=True)
-
-    def doFindR(self, backwards=False):
-        self.searchReplaceWidget.backwards=backwards
-        flags=QtGui.QTextDocument.FindFlags()
-        if backwards:
-            flags=QtGui.QTextDocument.FindBackward
-        if self.searchReplaceWidget.ui.matchCase.isChecked():
-            flags=flags|QtGui.QTextDocument.FindCaseSensitively
-
-        text=unicode(self.searchReplaceWidget.ui.text.text())
-        r=self.editor.find(text,flags)
-
-    def doFindBackwards (self):
-        return self.doFind(backwards=True)
-
-    def doFind(self, backwards=False):
-        flags=QtGui.QTextDocument.FindFlags()
-        if backwards:
-            flags=QtGui.QTextDocument.FindBackward
-        if self.searchWidget.ui.matchCase.isChecked():
-            flags=flags|QtGui.QTextDocument.FindCaseSensitively
-
-        text=unicode(self.searchWidget.ui.text.text())
-        r=self.editor.find(text,flags)
 
     def rewind(self):
         if self.beep:

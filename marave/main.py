@@ -259,14 +259,15 @@ class FunkyEditor(Editor):
     def __init__(self, parent, canvaseditor=None):
         # This is for Issue 28
         self.autoResize=True
-        if canvaseditor is None:
+        self.canvaseditor=canvaseditor
+        if self.canvaseditor is None:
             if FORCE45 or (QtCore.QCoreApplication.instance().style().objectName() == 'oxygen' \
                 and QtCore.QT_VERSION_STR < '4.6.0'):
-                canvaseditor = False
+                self.canvaseditor = False
             else:
-                canvaseditor = True
+                self.canvaseditor = True
         
-        if not canvaseditor:
+        if not self.canvaseditor:
             print 'Using non-canvas editor'
             Editor.__init__(self, parent)
             self.setMouseTracking(True)
@@ -665,7 +666,7 @@ class MainWidget (QtGui.QGraphicsView):
         self._scene.addItem(self.container)
         self.containerLayout=QtGui.QGraphicsLinearLayout()
         self.containerLayout.setContentsMargins(0,0,0,0)
-        if not FORCE45 and QtCore.QT_VERSION_STR >= '4.6.0':
+        if self.editor.canvaseditor:
             self.containerLayout.addItem(self.editor.proxy)
         self.containerLayout.addItem(self.mainMenu)
         self.container.setLayout(self.containerLayout)
@@ -1178,8 +1179,21 @@ class MainWidget (QtGui.QGraphicsView):
             leftD=menuW
         if self.editor:
             if self.editor.autoResize:
-                self.container.setGeometry(self.editorX-leftD,self.editorY, 
-                    self.editorW+menuW, self.editorH)
+                
+                # This is when using in-canvas editor
+                if self.editor.canvaseditor:
+                    self.container.setGeometry(self.editorX-leftD,self.editorY, 
+                        self.editorW+menuW, self.editorH)
+                else:
+                    if self.isLeftToRight():
+                        self.container.setGeometry(self.editorX+self.editorW+m,
+                            self.editorY, menuW, self.editorH)
+                    else: #not canvaseditor, and menu on the left
+                        self.container.setGeometry(self.editorX-menuW,
+                            self.editorY, menuW, self.editorH)
+                        
+                    self.editor.move(self.editorX, self.editorY)
+                        
                 if self.visibleWidget:
                     self.editor.resize(self.editorW,self.editorH-self.visibleWidget.geometry().height()-2*self.m)
                 else:

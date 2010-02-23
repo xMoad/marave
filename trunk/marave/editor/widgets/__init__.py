@@ -4,6 +4,16 @@ from PyQt4 import QtGui, QtCore
 
 from Ui_searchwidget import Ui_Form as UI_SearchWidget
 from Ui_searchreplacewidget import Ui_Form as UI_SearchReplaceWidget
+from Ui_gotolinewidget import Ui_Form as UI_GotoLineWidget
+
+class GotoLineWidget(QtGui.QWidget):
+    def __init__(self, editor):
+        QtGui.QWidget.__init__(self)
+        # Set up the UI from designer
+        self.editor=editor
+        self.ui=UI_GotoLineWidget()
+        self.ui.setupUi(self)
+        self.ui.close.clicked.connect(self.hide)
 
 class SearchWidget(QtGui.QWidget):
     def __init__(self, editor):
@@ -11,7 +21,6 @@ class SearchWidget(QtGui.QWidget):
         # Set up the UI from designer
         self.editor=editor
         self.ui=UI_SearchWidget()
-        #self.proxy=scene.addWidget(self)
         self.ui.setupUi(self)
         self.ui.next.clicked.connect(self.doFind)
         self.ui.previous.clicked.connect(self.doFindBackwards)

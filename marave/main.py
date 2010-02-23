@@ -174,7 +174,7 @@ class MenuStrip(QtGui.QGraphicsWidget):
 buttons=[]
 
 def fadein(thing, target=1., thendo=None):
-    if FORCE45 or (isinstance (thing, QtCore.QObject) and QtCore.QT_VERSION_STR >= '4.6.0'):
+    if not FORCE45 and (isinstance (thing, QtCore.QObject) and QtCore.QT_VERSION_STR >= '4.6.0'):
         thing.anim=QtCore.QPropertyAnimation(thing.proxy, "opacity")
         thing.anim.setDuration(200)
         thing.anim.setStartValue(thing.proxy.opacity())
@@ -665,7 +665,8 @@ class MainWidget (QtGui.QGraphicsView):
         self._scene.addItem(self.container)
         self.containerLayout=QtGui.QGraphicsLinearLayout()
         self.containerLayout.setContentsMargins(0,0,0,0)
-        #self.containerLayout.addItem(self.editor.proxy)
+        if not FORCE45 and QtCore.QT_VERSION_STR >= '4.6.0':
+            self.containerLayout.addItem(self.editor.proxy)
         self.containerLayout.addItem(self.mainMenu)
         self.container.setLayout(self.containerLayout)
 

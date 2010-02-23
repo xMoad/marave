@@ -40,6 +40,7 @@ from PyQt4 import QtGui, QtCore
  
 from widgets import SearchWidget
 from widgets import SearchReplaceWidget
+from widgets import GotoLineWidget
  
 class Editor(QTextEdit):
     '''A QTextEdit-based editor that supports syntax highlighting and
@@ -52,6 +53,9 @@ class Editor(QTextEdit):
         self.lastFolder = QtGui.QDesktopServices.storageLocation(QtGui.QDesktopServices.DocumentsLocation)
         self.docName = None
         self.initDict()
+
+    def gotoLineWidget(self):
+        return GotoLineWidget(self)
 
     def searchWidget(self):
         '''Creates a search widget hooked to this editor (parent is None)'''

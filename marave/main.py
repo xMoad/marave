@@ -229,7 +229,7 @@ class FunkyButton(QtGui.QPushButton):
     def showChildren(self):
         for c in self.children:
             c.show()
-            fadein(c)
+            fadein(c,.7)
 
     def hideChildren(self):
         for c in self.children:
@@ -405,6 +405,10 @@ class MainWidget (QtGui.QGraphicsView):
         self.sc12 = QtGui.QShortcut(QtGui.QKeySequence(self.tr("Esc")), self);
         self.sc12.activated.connect(self.hidewidgets)
 
+        # Goto line
+        self.sc13 = QtGui.QShortcut(QtGui.QKeySequence(self.tr("Ctrl+G")), self)
+        self.sc13.activated.connect(lambda: self.showbar(self.gotoLineWidget))
+
         self.editorBG=QtGui.QGraphicsRectItem()
         self.editorBG.setFlag(QtGui.QGraphicsItem.ItemIsMovable, True)
         self.editorBG.setCursor(QtCore.Qt.PointingHandCursor)
@@ -515,16 +519,17 @@ class MainWidget (QtGui.QGraphicsView):
         self.prefsWidget.ui.spelling.toggled.connect(self.setHL)
         self.saveTimer=QtCore.QTimer()
         self.saveTimer.timeout.connect(self.savebytimer)
-        self.prefsWidget.ui.autoSave.setValue(self.settings.value('autosave').toInt()[0])
-        
-        prefsLayout=QtGui.QGraphicsLinearLayout()
-        prefsLayout.setContentsMargins(0,0,0,0)
-        prefsLayout.addItem(self.prefsWidget.proxy)
-        
-        self.prefsBar=QtGui.QGraphicsWidget()
-        self.prefsBar.setLayout(prefsLayout)
-        self._scene.addItem(self.prefsBar)
+        self.prefsWidget.ui.autoSave.setValue(self.settings.value('autosave').toInt()[0])        
 
+        # Goto Line widget
+        self.gotoLineWidget=self.editor.gotoLineWidget()
+        self.gotoLineWidget.proxy=self._scene.addWidget(self.gotoLineWidget)
+        self.gotoLineWidget.proxy.setZValue(100)
+        self.gotoLineWidget.proxy.setFlag(QtGui.QGraphicsItem.ItemIsMovable, False)
+        self.gotoLineWidget.proxy.setOpacity(0)
+        # Don't autohide it because we animate it
+        self.gotoLineWidget.ui.close.clicked.disconnect(self.gotoLineWidget.hide)
+        self.gotoLineWidget.ui.close.clicked.connect(self.hidewidgets)
 
         # Search widget
         self.searchWidget=self.editor.searchWidget()
@@ -536,14 +541,6 @@ class MainWidget (QtGui.QGraphicsView):
         self.searchWidget.ui.close.clicked.disconnect(self.searchWidget.hide)
         self.searchWidget.ui.close.clicked.connect(self.hidewidgets)
         
-        searchLayout=QtGui.QGraphicsLinearLayout()
-        searchLayout.setContentsMargins(0,0,0,0)
-        searchLayout.addItem(self.searchWidget.proxy)
-        
-        self.searchBar=QtGui.QGraphicsWidget()
-        self.searchBar.setLayout(searchLayout)
-        self._scene.addItem(self.searchBar)
-
         # Search and replace widget
         self.searchReplaceWidget=self.editor.searchReplaceWidget()
         self.searchReplaceWidget.hide()
@@ -554,15 +551,6 @@ class MainWidget (QtGui.QGraphicsView):
         self.searchReplaceWidget.ui.close.clicked.disconnect(self.searchReplaceWidget.hide)
         self.searchReplaceWidget.ui.close.clicked.connect(self.hidewidgets)
         
-        
-        searchReplaceLayout=QtGui.QGraphicsLinearLayout()
-        searchReplaceLayout.setContentsMargins(0,0,0,0)
-        searchReplaceLayout.addItem(self.searchReplaceWidget.proxy)
-        
-        self.searchReplaceBar=QtGui.QGraphicsWidget()
-        self.searchReplaceBar.setLayout(searchReplaceLayout)
-        self._scene.addItem(self.searchReplaceBar)
-
 
     def editorLangChanged(self, lang):
         lang=unicode(lang).split('.')[0]
@@ -955,8 +943,13 @@ class MainWidget (QtGui.QGraphicsView):
             self.editor.autoResize=True
             
         self.editor.autoResize=False
-        fadeout(self.searchWidget)
-        fadeout(self.searchReplaceWidget)
+        for w in [self.searchWidget,
+                  self.searchReplaceWidget,
+                  self.gotoLineWidget]:
+            fadeout(w)
+        # This one is separate because it triggers 
+        # resizing the editor
+        
         fadeout(self.prefsWidget, thendo=later)
         self.editor.setFocus()
         self.visibleWidget=None
@@ -1204,11 +1197,12 @@ class MainWidget (QtGui.QGraphicsView):
             #self.editorBG.setBrush(QtGui.QColor(255,255,255,255))
             self.editorBG.setRect(0,0,self.editorW+2*m,self.editorH+2*m)
             
-            for bar, w in ((self.searchBar,self.searchWidget),
-                           (self.searchReplaceBar,self.searchReplaceWidget),
-                           (self.prefsBar, self.prefsWidget),
-                           (self.notifBar.proxy, self.notifBar)):
-                bar.setPos(self.editorX,self.editorY+self.editorH-w.height())
+            for w in (self.searchWidget,
+                      self.searchReplaceWidget,
+                      self.prefsWidget,
+                      self.gotoLineWidget,
+                      self.notifBar):
+                w.proxy.setPos(self.editorX,self.editorY+self.editorH-w.height())
                 w.setFixedWidth(self.editor.width())
 
             self.notifBar.proxy.setPos(self.editorX,self.editorY+self.editorH+2*m)

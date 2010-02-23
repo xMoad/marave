@@ -64,40 +64,6 @@
      </property>
     </spacer>
    </item>
-   <item>
-    <widget class="QToolButton" name="previous">
-     <property name="text">
-      <string>&amp;Previous</string>
-     </property>
-     <property name="icon">
-      <iconset>
-       <normaloff>:/icons/previous.svg</normaloff>:/icons/previous.svg</iconset>
-     </property>
-     <property name="toolButtonStyle">
-      <enum>Qt::ToolButtonIconOnly</enum>
-     </property>
-     <property name="autoRaise">
-      <bool>true</bool>
-     </property>
-    </widget>
-   </item>
-   <item>
-    <widget class="QToolButton" name="next">
-     <property name="text">
-      <string>&amp;Next</string>
-     </property>
-     <property name="icon">
-      <iconset>
-       <normaloff>:/icons/next.svg</normaloff>:/icons/next.svg</iconset>
-     </property>
-     <property name="toolButtonStyle">
-      <enum>Qt::ToolButtonIconOnly</enum>
-     </property>
-     <property name="autoRaise">
-      <bool>true</bool>
-     </property>
-    </widget>
-   </item>
   </layout>
  </widget>
  <resources>

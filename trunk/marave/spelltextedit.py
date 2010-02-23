@@ -48,16 +48,17 @@ class SpellTextEdit(QPlainTextEdit):
         self.initDict()
 
     def initDict(self, lang=None):
-        if not enchant:
-            return
-        # Default dictionary based on the current locale.
-        if lang==None:
-            try:
-                self.dict = enchant.Dict()
-            except enchant.DictNotFoundError:
-                self.dict=None
+        if enchant:
+            if lang==None:
+                # Default dictionary based on the current locale.
+                try:
+                    self.dict = enchant.Dict()
+                except enchant.DictNotFoundError:
+                    self.dict=None            
+            else:
+                self.dict = enchant.Dict(lang)
         else:
-            self.dict = enchant.Dict(lang)
+            self.dict=None        
         self.highlighter = SpellHighlighter(self.document())
         if self.dict:
             self.highlighter.setDict(self.dict)

@@ -99,7 +99,6 @@ class PrefsWidget(QtGui.QWidget):
         
         self.enablers=[ partial (p.enable,client=self.mainwindow) for p in classes]
         self.configers=[ partial (p.showConfig, client=self.mainwindow) for p in classes]
-        print self.enablers
         for p,e,c in zip(classes, self.enablers, self.configers):
             sel=p.selectorWidget()
             if p.name in enabled:
@@ -821,7 +820,6 @@ class MainWidget (QtGui.QGraphicsView):
         fname=self.settings.value('font')
         if fname.isValid():
             f.fromString(fname.toString())
-            print 'Loaded font:',f.family()
         else:
             f.setFamily('courier')
         fs,ok=self.settings.value('fontsize').toInt()
@@ -873,7 +871,6 @@ class MainWidget (QtGui.QGraphicsView):
             style=unicode(style.toString())
         else:
             style='default'
-        print 'Loading style:',style
         self.prefsWidget.ui.styleList.setCurrentIndex(self.prefsWidget.ui.styleList.findText(style))
         QtCore.QCoreApplication.instance().setStyleSheet(open(os.path.join(PATH,'stylesheets',style)).read())
         
@@ -1135,7 +1132,6 @@ class MainWidget (QtGui.QGraphicsView):
                 painter.end()
                 #self.bg=QtGui.QImage(pm)
             else:
-                print 'LOADING'
                 self.bg=QtGui.QImage(os.path.join(PATH,'backgrounds',bg))
         self.realBg=self.bg.scaled( self.size(), QtCore.Qt.KeepAspectRatioByExpanding, QtCore.Qt.SmoothTransformation)
         self.bgItem.setPixmap(QtGui.QPixmap(self.realBg))
@@ -1430,15 +1426,15 @@ def main():
 
     locale = unicode(QtCore.QLocale.system().name())
     
-    qtTranslator=QtCore.QTranslator()
-    qtTranslator.load("qt_" + locale,
-            QtCore.QLibraryInfo.location(QtCore.QLibraryInfo.TranslationsPath))
-    app.installTranslator(qtTranslator);    
     
     translator=QtCore.QTranslator()
     translator.load(os.path.join(PATH,"translations","marave_" + unicode(locale)))
     app.installTranslator(translator)
 
+    qtTranslator=QtCore.QTranslator()
+    qtTranslator.load("qt_" + locale,
+            QtCore.QLibraryInfo.location(QtCore.QLibraryInfo.TranslationsPath))
+    app.installTranslator(qtTranslator);    
 
     parser = optparse.OptionParser()
     parser.add_option('--opengl', 

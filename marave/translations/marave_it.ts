@@ -1,32 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS><TS version="1.1" language="it_IT">
+<!DOCTYPE TS>
+<TS version="2.0" language="it_IT">
 <context>
     <name>Editor</name>
     <message>
         <location filename="../spelltextedit.py" line="154"/>
         <source>Document saved</source>
-        <translation type="unfinished">Documento salvato</translation>
+        <translation>Documento salvato</translation>
     </message>
     <message>
         <location filename="../spelltextedit.py" line="161"/>
         <source>Save as</source>
-        <translation type="unfinished"></translation>
+        <translation>Salva con nome</translation>
     </message>
     <message>
         <location filename="../spelltextedit.py" line="171"/>
         <source>New Document</source>
-        <translation type="unfinished"></translation>
+        <translation>Nuovo Documento</translation>
     </message>
     <message>
         <location filename="../spelltextedit.py" line="171"/>
         <source>The document &quot;%s&quot; has been modified.
 Do you want to save your changes or discard them?</source>
-        <translation type="unfinished"></translation>
+        <translation>Il documento &quot;%s&quot; é stato modificato.
+Vuoi salvare le modifiche o abbandonarle?</translation>
     </message>
     <message>
         <location filename="../spelltextedit.py" line="194"/>
         <source>Open file</source>
-        <translation type="unfinished"></translation>
+        <translation>Apri File</translation>
     </message>
 </context>
 <context>
@@ -412,12 +414,12 @@ Do you want to save your changes or discard them?</source>
     <message>
         <location filename="../main.py" line="400"/>
         <source>Esc</source>
-        <translation type="unfinished">Esc</translation>
+        <translation>Esc</translation>
     </message>
     <message>
         <location filename="../main.py" line="433"/>
         <source>Plugins</source>
-        <translation type="unfinished">Plugins</translation>
+        <translation>Plugins</translation>
     </message>
 </context>
 <context>

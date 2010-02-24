@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'prefs.ui'
 #
-# Created: Thu Feb 18 10:00:03 2010
+# Created: Wed Feb 24 07:27:39 2010
 #      by: PyQt4 UI code generator 4.7
 #
 # WARNING! All changes made in this file will be lost!
@@ -12,7 +12,7 @@ from PyQt4 import QtCore, QtGui
 class Ui_Form(object):
     def setupUi(self, Form):
         Form.setObjectName("Form")
-        Form.resize(390, 257)
+        Form.resize(390, 301)
         self.horizontalLayout_2 = QtGui.QHBoxLayout(Form)
         self.horizontalLayout_2.setContentsMargins(4, 4, 4, 2)
         self.horizontalLayout_2.setObjectName("horizontalLayout_2")
@@ -28,14 +28,12 @@ class Ui_Form(object):
         spacerItem = QtGui.QSpacerItem(20, 40, QtGui.QSizePolicy.Minimum, QtGui.QSizePolicy.Expanding)
         self.verticalLayout.addItem(spacerItem)
         self.horizontalLayout_2.addLayout(self.verticalLayout)
-        spacerItem1 = QtGui.QSpacerItem(56, 20, QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Minimum)
-        self.horizontalLayout_2.addItem(spacerItem1)
         self.tabWidget = QtGui.QTabWidget(Form)
         self.tabWidget.setObjectName("tabWidget")
         self.tab = QtGui.QWidget()
         self.tab.setObjectName("tab")
-        self.verticalLayout_2 = QtGui.QVBoxLayout(self.tab)
-        self.verticalLayout_2.setObjectName("verticalLayout_2")
+        self.horizontalLayout_3 = QtGui.QHBoxLayout(self.tab)
+        self.horizontalLayout_3.setObjectName("horizontalLayout_3")
         self.formLayout = QtGui.QFormLayout()
         self.formLayout.setFieldGrowthPolicy(QtGui.QFormLayout.ExpandingFieldsGrow)
         self.formLayout.setObjectName("formLayout")
@@ -105,18 +103,20 @@ class Ui_Form(object):
         self.autoSave = QtGui.QSpinBox(self.tab)
         self.autoSave.setObjectName("autoSave")
         self.formLayout.setWidget(7, QtGui.QFormLayout.FieldRole, self.autoSave)
-        self.verticalLayout_2.addLayout(self.formLayout)
+        self.horizontalLayout_3.addLayout(self.formLayout)
+        spacerItem1 = QtGui.QSpacerItem(40, 20, QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Minimum)
+        self.horizontalLayout_3.addItem(spacerItem1)
         self.tabWidget.addTab(self.tab, "")
         self.tab_2 = QtGui.QWidget()
         self.tab_2.setObjectName("tab_2")
-        self.verticalLayout_3 = QtGui.QVBoxLayout(self.tab_2)
-        self.verticalLayout_3.setObjectName("verticalLayout_3")
+        self.horizontalLayout_4 = QtGui.QHBoxLayout(self.tab_2)
+        self.horizontalLayout_4.setObjectName("horizontalLayout_4")
         self.pluginContainer = QtGui.QScrollArea(self.tab_2)
         self.pluginContainer.setFrameShape(QtGui.QFrame.NoFrame)
         self.pluginContainer.setWidgetResizable(True)
         self.pluginContainer.setObjectName("pluginContainer")
         self.scrollAreaWidgetContents = QtGui.QWidget(self.pluginContainer)
-        self.scrollAreaWidgetContents.setGeometry(QtCore.QRect(0, 0, 265, 210))
+        self.scrollAreaWidgetContents.setGeometry(QtCore.QRect(0, 0, 166, 254))
         self.scrollAreaWidgetContents.setObjectName("scrollAreaWidgetContents")
         self.verticalLayout_5 = QtGui.QVBoxLayout(self.scrollAreaWidgetContents)
         self.verticalLayout_5.setMargin(0)
@@ -125,11 +125,11 @@ class Ui_Form(object):
         self.pluginLayout.setObjectName("pluginLayout")
         self.verticalLayout_5.addLayout(self.pluginLayout)
         self.pluginContainer.setWidget(self.scrollAreaWidgetContents)
-        self.verticalLayout_3.addWidget(self.pluginContainer)
+        self.horizontalLayout_4.addWidget(self.pluginContainer)
+        spacerItem2 = QtGui.QSpacerItem(40, 20, QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Minimum)
+        self.horizontalLayout_4.addItem(spacerItem2)
         self.tabWidget.addTab(self.tab_2, "")
         self.horizontalLayout_2.addWidget(self.tabWidget)
-        spacerItem2 = QtGui.QSpacerItem(55, 20, QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Minimum)
-        self.horizontalLayout_2.addItem(spacerItem2)
         self.label_2.setBuddy(self.themeList)
         self.label_5.setBuddy(self.styleList)
         self.label_3.setBuddy(self.buttonStyle)

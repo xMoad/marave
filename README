@@ -130,6 +130,10 @@ To use Marave without installing, run
 
     python marave-editor
 
+Or, on Linux, make it executable and run it directly::
+    
+    chmod +x marave-editor
+    ./marave-editor
 
 .. sidebar:: Syntax Highlighting
 

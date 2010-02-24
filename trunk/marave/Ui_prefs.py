@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'prefs.ui'
 #
-# Created: Wed Feb 24 07:27:39 2010
+# Created: Wed Feb 24 08:08:53 2010
 #      by: PyQt4 UI code generator 4.7
 #
 # WARNING! All changes made in this file will be lost!
@@ -136,7 +136,7 @@ class Ui_Form(object):
         self.label_4.setBuddy(self.opacity)
 
         self.retranslateUi(Form)
-        self.tabWidget.setCurrentIndex(1)
+        self.tabWidget.setCurrentIndex(0)
         QtCore.QMetaObject.connectSlotsByName(Form)
 
     def retranslateUi(self, Form):

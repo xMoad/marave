@@ -407,7 +407,7 @@ class MainWidget (QtGui.QGraphicsView):
 
         # Goto line
         self.sc13 = QtGui.QShortcut(QtGui.QKeySequence(self.tr("Ctrl+G")), self)
-        self.sc13.activated.connect(lambda: self.showbar(self.gotoLineWidget))
+        self.sc13.activated.connect(self.showgotoline)
 
         self.editorBG=QtGui.QGraphicsRectItem()
         self.editorBG.setFlag(QtGui.QGraphicsItem.ItemIsMovable, True)
@@ -927,15 +927,22 @@ class MainWidget (QtGui.QGraphicsView):
 
     def showsearchreplace(self):
         self.showbar(self.searchReplaceWidget)
+        self.setFocus()
         self.searchReplaceWidget.ui.text.setFocus()
 
     def showsearch(self):
         self.showbar(self.searchWidget)
+        self.setFocus()
         self.searchWidget.ui.text.setFocus()
 
     def showprefs(self):
         self.prefsWidget.ui.opacity.setValue(self.editorBG.opacity()*100)
         self.showbar(self.prefsWidget)
+
+    def showgotoline(self):
+        self.showbar(self.gotoLineWidget)
+        self.setFocus()
+        self.gotoLineWidget.ui.line.setFocus()
 
     def hidewidgets(self):
         def later():

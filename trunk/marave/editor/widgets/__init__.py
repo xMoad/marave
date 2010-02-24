@@ -14,6 +14,17 @@ class GotoLineWidget(QtGui.QWidget):
         self.ui=UI_GotoLineWidget()
         self.ui.setupUi(self)
         self.ui.close.clicked.connect(self.hide)
+        
+    def on_go_clicked(self, b=None):
+        if b is not None: return
+        cursor=self.editor.textCursor()
+        ln=self.ui.line.value()
+        block=self.editor.document().findBlockByLineNumber(ln-1)
+        pos=block.position()
+        cursor.setPosition(pos)
+        self.editor.setTextCursor(cursor)
+        self.editor.setFocus()
+        
 
 class SearchWidget(QtGui.QWidget):
     def __init__(self, editor):

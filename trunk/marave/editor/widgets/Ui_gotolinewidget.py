@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'gotolinewidget.ui'
 #
-# Created: Tue Feb 23 20:29:32 2010
+# Created: Tue Feb 23 22:12:33 2010
 #      by: PyQt4 UI code generator 4.7
 #
 # WARNING! All changes made in this file will be lost!
@@ -27,23 +27,26 @@ class Ui_Form(object):
         self.label.setObjectName("label")
         self.horizontalLayout.addWidget(self.label)
         self.line = QtGui.QSpinBox(Form)
+        self.line.setMinimum(1)
+        self.line.setMaximum(99999)
         self.line.setObjectName("line")
         self.horizontalLayout.addWidget(self.line)
-        self.pushButton = QtGui.QPushButton(Form)
-        self.pushButton.setObjectName("pushButton")
-        self.horizontalLayout.addWidget(self.pushButton)
+        self.go = QtGui.QPushButton(Form)
+        self.go.setObjectName("go")
+        self.horizontalLayout.addWidget(self.go)
         spacerItem = QtGui.QSpacerItem(40, 20, QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Minimum)
         self.horizontalLayout.addItem(spacerItem)
         self.label.setBuddy(self.line)
 
         self.retranslateUi(Form)
+        QtCore.QObject.connect(self.line, QtCore.SIGNAL("editingFinished()"), self.go.animateClick)
         QtCore.QMetaObject.connectSlotsByName(Form)
 
     def retranslateUi(self, Form):
         Form.setWindowTitle(QtGui.QApplication.translate("Form", "Form", None, QtGui.QApplication.UnicodeUTF8))
         self.close.setText(QtGui.QApplication.translate("Form", "...", None, QtGui.QApplication.UnicodeUTF8))
         self.label.setText(QtGui.QApplication.translate("Form", "&Go to line:", None, QtGui.QApplication.UnicodeUTF8))
-        self.pushButton.setText(QtGui.QApplication.translate("Form", "G&o", None, QtGui.QApplication.UnicodeUTF8))
+        self.go.setText(QtGui.QApplication.translate("Form", "G&o", None, QtGui.QApplication.UnicodeUTF8))
 
 import icons_rc
 

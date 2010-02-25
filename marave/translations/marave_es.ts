@@ -150,12 +150,12 @@ Desea guardar los cambios o descartarlos?</translation>
     <message>
         <location filename="../Ui_gotolinewidget.py" line="48"/>
         <source>&amp;Go to line:</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Ir a línea:</translation>
     </message>
     <message>
         <location filename="../Ui_gotolinewidget.py" line="49"/>
         <source>G&amp;o</source>
-        <translation type="unfinished"></translation>
+        <translation>I&amp;r</translation>
     </message>
 </context>
 <context>
@@ -433,7 +433,7 @@ Do you want to save your changes or discard them?</source>
     <message>
         <location filename="../main.py" line="416"/>
         <source>Ctrl+G</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+G</translation>
     </message>
 </context>
 <context>
@@ -452,7 +452,7 @@ Do you want to save your changes or discard them?</source>
 <context>
     <name>SpellTextEdit</name>
     <message>
-        <location filename="../../../../../spelltextedit.py" line="138"/>
+        <location filename="../../../../../../../spelltextedit.py" line="138"/>
         <source>Document saved</source>
         <translation type="obsolete">Documento guardado</translation>
     </message>

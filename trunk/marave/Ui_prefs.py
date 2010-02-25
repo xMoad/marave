@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'prefs.ui'
 #
-# Created: Thu Feb 25 00:23:21 2010
+# Created: Thu Feb 25 00:34:26 2010
 #      by: PyQt4 UI code generator 4.7
 #
 # WARNING! All changes made in this file will be lost!
@@ -139,6 +139,7 @@ class Ui_Form(object):
         self.tabWidget.setCurrentIndex(0)
         QtCore.QObject.connect(self.spelling, QtCore.SIGNAL("toggled(bool)"), self.langBox.setEnabled)
         QtCore.QObject.connect(self.syntax, QtCore.SIGNAL("toggled(bool)"), self.syntaxList.setEnabled)
+        QtCore.QObject.connect(self.syntax, QtCore.SIGNAL("toggled(bool)"), self.schemeList.setEnabled)
         QtCore.QMetaObject.connectSlotsByName(Form)
 
     def retranslateUi(self, Form):

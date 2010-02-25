@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from distutils.cmd import Command
-from distutils.core import setup
+from distutils.core import setup, Extension
 import os
 
 class build_hl(Command):
@@ -28,7 +28,10 @@ setup(name='Marave',
       author='Roberto Alsina',
       author_email='ralsina@netmanagers.com.ar',
       url='http://marave.googlecode.com',
-      packages=['marave','marave.editor','marave.editor.widgets','marave.plugins'],
+      packages=['marave',
+                'marave.editor',
+                'marave.editor.widgets',
+                'marave.plugins'],
       scripts=['marave-editor'],
       package_data={'marave': ['backgrounds/*',
                                'icons/*svg',
@@ -37,6 +40,7 @@ setup(name='Marave',
                                'stylesheets/*',
                                'translations/*',
                                'highlight/*',
+                               'editor/highlight/*',
                                'radios.txt'
                                ]},
      cmdclass = { 'build_hl': build_hl },

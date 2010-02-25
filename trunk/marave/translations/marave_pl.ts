@@ -1,32 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS><TS version="1.1" language="pl_PL">
+<!DOCTYPE TS>
+<TS version="2.0" language="pl_PL">
 <context>
     <name>Editor</name>
     <message>
         <location filename="../spelltextedit.py" line="158"/>
         <source>Document saved</source>
-        <translation type="unfinished">Dokument zapisany</translation>
+        <translation>Dokument zapisany</translation>
     </message>
     <message>
         <location filename="../spelltextedit.py" line="165"/>
         <source>Save as</source>
-        <translation type="unfinished"></translation>
+        <translation>Zapisz jako</translation>
     </message>
     <message>
         <location filename="../spelltextedit.py" line="175"/>
         <source>New Document</source>
-        <translation type="unfinished"></translation>
+        <translation>Nowy dokument</translation>
     </message>
     <message>
         <location filename="../spelltextedit.py" line="175"/>
         <source>The document &quot;%s&quot; has been modified.
 Do you want to save your changes or discard them?</source>
-        <translation type="unfinished"></translation>
+        <translation>Dokument &quot;%s&quot; został zmieniony.
+Czy chcesz zachować zmiany czy je odrzucić?</translation>
     </message>
     <message>
         <location filename="../spelltextedit.py" line="198"/>
         <source>Open file</source>
-        <translation type="unfinished"></translation>
+        <translation>Otwórz plik</translation>
     </message>
 </context>
 <context>
@@ -149,12 +151,12 @@ Do you want to save your changes or discard them?</source>
     <message>
         <location filename="../Ui_gotolinewidget.py" line="48"/>
         <source>&amp;Go to line:</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Idź do linii:</translation>
     </message>
     <message>
         <location filename="../Ui_gotolinewidget.py" line="49"/>
         <source>G&amp;o</source>
-        <translation type="unfinished"></translation>
+        <translation>I&amp;dź</translation>
     </message>
 </context>
 <context>
@@ -431,12 +433,12 @@ Czy chcesz zachować zmiany czy je odrzucić?</translation>
     <message>
         <location filename="../main.py" line="449"/>
         <source>Plugins</source>
-        <translation type="unfinished">Wtyczki</translation>
+        <translation>Wtyczki</translation>
     </message>
     <message>
         <location filename="../main.py" line="416"/>
         <source>Ctrl+G</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+G</translation>
     </message>
 </context>
 <context>

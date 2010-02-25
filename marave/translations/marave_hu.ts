@@ -1,33 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS><TS version="1.1" language="es_AR">
+<!DOCTYPE TS><TS version="1.1" language="hu_HU">
 <context>
     <name>Editor</name>
     <message>
         <location filename="../spelltextedit.py" line="158"/>
         <source>Document saved</source>
-        <translation>Documento guardado</translation>
+        <translation>Dokumentum elmentve</translation>
     </message>
     <message>
         <location filename="../spelltextedit.py" line="165"/>
         <source>Save as</source>
-        <translation>Guardar como</translation>
+        <translation>Mentés másként</translation>
     </message>
     <message>
         <location filename="../spelltextedit.py" line="175"/>
         <source>New Document</source>
-        <translation>Nuevo documento</translation>
+        <translation>Új dokumentum</translation>
     </message>
     <message>
         <location filename="../spelltextedit.py" line="175"/>
         <source>The document &quot;%s&quot; has been modified.
 Do you want to save your changes or discard them?</source>
-        <translation>El documento &quot;%s&quot; ha sido modificado.
-Desea guardar los cambios o descartarlos?</translation>
+        <translation>A &quot;%s&quot; módosítva lett.
+Szeretnéd elmenteni a módosításokat, vagy nem?</translation>
     </message>
     <message>
         <location filename="../spelltextedit.py" line="198"/>
         <source>Open file</source>
-        <translation>Abrir archivo</translation>
+        <translation>Fájl megnyitása</translation>
     </message>
 </context>
 <context>
@@ -50,112 +50,112 @@ Desea guardar los cambios o descartarlos?</translation>
     <message>
         <location filename="../Ui_prefs.py" line="149"/>
         <source>&amp;Theme:</source>
-        <translation>&amp;Tema:</translation>
+        <translation>&amp;Téma:</translation>
     </message>
     <message>
         <location filename="../Ui_prefs.py" line="152"/>
         <source>&amp;Spell Checking:</source>
-        <translation>&amp;Corrector Ortográfico:</translation>
+        <translation>&amp;Helyesírás ellenőrzés:</translation>
     </message>
     <message>
         <location filename="../Ui_prefs.py" line="155"/>
         <source>&amp;Buttons:</source>
-        <translation>&amp;Botones:</translation>
+        <translation>&amp;Gombok:</translation>
     </message>
     <message>
         <location filename="../Ui_prefs.py" line="156"/>
         <source>Icons</source>
-        <translation>Iconos</translation>
+        <translation>Ikonok</translation>
     </message>
     <message>
         <location filename="../Ui_prefs.py" line="157"/>
         <source>Text</source>
-        <translation>Texto</translation>
+        <translation>Szöveg</translation>
     </message>
     <message>
         <location filename="../Ui_prefs.py" line="158"/>
         <source>Text + Icons</source>
-        <translation>Texto + Iconos</translation>
+        <translation>Szöveg + Ikonok</translation>
     </message>
     <message>
         <location filename="../Ui_prefs.py" line="159"/>
         <source>&amp;Editor Opacity:</source>
-        <translation>Opacidad del &amp;editor:</translation>
+        <translation>&amp;Szerkesztő áttetszősége:</translation>
     </message>
     <message>
         <location filename="../Ui_searchwidget.py" line="61"/>
         <source>&amp;Find:</source>
-        <translation>&amp;Buscar:</translation>
+        <translation>&amp;Keres:</translation>
     </message>
     <message>
         <location filename="../Ui_searchwidget.py" line="62"/>
         <source>&amp;Previous</source>
-        <translation>&amp;Anterior</translation>
+        <translation>&amp;Előző</translation>
     </message>
     <message>
         <location filename="../Ui_searchwidget.py" line="63"/>
         <source>&amp;Next</source>
-        <translation>&amp;Siguiente</translation>
+        <translation>&amp;Következő</translation>
     </message>
     <message>
         <location filename="../Ui_searchwidget.py" line="64"/>
         <source>&amp;Match Case</source>
-        <translation>&amp;Distinguir Mayúsculas</translation>
+        <translation>&amp;Betű megfeleltetés</translation>
     </message>
     <message>
         <location filename="../Ui_searchreplacewidget.py" line="94"/>
         <source>Rep&amp;lace:</source>
-        <translation>Reemp&amp;lazar:</translation>
+        <translation>Cse&amp;re:</translation>
     </message>
     <message>
         <location filename="../Ui_searchreplacewidget.py" line="95"/>
         <source>&amp;Replace</source>
-        <translation>&amp;Reemplazar</translation>
+        <translation>&amp;Csere</translation>
     </message>
     <message>
         <location filename="../Ui_searchreplacewidget.py" line="96"/>
         <source>Replace &amp;All</source>
-        <translation>Reemplazar &amp;Todo</translation>
+        <translation>&amp;Összes cseréje</translation>
     </message>
     <message>
         <location filename="../Ui_prefs.py" line="160"/>
         <source>Auto save (minutes):</source>
-        <translation>Guardar automáticamente (minutos):</translation>
+        <translation>Automatikus mentés (percek):</translation>
     </message>
     <message>
         <location filename="../Ui_prefs.py" line="151"/>
         <source>St&amp;yle:</source>
-        <translation>E&amp;stilo:</translation>
+        <translation>St&amp;ílus:</translation>
     </message>
     <message>
         <location filename="../Ui_prefs.py" line="153"/>
         <source>Syntax Highlight:</source>
-        <translation>Resaltado de sintaxis:</translation>
+        <translation>Kiegészítés:</translation>
     </message>
     <message>
         <location filename="../Ui_prefs.py" line="154"/>
         <source>Color Scheme:</source>
-        <translation>Esquema de colores:</translation>
+        <translation>Szín séma:</translation>
     </message>
     <message>
         <location filename="../Ui_prefs.py" line="161"/>
         <source>Settings</source>
-        <translation>Opciones</translation>
+        <translation>Beállítások</translation>
     </message>
     <message>
         <location filename="../Ui_prefs.py" line="162"/>
         <source>Plugins</source>
-        <translation>Plugins</translation>
+        <translation>Beépülők</translation>
     </message>
     <message>
         <location filename="../Ui_gotolinewidget.py" line="48"/>
         <source>&amp;Go to line:</source>
-        <translation>&amp;Ir a línea:</translation>
+        <translation>&amp;Ugrás sorhoz:</translation>
     </message>
     <message>
         <location filename="../Ui_gotolinewidget.py" line="49"/>
         <source>G&amp;o</source>
-        <translation>I&amp;r</translation>
+        <translation>U&amp;grás</translation>
     </message>
 </context>
 <context>
@@ -163,262 +163,258 @@ Desea guardar los cambios o descartarlos?</translation>
     <message>
         <location filename="../main.py" line="609"/>
         <source>Sound support is not available, disabling sound</source>
-        <translation>Soporte para sonido no disponible, inhabilitando sonidos</translation>
+        <translation>Hangtámogatás nem elérhető, hang kikapcsolva</translation>
     </message>
     <message>
         <location filename="../main.py" line="619"/>
         <source>Document: %s</source>
-        <translation>Documento: %s</translation>
+        <translation>Dokumentum: %s</translation>
     </message>
     <message numerus="yes">
         <location filename="../main.py" line="620"/>
         <source>%n words</source>
         <translation>
-            <numerusform>%n palabra</numerusform>
-            <numerusform>%n palabras</numerusform>
+            <numerusform>%n szavak</numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <location filename="../main.py" line="621"/>
         <source>%n lines</source>
         <translation>
-            <numerusform>%n línea</numerusform>
-            <numerusform>%n líneas</numerusform>
+            <numerusform>%n sorok</numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <location filename="../main.py" line="622"/>
         <source>%n characters</source>
         <translation>
-            <numerusform>%n caracter</numerusform>
-            <numerusform>%n caracteres</numerusform>
+            <numerusform>%n karakterek</numerusform>
         </translation>
     </message>
     <message>
         <location filename="../main.py" line="905"/>
         <source>Close Document - Marave</source>
-        <translation>Cerrar Documento - Marave</translation>
+        <translation>Dokumentum bezárása - Marave</translation>
     </message>
     <message>
         <location filename="../main.py" line="905"/>
         <source>The document &quot;%s&quot; has been modified.</source>
-        <translation>El documento &quot;%s&quot; ha sido modificado.</translation>
+        <translation>A &quot;%s&quot; dokumetum módosítva lett.</translation>
     </message>
     <message>
         <location filename="../main.py" line="905"/>
         <source>UNNAMED</source>
-        <translation>SIN NOMBRE</translation>
+        <translation>Névtelen</translation>
     </message>
     <message>
         <location filename="../main.py" line="905"/>
         <source>
 Do you want to save your changes or discard them?</source>
-        <translation>¿Desea guardar sus cambios o descartarlos?</translation>
+        <translation>
+Szeretnéd menteni a változásokat, vagy nem?</translation>
     </message>
     <message>
         <location filename="../main.py" line="436"/>
         <source>Font</source>
-        <translation>TIpografía
-</translation>
+        <translation>Betűtípus</translation>
     </message>
     <message>
         <location filename="../main.py" line="437"/>
         <source>Size</source>
-        <translation>Tamaño</translation>
+        <translation>Méret</translation>
     </message>
     <message>
         <location filename="../main.py" line="438"/>
         <source>File</source>
-        <translation>Archivo</translation>
+        <translation>Fájl</translation>
     </message>
     <message>
         <location filename="../main.py" line="439"/>
         <source>Bg</source>
-        <translation>Fondo</translation>
+        <translation>Háttér</translation>
     </message>
     <message>
         <location filename="../main.py" line="441"/>
         <source>Click</source>
-        <translation>Click</translation>
+        <translation>Klikk</translation>
     </message>
     <message>
         <location filename="../main.py" line="442"/>
         <source>Music</source>
-        <translation>Música</translation>
+        <translation>Zene</translation>
     </message>
     <message>
         <location filename="../main.py" line="443"/>
         <source>Options</source>
-        <translation>Opciones</translation>
+        <translation>Beállítások</translation>
     </message>
     <message>
         <location filename="../main.py" line="445"/>
         <source>Quit</source>
-        <translation>Salir</translation>
+        <translation>Kilép</translation>
     </message>
     <message>
         <location filename="../main.py" line="488"/>
         <source>Color</source>
-        <translation>Color</translation>
+        <translation>Szín</translation>
     </message>
     <message>
         <location filename="../main.py" line="469"/>
         <source>Smaller</source>
-        <translation>Menor</translation>
+        <translation>Kisebb</translation>
     </message>
     <message>
         <location filename="../main.py" line="470"/>
         <source>Default</source>
-        <translation>Normal</translation>
+        <translation>Alap</translation>
     </message>
     <message>
         <location filename="../main.py" line="471"/>
         <source>Larger</source>
-        <translation>Mayor</translation>
+        <translation>Nagyobb</translation>
     </message>
     <message>
         <location filename="../main.py" line="478"/>
         <source>Open</source>
-        <translation>Abrir</translation>
+        <translation>Megnyitás</translation>
     </message>
     <message>
         <location filename="../main.py" line="479"/>
         <source>Save</source>
-        <translation>Guardar</translation>
+        <translation>Mentés</translation>
     </message>
     <message>
         <location filename="../main.py" line="480"/>
         <source>Save As</source>
-        <translation>Guardar Como</translation>
+        <translation>Mentés másként</translation>
     </message>
     <message>
         <location filename="../main.py" line="503"/>
         <source>Previous</source>
-        <translation>Anterior</translation>
+        <translation>Előző</translation>
     </message>
     <message>
         <location filename="../main.py" line="504"/>
         <source>Next</source>
-        <translation>Siguiente</translation>
+        <translation>Következő</translation>
     </message>
     <message>
         <location filename="../main.py" line="505"/>
         <source>None</source>
-        <translation>Ninguna</translation>
+        <translation>Nincs</translation>
     </message>
     <message>
         <location filename="../main.py" line="670"/>
         <source>Setting opacity to: %s%%</source>
-        <translation>Opacidad: %s%%</translation>
+        <translation>Átlátszóság beállítása: %s%%</translation>
     </message>
     <message>
         <location filename="../main.py" line="979"/>
         <source>Switching click to: %s</source>
-        <translation>Cambiando click a: %s</translation>
+        <translation>Klikk átállítása: %s</translation>
     </message>
     <message>
         <location filename="../main.py" line="1008"/>
         <source>Disabling click</source>
-        <translation>Inhabilitando click</translation>
+        <translation>Klikk tiltása</translation>
     </message>
     <message>
         <location filename="../main.py" line="1014"/>
         <source>Listening to: %s</source>
-        <translation>Escuchando: %s</translation>
+        <translation>Halgatás: %s</translation>
     </message>
     <message>
         <location filename="../main.py" line="1047"/>
         <source>Disabling music</source>
-        <translation>Inhabilitando música</translation>
+        <translation>Zene tiltása</translation>
     </message>
     <message>
         <location filename="../main.py" line="1105"/>
         <source>Setting background to: %s</source>
-        <translation>Cambiando fondo a: %s</translation>
+        <translation>Háttér beállítása: %s</translation>
     </message>
     <message>
         <location filename="../main.py" line="694"/>
         <source>Changing to style %s requires restarting Marave</source>
-        <translation>Cambiar al estilo %s requiere reiniciar Marave</translation>
+        <translation>A %s stílusra váltáshoz a Marave újraindítása szükséges</translation>
     </message>
     <message>
         <location filename="../main.py" line="375"/>
         <source>Ctrl+F</source>
         <comment>Find</comment>
-        <translation></translation>
+        <translation>Ctrl+F</translation>
     </message>
     <message>
         <location filename="../main.py" line="377"/>
         <source>Ctrl+R</source>
         <comment>Find and Replace</comment>
-        <translation></translation>
+        <translation>Ctrl+R</translation>
     </message>
     <message>
         <location filename="../main.py" line="381"/>
         <source>Ctrl+T</source>
         <comment>Taj Mode</comment>
-        <translation></translation>
+        <translation>Ctrl+T</translation>
     </message>
     <message>
         <location filename="../main.py" line="389"/>
         <source>Ctrl+O</source>
         <comment>Open File</comment>
-        <translation></translation>
+        <translation>Ctrl+O</translation>
     </message>
     <message>
         <location filename="../main.py" line="391"/>
         <source>Ctrl+S</source>
         <comment>Save File</comment>
-        <translation></translation>
+        <translation>Ctrl+S</translation>
     </message>
     <message>
         <location filename="../main.py" line="393"/>
         <source>Shift+Ctrl+S</source>
         <comment>Save File As</comment>
-        <translation></translation>
+        <translation>Shift+Ctrl+S</translation>
     </message>
     <message>
         <location filename="../main.py" line="395"/>
         <source>Ctrl+N</source>
         <comment>New File</comment>
-        <translation></translation>
+        <translation>Ctrl+N</translation>
     </message>
     <message>
         <location filename="../main.py" line="397"/>
         <source>Ctrl+Q</source>
         <comment>Quit</comment>
-        <translation></translation>
+        <translation>Ctrl+Q</translation>
     </message>
     <message>
         <location filename="../main.py" line="400"/>
         <source>Shift+Ctrl+P</source>
         <comment>Show Preferences</comment>
-        <translation></translation>
+        <translation>Shift+Ctrl+P</translation>
     </message>
     <message>
         <location filename="../main.py" line="404"/>
         <source>Ctrl+I</source>
         <comment>Show Document Info</comment>
-        <translation></translation>
+        <translation>Ctrl+I</translation>
     </message>
     <message>
         <location filename="../main.py" line="408"/>
         <source>F1</source>
         <comment>Help</comment>
-        <translation></translation>
+        <translation>F1</translation>
     </message>
     <message numerus="yes">
         <location filename="../main.py" line="593"/>
         <source>Saving every %n minutes</source>
         <translation>
-            <numerusform>Guardando cada %n minuto</numerusform>
-            <numerusform>Guardando cada %n minutos</numerusform>
+            <numerusform>Mentés minden %n percben</numerusform>
         </translation>
     </message>
     <message>
         <location filename="../main.py" line="597"/>
         <source>Disabled automatic saving</source>
-        <translation>Guardado automático inhabilitado</translation>
+        <translation>Automatikus mentés kikapcsolása</translation>
     </message>
     <message>
         <location filename="../main.py" line="412"/>
@@ -428,7 +424,7 @@ Do you want to save your changes or discard them?</source>
     <message>
         <location filename="../main.py" line="449"/>
         <source>Plugins</source>
-        <translation>Plugins</translation>
+        <translation>Beépülők</translation>
     </message>
     <message>
         <location filename="../main.py" line="416"/>
@@ -441,12 +437,12 @@ Do you want to save your changes or discard them?</source>
     <message>
         <location filename="../main.py" line="132"/>
         <source>None</source>
-        <translation>Ninguna</translation>
+        <translation>Nincs</translation>
     </message>
     <message>
         <location filename="../main.py" line="142"/>
         <source>Current</source>
-        <translation>Actual</translation>
+        <translation>Aktuális</translation>
     </message>
 </context>
 <context>
@@ -454,7 +450,7 @@ Do you want to save your changes or discard them?</source>
     <message>
         <location filename="../../../../../../../../spelltextedit.py" line="138"/>
         <source>Document saved</source>
-        <translation type="obsolete">Documento guardado</translation>
+        <translation type="obsolete">Datei wurde gespeichert</translation>
     </message>
 </context>
 <context>
@@ -462,21 +458,21 @@ Do you want to save your changes or discard them?</source>
     <message>
         <location filename="../main.py" line="1420"/>
         <source>FOCUS!</source>
-        <translation>¡Enfócate!</translation>
+        <translation>FÓKUSZ!</translation>
     </message>
     <message>
         <location filename="../main.py" line="1420"/>
         <source>Marave only opens one document at a time.
 The whole idea is focusing!
 So, this is the first one you asked for.</source>
-        <translation>Marave sólo abre un documento por vez.
-¡La idea es enfocarse!
-Éste es el primero que pidió.</translation>
+        <translation>Marave csak egy dokumentumot nyit meg egyszerre.
+Az egész ötlet a fókuszálás!
+Így ez az első, amit kértél.</translation>
     </message>
     <message>
         <location filename="../spelltextedit.py" line="120"/>
         <source>Spelling Suggestions</source>
-        <translation>Correcciones sugeridas</translation>
+        <translation>Rechtschreibvorschlag</translation>
     </message>
 </context>
 </TS>

@@ -1,12 +1,12 @@
 # -*- mode: python -*-
-a = Analysis([os.path.join(HOMEPATH,'support/_mountzlib.py'), os.path.join(HOMEPATH,'support/useUnicode.py'), 'marave/main.py'],
+a = Analysis([os.path.join(HOMEPATH,'support/_mountzlib.py'), os.path.join(HOMEPATH,'support/useUnicode.py'), 'marave-editor'],
              pathex=['/home/ralsina/trunk/trunk'])
 
 pyz = PYZ(a.pure)
 exe = EXE(pyz,
           a.scripts,
           exclude_binaries=1,
-          name=os.path.join('build/pyi.linux2/main', 'marave.exe'),
+          name=os.path.join('build/pyi.linux2/marave-editor', 'marave'),
           debug=False,
           strip=False,
           upx=True,
@@ -21,7 +21,7 @@ coll = COLLECT( exe,
                Tree('marave/stylesheets','stylesheets'),
                Tree('marave/themes','themes'),
                Tree('marave/translations','translations'),
-               Tree('marave/highlight','highlight'),
+               Tree('marave/editor/highlight','editor/highlight'),
                a.zipfiles,
                a.datas,
                strip=False,

@@ -448,7 +448,7 @@ Szeretnéd menteni a változásokat, vagy nem?</translation>
 <context>
     <name>SpellTextEdit</name>
     <message>
-        <location filename="../../../../../../../../spelltextedit.py" line="138"/>
+        <location filename="../../../../../../../../../spelltextedit.py" line="138"/>
         <source>Document saved</source>
         <translation type="obsolete">Datei wurde gespeichert</translation>
     </message>

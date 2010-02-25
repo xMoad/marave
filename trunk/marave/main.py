@@ -211,6 +211,13 @@ def animheight(thing, target, thendo=None):
 
 class FunkyButton(QtGui.QPushButton):
     def __init__(self, icon, text, scene, name=None):
+        # Special case: in RTL apps, 'previous' and 'next' are reversed:
+        if QtCore.QCoreApplication.instance().isRightToLeft():
+            if icon=='previous.svg':
+                icon='next.svg'
+            elif icon=='next.svg':
+                icon='previous.svg'
+        
         QtGui.QPushButton.__init__(self,QtGui.QIcon(os.path.join(PATH,'icons',icon)),"")
         self.setAttribute(QtCore.Qt.WA_Hover, True)
         self.setAttribute(QtCore.Qt.WA_TranslucentBackground, True)

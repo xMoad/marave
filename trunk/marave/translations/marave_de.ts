@@ -1,32 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS><TS version="1.1" language="de_DE">
+<!DOCTYPE TS>
+<TS version="2.0" language="de_DE">
 <context>
     <name>Editor</name>
     <message>
         <location filename="../spelltextedit.py" line="158"/>
         <source>Document saved</source>
-        <translation type="unfinished">Datei wurde gespeichert</translation>
+        <translation>Die Datei wurde gespeichert</translation>
     </message>
     <message>
         <location filename="../spelltextedit.py" line="165"/>
         <source>Save as</source>
-        <translation type="unfinished"></translation>
+        <translation>Speichern als</translation>
     </message>
     <message>
         <location filename="../spelltextedit.py" line="175"/>
         <source>New Document</source>
-        <translation type="unfinished"></translation>
+        <translation>Neue Datei</translation>
     </message>
     <message>
         <location filename="../spelltextedit.py" line="175"/>
         <source>The document &quot;%s&quot; has been modified.
 Do you want to save your changes or discard them?</source>
-        <translation type="unfinished"></translation>
+        <translation>Die Datei &quot;%s&quot; wurde geändert
+Möchten sie die Änderungen speichern oder verwerfen?</translation>
     </message>
     <message>
         <location filename="../spelltextedit.py" line="198"/>
         <source>Open file</source>
-        <translation type="unfinished"></translation>
+        <translation>Datei öffnen</translation>
     </message>
 </context>
 <context>
@@ -149,7 +151,7 @@ Do you want to save your changes or discard them?</source>
     <message>
         <location filename="../Ui_gotolinewidget.py" line="48"/>
         <source>&amp;Go to line:</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Gehe zu Zeile:</translation>
     </message>
     <message>
         <location filename="../Ui_gotolinewidget.py" line="49"/>
@@ -427,12 +429,12 @@ Möchten Sie die Änderungen speichern oder verwerfen?</translation>
     <message>
         <location filename="../main.py" line="449"/>
         <source>Plugins</source>
-        <translation type="unfinished">Erweiterungen</translation>
+        <translation>Erweiterungen</translation>
     </message>
     <message>
         <location filename="../main.py" line="416"/>
         <source>Ctrl+G</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+G</translation>
     </message>
 </context>
 <context>

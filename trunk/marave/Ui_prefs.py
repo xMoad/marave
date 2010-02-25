@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'prefs.ui'
 #
-# Created: Wed Feb 24 08:08:53 2010
+# Created: Thu Feb 25 00:23:21 2010
 #      by: PyQt4 UI code generator 4.7
 #
 # WARNING! All changes made in this file will be lost!
@@ -116,7 +116,7 @@ class Ui_Form(object):
         self.pluginContainer.setWidgetResizable(True)
         self.pluginContainer.setObjectName("pluginContainer")
         self.scrollAreaWidgetContents = QtGui.QWidget(self.pluginContainer)
-        self.scrollAreaWidgetContents.setGeometry(QtCore.QRect(0, 0, 166, 254))
+        self.scrollAreaWidgetContents.setGeometry(QtCore.QRect(0, 0, 61, 22))
         self.scrollAreaWidgetContents.setObjectName("scrollAreaWidgetContents")
         self.verticalLayout_5 = QtGui.QVBoxLayout(self.scrollAreaWidgetContents)
         self.verticalLayout_5.setMargin(0)
@@ -137,6 +137,8 @@ class Ui_Form(object):
 
         self.retranslateUi(Form)
         self.tabWidget.setCurrentIndex(0)
+        QtCore.QObject.connect(self.spelling, QtCore.SIGNAL("toggled(bool)"), self.langBox.setEnabled)
+        QtCore.QObject.connect(self.syntax, QtCore.SIGNAL("toggled(bool)"), self.syntaxList.setEnabled)
         QtCore.QMetaObject.connectSlotsByName(Form)
 
     def retranslateUi(self, Form):

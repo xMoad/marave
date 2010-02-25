@@ -51,7 +51,7 @@ from plugins.plugins import Plugin
 
 # Syntax highlight support
 try:
-    from highlight.SyntaxHighlighter import srchiliteqt
+    from editor.highlight.SyntaxHighlighter import srchiliteqt
 except ImportError:
     srchiliteqt = None
 

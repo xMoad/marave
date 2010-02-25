@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.0" language="pl_PL">
+<!DOCTYPE TS><TS version="1.1" language="pl_PL">
 <context>
     <name>Editor</name>
     <message>
@@ -457,7 +456,7 @@ Czy chcesz zachować zmiany czy je odrzucić?</translation>
 <context>
     <name>SpellTextEdit</name>
     <message>
-        <location filename="../../../../../spelltextedit.py" line="138"/>
+        <location filename="../../../../../../../spelltextedit.py" line="138"/>
         <source>Document saved</source>
         <translation type="obsolete">Dokument zapisany</translation>
     </message>

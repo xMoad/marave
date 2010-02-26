@@ -4,6 +4,7 @@ TRANSLATIONS=marave_es.ts\
              marave_pl.ts\
              marave_cs.ts\
              marave_it.ts\
+             marave_el.ts\
              marave_hu.ts
 
 TRANSLATED=marave_es.qm\
@@ -12,6 +13,7 @@ TRANSLATED=marave_es.qm\
            marave_pl.qm\
            marave_cs.qm\
            marave_hu.qm\
+           marave_el.qm\
            marave_it.qm
 
 all: update_trans $(TRANSLATED)
@@ -30,6 +32,8 @@ marave_it.qm: marave_it.ts
 	lrelease marave_it.ts -compress -qm marave_it.qm
 marave_hu.qm: marave_hu.ts
 	lrelease marave_hu.ts -compress -qm marave_hu.qm
+marave_el.qm: marave_el.ts
+	lrelease marave_el.ts -compress -qm marave_el.qm
 	
 update_trans:
 	pylupdate4 ../*py ../editor/*py ../editor/widgets/*py -ts $(TRANSLATIONS)

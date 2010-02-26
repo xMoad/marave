@@ -334,11 +334,17 @@ class SpellAction(QAction):
  
 def main(args=sys.argv):
     app = QApplication(args)
- 
+    
+    container = QtGui.QFrame()
+    layout=QtGui.QHBoxLayout()
     editor = Editor()
-    nb=numberbar.LineTextWidget(edit=editor)
-    nb.show()
- 
+    nb=numberbar.NumberBar(edit=editor)
+    layout.setMargin(0)
+    layout.setSpacing(0)
+    layout.addWidget(nb)
+    layout.addWidget(editor)
+    container.setLayout(layout)
+    container.show()
     return app.exec_()
  
 if __name__ == '__main__':

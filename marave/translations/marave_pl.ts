@@ -456,7 +456,7 @@ Czy chcesz zachować zmiany czy je odrzucić?</translation>
 <context>
     <name>SpellTextEdit</name>
     <message>
-        <location filename="../../../../../../../../../../spelltextedit.py" line="138"/>
+        <location filename="../../../../../../../../../../../spelltextedit.py" line="138"/>
         <source>Document saved</source>
         <translation type="obsolete">Dokument zapisany</translation>
     </message>

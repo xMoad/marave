@@ -155,7 +155,11 @@ class Editor(QTextEdit):
                 f.write(unicode(self.toPlainText()))
                 f.close()
                 self.document().setModified(False)
-                self.parent().notify(self.tr('Document saved'))
+                # FIXME: doesn't belong in this class
+                try:
+                    self.parent().notify(self.tr('Document saved'))
+                except:
+                    pass
             except:
                 QtGui.QMessageBox.information(self.parent(), "Error - Marave",
                 "Error saving %s."%self.docName)
@@ -222,7 +226,11 @@ class Editor(QTextEdit):
                     QtGui.QMessageBox.information(self.parent(), "Error - Marave",
                     "%s is not a file."%fname)
             
-        self.parent().setWindowFilePath(self.docName)
+        # FIXME: this doesn't belong in this class
+        try:
+            self.parent().setWindowFilePath(self.docName)
+        except:
+            pass
 
     def setHL(self, lang, style):
         """Disable spellchecking and enable syntax highlighting"""
@@ -241,26 +249,42 @@ class Editor(QTextEdit):
         f=self.font()
         f.setPointSize(f.pointSize()-1)
         self.setFont(f)
-        self.parent().settings.setValue('fontsize',self.font().pointSize())
-        self.parent().settings.sync()
+        # FIXME: this doesn't belong in this class
+        try:
+            self.parent().settings.setValue('fontsize',self.font().pointSize())
+            self.parent().settings.sync()
+        except:
+            pass
         
     def larger(self):
         f=self.font()
         f.setPointSize(f.pointSize()+1)
         self.setFont(f)
-        self.parent().settings.setValue('fontsize',self.font().pointSize())
-        self.parent().settings.sync()
+        # FIXME: this doesn't belong in this class
+        try:
+            self.parent().settings.setValue('fontsize',self.font().pointSize())
+            self.parent().settings.sync()
+        except:
+            pass
 
     def default(self):
         f=self.font()
         f.setPointSize(self.defSize)
         self.setFont(f)
-        self.parent().settings.setValue('fontsize',self.font().pointSize())
-        self.parent().settings.sync()
+        # FIXME: this doesn't belong in this class
+        try:
+            self.parent().settings.setValue('fontsize',self.font().pointSize())
+            self.parent().settings.sync()
+        except:
+            pass
 
     def mouseMoveEvent(self, ev):
-        self.parent().showButtons()
-        self.parent().showCursor()
+        # FIXME: this doesn't belong in this class
+        try:
+            self.parent().showButtons()
+            self.parent().showCursor()
+        except:
+            pass
         return QtGui.QTextEdit.mouseMoveEvent(self, ev)
  
  

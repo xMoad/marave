@@ -163,8 +163,9 @@ CREDITS
 CODE
 ----
 
-Spell checker support thanks to John Nachtimwald
+Spell checker support and QTextEdit with line numbers thanks to John Schember
 http://john.nachtimwald.com/2009/08/22/qplaintextedit-with-in-line-spell-check/
+
 
 Several patches by Filipe Maia
 

@@ -21,6 +21,12 @@
 #OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 #THE SOFTWARE
 
+from PyQt4.Qt import QFrame
+from PyQt4.Qt import QWidget
+from PyQt4.Qt import QTextEdit
+from PyQt4.Qt import QHBoxLayout
+from PyQt4.Qt import QPainter
+
 class LineTextWidget(QFrame):
  
     class NumberBar(QWidget):
@@ -94,12 +100,12 @@ class LineTextWidget(QFrame):
             QWidget.paintEvent(self, event)
  
  
-    def __init__(self, *args):
+    def __init__(self, *args, **kwargs):
         QFrame.__init__(self, *args)
  
         self.setFrameStyle(QFrame.StyledPanel | QFrame.Sunken)
  
-        self.edit = QTextEdit()
+        self.edit=kwargs.pop('edit')
         self.edit.setFrameStyle(QFrame.NoFrame)
         self.edit.setAcceptRichText(False)
  

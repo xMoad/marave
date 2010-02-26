@@ -22,6 +22,7 @@ try:
 except ImportError:
     srchiliteqt = None
 
+import numberbar
 
 from PyQt4.Qt import QAction
 from PyQt4.Qt import QApplication
@@ -335,7 +336,8 @@ def main(args=sys.argv):
     app = QApplication(args)
  
     editor = Editor()
-    editor.show()
+    nb=numberbar.LineTextWidget(edit=editor)
+    nb.show()
  
     return app.exec_()
  

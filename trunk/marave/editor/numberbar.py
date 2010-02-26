@@ -36,8 +36,8 @@ class NumberBar(QWidget):
         QWidget.__init__(self, *args)
         self.setTextEdit(kwargs.pop('edit', None))
         # This is used to update the width of the control.
-        # It is the highest line that is currently visibile.
-        self.highest_line = 0
+        # It is the highest possible line number.
+        self.highest_line = 1
 
     def setTextEdit(self, edit):
         if edit is None:
@@ -89,7 +89,9 @@ class NumberBar(QWidget):
 
             # Draw the line number right justified at the y position of the
             # line. 3 is a magic padding number. drawText(x, y, text).
-            painter.drawText(self.width() - font_metrics.width(str(line_count)) - 3, round(position.y()) - contents_y + font_metrics.ascent(), str(line_count))
+            painter.drawText(self.width() - font_metrics.width(str(line_count)) - 3, 
+                round(position.y()) - contents_y + font_metrics.ascent()+3, 
+                str(line_count))
 
             # Remove the bold style if it was set previously.
             if bold:

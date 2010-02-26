@@ -452,7 +452,7 @@ Do you want to save your changes or discard them?</source>
 <context>
     <name>SpellTextEdit</name>
     <message>
-        <location filename="../../../../../../../../../../../spelltextedit.py" line="138"/>
+        <location filename="../../../../../../../../../../../../spelltextedit.py" line="138"/>
         <source>Document saved</source>
         <translation type="obsolete">Documento salvato</translation>
     </message>

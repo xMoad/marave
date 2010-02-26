@@ -3,30 +3,31 @@
 <context>
     <name>Editor</name>
     <message>
-        <location filename="../spelltextedit.py" line="158"/>
+        <location filename="../spelltextedit.py" line="161"/>
         <source>Document saved</source>
-        <translation type="unfinished">המסמך נשמר</translation>
+        <translation>המסמך נשמר</translation>
     </message>
     <message>
-        <location filename="../spelltextedit.py" line="165"/>
+        <location filename="../spelltextedit.py" line="170"/>
         <source>Save as</source>
-        <translation type="unfinished"></translation>
+        <translation>שמירה בשם</translation>
     </message>
     <message>
-        <location filename="../spelltextedit.py" line="175"/>
+        <location filename="../spelltextedit.py" line="180"/>
         <source>New Document</source>
-        <translation type="unfinished"></translation>
+        <translation>מסמך חדש</translation>
     </message>
     <message>
-        <location filename="../spelltextedit.py" line="175"/>
+        <location filename="../spelltextedit.py" line="180"/>
         <source>The document &quot;%s&quot; has been modified.
 Do you want to save your changes or discard them?</source>
-        <translation type="unfinished"></translation>
+        <translation>המסמך &quot;%s&quot; השתנה.
+האם ברצונך לשמור את השינויים שלך או להתעלם מהם?</translation>
     </message>
     <message>
-        <location filename="../spelltextedit.py" line="198"/>
+        <location filename="../spelltextedit.py" line="203"/>
         <source>Open file</source>
-        <translation type="unfinished"></translation>
+        <translation>פתיחת קובץ</translation>
     </message>
 </context>
 <context>
@@ -139,22 +140,22 @@ Do you want to save your changes or discard them?</source>
     <message>
         <location filename="../Ui_prefs.py" line="161"/>
         <source>Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>הגדרות</translation>
     </message>
     <message>
         <location filename="../Ui_prefs.py" line="162"/>
         <source>Plugins</source>
-        <translation type="unfinished"></translation>
+        <translation>תוספים</translation>
     </message>
     <message>
         <location filename="../Ui_gotolinewidget.py" line="48"/>
         <source>&amp;Go to line:</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;קפיצה לשורה:</translation>
     </message>
     <message>
         <location filename="../Ui_gotolinewidget.py" line="49"/>
         <source>G&amp;o</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;ביצוע</translation>
     </message>
 </context>
 <context>
@@ -422,17 +423,17 @@ Do you want to save your changes or discard them?</source>
     <message>
         <location filename="../main.py" line="412"/>
         <source>Esc</source>
-        <translation type="unfinished">Esc</translation>
+        <translation>Esc</translation>
     </message>
     <message>
         <location filename="../main.py" line="449"/>
         <source>Plugins</source>
-        <translation type="unfinished"></translation>
+        <translation>תוספים</translation>
     </message>
     <message>
         <location filename="../main.py" line="416"/>
         <source>Ctrl+G</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+G</translation>
     </message>
 </context>
 <context>
@@ -445,13 +446,13 @@ Do you want to save your changes or discard them?</source>
     <message>
         <location filename="../main.py" line="142"/>
         <source>Current</source>
-        <translation type="unfinished"></translation>
+        <translation>נוכחי</translation>
     </message>
 </context>
 <context>
     <name>SpellTextEdit</name>
     <message>
-        <location filename="../../../../../../../../../spelltextedit.py" line="138"/>
+        <location filename="../../../../../../../../../../spelltextedit.py" line="138"/>
         <source>Document saved</source>
         <translation type="obsolete">המסמך נשמר</translation>
     </message>
@@ -461,21 +462,21 @@ Do you want to save your changes or discard them?</source>
     <message>
         <location filename="../main.py" line="1420"/>
         <source>FOCUS!</source>
-        <translation type="unfinished">להתמקד!!</translation>
+        <translation>להתמקד!!</translation>
     </message>
     <message>
         <location filename="../main.py" line="1420"/>
         <source>Marave only opens one document at a time.
 The whole idea is focusing!
 So, this is the first one you asked for.</source>
-        <translation type="unfinished">Marave מאפשרת פתיחה של מסמך אחד בלבד.
+        <translation>Marave מאפשרת פתיחה של מסמך אחד בלבד בכל פעם.
 כל הרעיון הוא להתמקד!
-לכן, זהו הראשון שביקשת.</translation>
+לכן, זהו הקובץ הראשון שביקשת לפתוח.</translation>
     </message>
     <message>
-        <location filename="../spelltextedit.py" line="120"/>
+        <location filename="../spelltextedit.py" line="121"/>
         <source>Spelling Suggestions</source>
-        <translation type="unfinished">הצעות איות</translation>
+        <translation>הצעות איות</translation>
     </message>
 </context>
 </TS>

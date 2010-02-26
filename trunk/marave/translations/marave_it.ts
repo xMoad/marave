@@ -3,29 +3,29 @@
 <context>
     <name>Editor</name>
     <message>
-        <location filename="../spelltextedit.py" line="158"/>
+        <location filename="../spelltextedit.py" line="161"/>
         <source>Document saved</source>
         <translation>Documento salvato</translation>
     </message>
     <message>
-        <location filename="../spelltextedit.py" line="165"/>
+        <location filename="../spelltextedit.py" line="170"/>
         <source>Save as</source>
         <translation>Salva con nome</translation>
     </message>
     <message>
-        <location filename="../spelltextedit.py" line="175"/>
+        <location filename="../spelltextedit.py" line="180"/>
         <source>New Document</source>
         <translation>Nuovo Documento</translation>
     </message>
     <message>
-        <location filename="../spelltextedit.py" line="175"/>
+        <location filename="../spelltextedit.py" line="180"/>
         <source>The document &quot;%s&quot; has been modified.
 Do you want to save your changes or discard them?</source>
         <translation>Il documento &quot;%s&quot; é stato modificato.
 Vuoi salvare le modifiche o abbandonarle?</translation>
     </message>
     <message>
-        <location filename="../spelltextedit.py" line="198"/>
+        <location filename="../spelltextedit.py" line="203"/>
         <source>Open file</source>
         <translation>Apri File</translation>
     </message>
@@ -452,7 +452,7 @@ Do you want to save your changes or discard them?</source>
 <context>
     <name>SpellTextEdit</name>
     <message>
-        <location filename="../../../../../../../../../spelltextedit.py" line="138"/>
+        <location filename="../../../../../../../../../../spelltextedit.py" line="138"/>
         <source>Document saved</source>
         <translation type="obsolete">Documento salvato</translation>
     </message>
@@ -474,7 +474,7 @@ L&apos;idea é di concentrarsi!
 Quindi eccoti il primo che hai chiesto.</translation>
     </message>
     <message>
-        <location filename="../spelltextedit.py" line="120"/>
+        <location filename="../spelltextedit.py" line="121"/>
         <source>Spelling Suggestions</source>
         <translation>Suggerimenti Ortografici</translation>
     </message>

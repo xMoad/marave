@@ -3,28 +3,28 @@
 <context>
     <name>Editor</name>
     <message>
-        <location filename="../spelltextedit.py" line="158"/>
+        <location filename="../spelltextedit.py" line="161"/>
         <source>Document saved</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../spelltextedit.py" line="165"/>
+        <location filename="../spelltextedit.py" line="170"/>
         <source>Save as</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../spelltextedit.py" line="175"/>
+        <location filename="../spelltextedit.py" line="180"/>
         <source>New Document</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../spelltextedit.py" line="175"/>
+        <location filename="../spelltextedit.py" line="180"/>
         <source>The document &quot;%s&quot; has been modified.
 Do you want to save your changes or discard them?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../spelltextedit.py" line="198"/>
+        <location filename="../spelltextedit.py" line="203"/>
         <source>Open file</source>
         <translation type="unfinished"></translation>
     </message>
@@ -467,7 +467,7 @@ So, this is the first one you asked for.</source>
 Smyslem je soustředit se.</translation>
     </message>
     <message>
-        <location filename="../spelltextedit.py" line="120"/>
+        <location filename="../spelltextedit.py" line="121"/>
         <source>Spelling Suggestions</source>
         <translation type="unfinished"></translation>
     </message>

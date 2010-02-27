@@ -271,6 +271,7 @@ class FunkyEditor(Editor):
             if FORCE45 or (QtCore.QCoreApplication.instance().style().objectName() == 'oxygen' \
                 and QtCore.QT_VERSION_STR < '4.6.0'):
                 self.canvaseditor = False
+                self.proxy = self
             else:
                 self.canvaseditor = True
         

@@ -208,6 +208,8 @@ def animheight(thing, target, thendo=None):
             thing.hanim.finished.connect(thendo)
     else:
         thing.resize(thing.width(),target)
+        if thendo:
+            thendo()
 
 class FunkyButton(QtGui.QPushButton):
     def __init__(self, icon, text, scene, name=None):

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS><TS version="1.1" language="it_IT">
+<!DOCTYPE TS>
+<TS version="2.0" language="it_IT">
 <context>
     <name>Editor</name>
     <message>
@@ -150,12 +151,12 @@ Vuoi salvare le modifiche o abbandonarle?</translation>
     <message>
         <location filename="../Ui_gotolinewidget.py" line="48"/>
         <source>&amp;Go to line:</source>
-        <translation type="unfinished"></translation>
+        <translation>Vai alla &amp;riga:</translation>
     </message>
     <message>
         <location filename="../Ui_gotolinewidget.py" line="49"/>
         <source>G&amp;o</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Vai</translation>
     </message>
 </context>
 <context>
@@ -433,7 +434,7 @@ Do you want to save your changes or discard them?</source>
     <message>
         <location filename="../main.py" line="416"/>
         <source>Ctrl+G</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
 </context>
 <context>

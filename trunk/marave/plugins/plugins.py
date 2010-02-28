@@ -1,10 +1,14 @@
 # -*- coding: utf-8 -*-
 
-import os
+import os, sys
 from PyQt4 import QtGui
-from marave.main import PATH
 
 from Ui_conf import Ui_Dialog as ConfDialog
+
+if hasattr(sys, 'frozen'):
+    PATH = os.path.abspath(os.path.dirname(sys.executable))
+else:
+    PATH = os.path.abspath(os.path.dirname(__file__))
 
 class ConfigDialog(QtGui.QDialog):
     def __init__(self, parent):
@@ -105,11 +109,15 @@ class Plugin (object):
     @classmethod
     def initPlugins(self):
         l=[]
+        print 'PATH:',PATH
         for p in os.listdir(os.path.join(PATH,'plugins')):
             if p.endswith('.py') and p != 'plugins.py':
                 l.append(p)
         for p in l:
-            __import__('marave.plugins.'+p[:-3], level=-1)
+            if hasattr(sys, 'frozen'):
+                __import__('plugins.'+p[:-3], level=-1)
+            else:
+                __import__('marave.plugins.'+p[:-3], level=-1)
 
     @classmethod
     def listPlugins(self):

@@ -109,15 +109,14 @@ class Plugin (object):
     @classmethod
     def initPlugins(self):
         l=[]
-        print 'PATH:',PATH
         for p in os.listdir(PATH):
             if p.endswith('.py') and p != 'plugins.py':
                 l.append(p)
         for p in l:
             if hasattr(sys, 'frozen'):
-                __import__('plugins.'+p[:-3], level=-1)
+                print __import__('plugins.'+p[:-3], level=-1)
             else:
-                __import__('marave.plugins.'+p[:-3], level=-1)
+                print __import__('marave.plugins.'+p[:-3], level=-1)
 
     @classmethod
     def listPlugins(self):

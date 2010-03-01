@@ -958,17 +958,19 @@ class MainWidget (QtGui.QGraphicsView):
         def later():
             self.editor.resize(self.editorW,self.editorH)
             self.editor.autoResize=True
+            self.editor.setFocus()
             
         self.editor.autoResize=False
         for w in [self.searchWidget,
                   self.searchReplaceWidget,
-                  self.gotoLineWidget]:
+                  self.gotoLineWidget,
+                  self.prefsWidget
+                  ]:
             fadeout(w)
         # This one is separate because it triggers 
         # resizing the editor
         
-        fadeout(self.prefsWidget, thendo=later)
-        self.editor.setFocus()
+        QtCore.QTimer.singleShot(200,later)
         self.visibleWidget=None
 
 

@@ -6,7 +6,7 @@ from PyQt4 import QtGui
 from Ui_conf import Ui_Dialog as ConfDialog
 
 if hasattr(sys, 'frozen'):
-    PATH = os.path.abspath(os.path.dirname(sys.executable))
+    PATH = os.path.join(os.path.abspath(os.path.dirname(sys.executable)),'plugins')
 else:
     PATH = os.path.abspath(os.path.dirname(__file__))
 
@@ -110,7 +110,7 @@ class Plugin (object):
     def initPlugins(self):
         l=[]
         print 'PATH:',PATH
-        for p in os.listdir(os.path.join(PATH,'plugins')):
+        for p in os.listdir(PATH):
             if p.endswith('.py') and p != 'plugins.py':
                 l.append(p)
         for p in l:

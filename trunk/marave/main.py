@@ -90,12 +90,7 @@ class PrefsWidget(QtGui.QWidget):
         if enabled.isValid():
             enabled=unicode(enabled.toString()).split(',')
         else:
-            enabled=[]
-            
-        if any(enabled):
-            self.mainwindow.pluginButton.show()
-        else:
-            self.mainwindow.pluginButton.hide()
+            enabled=[]            
         self.mainwindow.layoutButtons()
         
         self.enablers=[ partial (p.enable,client=self.mainwindow) for p in classes]
@@ -457,8 +452,6 @@ class MainWidget (QtGui.QGraphicsView):
         self.quitButton.clicked.connect(self.close)
         self.sc8.activated.connect(self.quitButton.animateClick)
 
-        self.pluginButton=FunkyButton("plugins.svg", self.tr('Plugins'), self._scene)
-
         self.buttons=[self.fontButton, 
                       self.sizeButton, 
                       self.fileButton, 
@@ -467,7 +460,6 @@ class MainWidget (QtGui.QGraphicsView):
             self.buttons+=[self.clickButton,
                            self.musicButton]
         self.buttons+=[self.configButton,
-                       self.pluginButton, 
                        self.quitButton]
 
 

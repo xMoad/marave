@@ -187,8 +187,16 @@ def fadein(thing, target=1., thendo=None):
         # FIXME maybe implement a timeline based opacity for QGraphicsItems
         if isinstance(thing, QtGui.QGraphicsItem):
             thing.setOpacity(target)
+            if (target):
+                thing.show()
+            else:
+                thing.hide()
         else:
             thing.proxy.setOpacity(target)
+            if (target):
+                thing.proxy.show()
+            else:
+                thing.proxy.hide()
         if thendo: thendo()
 
 def fadeout(thing, thendo=None):

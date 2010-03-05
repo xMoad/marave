@@ -179,21 +179,26 @@ def fadein(thing, target=1., thendo=None):
         if thendo:
             thing.anim.finished.connect(thendo)
     else:
-        # FIXME maybe implement a timeline based opacity for QGraphicsItems
         if isinstance(thing, QtGui.QGraphicsItem):
-            thing.setOpacity(target)
-            if (target):
-                thing.show()
-            else:
-                thing.hide()
+            w = thing
         else:
-            thing.proxy.setOpacity(target)
-            if (target):
-                thing.proxy.show()
-            else:
-                thing.proxy.hide()
-        if thendo: thendo()
-
+            w = thing.proxy
+        w.show()
+        w.startOpacity = w.opacity()
+        w.endOpacity = target
+        def animateOpacity(v):
+            op = v*(w.endOpacity-w.startOpacity)+w.startOpacity
+            w.setOpacity(op)
+        def animationFinished():
+            if(w.endOpacity == 0):
+                w.hide()
+            if thendo: thendo()
+        thing.tline = QtCore.QTimeLine(200)         
+        thing.tline.setCurveShape(QtCore.QTimeLine.LinearCurve)
+        thing.tline.valueChanged.connect(animateOpacity)
+        thing.tline.finished.connect(animationFinished)
+        thing.tline.start()
+       
 def fadeout(thing, thendo=None):
     fadein(thing, 0, thendo)
 

@@ -161,273 +161,273 @@ Szeretnéd elmenteni a módosításokat, vagy nem?</translation>
 <context>
     <name>MainWidget</name>
     <message>
-        <location filename="../main.py" line="612"/>
+        <location filename="../main.py" line="617"/>
         <source>Sound support is not available, disabling sound</source>
         <translation>Hangtámogatás nem elérhető, hang kikapcsolva</translation>
     </message>
     <message>
-        <location filename="../main.py" line="622"/>
+        <location filename="../main.py" line="627"/>
         <source>Document: %s</source>
         <translation>Dokumentum: %s</translation>
     </message>
     <message numerus="yes">
-        <location filename="../main.py" line="623"/>
+        <location filename="../main.py" line="628"/>
         <source>%n words</source>
         <translation>
             <numerusform>%n szavak</numerusform>
         </translation>
     </message>
     <message numerus="yes">
-        <location filename="../main.py" line="624"/>
+        <location filename="../main.py" line="629"/>
         <source>%n lines</source>
         <translation>
             <numerusform>%n sorok</numerusform>
         </translation>
     </message>
     <message numerus="yes">
-        <location filename="../main.py" line="625"/>
+        <location filename="../main.py" line="630"/>
         <source>%n characters</source>
         <translation>
             <numerusform>%n karakterek</numerusform>
         </translation>
     </message>
     <message>
-        <location filename="../main.py" line="908"/>
+        <location filename="../main.py" line="913"/>
         <source>Close Document - Marave</source>
         <translation>Dokumentum bezárása - Marave</translation>
     </message>
     <message>
-        <location filename="../main.py" line="908"/>
+        <location filename="../main.py" line="913"/>
         <source>The document &quot;%s&quot; has been modified.</source>
         <translation>A &quot;%s&quot; dokumetum módosítva lett.</translation>
     </message>
     <message>
-        <location filename="../main.py" line="908"/>
+        <location filename="../main.py" line="913"/>
         <source>UNNAMED</source>
         <translation>Névtelen</translation>
     </message>
     <message>
-        <location filename="../main.py" line="908"/>
+        <location filename="../main.py" line="913"/>
         <source>
 Do you want to save your changes or discard them?</source>
         <translation>
 Szeretnéd menteni a változásokat, vagy nem?</translation>
     </message>
     <message>
-        <location filename="../main.py" line="439"/>
+        <location filename="../main.py" line="447"/>
         <source>Font</source>
         <translation>Betűtípus</translation>
     </message>
     <message>
-        <location filename="../main.py" line="440"/>
+        <location filename="../main.py" line="448"/>
         <source>Size</source>
         <translation>Méret</translation>
     </message>
     <message>
-        <location filename="../main.py" line="441"/>
+        <location filename="../main.py" line="449"/>
         <source>File</source>
         <translation>Fájl</translation>
     </message>
     <message>
-        <location filename="../main.py" line="442"/>
+        <location filename="../main.py" line="450"/>
         <source>Bg</source>
         <translation>Háttér</translation>
     </message>
     <message>
-        <location filename="../main.py" line="444"/>
+        <location filename="../main.py" line="452"/>
         <source>Click</source>
         <translation>Klikk</translation>
     </message>
     <message>
-        <location filename="../main.py" line="445"/>
+        <location filename="../main.py" line="453"/>
         <source>Music</source>
         <translation>Zene</translation>
     </message>
     <message>
-        <location filename="../main.py" line="446"/>
+        <location filename="../main.py" line="454"/>
         <source>Options</source>
         <translation>Beállítások</translation>
     </message>
     <message>
-        <location filename="../main.py" line="448"/>
+        <location filename="../main.py" line="456"/>
         <source>Quit</source>
         <translation>Kilép</translation>
     </message>
     <message>
-        <location filename="../main.py" line="491"/>
+        <location filename="../main.py" line="496"/>
         <source>Color</source>
         <translation>Szín</translation>
     </message>
     <message>
-        <location filename="../main.py" line="472"/>
+        <location filename="../main.py" line="477"/>
         <source>Smaller</source>
         <translation>Kisebb</translation>
     </message>
     <message>
-        <location filename="../main.py" line="473"/>
+        <location filename="../main.py" line="478"/>
         <source>Default</source>
         <translation>Alap</translation>
     </message>
     <message>
-        <location filename="../main.py" line="474"/>
+        <location filename="../main.py" line="479"/>
         <source>Larger</source>
         <translation>Nagyobb</translation>
     </message>
     <message>
-        <location filename="../main.py" line="481"/>
+        <location filename="../main.py" line="486"/>
         <source>Open</source>
         <translation>Megnyitás</translation>
     </message>
     <message>
-        <location filename="../main.py" line="482"/>
+        <location filename="../main.py" line="487"/>
         <source>Save</source>
         <translation>Mentés</translation>
     </message>
     <message>
-        <location filename="../main.py" line="483"/>
+        <location filename="../main.py" line="488"/>
         <source>Save As</source>
         <translation>Mentés másként</translation>
     </message>
     <message>
-        <location filename="../main.py" line="506"/>
+        <location filename="../main.py" line="511"/>
         <source>Previous</source>
         <translation>Előző</translation>
     </message>
     <message>
-        <location filename="../main.py" line="507"/>
+        <location filename="../main.py" line="512"/>
         <source>Next</source>
         <translation>Következő</translation>
     </message>
     <message>
-        <location filename="../main.py" line="508"/>
+        <location filename="../main.py" line="513"/>
         <source>None</source>
         <translation>Nincs</translation>
     </message>
     <message>
-        <location filename="../main.py" line="673"/>
+        <location filename="../main.py" line="678"/>
         <source>Setting opacity to: %s%%</source>
         <translation>Átlátszóság beállítása: %s%%</translation>
     </message>
     <message>
-        <location filename="../main.py" line="984"/>
+        <location filename="../main.py" line="989"/>
         <source>Switching click to: %s</source>
         <translation>Klikk átállítása: %s</translation>
     </message>
     <message>
-        <location filename="../main.py" line="1013"/>
+        <location filename="../main.py" line="1018"/>
         <source>Disabling click</source>
         <translation>Klikk tiltása</translation>
     </message>
     <message>
-        <location filename="../main.py" line="1019"/>
+        <location filename="../main.py" line="1024"/>
         <source>Listening to: %s</source>
         <translation>Halgatás: %s</translation>
     </message>
     <message>
-        <location filename="../main.py" line="1052"/>
+        <location filename="../main.py" line="1057"/>
         <source>Disabling music</source>
         <translation>Zene tiltása</translation>
     </message>
     <message>
-        <location filename="../main.py" line="1110"/>
+        <location filename="../main.py" line="1115"/>
         <source>Setting background to: %s</source>
         <translation>Háttér beállítása: %s</translation>
     </message>
     <message>
-        <location filename="../main.py" line="697"/>
+        <location filename="../main.py" line="702"/>
         <source>Changing to style %s requires restarting Marave</source>
         <translation>A %s stílusra váltáshoz a Marave újraindítása szükséges</translation>
     </message>
     <message>
-        <location filename="../main.py" line="378"/>
+        <location filename="../main.py" line="386"/>
         <source>Ctrl+F</source>
         <comment>Find</comment>
         <translation>Ctrl+F</translation>
     </message>
     <message>
-        <location filename="../main.py" line="380"/>
+        <location filename="../main.py" line="388"/>
         <source>Ctrl+R</source>
         <comment>Find and Replace</comment>
         <translation>Ctrl+R</translation>
     </message>
     <message>
-        <location filename="../main.py" line="384"/>
+        <location filename="../main.py" line="392"/>
         <source>Ctrl+T</source>
         <comment>Taj Mode</comment>
         <translation>Ctrl+T</translation>
     </message>
     <message>
-        <location filename="../main.py" line="392"/>
+        <location filename="../main.py" line="400"/>
         <source>Ctrl+O</source>
         <comment>Open File</comment>
         <translation>Ctrl+O</translation>
     </message>
     <message>
-        <location filename="../main.py" line="394"/>
+        <location filename="../main.py" line="402"/>
         <source>Ctrl+S</source>
         <comment>Save File</comment>
         <translation>Ctrl+S</translation>
     </message>
     <message>
-        <location filename="../main.py" line="396"/>
+        <location filename="../main.py" line="404"/>
         <source>Shift+Ctrl+S</source>
         <comment>Save File As</comment>
         <translation>Shift+Ctrl+S</translation>
     </message>
     <message>
-        <location filename="../main.py" line="398"/>
+        <location filename="../main.py" line="406"/>
         <source>Ctrl+N</source>
         <comment>New File</comment>
         <translation>Ctrl+N</translation>
     </message>
     <message>
-        <location filename="../main.py" line="400"/>
+        <location filename="../main.py" line="408"/>
         <source>Ctrl+Q</source>
         <comment>Quit</comment>
         <translation>Ctrl+Q</translation>
     </message>
     <message>
-        <location filename="../main.py" line="403"/>
+        <location filename="../main.py" line="411"/>
         <source>Shift+Ctrl+P</source>
         <comment>Show Preferences</comment>
         <translation>Shift+Ctrl+P</translation>
     </message>
     <message>
-        <location filename="../main.py" line="407"/>
+        <location filename="../main.py" line="415"/>
         <source>Ctrl+I</source>
         <comment>Show Document Info</comment>
         <translation>Ctrl+I</translation>
     </message>
     <message>
-        <location filename="../main.py" line="411"/>
+        <location filename="../main.py" line="419"/>
         <source>F1</source>
         <comment>Help</comment>
         <translation>F1</translation>
     </message>
     <message numerus="yes">
-        <location filename="../main.py" line="596"/>
+        <location filename="../main.py" line="601"/>
         <source>Saving every %n minutes</source>
         <translation>
             <numerusform>Mentés minden %n percben</numerusform>
         </translation>
     </message>
     <message>
-        <location filename="../main.py" line="600"/>
+        <location filename="../main.py" line="605"/>
         <source>Disabled automatic saving</source>
         <translation>Automatikus mentés kikapcsolása</translation>
     </message>
     <message>
-        <location filename="../main.py" line="415"/>
+        <location filename="../main.py" line="423"/>
         <source>Esc</source>
         <translation>Esc</translation>
     </message>
     <message>
-        <location filename="../main.py" line="452"/>
+        <location filename="../../main.py" line="452"/>
         <source>Plugins</source>
-        <translation>Beépülők</translation>
+        <translation type="obsolete">Beépülők</translation>
     </message>
     <message>
-        <location filename="../main.py" line="419"/>
+        <location filename="../main.py" line="427"/>
         <source>Ctrl+G</source>
         <translation>Ctrl+G</translation>
     </message>
@@ -435,12 +435,12 @@ Szeretnéd menteni a változásokat, vagy nem?</translation>
 <context>
     <name>PrefsWidget</name>
     <message>
-        <location filename="../main.py" line="132"/>
+        <location filename="../main.py" line="127"/>
         <source>None</source>
         <translation>Nincs</translation>
     </message>
     <message>
-        <location filename="../main.py" line="142"/>
+        <location filename="../main.py" line="137"/>
         <source>Current</source>
         <translation>Aktuális</translation>
     </message>
@@ -448,7 +448,7 @@ Szeretnéd menteni a változásokat, vagy nem?</translation>
 <context>
     <name>SpellTextEdit</name>
     <message>
-        <location filename="../../../../../../../../../../../../../spelltextedit.py" line="138"/>
+        <location filename="../../../../../../../../../../../../../../spelltextedit.py" line="138"/>
         <source>Document saved</source>
         <translation type="obsolete">Datei wurde gespeichert</translation>
     </message>
@@ -456,12 +456,12 @@ Szeretnéd menteni a változásokat, vagy nem?</translation>
 <context>
     <name>app</name>
     <message>
-        <location filename="../main.py" line="1425"/>
+        <location filename="../main.py" line="1430"/>
         <source>FOCUS!</source>
         <translation>FÓKUSZ!</translation>
     </message>
     <message>
-        <location filename="../main.py" line="1425"/>
+        <location filename="../main.py" line="1430"/>
         <source>Marave only opens one document at a time.
 The whole idea is focusing!
 So, this is the first one you asked for.</source>

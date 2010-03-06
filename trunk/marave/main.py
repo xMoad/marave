@@ -331,7 +331,7 @@ class MainWidget (QtGui.QGraphicsView):
         #
         self.changing=False
         self.visibleWidget=None
-
+        self.buttonsHidden = False
         # Used for margins and border sizes
         self.m=5
         
@@ -1141,12 +1141,15 @@ class MainWidget (QtGui.QGraphicsView):
         if obj==self.editor:
             if event.type()==QtCore.QEvent.KeyPress:
                 if self.beep:
-                    if self.beep.state()==2:
-                        self.beep.stop()
+                    #if self.beep.state()==2:
+                    self.beep.stop()
+                    self.beep.seek(0)
                     self.beep.play()
                 self.hideCursor()
-                self.hideButtons()
+                if not self.buttonsHidden:
+                    self.hideButtons()
             elif isinstance(event, QtGui.QMoveEvent):
+                self.showCursor()
                 self.showButtons()
         elif isinstance(event, QtGui.QHoverEvent):
             for b in self.buttons:
@@ -1361,10 +1364,16 @@ class MainWidget (QtGui.QGraphicsView):
             self.changing=False
                
     def showButtons(self):
+        if not self.buttonsHidden:
+            return
+        self.buttonsHidden=False
         for w in self.buttons + self.handles:
             fadein(w, target=0.7)
 
     def hideButtons(self):
+        if self.buttonsHidden:
+            return
+        self.buttonsHidden=True
         for w in self.buttons + self.handles:
             fadeout(w)
             if isinstance(w, FunkyButton):

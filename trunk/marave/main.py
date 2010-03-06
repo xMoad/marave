@@ -31,6 +31,8 @@ FORCE45=os.getenv('FORCE45') or False
 if FORCE45:
     print 'Forcing Qt 4.5 mode'
 
+ANIMATIONS=True
+
 # Import Qt modules
 from PyQt4 import QtCore, QtGui, QtSvg
 
@@ -169,6 +171,15 @@ class MenuStrip(QtGui.QGraphicsWidget):
 buttons=[]
 
 def fadein(thing, target=1., thendo=None):
+    if not ANIMATIONS:
+        if isinstance(thing, QtGui.QGraphicsItem):
+            w = thing
+        else:
+            w = thing.proxy
+        w.setOpacity(target)
+        if thendo: thendo()
+        return
+    
     if not FORCE45 and (isinstance (thing, QtCore.QObject) and QtCore.QT_VERSION_STR >= '4.6.0'):
         thing.anim=QtCore.QPropertyAnimation(thing.proxy, "opacity")
         thing.anim.setDuration(200)
@@ -202,8 +213,8 @@ def fadein(thing, target=1., thendo=None):
 def fadeout(thing, thendo=None):
     fadein(thing, 0, thendo)
 
-def animheight(thing, target, thendo=None):
-    if FORCE45 or (isinstance (thing, QtCore.QObject) and QtCore.QT_VERSION_STR >= '4.6.0'):
+def animheight(thing, target, thendo=None, animate=True):
+    if ANIMATIONS and (FORCE45 or (isinstance (thing, QtCore.QObject) and QtCore.QT_VERSION_STR >= '4.6.0')):
         thing.hanim=QtCore.QPropertyAnimation(thing.proxy, "geometry")
         thing.hanim.setDuration(200)
         g1=thing.geometry()
@@ -1433,13 +1444,26 @@ def main():
                       action='store_false', 
                       help='Use an off-canvas editor, may be faster/uglier')
 
+    parser.add_option('--no-animation', 
+                      dest='animations', 
+                      default=True,
+                      action='store_false', 
+                      help='Disable animations, makes it faster.')
+
+
     options, args = parser.parse_args()
 
     if len(args) > 1:
         QtGui.QMessageBox.information(None,app.translate('app','FOCUS!'),
         app.translate('app','Marave only opens one document at a time.\nThe whole idea is focusing!\nSo, this is the first one you asked for.'))
+        
+    global ANIMATIONS
+    ANIMATIONS=options.animations
 
-    window=MainWidget(opengl=options.opengl, canvaseditor=options.canvas)
+    window=MainWidget(
+        opengl=options.opengl, 
+        canvaseditor=options.canvas,
+        )
     window.loadprefs()
     window.loadBG()
     window.show()

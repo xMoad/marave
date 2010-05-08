@@ -930,18 +930,24 @@ class MainWidget (QtGui.QGraphicsView):
             elif r==QtGui.QMessageBox.Discard:
                 self.saveprefs()
                 QtGui.QGraphicsView.close(self)
+                self.beep.stop()
+                for path in self.beep.outputPaths():
+                    path.disconnect()
+                self.music.stop()
+                for path in self.music.outputPaths():
+                    path.disconnect()
+                QtCore.QCoreApplication.instance().quit()
+                   
+                
+        else:
+            self.saveprefs()
+            QtGui.QGraphicsView.close(self)
             self.beep.stop()
             for path in self.beep.outputPaths():
                 path.disconnect()
             self.music.stop()
             for path in self.music.outputPaths():
                 path.disconnect()
-            QtCore.QCoreApplication.instance().quit()
-                   
-                
-        else:
-            self.saveprefs()
-            QtGui.QGraphicsView.close(self)
             QtCore.QCoreApplication.instance().quit()
         QtCore.QCoreApplication.instance().restoreOverrideCursor()
 

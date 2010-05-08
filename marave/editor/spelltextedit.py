@@ -151,10 +151,19 @@ class Editor(QTextEdit):
             self.saveas()
         else:
             try:
-                f=codecs.open(self.docName,'w+','utf-8')
-                f.truncate()
-                f.write(unicode(self.toPlainText()))
-                f.close()
+                f = QtCore.QFile(self.docName)
+                if not f.open(QtCore.QIODevice.WriteOnly | QtCore.QIODevice.Truncate):
+                    QtGui.QMessageBox.information(self.parent(), "Error - Marave",
+                    "Error saving %s."%self.docName)
+                else:
+                    stream = QtCore.QTextStream(f)
+                    encoded = unicode(self.toPlainText()).encode(unicode(stream.codec().name))
+                    f.write(encoded)
+
+                #f=codecs.open(self.docName,'w+','utf-8')
+                #f.truncate()
+                #f.write(unicode(self.toPlainText()))
+                #f.close()
                 self.document().setModified(False)
                 # FIXME: doesn't belong in this class
                 try:
@@ -220,8 +229,18 @@ class Editor(QTextEdit):
                             self.highlighter.init(langName)
                         else: # Can't figure the language
                             self.highlighter.setDocument(None)
-                    text=codecs.open(fname,'r','utf-8').read()
-                    self.setPlainText(text)
+                    # Open with QTextStream, which should use the right locale
+                    # and try to autodetect encoding
+                    f = QtCore.QFile(fname)
+                    if not f.open(QtCore.QIODevice.ReadOnly | QtCore.QIODevice.Text):
+                        # Error opening file
+                        # FIXME: report error
+                        QtGui.QMessageBox.information(self.parent(), "Error - Marave",
+                    "Can't open %s."%fname)
+                    else:
+                        stream = QtCore.QTextStream(f)
+                        text = unicode(stream.readAll())
+                        self.setPlainText(text)
                         
                 else:
                     QtGui.QMessageBox.information(self.parent(), "Error - Marave",

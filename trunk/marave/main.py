@@ -931,6 +931,14 @@ class MainWidget (QtGui.QGraphicsView):
                 self.saveprefs()
                 QtGui.QGraphicsView.close(self)
                 QtCore.QCoreApplication.instance().quit()
+                self.beep.stop()
+                for path in self.beep.outputPaths():
+                    path.disconnect()
+                self.music.stop()
+                for path in self.music.outputPaths():
+                    path.disconnect()
+                   
+                
         else:
             self.saveprefs()
             QtGui.QGraphicsView.close(self)

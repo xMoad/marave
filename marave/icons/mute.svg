@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
+
 <svg
    xmlns:dc="http://purl.org/dc/elements/1.1/"
    xmlns:cc="http://creativecommons.org/ns#"
@@ -13,7 +14,7 @@
    height="162.5"
    id="svg101"
    sodipodi:version="0.32"
-   inkscape:version="0.46"
+   inkscape:version="0.47 r22583"
    sodipodi:docname="mute.svg"
    inkscape:output_extension="org.inkscape.output.svg.inkscape">
   <metadata
@@ -28,8 +29,8 @@
     </rdf:RDF>
   </metadata>
   <sodipodi:namedview
-     inkscape:window-height="844"
-     inkscape:window-width="1438"
+     inkscape:window-height="845"
+     inkscape:window-width="712"
      inkscape:pageshadow="2"
      inkscape:pageopacity="0.0"
      guidetolerance="10.0"
@@ -45,7 +46,8 @@
      inkscape:cy="87.214144"
      inkscape:window-x="0"
      inkscape:window-y="0"
-     inkscape:current-layer="svg101" />
+     inkscape:current-layer="svg101"
+     inkscape:window-maximized="0" />
   <defs
      id="defs17">
     <inkscape:perspective
@@ -55,21 +57,16 @@
        inkscape:vp_z="162.5 : 81.25 : 1"
        inkscape:persp3d-origin="81.25 : 54.166667 : 1"
        id="perspective21" />
+    <inkscape:perspective
+       id="perspective2837"
+       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
+       inkscape:vp_z="1 : 0.5 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_x="0 : 0.5 : 1"
+       sodipodi:type="inkscape:persp3d" />
   </defs>
-  <ellipse
-     sodipodi:ry="72.871094"
-     sodipodi:rx="72.871094"
-     sodipodi:cy="81.503906"
-     sodipodi:cx="79.472656"
-     cx="79.472656"
-     cy="81.503906"
-     rx="72.871094"
-     ry="72.871094"
-     transform="matrix(1.0052333,0,0,1.0052333,1.3614409,-0.680438)"
-     style="font-size:12px;fill:#f0f0f8;fill-opacity:0.19607795;fill-rule:evenodd;stroke:#4a4b4f;stroke-width:12.5"
-     id="path249" />
   <path
-     d="M 23.142896,155.90656 L 139.3571,6.5934363"
-     style="font-size:12px;fill:none;fill-opacity:0.75;fill-rule:evenodd;stroke:#4a4b4f;stroke-width:18.0644722;stroke-linecap:round;stroke-linejoin:round"
-     id="path606" />
+     style="fill:#000000;stroke:none"
+     d="M 35.155416,48.834313 V 113.66568 H 72.062334 L 127.31187,159.0378 127.34461,3.4622048 72.08693,48.834313 H 35.155389 z"
+     id="path2821" />
 </svg>

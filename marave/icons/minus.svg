@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
+
 <svg
    xmlns:dc="http://purl.org/dc/elements/1.1/"
    xmlns:cc="http://creativecommons.org/ns#"
@@ -13,7 +14,7 @@
    height="162.5"
    id="svg101"
    sodipodi:version="0.32"
-   inkscape:version="0.46"
+   inkscape:version="0.47 r22583"
    sodipodi:docname="minus.svg"
    inkscape:output_extension="org.inkscape.output.svg.inkscape">
   <metadata
@@ -28,8 +29,8 @@
     </rdf:RDF>
   </metadata>
   <sodipodi:namedview
-     inkscape:window-height="844"
-     inkscape:window-width="1438"
+     inkscape:window-height="845"
+     inkscape:window-width="712"
      inkscape:pageshadow="2"
      inkscape:pageopacity="0.0"
      guidetolerance="10.0"
@@ -41,11 +42,12 @@
      id="base"
      showgrid="false"
      inkscape:zoom="2.8553846"
-     inkscape:cx="42.883043"
+     inkscape:cx="95.006466"
      inkscape:cy="64.434997"
      inkscape:window-x="0"
      inkscape:window-y="0"
-     inkscape:current-layer="svg101" />
+     inkscape:current-layer="svg101"
+     inkscape:window-maximized="0" />
   <defs
      id="defs7">
     <inkscape:perspective
@@ -55,21 +57,16 @@
        inkscape:vp_z="162.5 : 81.25 : 1"
        inkscape:persp3d-origin="81.25 : 54.166667 : 1"
        id="perspective11" />
+    <inkscape:perspective
+       id="perspective2837"
+       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
+       inkscape:vp_z="1 : 0.5 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_x="0 : 0.5 : 1"
+       sodipodi:type="inkscape:persp3d" />
   </defs>
-  <ellipse
-     sodipodi:ry="44.433594"
-     sodipodi:rx="44.433594"
-     sodipodi:cy="57.636719"
-     sodipodi:cx="56.113281"
-     cx="56.113281"
-     cy="57.636719"
-     rx="44.433594"
-     ry="44.433594"
-     transform="matrix(1.5804265,0,0,1.5804265,-7.4329172,-9.8405977)"
-     style="font-size:12px;fill:#f0f0f8;fill-opacity:0.19607795;fill-rule:evenodd;stroke:#4a4b4f;stroke-width:12.5"
-     id="path132" />
   <path
-     d="M 35.102972,82.453908 L 126.59511,82.453908"
-     style="font-size:12px;fill:none;fill-rule:evenodd;stroke:#4a4b4f;stroke-width:19.75525475;stroke-linecap:round;stroke-linejoin:round"
-     id="path172" />
+     style="fill:#000000;stroke:none"
+     d="m 117.03021,96.488912 c 5.5784,-9.198551 8.8499,-19.960215 8.85571,-31.500531 C 125.87992,31.326221 98.621487,4.061789 64.976759,4.050168 31.326223,4.061788 4.0559802,31.326221 4.0559802,64.982571 c 0,33.638921 27.2702428,60.903349 60.9207788,60.903349 11.546127,0 22.307791,-3.2715 31.506341,-8.8499 l 41.41962,41.41381 20.5413,-20.55292 -41.41381,-41.407998 z M 64.976759,102.66001 C 44.162353,102.61353 27.334181,85.785356 27.299316,64.982571 27.334181,44.168164 44.168164,27.339989 64.976759,27.293503 85.773734,27.339989 102.61934,44.168164 102.65421,64.982571 102.61353,85.785356 85.773734,102.61353 64.976759,102.66001 z M 36.887191,53.355092 v 23.249146 l 56.161706,-0.0058 V 53.360903 l -56.161706,-0.0058 z"
+     id="path10" />
 </svg>

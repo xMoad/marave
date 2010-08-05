@@ -180,6 +180,8 @@ class Editor(QTextEdit):
         QtCore.QCoreApplication.instance().setOverrideCursor(QtCore.Qt.ArrowCursor)
         fdialog = QtGui.QFileDialog(self.parent(), self.tr("Save as"), self.lastFolder)
         fdialog.setFileMode(fdialog.AnyFile)
+        fdialog.setAcceptMode(fdialog.AcceptSave)
+        fname = None
         if fdialog.exec_():
             fname = unicode(fdialog.selectedFiles()[0])
             print 'FNAME:', fname

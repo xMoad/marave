@@ -191,10 +191,13 @@ TRANSLATIONS
 ICONS
 -----
 
-The icons are taken from the Reinhardt SVG icon set, or based on them:
+Some icons are taken from the Reinhardt SVG icon set, or based on them:
 http://www.kde-look.org/content/show.php/The+Reinhardt+Icon+Set?content=6153
 
 The Marave icon is by Pierpaolo Da Fieno
+
+Other icons are taken from http://raphaeljs.com/icons/ and they are 
+under an MIT license.
 
 IMAGES
 ------

@@ -342,7 +342,7 @@ class MainWidget (QtGui.QGraphicsView):
         #
         self.changing=False
         self.visibleWidget=None
-        self.buttonsHidden = False
+        self.buttonsHidden = True
         # Used for margins and border sizes
         self.m=5
         
@@ -1175,10 +1175,12 @@ class MainWidget (QtGui.QGraphicsView):
                 self.hideCursor()
                 if not self.buttonsHidden:
                     self.hideButtons()
-            elif isinstance(event, QtGui.QMoveEvent):
-                self.showCursor()
-                self.showButtons()
+        elif isinstance(event, QtGui.QMoveEvent):
+            print 'Move',obj
+            self.showCursor()
+            self.showButtons()
         elif isinstance(event, QtGui.QHoverEvent):
+            print 'Hover',obj
             for b in self.buttons:
                 if b != obj:
                     b.hideChildren()
@@ -1484,11 +1486,11 @@ def main():
     window.loadBG()
     window.show()
     window.raise_()
-    window.showFullScreen()
     window.setWindowFilePath('UNNAMED.txt')
     app.processEvents()
-    window.editor.setFocus()
+    window.editor.setFocus(QtCore.Qt.OtherFocusReason)
     app.processEvents()
+    window.showFullScreen()
     if not SOUND:
         QtCore.QTimer.singleShot(2000,window.warnnosound)
     QtCore.QTimer.singleShot(0,window.init)

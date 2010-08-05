@@ -1176,11 +1176,9 @@ class MainWidget (QtGui.QGraphicsView):
                 if not self.buttonsHidden:
                     self.hideButtons()
         elif isinstance(event, QtGui.QMoveEvent):
-            print 'Move',obj
             self.showCursor()
             self.showButtons()
         elif isinstance(event, QtGui.QHoverEvent):
-            print 'Hover',obj
             for b in self.buttons:
                 if b != obj:
                     b.hideChildren()

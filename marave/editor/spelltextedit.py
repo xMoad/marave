@@ -157,8 +157,10 @@ class Editor(QTextEdit):
                     "Error saving %s."%self.docName)
                 else:
                     stream = QtCore.QTextStream(f)
-                    encoded = unicode(self.toPlainText()).encode(unicode(stream.codec().name))
+                    encoded = unicode(self.toPlainText()).encode(unicode(stream.codec().name()))
                     f.write(encoded)
+                    f.flush()
+                    f.close()
 
                 #f=codecs.open(self.docName,'w+','utf-8')
                 #f.truncate()
@@ -170,13 +172,18 @@ class Editor(QTextEdit):
                     self.parent().notify(self.tr('Document saved'))
                 except:
                     pass
-            except:
+            except Exception, e:
                 QtGui.QMessageBox.information(self.parent(), "Error - Marave",
                 "Error saving %s."%self.docName)
 
     def saveas(self):
         QtCore.QCoreApplication.instance().setOverrideCursor(QtCore.Qt.ArrowCursor)
-        fname=unicode(QtGui.QFileDialog.getSaveFileName(self.parent(), self.tr("Save as"), self.lastFolder))
+        fdialog = QtGui.QFileDialog(self.parent(), self.tr("Save as"), self.lastFolder)
+        fdialog.setFileMode(fdialog.AnyFile)
+        if fdialog.exec_():
+            fname = unicode(fdialog.selectedFiles()[0])
+            print 'FNAME:', fname
+        #fname=unicode(QtGui.QFileDialog.getSaveFileName(self.parent(), self.tr("Save as"), self.lastFolder))
         QtCore.QCoreApplication.instance().restoreOverrideCursor()
         if fname:
             self.docName=fname

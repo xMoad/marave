@@ -157,7 +157,7 @@ class Editor(QTextEdit):
                     "Error saving %s."%self.docName)
                 else:
                     stream = QtCore.QTextStream(f)
-                    encoded = unicode(self.toPlainText()).encode(unicode(stream.codec().name()))
+                    encoded =  stream.codec().fromUnicode(self.toPlainText())
                     f.write(encoded)
                     f.flush()
                     f.close()

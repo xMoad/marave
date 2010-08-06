@@ -218,8 +218,14 @@ class Editor(QTextEdit):
             return
         if not fname:
             QtCore.QCoreApplication.instance().setOverrideCursor(QtCore.Qt.ArrowCursor)
-            fname=unicode(QtGui.QFileDialog.getOpenFileName(self.parent(), 
-                self.tr("Open file"), self.lastFolder))
+            fdialog = QtGui.QFileDialog(self.parent(), self.tr("Open File"), self.lastFolder)
+            fdialog.setFileMode(fdialog.AnyFile)
+            fname = None
+            if fdialog.exec_():
+                fname = unicode(fdialog.selectedFiles()[0])
+                print 'FNAME:', fname
+            #fname=unicode(QtGui.QFileDialog.getOpenFileName(self.parent(),
+                #self.tr("Open file"), self.lastFolder))
             QtCore.QCoreApplication.instance().restoreOverrideCursor()
         if fname:
             self.docName=fname

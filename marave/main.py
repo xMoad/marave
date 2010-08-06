@@ -944,12 +944,14 @@ class MainWidget (QtGui.QGraphicsView):
         else:
             self.saveprefs()
             QtGui.QGraphicsView.close(self)
-            self.beep.stop()
-            for path in self.beep.outputPaths():
-                path.disconnect()
-            self.music.stop()
-            for path in self.music.outputPaths():
-                path.disconnect()
+            if self.beep:
+                self.beep.stop()
+                for path in self.beep.outputPaths():
+                    path.disconnect()
+            if self.music:
+                self.music.stop()
+                for path in self.music.outputPaths():
+                    path.disconnect()
             QtCore.QCoreApplication.instance().quit()
         QtCore.QCoreApplication.instance().restoreOverrideCursor()
 

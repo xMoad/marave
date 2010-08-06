@@ -736,7 +736,13 @@ class MainWidget (QtGui.QGraphicsView):
             pass
         if themefile is None or themefile is False:
             tdir=os.path.join(PATH,'themes')
-            self.savetheme(unicode(QtGui.QFileDialog.getSaveFileName(self.parent(), "Marave - Save Theme",tdir)))
+        fdialog = QtGui.QFileDialog(self, self.tr("Save Theme"), tdir)
+        fdialog.setFileMode(fdialog.AnyFile)
+        fdialog.setAcceptMode(fdialog.AcceptSave)
+        fname = None
+        if fdialog.exec_():
+            fname = unicode(fdialog.selectedFiles()[0])            
+            self.savetheme(fname)
             return
         self.oldSettings=self.settings
         self.settings=QtCore.QSettings(QtCore.QString(themefile),QtCore.QSettings.IniFormat)

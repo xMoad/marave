@@ -3,31 +3,36 @@
 <context>
     <name>Editor</name>
     <message>
-        <location filename="../spelltextedit.py" line="161"/>
+        <location filename="../spelltextedit.py" line="172"/>
         <source>Document saved</source>
         <translation>Έγγραφο αποθηκεύτηκε</translation>
     </message>
     <message>
-        <location filename="../spelltextedit.py" line="170"/>
+        <location filename="../spelltextedit.py" line="181"/>
         <source>Save as</source>
         <translation>Αποθήκευση ως</translation>
     </message>
     <message>
-        <location filename="../spelltextedit.py" line="180"/>
+        <location filename="../spelltextedit.py" line="198"/>
         <source>New Document</source>
         <translation>Νέο έγγραφο</translation>
     </message>
     <message>
-        <location filename="../spelltextedit.py" line="180"/>
+        <location filename="../spelltextedit.py" line="198"/>
         <source>The document &quot;%s&quot; has been modified.
 Do you want to save your changes or discard them?</source>
         <translation>Το έγγραφο &quot;%s&quot; έχει αλλάξει.
 Θέλετε να αποθηκεύσετε τις αλλαγές ή να τις απορρίψετε;</translation>
     </message>
     <message>
-        <location filename="../spelltextedit.py" line="203"/>
+        <location filename="../../../spelltextedit.py" line="203"/>
         <source>Open file</source>
-        <translation>Άνοιγμα αρχείου</translation>
+        <translation type="obsolete">Άνοιγμα αρχείου</translation>
+    </message>
+    <message>
+        <location filename="../spelltextedit.py" line="221"/>
+        <source>Open File</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -161,178 +166,178 @@ Do you want to save your changes or discard them?</source>
 <context>
     <name>MainWidget</name>
     <message>
-        <location filename="../main.py" line="386"/>
+        <location filename="../main.py" line="397"/>
         <source>Ctrl+F</source>
         <comment>Find</comment>
         <translation>Εύρεση</translation>
     </message>
     <message>
-        <location filename="../main.py" line="388"/>
+        <location filename="../main.py" line="399"/>
         <source>Ctrl+R</source>
         <comment>Find and Replace</comment>
         <translation>Εύρεση και Αντικατάσταση</translation>
     </message>
     <message>
-        <location filename="../main.py" line="392"/>
+        <location filename="../main.py" line="403"/>
         <source>Ctrl+T</source>
         <comment>Taj Mode</comment>
         <translation></translation>
     </message>
     <message>
-        <location filename="../main.py" line="400"/>
+        <location filename="../main.py" line="411"/>
         <source>Ctrl+O</source>
         <comment>Open File</comment>
         <translation>Άνοιγμα αρχείου</translation>
     </message>
     <message>
-        <location filename="../main.py" line="402"/>
+        <location filename="../main.py" line="413"/>
         <source>Ctrl+S</source>
         <comment>Save File</comment>
         <translation>Αποθήκευση αρχείου</translation>
     </message>
     <message>
-        <location filename="../main.py" line="404"/>
+        <location filename="../main.py" line="415"/>
         <source>Shift+Ctrl+S</source>
         <comment>Save File As</comment>
         <translation>Αποθήκευση αρχείου ως</translation>
     </message>
     <message>
-        <location filename="../main.py" line="406"/>
+        <location filename="../main.py" line="417"/>
         <source>Ctrl+N</source>
         <comment>New File</comment>
         <translation>Νέο έγγραφο</translation>
     </message>
     <message>
-        <location filename="../main.py" line="408"/>
+        <location filename="../main.py" line="419"/>
         <source>Ctrl+Q</source>
         <comment>Quit</comment>
         <translation>Έξοδος</translation>
     </message>
     <message>
-        <location filename="../main.py" line="411"/>
+        <location filename="../main.py" line="422"/>
         <source>Shift+Ctrl+P</source>
         <comment>Show Preferences</comment>
         <translation>Προβολή ρυθμίσεων</translation>
     </message>
     <message>
-        <location filename="../main.py" line="415"/>
+        <location filename="../main.py" line="426"/>
         <source>Ctrl+I</source>
         <comment>Show Document Info</comment>
         <translation>Προβολή Πληροφοριών Εγγράφου</translation>
     </message>
     <message>
-        <location filename="../main.py" line="419"/>
+        <location filename="../main.py" line="430"/>
         <source>F1</source>
         <comment>Help</comment>
         <translation>Βοήθεια</translation>
     </message>
     <message>
-        <location filename="../main.py" line="423"/>
+        <location filename="../main.py" line="434"/>
         <source>Esc</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../main.py" line="427"/>
+        <location filename="../main.py" line="438"/>
         <source>Ctrl+G</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../main.py" line="447"/>
+        <location filename="../main.py" line="458"/>
         <source>Font</source>
         <translation>Γραμματοσειρά</translation>
     </message>
     <message>
-        <location filename="../main.py" line="448"/>
+        <location filename="../main.py" line="459"/>
         <source>Size</source>
         <translation>Μέγεθος</translation>
     </message>
     <message>
-        <location filename="../main.py" line="449"/>
+        <location filename="../main.py" line="460"/>
         <source>File</source>
         <translation>Αρχείο</translation>
     </message>
     <message>
-        <location filename="../main.py" line="450"/>
+        <location filename="../main.py" line="461"/>
         <source>Bg</source>
         <translation>Υπόβαθρο</translation>
     </message>
     <message>
-        <location filename="../main.py" line="452"/>
+        <location filename="../main.py" line="463"/>
         <source>Click</source>
         <translation>Κλικ</translation>
     </message>
     <message>
-        <location filename="../main.py" line="453"/>
+        <location filename="../main.py" line="464"/>
         <source>Music</source>
         <translation>Μουσική</translation>
     </message>
     <message>
-        <location filename="../main.py" line="454"/>
+        <location filename="../main.py" line="465"/>
         <source>Options</source>
         <translation>Επιλογές</translation>
     </message>
     <message>
-        <location filename="../main.py" line="456"/>
+        <location filename="../main.py" line="467"/>
         <source>Quit</source>
         <translation>Έξοδος</translation>
     </message>
     <message>
-        <location filename="../../main.py" line="452"/>
+        <location filename="../../../../main.py" line="452"/>
         <source>Plugins</source>
         <translation type="obsolete">Πρόσθετα</translation>
     </message>
     <message>
-        <location filename="../main.py" line="496"/>
+        <location filename="../main.py" line="507"/>
         <source>Color</source>
         <translation>Χρώμα</translation>
     </message>
     <message>
-        <location filename="../main.py" line="477"/>
+        <location filename="../main.py" line="488"/>
         <source>Smaller</source>
         <translation>Μικρότερο</translation>
     </message>
     <message>
-        <location filename="../main.py" line="478"/>
+        <location filename="../main.py" line="489"/>
         <source>Default</source>
         <translation>Προεπιλεγμένο</translation>
     </message>
     <message>
-        <location filename="../main.py" line="479"/>
+        <location filename="../main.py" line="490"/>
         <source>Larger</source>
         <translation>Μεγαλύτερο</translation>
     </message>
     <message>
-        <location filename="../main.py" line="486"/>
+        <location filename="../main.py" line="497"/>
         <source>Open</source>
         <translation>Άνοιγμα</translation>
     </message>
     <message>
-        <location filename="../main.py" line="487"/>
+        <location filename="../main.py" line="498"/>
         <source>Save</source>
         <translation>Αποθήκευση</translation>
     </message>
     <message>
-        <location filename="../main.py" line="488"/>
+        <location filename="../main.py" line="499"/>
         <source>Save As</source>
         <translation>Αποθήκευση ως</translation>
     </message>
     <message>
-        <location filename="../main.py" line="511"/>
+        <location filename="../main.py" line="522"/>
         <source>Previous</source>
         <translation>Προηγούμενο</translation>
     </message>
     <message>
-        <location filename="../main.py" line="512"/>
+        <location filename="../main.py" line="523"/>
         <source>Next</source>
         <translation>Επόμενο</translation>
     </message>
     <message>
-        <location filename="../main.py" line="513"/>
+        <location filename="../main.py" line="524"/>
         <source>None</source>
         <translation>Κανένα</translation>
     </message>
     <message numerus="yes">
-        <location filename="../main.py" line="601"/>
+        <location filename="../main.py" line="612"/>
         <source>Saving every %n minutes</source>
         <translation>
             <numerusform>Αποθήκευση κάθε %n λεπτό</numerusform>
@@ -340,22 +345,22 @@ Do you want to save your changes or discard them?</source>
         </translation>
     </message>
     <message>
-        <location filename="../main.py" line="605"/>
+        <location filename="../main.py" line="616"/>
         <source>Disabled automatic saving</source>
         <translation>Απενεργοποίηση αυτόματης αποθήκευσης</translation>
     </message>
     <message>
-        <location filename="../main.py" line="617"/>
+        <location filename="../main.py" line="628"/>
         <source>Sound support is not available, disabling sound</source>
         <translation>Υποστηριξη ήχου δεν είναι διαθέσιμη, απενεργοποίηση ήχων</translation>
     </message>
     <message>
-        <location filename="../main.py" line="627"/>
+        <location filename="../main.py" line="638"/>
         <source>Document: %s</source>
         <translation>Έγγραφο: %s</translation>
     </message>
     <message numerus="yes">
-        <location filename="../main.py" line="628"/>
+        <location filename="../main.py" line="639"/>
         <source>%n words</source>
         <translation>
             <numerusform>%n λέξη</numerusform>
@@ -363,7 +368,7 @@ Do you want to save your changes or discard them?</source>
         </translation>
     </message>
     <message numerus="yes">
-        <location filename="../main.py" line="629"/>
+        <location filename="../main.py" line="640"/>
         <source>%n lines</source>
         <translation>
             <numerusform>%n γραμμή</numerusform>
@@ -371,7 +376,7 @@ Do you want to save your changes or discard them?</source>
         </translation>
     </message>
     <message numerus="yes">
-        <location filename="../main.py" line="630"/>
+        <location filename="../main.py" line="641"/>
         <source>%n characters</source>
         <translation>
             <numerusform>%n χαρακτήρας</numerusform>
@@ -379,72 +384,77 @@ Do you want to save your changes or discard them?</source>
         </translation>
     </message>
     <message>
-        <location filename="../main.py" line="678"/>
+        <location filename="../main.py" line="689"/>
         <source>Setting opacity to: %s%%</source>
         <translation>Αλλαγή αδιαφάνειας σε: %s%%</translation>
     </message>
     <message>
-        <location filename="../main.py" line="702"/>
+        <location filename="../main.py" line="713"/>
         <source>Changing to style %s requires restarting Marave</source>
         <translation>Αλλαγή στο στυλ %s απαιτεί επανεκκίνηση του Marave</translation>
     </message>
     <message>
-        <location filename="../main.py" line="913"/>
+        <location filename="../main.py" line="930"/>
         <source>Close Document - Marave</source>
         <translation>Κλείσιμο Εγγράφου - Marave</translation>
     </message>
     <message>
-        <location filename="../main.py" line="913"/>
+        <location filename="../main.py" line="930"/>
         <source>The document &quot;%s&quot; has been modified.</source>
         <translation>Το έγγραφο &quot;%s&quot; έχει αλλάξει.</translation>
     </message>
     <message>
-        <location filename="../main.py" line="913"/>
+        <location filename="../main.py" line="930"/>
         <source>UNNAMED</source>
         <translation>ΧΩΡΙΣ ΟΝΟΜΑ</translation>
     </message>
     <message>
-        <location filename="../main.py" line="913"/>
+        <location filename="../main.py" line="930"/>
         <source>
 Do you want to save your changes or discard them?</source>
         <translation>
 Θέλετε να αποθηκεύσετε τις αλλαγές ή να τις απορρίψετε;</translation>
     </message>
     <message>
-        <location filename="../main.py" line="989"/>
+        <location filename="../main.py" line="1024"/>
         <source>Switching click to: %s</source>
         <translation>Αλλαγή κλικ σε: %s</translation>
     </message>
     <message>
-        <location filename="../main.py" line="1018"/>
+        <location filename="../main.py" line="1053"/>
         <source>Disabling click</source>
         <translation>Απενεργοποίηση κλικ</translation>
     </message>
     <message>
-        <location filename="../main.py" line="1024"/>
+        <location filename="../main.py" line="1059"/>
         <source>Listening to: %s</source>
         <translation>Ακούτε: %s</translation>
     </message>
     <message>
-        <location filename="../main.py" line="1057"/>
+        <location filename="../main.py" line="1092"/>
         <source>Disabling music</source>
         <translation>Απενεργοποίηση μουσικής</translation>
     </message>
     <message>
-        <location filename="../main.py" line="1115"/>
+        <location filename="../main.py" line="1150"/>
         <source>Setting background to: %s</source>
         <translation>Αλλαγή υποβάθρου σε: %s</translation>
+    </message>
+    <message>
+        <location filename="../main.py" line="739"/>
+        <source>Save Theme</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>PrefsWidget</name>
     <message>
-        <location filename="../main.py" line="127"/>
+        <location filename="../main.py" line="129"/>
         <source>None</source>
         <translation>Κανένας</translation>
     </message>
     <message>
-        <location filename="../main.py" line="137"/>
+        <location filename="../main.py" line="139"/>
         <source>Current</source>
         <translation>Τρέχον</translation>
     </message>
@@ -452,12 +462,12 @@ Do you want to save your changes or discard them?</source>
 <context>
     <name>app</name>
     <message>
-        <location filename="../main.py" line="1430"/>
+        <location filename="../main.py" line="1481"/>
         <source>FOCUS!</source>
         <translation>ΣΥΓΚΕΝΤΡΩΣΗ!</translation>
     </message>
     <message>
-        <location filename="../main.py" line="1430"/>
+        <location filename="../main.py" line="1481"/>
         <source>Marave only opens one document at a time.
 The whole idea is focusing!
 So, this is the first one you asked for.</source>

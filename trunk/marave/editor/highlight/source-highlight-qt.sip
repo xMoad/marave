@@ -27,7 +27,7 @@ public:
     void setDocument ( QTextDocument * doc );
     void rehighlightBlock ( const QTextBlock & block );
     const QString getLangDefFileFromFileName(const QString &filename);
-    void setDefaultToMonosapce(bool);
+    void setDefaultToMonospace(bool);
 private:
    Qt4SyntaxHighlighter(const srchiliteqt::Qt4SyntaxHighlighter&);
 

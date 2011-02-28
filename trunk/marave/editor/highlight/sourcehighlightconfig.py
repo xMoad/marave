@@ -5,7 +5,7 @@ import pyqtconfig
 # the final configuration module.
 _pkg_config = {
     'sourcehighlight_sip_dir':    '/usr/share/sip',
-    'sourcehighlight_sip_flags':  '-x VendorID -t WS_X11 -x PyQt_NoPrintRangeBug -t Qt_4_6_0 -x Py_v3 -g'
+    'sourcehighlight_sip_flags':  '-x VendorID -t WS_X11 -x PyQt_NoPrintRangeBug -t Qt_4_7_1 -x Py_v3 -g'
 }
 
 _default_macros = None

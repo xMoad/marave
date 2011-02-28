@@ -17,7 +17,7 @@ class build_hl(Command):
     
     def run(self):
         os.chdir(os.path.join(self._dir,'marave','editor','highlight'))
-        r=os.system('python configure.py')
+        r=os.system('python2 configure.py')
         if r==0:
             os.system('make')
         os.chdir(self._dir)
